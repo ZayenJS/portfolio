@@ -1,0 +1,79 @@
+@import '../../../assets/scss/variables';
+
+.ActivityBar {
+  @include flex(center, space-between, column nowrap);
+  height: 100%;
+  width: $gutter * 1.5;
+  padding: 0.5rem;
+  background-color: #333;
+
+  li {
+    height: fit-content;
+    margin-bottom: 2rem;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &__Actions {
+    font-family: 'icomoon';
+    li {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    &__Search {
+      transform: rotate(90deg);
+
+      &::before {
+        content: $icon-search;
+      }
+    }
+
+    &__GitBranch {
+      &::before {
+        content: $icon-flow-branch;
+      }
+    }
+
+    &__Debug {
+      position: relative;
+
+      &::before {
+        // color: #aaa;
+        content: $icon-bug;
+        font-size: 0.8rem;
+        position: absolute;
+        bottom: -0.25rem;
+        left: -0.25rem;
+      }
+
+      &::after {
+        content: $icon-play;
+      }
+    }
+
+    &__Bookmark {
+      &::before {
+        content: $icon-bookmark-o;
+      }
+    }
+
+    &__Profile {
+      font-family: 'icomoon';
+      &::before {
+        content: $icon-user-circle-o;
+      }
+    }
+
+    &__Settings {
+      margin-bottom: $gutter/4 !important;
+      font-family: 'icomoon';
+      &::before {
+        content: $icon-settings;
+      }
+    }
+  }
+}

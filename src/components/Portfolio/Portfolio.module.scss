@@ -1,0 +1,9 @@
+@import '../../assets/scss/variables';
+
+.Portfolio {
+  display: grid;
+  grid-template-rows: auto $gutter * 1.5;
+  grid-template-areas: 'main' 'footer';
+  min-width: 100vw;
+  min-height: 100vh;
+}
