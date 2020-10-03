@@ -1,0 +1,82 @@
+@import '../../../../../assets/scss/variables';
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.VolumeMenu {
+  position: absolute;
+  bottom: 3rem;
+  left: -12rem;
+  height: 6rem;
+  width: 22rem;
+  background-color: #272727;
+  z-index: -1;
+  transform: translate(0);
+  animation: slideUp 200ms 1 forwards ease-in;
+  color: #ccc;
+  padding: 0 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+  border-right: none;
+
+  div {
+    @include flex(center, space-between, row nowrap);
+    height: 50%;
+    cursor: default;
+
+    &:nth-child(2) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__Range {
+    width: 70%;
+    input {
+      width: 100%;
+    }
+  }
+}
+
+.Speaker {
+  @include flex(center, center, row nowrap);
+  height: 100%;
+  padding: 0 1rem;
+  width: 2rem;
+  font-size: 1em;
+  font-family: $icomoon-font-family;
+
+  &__Container {
+    position: relative;
+    height: 100%;
+  }
+
+  &__Mute {
+    &::before {
+      content: $icon-volume-mute2;
+    }
+  }
+
+  &__Low {
+    &::before {
+      content: $icon-volume-low;
+    }
+  }
+
+  &__Medium {
+    &::before {
+      content: $icon-volume-medium;
+    }
+  }
+
+  &__High {
+    &::before {
+      content: $icon-volume-high;
+    }
+  }
+}

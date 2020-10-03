@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?ajh7dh');
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?ajh7dh#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?ajh7dh') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?ajh7dh') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?ajh7dh##{$icomoon-font-family}') format('svg');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?gp016n');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?gp016n#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?gp016n') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?gp016n') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?gp016n##{$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -70,6 +70,26 @@
 .icon-redo2 {
   &:before {
     content: $icon-redo2; 
+  }
+}
+.icon-volume-high {
+  &:before {
+    content: $icon-volume-high; 
+  }
+}
+.icon-volume-medium {
+  &:before {
+    content: $icon-volume-medium; 
+  }
+}
+.icon-volume-low {
+  &:before {
+    content: $icon-volume-low; 
+  }
+}
+.icon-volume-mute2 {
+  &:before {
+    content: $icon-volume-mute2; 
   }
 }
 .icon-c {
@@ -295,6 +315,11 @@
 .icon-bookmark-o {
   &:before {
     content: $icon-bookmark-o; 
+  }
+}
+.icon-circle-o {
+  &:before {
+    content: $icon-circle-o; 
   }
 }
 .icon-terminal {

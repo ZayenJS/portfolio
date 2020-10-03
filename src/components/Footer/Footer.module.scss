@@ -1,9 +1,26 @@
 @import '../../assets/scss/variables';
 
 .Footer {
-  @include flex(center, flex-start, row nowrap);
+  @include flex(center, space-between, row nowrap);
+  position: relative;
   height: $gutter * 1.5;
-  background-color: #222;
+  background-color: #1e1e1e;
+  color: #ccc;
+
+  &__Left,
+  &__Right {
+    height: 100%;
+    width: 50%;
+  }
+
+  &__Left {
+    @include flex(center, flex-start, row nowrap);
+  }
+
+  &__Right {
+    @include flex(center, flex-end, row nowrap);
+    z-index: 20;
+  }
 
   &__Item {
     @include flex(center, center, row nowrap);
@@ -15,6 +32,7 @@
     font-family: $icomoon-font-family;
     width: 4rem;
     font-size: 1.65rem;
+    background-color: #1e1e1e;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
@@ -75,5 +93,31 @@
       transform: translate(-50%, -50%);
       background-color: #fff;
     }
+  }
+
+  &__NULL {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: #1e1e1e;
+  }
+
+  &__MoreIcons {
+    @extend .Footer__Item;
+    width: 1rem;
+    font-size: 1.5em;
+
+    transform: rotate(180deg);
+
+    &::before {
+      font-family: $icomoon-font-family;
+      content: $icon-chevron-down;
+    }
+  }
+
+  &__Lang {
+    @extend .Footer__Item;
+    width: 2rem;
+    font-size: 0.75em;
   }
 }

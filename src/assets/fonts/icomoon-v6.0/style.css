@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?ajh7dh');
-  src:  url('fonts/icomoon.eot?ajh7dh#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?ajh7dh') format('truetype'),
-    url('fonts/icomoon.woff?ajh7dh') format('woff'),
-    url('fonts/icomoon.svg?ajh7dh#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?gp016n');
+  src:  url('fonts/icomoon.eot?gp016n#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?gp016n') format('truetype'),
+    url('fonts/icomoon.woff?gp016n') format('woff'),
+    url('fonts/icomoon.svg?gp016n#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -51,6 +51,18 @@
 }
 .icon-redo2:before {
   content: "\e968";
+}
+.icon-volume-high:before {
+  content: "\ea26";
+}
+.icon-volume-medium:before {
+  content: "\ea27";
+}
+.icon-volume-low:before {
+  content: "\ea28";
+}
+.icon-volume-mute2:before {
+  content: "\ea2a";
 }
 .icon-c:before {
   content: "\e909";
@@ -194,6 +206,9 @@
 }
 .icon-bookmark-o:before {
   content: "\f097";
+}
+.icon-circle-o:before {
+  content: "\f10c";
 }
 .icon-terminal:before {
   content: "\f120";

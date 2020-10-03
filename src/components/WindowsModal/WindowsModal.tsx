@@ -36,10 +36,10 @@ const WindowsModal: FC<WindowsModalProps> = ({
           <div className={styles.WindowsModal__Main__Content}>
             <span className={styles.WindowsModal__Main__Content__Message}>{mainMessage}</span>
             <div className={styles.WindowsModal__Main__Content__ButtonsContainer}>
-              <button role="navigation" onClick={onConfirm}>
+              <button tabIndex={1} onClick={onConfirm}>
                 {confirmButtonText}
               </button>
-              <button role="navigation" onClick={onCancel}>
+              <button tabIndex={1} onClick={onCancel}>
                 {cancelButtonText}
               </button>
             </div>

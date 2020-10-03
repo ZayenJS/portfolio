@@ -8,9 +8,11 @@ import vscodeIcon from '../../../assets/images/Visual_Studio_Code_1.35_icon.svg'
 
 import styles from './TitleBar.module.scss';
 
-interface TitleBarProps {}
+interface TitleBarProps {
+  title: string;
+}
 
-const TitleBar: FC<TitleBarProps> = () => {
+const TitleBar: FC<TitleBarProps> = ({ title }) => {
   return (
     <header className={styles.TitleBar}>
       <div className={styles.TitleBar__Menu}>
@@ -28,7 +30,7 @@ const TitleBar: FC<TitleBarProps> = () => {
           <TitleBarItem category="menu" text="Help" />
         </ul>
       </div>
-      <span className={styles.TitleBar__FileName}>README.md - Visual Studio Code</span>
+      <h2 className={styles.TitleBar__FileName}>{title} - Visual Studio Code</h2>
       <div className={styles.TitleBar__WindowControl}>
         <ul>
           <TitleBarItem category="window-control" icon={faWindowMinimize} size="sm" />

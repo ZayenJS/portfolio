@@ -30,9 +30,22 @@ const DesktopIcon: FC<DesktopIconProps> = ({ id, label, src, alt, onDoubleClick 
     setIsSelected(true);
   };
 
-  const onSelectIcon = () => {
+  const selectIconHandler = () => {
     setIsSelected(true);
     setIsContextMenuVisible(false);
+  };
+
+  const doubleClickHandler = () => {
+    if (onDoubleClick) {
+      setIsSelected(false);
+      onDoubleClick();
+    }
+  };
+
+  const keyPressHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' && onDoubleClick) {
+      doubleClickHandler();
+    }
   };
 
   const deleteWebsiteHandler = (response: 'yes' | 'no') => {
@@ -54,7 +67,7 @@ const DesktopIcon: FC<DesktopIconProps> = ({ id, label, src, alt, onDoubleClick 
       );
   }, [id]);
 
-  let onContextMenu;
+  let contextMenuHandler;
   const contextMenuContent: { icon?: any; text: string }[] = [];
 
   switch (label) {
@@ -66,37 +79,40 @@ const DesktopIcon: FC<DesktopIconProps> = ({ id, label, src, alt, onDoubleClick 
         },
         { text: 'Propriétés' },
       );
-      onContextMenu = showRecycleBinContextMenu;
+      contextMenuHandler = showRecycleBinContextMenu;
       break;
     case 'Chrome':
-      onContextMenu = undefined;
+      contextMenuHandler = undefined;
       break;
     case 'Visual Studio Code':
-      onContextMenu = undefined;
+      contextMenuHandler = undefined;
       break;
     default:
-      onContextMenu = undefined;
+      contextMenuHandler = undefined;
   }
 
   return (
     <div
+      tabIndex={1}
       id={id}
-      onClick={onSelectIcon}
-      onDoubleClick={onDoubleClick}
-      onContextMenu={onContextMenu}
+      onClick={selectIconHandler}
+      onDoubleClick={doubleClickHandler}
+      onContextMenu={contextMenuHandler}
+      onKeyPress={keyPressHandler}
       className={
         isSelected
           ? [styles.DesktopIcon__Container, styles.DesktopIcon__Container__Selected].join(' ')
           : styles.DesktopIcon__Container
       }>
       <img
-        onContextMenu={onContextMenu}
+        onKeyPress={keyPressHandler}
+        onContextMenu={contextMenuHandler}
         id={`${id}-img`}
         className={styles.DesktopIcon}
         src={src}
         alt={alt}
       />
-      <p onContextMenu={onContextMenu} id={`${id}-p`}>
+      <p onKeyPress={keyPressHandler} onContextMenu={contextMenuHandler} id={`${id}-p`}>
         {label}
       </p>
       <ContextMenu
