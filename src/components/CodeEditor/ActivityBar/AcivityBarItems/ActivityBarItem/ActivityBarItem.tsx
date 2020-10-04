@@ -1,12 +1,12 @@
 import React, { FC, SetStateAction } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IActivityBarItem } from '../../../../../models';
+import { ActivityBarItemName, IActivityBarItem } from '../../../../../models';
 
 import styles from './ActivityBarItem.module.scss';
 
 interface ActivityBarItemProps extends IActivityBarItem {
-  activeItem: string;
-  setActiveItem?: React.Dispatch<SetStateAction<string>>;
+  activeItem: ActivityBarItemName;
+  setActiveItem?: React.Dispatch<SetStateAction<ActivityBarItemName>>;
 }
 
 const ActivityBarItem: FC<ActivityBarItemProps> = ({

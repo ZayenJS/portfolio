@@ -2,11 +2,11 @@ import React, { FC, SetStateAction } from 'react';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import styles from './ActivityBar.module.scss';
 import ActivityBarItems from './AcivityBarItems/ActivityBarItems';
-import { IActivityBarItem } from '../../../models';
+import { ActivityBarItemName, IActivityBarItem } from '../../../models';
 
 interface ActivityBarProps {
-  activeItem: string;
-  setActiveItem?: React.Dispatch<SetStateAction<string>>;
+  activeItem: ActivityBarItemName;
+  setActiveItem?: React.Dispatch<SetStateAction<ActivityBarItemName>>;
 }
 
 const ActivityBar: FC<ActivityBarProps> = ({ activeItem, setActiveItem }) => {

@@ -2,6 +2,106 @@
 
 .SideBar {
   height: 100%;
-  width: 10rem;
+  width: 12rem;
   background-color: #252526;
+  overflow: hidden;
+
+  &__Explorer {
+    color: #ccc;
+    font-size: 0.75rem;
+    height: 100%;
+
+    &__Header {
+      @include flex(center, space-between, row nowrap);
+      position: relative;
+      padding: 1rem;
+      height: 2rem;
+
+      h2 {
+        text-transform: uppercase;
+      }
+
+      span {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+    }
+
+    &__Body {
+      height: 100%;
+    }
+  }
+
+  &__Project {
+    @include flex(center, flex-start, row nowrap);
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &__Header {
+      @include flex(center, center, row nowrap);
+      font-size: 1.1em;
+
+      h3 {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      &__Chevron {
+        margin-right: 0.25rem;
+
+        &::before {
+          font-family: $icomoon-font-family;
+          font-size: 1.4em;
+          content: $icon-chevron-down;
+        }
+      }
+
+      &__Container,
+      &__Actions {
+        @include flex(center, flex-start, row nowrap);
+      }
+
+      &__Actions {
+        font-size: 1.25em;
+        width: 55%;
+
+        &__CreateFile {
+          &::before {
+            margin: 0 0.25rem;
+            font-family: $icomoon-font-family;
+            content: $icon-document-add;
+          }
+        }
+
+        &__CreateFolder {
+          &::before {
+            margin: 0 0.25rem;
+            font-family: $icomoon-font-family;
+            content: $icon-folder-outline-add;
+          }
+        }
+
+        &__Refresh {
+          transform: rotate(-90deg);
+          &::before {
+            margin: 0 0.25rem;
+            font-family: $icomoon-font-family;
+            content: $icon-refresh;
+          }
+        }
+
+        &__Collapse {
+          &::before {
+            margin: 0 0.25rem;
+            font-family: $icomoon-font-family;
+            content: $icon-windows;
+          }
+        }
+      }
+    }
+  }
 }

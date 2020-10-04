@@ -30,7 +30,7 @@ const TitleBar: FC<TitleBarProps> = ({ title }) => {
           <TitleBarItem category="menu" text="Help" />
         </ul>
       </div>
-      <h2 className={styles.TitleBar__FileName}>{title}Mon Portfolio - Visual Studio Code</h2>
+      <h2 className={styles.TitleBar__FileName}>{title} - Portfolio - Visual Studio Code</h2>
       <div className={styles.TitleBar__WindowControl}>
         <ul>
           <TitleBarItem category="window-control" icon={faWindowMinimize} size="sm" />

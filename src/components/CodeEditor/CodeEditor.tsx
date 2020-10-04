@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { ActivityBarItemName } from '../../models';
 import ActivityBar from './ActivityBar/ActivityBar';
 
 import styles from './CodeEditor.module.scss';
@@ -13,12 +14,12 @@ interface CodeEditorProps extends RouteComponentProps {}
 const CodeEditor: FC<CodeEditorProps> = ({ match }) => {
   // const [isMinimized, setIsMinimized] = useState(false);
   // const [isMaximized, setIsMaximized] = useState(false);
-  const [activeItem, setActiveItem] = useState<string>('explorer');
+  const [activeItem, setActiveItem] = useState<ActivityBarItemName>('explorer');
 
   return (
     <div className={styles.CodeEditor}>
       <div className={styles.CodeEditor__Content}>
-        <TitleBar title="README.md - " />
+        <TitleBar title="README.md" />
         <main className={styles.CodeEditor__Main}>
           <ActivityBar activeItem={activeItem} setActiveItem={setActiveItem} />
           {activeItem ? <SideBar activeItem={activeItem} /> : null}
@@ -28,7 +29,7 @@ const CodeEditor: FC<CodeEditorProps> = ({ match }) => {
       </div>
       {/* <Switch>
         <Route exact path={`${match.path}/`} component={BlankPage} />
-        <Route path={`${match.path}/readme.md`} component={BlankPage} />
+        <Route path={`${match.path}/readme.md`} component={ReadmePage} />
       </Switch> */}
     </div>
   );

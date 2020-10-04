@@ -1,13 +1,13 @@
 import React, { FC, SetStateAction } from 'react';
-import { IActivityBarItem } from '../../../../models';
+import { ActivityBarItemName, IActivityBarItem } from '../../../../models';
 
 import ActivityBarItem from './ActivityBarItem/ActivityBarItem';
 
 interface ActivityBarItemsProps {
   content: IActivityBarItem[];
   className: string;
-  activeItem: string;
-  setActiveItem?: React.Dispatch<SetStateAction<string>>;
+  activeItem: ActivityBarItemName;
+  setActiveItem?: React.Dispatch<SetStateAction<ActivityBarItemName>>;
 }
 
 const ActivityBarItems: FC<ActivityBarItemsProps> = ({
