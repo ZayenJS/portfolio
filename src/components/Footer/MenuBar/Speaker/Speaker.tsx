@@ -1,6 +1,10 @@
-import React, { FC, useState } from 'react';
-import styles from './Speaker.module.scss';
+import React, { FC, useEffect, useState } from 'react';
+
 import VolumeMenu from './VolumeMenu/VolumeMenu';
+
+import { getSpeakerClasses } from '../../../../utils';
+
+import styles from './Speaker.module.scss';
 
 interface SpeakerProps {}
 
@@ -8,23 +12,24 @@ const Speaker: FC<SpeakerProps> = () => {
   const [isVolumeMenuVisible, setIsVolumeMenuVisible] = useState(false);
   const [volume, setVolume] = useState(62);
 
-  let speakerClasses = styles.Speaker;
+  useEffect(() => {
+    const clickAway = (event: MouseEvent) => {
+      const element = event.target as HTMLElement;
+      if (!element.classList.contains('volume-menu')) {
+        setIsVolumeMenuVisible(false);
+      }
+    };
 
-  if (volume >= 1 && volume <= 32) {
-    speakerClasses = [speakerClasses, styles.Speaker__Low].join(' ');
-  } else if (volume >= 33 && volume <= 64) {
-    speakerClasses = [speakerClasses, styles.Speaker__Medium].join(' ');
-  } else if (volume >= 65 && volume <= 100) {
-    speakerClasses = [speakerClasses, styles.Speaker__High].join(' ');
-  } else {
-    speakerClasses = [speakerClasses, styles.Speaker__Mute].join(' ');
-  }
+    window.addEventListener('click', clickAway);
+
+    return () => window.removeEventListener('click', clickAway);
+  }, []);
 
   return (
-    <div className={styles.Speaker__Container}>
+    <div className={[styles.Speaker__Container, 'volume-menu'].join(' ')}>
       <span
         onClick={() => setIsVolumeMenuVisible(!isVolumeMenuVisible)}
-        className={speakerClasses}></span>
+        className={[getSpeakerClasses(volume, styles), 'volume-menu'].join(' ')}></span>
       {isVolumeMenuVisible ? <VolumeMenu volume={volume} onVolumeChange={setVolume} /> : null}
     </div>
   );

@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import { Switch, Route, RouteComponentProps, Link } from 'react-router-dom';
+import React, { FC } from 'react';
+import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 
 import Layout from '../Layout/Layout';
 

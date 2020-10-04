@@ -4,12 +4,16 @@
   @include flex(center, space-between, column nowrap);
   height: 100%;
   width: $gutter * 1.5;
-  padding: 0.5rem;
   background-color: #333;
 
+  ul {
+    width: 100%;
+  }
+
   li {
+    padding: 0.5rem;
     height: fit-content;
-    margin-bottom: 2rem;
+    // margin-bottom: 0.5rem;
 
     &:hover {
       color: #fff;

@@ -1,27 +1,41 @@
-import React, { FC } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { FC, SetStateAction } from 'react';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
-import { faCodeBranch, faSearch } from '@fortawesome/free-solid-svg-icons';
 import styles from './ActivityBar.module.scss';
+import ActivityBarItems from './AcivityBarItems/ActivityBarItems';
+import { IActivityBarItem } from '../../../models';
 
-interface ActivityBarProps {}
+interface ActivityBarProps {
+  activeItem: string;
+  setActiveItem?: React.Dispatch<SetStateAction<string>>;
+}
 
-const ActivityBar: FC<ActivityBarProps> = () => {
+const ActivityBar: FC<ActivityBarProps> = ({ activeItem, setActiveItem }) => {
+  const topItems: IActivityBarItem[] = [
+    { name: 'explorer', className: styles.ActivityBar__Actions__Explorer, icon: faCopy },
+    { name: 'search', className: styles.ActivityBar__Actions__Search },
+    { name: 'gitbranch', className: styles.ActivityBar__Actions__GitBranch },
+    { name: 'debug', className: styles.ActivityBar__Actions__Debug },
+    { name: 'bookmark', className: styles.ActivityBar__Actions__Bookmark },
+  ];
+
+  const bottomItems: IActivityBarItem[] = [
+    { name: 'profile', className: styles.ActivityBar__Actions__Profile },
+    { name: 'settings', className: styles.ActivityBar__Actions__Settings },
+  ];
+
   return (
     <div className={styles.ActivityBar}>
-      <ul className={styles.ActivityBar__Actions}>
-        <li className={styles.ActivityBar__Actions__Explorer}>
-          <FontAwesomeIcon icon={faCopy} size="1x" />
-        </li>
-        <li className={styles.ActivityBar__Actions__Search}></li>
-        <li className={styles.ActivityBar__Actions__GitBranch}></li>
-        <li className={styles.ActivityBar__Actions__Debug}></li>
-        <li className={styles.ActivityBar__Actions__Bookmark}></li>
-      </ul>
-      <ul className={styles.ActivityBar__Actions}>
-        <li className={styles.ActivityBar__Actions__Profile}></li>
-        <li className={styles.ActivityBar__Actions__Settings}></li>
-      </ul>
+      <ActivityBarItems
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        className={styles.ActivityBar__Actions}
+        content={topItems}
+      />
+      <ActivityBarItems
+        activeItem={activeItem}
+        className={styles.ActivityBar__Actions}
+        content={bottomItems}
+      />
     </div>
   );
 };

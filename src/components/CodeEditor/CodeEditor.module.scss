@@ -24,7 +24,7 @@
 .CodeEditor {
   height: 90%;
   width: 80%;
-  z-index: 3000;
+  z-index: 10;
   background-color: #1e1e1e;
   animation: appear $editor-opening-time 1 forwards ease-in-out;
 

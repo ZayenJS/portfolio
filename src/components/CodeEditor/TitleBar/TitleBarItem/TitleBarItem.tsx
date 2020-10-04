@@ -28,11 +28,21 @@ const TitleBarItem: FC<TitleBarItemProps> = ({ name, icon, text, hoveredClass, s
     element = <FontAwesomeIcon className={styles.TitleBarItem} icon={icon} size={size ?? 'lg'} />;
   }
 
+  let onClickEvent: ((event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void) | undefined;
+
+  switch (name) {
+    case 'exit':
+      onClickEvent = () => history.push('/');
+      break;
+    default:
+      onClickEvent = () => '';
+  }
+
   return (
     <li
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => (name === 'exit' ? history.push('/') : '')}
+      onClick={onClickEvent}
       className={
         isHovered
           ? [styles.TitleBarItem__Container, hoveredClass].join(' ')

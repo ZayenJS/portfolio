@@ -1,1 +1,17 @@
 export { clickAway } from './events';
+
+export const getSpeakerClasses = (volume: number, styles: any) => {
+  let speakerClasses = styles.Speaker;
+
+  if (volume >= 1 && volume <= 32) {
+    speakerClasses = [speakerClasses, styles.Speaker__Low].join(' ');
+  } else if (volume >= 33 && volume <= 64) {
+    speakerClasses = [speakerClasses, styles.Speaker__Medium].join(' ');
+  } else if (volume >= 65 && volume <= 100) {
+    speakerClasses = [speakerClasses, styles.Speaker__High].join(' ');
+  } else {
+    speakerClasses = [speakerClasses, styles.Speaker__Mute].join(' ');
+  }
+
+  return speakerClasses;
+};
