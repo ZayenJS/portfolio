@@ -1,5 +1,4 @@
 import React, { FC, SetStateAction } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ActivityBarItemName, IActivityBarItem } from '../../../../../models';
 
 import styles from './ActivityBarItem.module.scss';
@@ -12,7 +11,6 @@ interface ActivityBarItemProps extends IActivityBarItem {
 const ActivityBarItem: FC<ActivityBarItemProps> = ({
   name,
   className,
-  icon,
   activeItem,
   setActiveItem,
 }) => {
@@ -22,7 +20,7 @@ const ActivityBarItem: FC<ActivityBarItemProps> = ({
         setActiveItem ? (activeItem === name ? setActiveItem('') : setActiveItem(name)) : ''
       }
       className={activeItem === name ? 'editor-activitybar-active' : styles.ActivityBarItem}>
-      <span className={className}>{icon ? <FontAwesomeIcon icon={icon} size="1x" /> : null}</span>
+      <span className={activeItem === name ? [className, styles.ActivityBarItem__Active].join(' ') :className}></span>
     </li>
   );
 };

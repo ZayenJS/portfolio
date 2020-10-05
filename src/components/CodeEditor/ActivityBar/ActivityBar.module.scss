@@ -11,9 +11,10 @@
   }
 
   li {
+    @include flex(center, center, row nowrap);
     padding: 0.5rem;
-    height: fit-content;
-    // margin-bottom: 0.5rem;
+    height: 3rem;
+    margin-bottom: 0.3rem;
 
     &:hover {
       color: #fff;
@@ -21,62 +22,56 @@
   }
 
   &__Actions {
-    font-family: 'icomoon';
+    font-family: $codicon-font-family;
     li {
       color: rgba(255, 255, 255, 0.4);
       font-size: 1.5rem;
       cursor: pointer;
     }
 
-    &__Search {
-      transform: rotate(90deg);
-
+    &__Explorer {
       &::before {
-        content: $icon-search;
+        content: $codicon-explorer;
+      }
+    }
+
+    &__Search {
+      &::before {
+        content: $codicon-search;
       }
     }
 
     &__GitBranch {
       &::before {
-        content: $icon-flow-branch;
+        content: $codicon-gitbranch;
       }
     }
 
     &__Debug {
-      position: relative;
-
       &::before {
-        // color: #aaa;
-        content: $icon-bug;
-        font-size: 0.8rem;
-        position: absolute;
-        bottom: -0.25rem;
-        left: -0.25rem;
-      }
-
-      &::after {
-        content: $icon-play;
+        content: $codicon-debug;
       }
     }
 
-    &__Bookmark {
+    &__Extensions {
       &::before {
-        content: $icon-bookmark-o;
+        content: $codicon-extensions;
       }
     }
 
     &__Profile {
-      font-family: 'icomoon';
+      font-family: $codicon-font-family;
+
       &::before {
-        content: $icon-user-circle-o;
+        content: $codicon-user;
       }
     }
 
     &__Settings {
       margin-bottom: $gutter/4 !important;
-      font-family: 'icomoon';
+
       &::before {
-        content: $icon-settings;
+        content: $codicon-settings;
       }
     }
   }

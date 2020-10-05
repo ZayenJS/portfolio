@@ -1,11 +1,8 @@
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-
 export type DesktopIcons = 'Corbeille' | 'Chrome' | 'Visual Studio Code';
 
 export interface IActivityBarItem {
   name: ActivityBarItemName;
   className: string;
-  icon?: IconDefinition;
 }
 
 export type ActivityBarItemName =
@@ -13,7 +10,9 @@ export type ActivityBarItemName =
   | 'search'
   | 'gitbranch'
   | 'debug'
-  | 'bookmark'
+  | 'extensions'
   | 'profile'
   | 'settings'
   | '';
+
+export type WindowControls = 'minimize' | 'maximize' | 'close';

@@ -15,6 +15,25 @@
   font-display: block;
 }
 
+@font-face {
+  font-family: '#{$codicon-font-family}';
+  src: url('#{$codicon-font-path}/#{$codicon-font-family}.ttf?5d4d76ab2ce5108968ad644d591a16a6')
+    format('truetype');
+}
+
+.codicon[class*='codicon-'] {
+  font: normal normal normal 16px/1 codicon;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 [class^='icon-'],
 [class*=' icon-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
@@ -55,4 +74,37 @@ body {
     content: '';
     border-left: 2px solid white;
   }
+}
+
+.project-item {
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.keyword,
+.tag-name {
+  color: #569cd6;
+  font-size: 1rem;
+  line-height: 22px;
+}
+
+.attribute {
+  color: #9cdcfe;
+}
+
+.string-color {
+  color: #ce9178;
+}
+
+.comment-tag {
+  color: gold;
+}
+
+.comments {
+  color: #6a9955;
+}
+
+.tag {
+  color: #808080;
 }

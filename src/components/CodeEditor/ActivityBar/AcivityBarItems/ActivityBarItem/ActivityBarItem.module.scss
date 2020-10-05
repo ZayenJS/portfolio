@@ -2,4 +2,10 @@
 
 .ActivityBarItem {
   text-align: center;
+
+  &__Active {
+    &::before{
+color:#fff ;
+    }
+  }
 }

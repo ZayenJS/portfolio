@@ -13,6 +13,14 @@ interface TitleBarProps {
 }
 
 const TitleBar: FC<TitleBarProps> = ({ title }) => {
+  let fileName;
+
+  if (title) {
+    fileName = title + ' - ';
+  } else {
+    fileName = title;
+  }
+
   return (
     <header className={styles.TitleBar}>
       <div className={styles.TitleBar__Menu}>
@@ -30,17 +38,15 @@ const TitleBar: FC<TitleBarProps> = ({ title }) => {
           <TitleBarItem category="menu" text="Help" />
         </ul>
       </div>
-      <h2 className={styles.TitleBar__FileName}>{title} - Portfolio - Visual Studio Code</h2>
+      <h2 className={styles.TitleBar__FileName}>{fileName}Portfolio - Visual Studio Code</h2>
       <div className={styles.TitleBar__WindowControl}>
         <ul>
-          <TitleBarItem category="window-control" icon={faWindowMinimize} size="sm" />
-          <TitleBarItem category="window-control" icon={faWindowRestore} size="sm" />
+          <TitleBarItem category="window-control" control="minimize" />
+          <TitleBarItem category="window-control" control="maximize" />
           <TitleBarItem
             category="window-control"
-            icon={faTimes}
-            size="sm"
             hoveredClass={styles.Icon__Exit}
-            name="exit"
+            control="close"
           />
         </ul>
       </div>

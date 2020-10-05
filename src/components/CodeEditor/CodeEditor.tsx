@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { ActivityBarItemName } from '../../models';
 import ActivityBar from './ActivityBar/ActivityBar';
 
@@ -19,11 +19,29 @@ const CodeEditor: FC<CodeEditorProps> = ({ match }) => {
   return (
     <div className={styles.CodeEditor}>
       <div className={styles.CodeEditor__Content}>
-        <TitleBar title="README.md" />
+        <Switch>
+          <Route exact path={`${match.path}`}>
+            <TitleBar title="" />
+          </Route>
+          <Route path={`${match.path}/readme.md`}>
+            <TitleBar title="README.md" />
+          </Route>
+          <Route path={`${match.path}/hireme.tsx`}>
+            <TitleBar title="HireMe.tsx" />
+          </Route>
+          <Route path={`${match.path}/index.html`}>
+            <TitleBar title="index.html" />
+          </Route>
+        </Switch>
         <main className={styles.CodeEditor__Main}>
           <ActivityBar activeItem={activeItem} setActiveItem={setActiveItem} />
           {activeItem ? <SideBar activeItem={activeItem} /> : null}
-          <Editor />
+          <Switch>
+            <Route path={`${match.path}/readme.md`} component={Editor} />
+            <Route path={`${match.path}/hireme.tsx`} component={Editor} />
+            <Route path={`${match.path}/index.html`} component={Editor} />
+          </Switch>
+          {/* <Editor /> */}
         </main>
         <StatusBar />
       </div>

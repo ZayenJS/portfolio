@@ -27,7 +27,7 @@
 
     &::before,
     &::after {
-      font-family: $icomoon-font-family;
+      font-family: $codicon-font-family;
     }
 
     &:hover {
@@ -39,7 +39,8 @@
     @extend .StatusBar__Item;
 
     &::before {
-      content: $icon-flow-branch;
+      content: $codicon-gitbranch;
+      margin-right: 0.25rem;
     }
   }
 
@@ -47,7 +48,7 @@
     @extend .StatusBar__Item;
 
     &::before {
-      content: $icon-podcast;
+      content: $codicon-golive;
       margin-right: 0.25rem;
     }
   }
@@ -56,7 +57,7 @@
     @extend .StatusBar__Item;
 
     &::after {
-      content: $icon-check;
+      content: $codicon-check;
       margin-left: 0.25rem;
     }
   }
@@ -65,7 +66,7 @@
     @extend .StatusBar__Item;
 
     &::after {
-      content: $icon-check;
+      content: $codicon-check;
       margin-left: 0.25rem;
     }
   }

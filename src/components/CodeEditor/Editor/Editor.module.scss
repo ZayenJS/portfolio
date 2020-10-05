@@ -1,6 +1,4 @@
-@import '../../../assets/scss/variables';
-
 .Editor {
-  height: 100%;
-  width: calc(100% - 12rem - 3rem);
+  width: calc(100% - 11rem - 3rem);
+  overflow: auto;
 }

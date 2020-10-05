@@ -1,5 +1,4 @@
 import React, { FC, SetStateAction } from 'react';
-import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import styles from './ActivityBar.module.scss';
 import ActivityBarItems from './AcivityBarItems/ActivityBarItems';
 import { ActivityBarItemName, IActivityBarItem } from '../../../models';
@@ -11,11 +10,11 @@ interface ActivityBarProps {
 
 const ActivityBar: FC<ActivityBarProps> = ({ activeItem, setActiveItem }) => {
   const topItems: IActivityBarItem[] = [
-    { name: 'explorer', className: styles.ActivityBar__Actions__Explorer, icon: faCopy },
+    { name: 'explorer', className: styles.ActivityBar__Actions__Explorer },
     { name: 'search', className: styles.ActivityBar__Actions__Search },
     { name: 'gitbranch', className: styles.ActivityBar__Actions__GitBranch },
     { name: 'debug', className: styles.ActivityBar__Actions__Debug },
-    { name: 'bookmark', className: styles.ActivityBar__Actions__Bookmark },
+    { name: 'extensions', className: styles.ActivityBar__Actions__Extensions },
   ];
 
   const bottomItems: IActivityBarItem[] = [
