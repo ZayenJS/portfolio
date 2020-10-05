@@ -56,8 +56,11 @@ const IndexHTML: FC<IndexHTMLProps> = () => {
             className={styles.IndexHTML__Indent}
           />
           <HTML isComment={true} className={styles.IndexHTML__Indent} tagName="">
-            manifest.json provides metadata used when your web app is installed on a user's mobile
-            device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+            <div className={styles.IndexHTML__Indent}>
+              manifest.json provides metadata used when your web app is installed on a user's mobile
+              device or desktop. See
+              https://developers.google.com/web/fundamentals/web-app-manifest/
+            </div>
           </HTML>
           <HTML
             isSelfClosing={true}
@@ -69,12 +72,14 @@ const IndexHTML: FC<IndexHTMLProps> = () => {
             className={styles.IndexHTML__Indent}
           />
           <HTML className={styles.IndexHTML__Indent} isComment={true} tagName="">
-            Notice the use of %PUBLIC_URL% in the tags above. It will be replaced with the URL of
-            the `public` folder during the build. Only files inside the `public` folder can be
-            referenced from the HTML. Unlike "/favicon.ico" or "favicon.ico",
-            "%PUBLIC_URL%/favicon.ico" will work correctly both with client-side routing and a
-            non-root public URL. Learn how to configure a non-root public URL by running `npm run
-            build`.
+            <div className={styles.IndexHTML__Indent}>
+              Notice the use of %PUBLIC_URL% in the tags above. It will be replaced with the URL of
+              the `public` folder during the build. Only files inside the `public` folder can be
+              referenced from the HTML. Unlike "/favicon.ico" or "favicon.ico",
+              "%PUBLIC_URL%/favicon.ico" will work correctly both with client-side routing and a
+              non-root public URL. Learn how to configure a non-root public URL by running `npm run
+              build`.
+            </div>
           </HTML>
           <HTML tagName="title" className={styles.IndexHTML__Indent}>
             React App
@@ -89,11 +94,13 @@ const IndexHTML: FC<IndexHTMLProps> = () => {
             tagName="div"
             attributes={[{ name: 'id', value: 'root' }]}>
             <HTML isComment={true} tagName="">
-              This HTML file is a template. If you open it directly in the browser, you will see an
-              empty page. You can add webfonts, meta tags, or analytics to this file. The build step
-              will place the bundled scripts into the &lt;body&gt; tag. To begin the development,
-              run `npm start` or `yarn start`. To create a production bundle, use `npm run build` or
-              `yarn build`.
+              <div className={styles.IndexHTML__Indent}>
+                This HTML file is a template. If you open it directly in the browser, you will see
+                an empty page. You can add webfonts, meta tags, or analytics to this file. The build
+                step will place the bundled scripts into the &lt;body&gt; tag. To begin the
+                development, run `npm start` or `yarn start`. To create a production bundle, use
+                `npm run build` or `yarn build`.
+              </div>
             </HTML>
           </HTML>
         </HTML>

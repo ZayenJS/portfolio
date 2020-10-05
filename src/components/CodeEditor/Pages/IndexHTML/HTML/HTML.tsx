@@ -52,9 +52,7 @@ const HTML: FC<HTMLProps> = ({
     element = (
       <div className={className ? className : ''}>
         <span className="comment-tag">&lt;!-- </span>
-        <br />
         <span className="comments">{children}</span>
-        <br />
         <span className="comment-tag"> --&gt;</span>
       </div>
     );
