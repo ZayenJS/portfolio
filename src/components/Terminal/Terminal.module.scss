@@ -1,0 +1,14 @@
+@import '../../assets/scss/variables';
+
+.Terminal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(100vh - 3rem);
+  width: 100vw;
+  background-color: #000;
+  color: #fff;
+  opacity: 0.9;
+}

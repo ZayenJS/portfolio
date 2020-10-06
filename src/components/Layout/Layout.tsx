@@ -4,13 +4,15 @@ import Footer from '../Footer/Footer';
 
 import styles from './Layout.module.scss';
 
-interface LayoutProps {}
+interface LayoutProps {
+  isDevMode: boolean;
+}
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Layout: FC<LayoutProps> = ({ children, isDevMode }) => {
   return (
     <>
       <main className={styles.Layout}>{children}</main>
-      <Footer />
+      <Footer isDevMode={isDevMode} />
     </>
   );
 };

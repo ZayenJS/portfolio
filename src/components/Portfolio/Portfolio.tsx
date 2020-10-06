@@ -1,21 +1,42 @@
-import React, { FC } from 'react';
-import { Switch, Route } from 'react-router-dom';
-
+import React, { FC, useState } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import Desktop from '../Desktop/Desktop';
+import Terminal from '../Terminal/Terminal';
 
 import styles from './Portfolio.module.scss';
 
-interface PortfolioProps {}
+interface PortfolioProps extends RouteComponentProps {}
 
-const Portfolio: FC<PortfolioProps> = () => {
-  return (
-    <div className={styles.Portfolio}>
-      <Switch>
-        <Route path="/suppression">site supprimé</Route>
-        <Route path="/" component={Desktop} />
-      </Switch>
-    </div>
-  );
+const Portfolio: FC<PortfolioProps> = ({ history, location, match }) => {
+  const [isDevMode, setIsDevMode] = useState(false);
+  const [hasChosen, setHasChosen] = useState(false);
+
+  const choiceHandler = (shouldKeepDevMode: boolean) => {
+    setIsDevMode(shouldKeepDevMode);
+    setHasChosen(true);
+  };
+
+  let content = null;
+
+  if (!hasChosen) {
+    content = (
+      <>
+        <Desktop
+          style={{ filter: 'blur(5px)' }}
+          history={history}
+          location={location}
+          match={match}
+        />
+        <Terminal chooseMode={choiceHandler} />
+      </>
+    );
+  } else if (hasChosen && isDevMode) {
+    content = <Desktop history={history} location={location} match={match} isDevMode={true} />;
+  } else if (hasChosen && !isDevMode) {
+    content = <div>basic portfolio</div>;
+  }
+
+  return content;
 };
 
 export default Portfolio;

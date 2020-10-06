@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 
-import Portfolio from './components/Portfolio/Portfolio';
+import App from './App/App';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -15,7 +15,7 @@ dayjs.locale('fr');
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Portfolio />
+      <App />
     </Router>
   </React.StrictMode>,
   document.getElementById('root'),

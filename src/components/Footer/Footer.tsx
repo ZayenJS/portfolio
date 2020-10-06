@@ -10,9 +10,11 @@ import SearchBar from './MenuBar/SearchBar/SearchBar';
 import Clock from './MenuBar/Clock/Clock';
 import Speaker from './MenuBar/Speaker/Speaker';
 
-interface FooterProps {}
+interface FooterProps {
+  isDevMode: boolean;
+}
 
-const Footer: FC<FooterProps> = () => {
+const Footer: FC<FooterProps> = ({ isDevMode }) => {
   return (
     <footer className={styles.Footer}>
       <section className={styles.Footer__Left}>
@@ -20,12 +22,18 @@ const Footer: FC<FooterProps> = () => {
         <SearchBar />
         <div title="Explorateur de fichier" className={styles.Footer__FolderExplorer}></div>
         <div title="Spotify" className={styles.Footer__Spotify}></div>
-        <NavLink
-          title="Visual Studio Code"
-          to="/code/readme.md"
-          className={styles.Footer__VscodeIcon__Container}>
-          <img className={styles.Footer__VscodeIcon} src={vscodeIcon} alt="vscode icon" />
-        </NavLink>
+        {isDevMode ? (
+          <NavLink
+            title="Visual Studio Code"
+            to="/code/readme.md"
+            className={styles.Footer__VscodeIcon__Container}>
+            <img className={styles.Footer__VscodeIcon} src={vscodeIcon} alt="vscode icon" />
+          </NavLink>
+        ) : (
+          <div title="Visual Studio Code" className={styles.Footer__VscodeIcon__Container}>
+            <img className={styles.Footer__VscodeIcon} src={vscodeIcon} alt="vscode icon" />
+          </div>
+        )}
         <div title="Discord" className={styles.Footer__Discord}></div>
       </section>
       <section className={styles.Footer__Right}>
