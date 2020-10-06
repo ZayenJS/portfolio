@@ -16,7 +16,7 @@ const Footer: FC<FooterProps> = () => {
   return (
     <footer className={styles.Footer}>
       <section className={styles.Footer__Left}>
-        <WindowsIcon icon={['fab', 'windows']} />
+        <WindowsIcon />
         <SearchBar />
         <div title="Explorateur de fichier" className={styles.Footer__FolderExplorer}></div>
         <div title="Spotify" className={styles.Footer__Spotify}></div>

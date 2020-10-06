@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 
 import Portfolio from './components/Portfolio/Portfolio';
+
 import * as serviceWorker from './serviceWorker';
 
 import './assets/scss/index.scss';
-dayjs.locale('fr');
 
-library.add(fab);
+dayjs.locale('fr');
 
 ReactDOM.render(
   <React.StrictMode>
