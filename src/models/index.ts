@@ -16,3 +16,9 @@ export type ActivityBarItemName =
   | '';
 
 export type WindowControls = 'minimize' | 'maximize' | 'close';
+
+export interface IProject {
+  project: boolean;
+  src: boolean;
+  public: boolean;
+}

@@ -19,7 +19,12 @@ const ActivityBarItems: FC<ActivityBarItemsProps> = ({
   return (
     <ul className={className}>
       {content.map((item) => (
-        <ActivityBarItem {...item} activeItem={activeItem} setActiveItem={setActiveItem} />
+        <ActivityBarItem
+          key={item.name}
+          {...item}
+          activeItem={activeItem}
+          setActiveItem={setActiveItem}
+        />
       ))}
     </ul>
   );

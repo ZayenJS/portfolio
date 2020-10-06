@@ -30,9 +30,20 @@ const DesktopIcon: FC<DesktopIconProps> = ({ id, label, src, alt, onDoubleClick 
     setIsSelected(true);
   };
 
-  const selectIconHandler = () => {
-    setIsSelected(true);
-    setIsContextMenuVisible(false);
+  const selectIconHandler = (event: React.MouseEvent) => {
+    const target = event.target as HTMLImageElement;
+    if (window.matchMedia('(max-width: 1200px)').matches) {
+      if (target.id === 'vscode-img') {
+        history.push('/code/readme.md');
+      } else if (target.id === 'google-chrome-img') {
+        window.open('https://google.com', '_blank');
+      } else if (target.id === 'recycle-bin-img') {
+        history.push('/suppression');
+      }
+    } else {
+      setIsSelected(true);
+      setIsContextMenuVisible(false);
+    }
   };
 
   const doubleClickHandler = () => {

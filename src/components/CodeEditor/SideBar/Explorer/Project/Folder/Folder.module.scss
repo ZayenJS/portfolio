@@ -1,11 +1,14 @@
 @import '../../../../../../assets/scss/variables';
 
 .Folder {
+  &:hover .Folder__Items {
+  }
+
   header {
     @include flex(center, flex-start, row nowrap);
+    padding: 0.25rem 1.75rem;
 
     span:first-child {
-      transform: rotate(90deg);
       margin-right: 0.25rem;
 
       &::before {
@@ -13,7 +16,6 @@
         content: $codicon-chevron;
       }
     }
-
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
@@ -22,6 +24,7 @@
   &__Items {
     @include flex(center, flex-start, row nowrap);
     padding: 0.25rem 1.75rem;
+    position: relative;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);

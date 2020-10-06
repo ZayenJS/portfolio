@@ -22,7 +22,7 @@ const Footer: FC<FooterProps> = () => {
         <div title="Spotify" className={styles.Footer__Spotify}></div>
         <NavLink
           title="Visual Studio Code"
-          to="/code"
+          to="/code/readme.md"
           className={styles.Footer__VscodeIcon__Container}>
           <img className={styles.Footer__VscodeIcon} src={vscodeIcon} alt="vscode icon" />
         </NavLink>

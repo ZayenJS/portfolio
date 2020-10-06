@@ -4,6 +4,7 @@
   @include flex(stretch, flex-start, column nowrap);
   text-transform: uppercase;
   font-weight: bold;
+  cursor: pointer;
 
   img {
     margin-right: 0.5rem;
@@ -21,16 +22,18 @@
     }
 
     &__Chevron {
+      transform: rotate(90deg);
       margin-right: 0.25rem;
 
       &::before {
         font-family: $icomoon-font-family;
-        content: $icon-chevron-down;
+        content: $icon-chevron-right;
       }
     }
 
     &__Container {
       @include flex(center, flex-start, row nowrap);
+      height: 1.1rem;
     }
   }
 

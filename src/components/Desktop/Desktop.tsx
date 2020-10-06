@@ -31,7 +31,7 @@ const Desktop: FC<DesktopProps> = ({ history }) => {
             src={vscodeIcon}
             alt="vscode icon"
             label="Visual Studio Code"
-            onDoubleClick={() => history.push('/code')}
+            onDoubleClick={() => history.push('/code/readme.md')}
           />
         </div>
         <Switch>

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import styles from './HTML.module.scss';
 
 interface HTMLProps {
   tagName: string;
@@ -28,13 +27,12 @@ const HTML: FC<HTMLProps> = ({
         <span className="tag-name">{tagName} </span>
         {attributes
           ? attributes.map((attr) => (
-              <>
+              <span key={attr.value}>
                 <span className="attribute">{attr.name}</span>=
                 <span className="string-color">"{attr.value}" </span>
-              </>
+              </span>
             ))
           : null}
-
         <span className="tag">/&gt;</span>
       </div>
     );
@@ -61,6 +59,14 @@ const HTML: FC<HTMLProps> = ({
       <div className={className ? className : ''}>
         <span className="tag">&lt;</span>
         <span className="tag-name">{tagName}</span>
+        {attributes
+          ? attributes.map((attr) => (
+              <span key={attr.value}>
+                <span className="attribute"> {attr.name}</span>=
+                <span className="string-color">"{attr.value}"</span>
+              </span>
+            ))
+          : null}
         <span className="tag">&gt;</span>
         {children}
         <span className="tag">&lt;/</span>

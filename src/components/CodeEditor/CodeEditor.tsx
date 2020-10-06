@@ -1,13 +1,15 @@
 import React, { FC, useState } from 'react';
 import { Route, RouteComponentProps, Switch } from 'react-router-dom';
-import { ActivityBarItemName } from '../../models';
-import ActivityBar from './ActivityBar/ActivityBar';
 
-import styles from './CodeEditor.module.scss';
+import ActivityBar from './ActivityBar/ActivityBar';
 import Editor from './Editor/Editor';
 import SideBar from './SideBar/SideBar';
 import StatusBar from './StatusBar/StatusBar';
 import TitleBar from './TitleBar/TitleBar';
+
+import { ActivityBarItemName } from '../../models';
+
+import styles from './CodeEditor.module.scss';
 
 interface CodeEditorProps extends RouteComponentProps {}
 

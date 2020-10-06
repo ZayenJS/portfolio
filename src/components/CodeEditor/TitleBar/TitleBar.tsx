@@ -1,6 +1,4 @@
 import React, { FC } from 'react';
-import { faWindowMinimize, faWindowRestore } from '@fortawesome/free-regular-svg-icons';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import TitleBarItem from '../TitleBar/TitleBarItem/TitleBarItem';
 
