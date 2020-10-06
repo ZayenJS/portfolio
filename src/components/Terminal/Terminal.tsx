@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styles from './Terminal.module.scss';
+import TerminalHeader from './TerminalHeader/TerminalHeader';
 
 interface TerminalProps {
   chooseMode: (shouldKeepDevMode: boolean) => void;
@@ -8,9 +9,8 @@ interface TerminalProps {
 const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
   return (
     <div className={styles.Terminal}>
-      Terminal Component
-      <button onClick={() => chooseMode(true)}>dev mode</button>
-      <button onClick={() => chooseMode(false)}>basic mode</button>
+      <TerminalHeader chooseMode={() => chooseMode(true)} />
+      <main className={styles.Terminal__Main}></main>
     </div>
   );
 };

@@ -1,0 +1,33 @@
+@import '../../../../assets/scss/variables';
+
+.Tab {
+  @include flex(center, space-between, row nowrap);
+  width: 15rem;
+  height: 2rem;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  background-color: #111;
+  border-radius: 5px 5px 0 0;
+
+  &__Title {
+    @include flex(center, center, row nowrap);
+    font-size: 0.8em;
+
+    span {
+      margin-right: 0.5rem;
+      img {
+        width: 1rem;
+      }
+    }
+  }
+
+  &__Close {
+    font-family: $codicon-font-family;
+    color: #ccc;
+    cursor: pointer;
+
+    &::before {
+      content: $codicon-close-window;
+    }
+  }
+}
