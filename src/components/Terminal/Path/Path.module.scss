@@ -1,0 +1,44 @@
+@import '../../../assets/scss/variables';
+
+.Path {
+  position: relative;
+  color: rgba(100, 100, 100, 0.75);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.6rem;
+    left: -1rem;
+    height: 1.4rem;
+    width: 1rem;
+    border: 1px solid #fff;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    height: 0.75rem;
+    width: 0.75rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    top: 1.55rem;
+    left: 0rem;
+  }
+
+  &__Owner {
+    color: rgb(0, 236, 0);
+  }
+
+  &__MachineName {
+    color: rgb(51, 115, 235);
+  }
+
+  &__Path {
+    color: gold;
+  }
+  &__Date {
+    color: white;
+  }
+}

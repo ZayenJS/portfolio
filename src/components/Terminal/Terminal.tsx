@@ -7,13 +7,14 @@ import TerminalHeader from './TerminalHeader/TerminalHeader';
 import styles from './Terminal.module.scss';
 import Path from './Path/Path';
 import { useHistory } from 'react-router-dom';
+import { getRandomInt } from '../../utils';
 
 interface TerminalProps {
   chooseMode: (shouldKeepDevMode: boolean) => void;
 }
 
 const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
-  const date = `${dayjs().format('YY-MM-DD')} ${dayjs().format('HH:MM:ss')} `;
+  const date = `${dayjs().format('YY-MM-DD')} - ${dayjs().format('HH:MM:ss')} `;
 
   const [state, setState] = useState({
     answer: {
@@ -44,11 +45,13 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
       <div>
         <Path owner="david" path="~" machineName="David-Pc" date={state.first.date} />
         <Typed
-          strings={['cd ~/Desktop']}
-          typeSpeed={75}
-          cursorChar={' '}
-          onStringTyped={() =>
+          style={{ paddingLeft: '1rem' }}
+          strings={['cd ~/Documents/dev/projects/Portfolio']}
+          typeSpeed={getRandomInt(100, 150)}
+          cursorChar={'_'}
+          onStringTyped={(_: any, typedElem: any) =>
             setTimeout(() => {
+              typedElem.cursor.remove();
               setState({
                 ...state,
                 first: { ...state.first, typed: true },
@@ -57,7 +60,7 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
                   date,
                 },
               });
-            }, 1000)
+            }, getRandomInt(500, 800))
           }
         />
       </div>
@@ -66,14 +69,21 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
   if (state.first.typed) {
     second = (
       <div>
-        <Path owner="david" path="~/Desktop" machineName="David-Pc" date={state.second.date} />
+        <Path
+          owner="david"
+          path="~/Documents/dev/projects/Portfolio"
+          machineName="David-Pc"
+          date={state.second.date}
+        />
         <Typed
+          style={{ paddingLeft: '1rem' }}
           strings={['ls']}
-          typeSpeed={100}
-          cursorChar={' '}
-          startDelay={750}
-          onStringTyped={() =>
+          typeSpeed={getRandomInt(120, 200)}
+          cursorChar={'_'}
+          startDelay={getRandomInt(1000, 1700)}
+          onStringTyped={(_: any, typedElem: any) =>
             setTimeout(() => {
+              typedElem.cursor.remove();
               setState({
                 ...state,
                 second: { ...state.second, typed: true },
@@ -82,7 +92,7 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
                   date,
                 },
               });
-            }, 250)
+            }, getRandomInt(700, 900))
           }
         />
       </div>
@@ -91,21 +101,28 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
   if (state.second.typed) {
     third = (
       <div>
-        <Path owner="david" path="~/Desktop" machineName="David-Pc" date={state.third.date} />
+        <Path
+          owner="david"
+          path="~/Documents/dev/projects/Portfolio"
+          machineName="David-Pc"
+          date={state.third.date}
+        />
         <Typed
+          style={{ paddingLeft: '1rem' }}
           strings={state.answer.choice === 'dev' ? ['code .; exit '] : ['cd basic; exit']}
-          typeSpeed={100}
-          cursorChar={' '}
-          startDelay={750}
-          onStringTyped={() =>
+          typeSpeed={getRandomInt(150, 215)}
+          cursorChar={'_'}
+          startDelay={getRandomInt(800, 1100)}
+          onStringTyped={(_: any, typedElem: any) =>
             setTimeout(() => {
+              typedElem.cursor.remove();
               setState({
                 ...state,
                 third: { ...state.third, typed: true },
               });
               chooseMode(state.answer.choice === 'dev' ? true : false);
               history.push(state.answer.choice === 'dev' ? '/code' : '/');
-            }, 1000)
+            }, getRandomInt(1250, 2000))
           }
         />
       </div>
@@ -119,8 +136,10 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
         <div>
           <form onSubmit={t}>
             <Path owner="david" path="~" machineName="David-Pc" date={state.first.date} />
-            blabal basic ou dev ?
-            <input type="text" />
+            <div style={{ paddingLeft: '1rem' }}>
+              blabal basic ou dev ?
+              <input type="text" />
+            </div>
           </form>
           {first} {second} {third}
         </div>

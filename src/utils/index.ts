@@ -15,3 +15,6 @@ export const getSpeakerClasses = (volume: number, styles: any) => {
 
   return speakerClasses;
 };
+
+export const getRandomInt = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min) + min + 1);
