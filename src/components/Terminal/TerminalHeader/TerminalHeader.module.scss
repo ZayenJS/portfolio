@@ -8,9 +8,22 @@
     @include flex(center, center, row nowrap);
 
     &__NewTab {
-      &::before {
-        font-family: $codicon-font-family;
-        content: $icon-chevron-down;
+      @include flex(center, center, row nowrap);
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.2em;
+      cursor: default;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      &:nth-child(3) {
+        &::before {
+          transform: rotate(90deg);
+          content: $codicon-chevron;
+          font-family: $codicon-font-family;
+        }
       }
     }
   }

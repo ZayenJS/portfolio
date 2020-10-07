@@ -11,8 +11,10 @@ const TerminalHeader: FC<TerminalHeaderProps> = ({ chooseMode }) => {
     <div className={styles.TerminalHeader}>
       <div className={styles.TerminalHeader__Tabs}>
         <Tab chooseMode={chooseMode} />
-        <span>+</span>
-        <span className={styles.TerminalHeader__Tabs__NewTab}></span>
+        <span title="Nouvel Onglet" className={styles.TerminalHeader__Tabs__NewTab}>
+          +
+        </span>
+        <span title="Nouvel Onglet" className={styles.TerminalHeader__Tabs__NewTab}></span>
       </div>
       <div className={styles.TerminalHeader__Controls}>
         <span className={styles.TerminalHeader__Controls__Minimize}></span>
