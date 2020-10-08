@@ -43,14 +43,9 @@ const CodeEditor: FC<CodeEditorProps> = ({ match }) => {
             <Route path={`${match.path}/hireme.tsx`} component={Editor} />
             <Route path={`${match.path}/index.html`} component={Editor} />
           </Switch>
-          {/* <Editor /> */}
         </main>
         <StatusBar />
       </div>
-      {/* <Switch>
-        <Route exact path={`${match.path}/`} component={BlankPage} />
-        <Route path={`${match.path}/readme.md`} component={ReadmePage} />
-      </Switch> */}
     </div>
   );
 };

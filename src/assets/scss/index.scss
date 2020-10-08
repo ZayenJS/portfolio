@@ -86,13 +86,29 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.project:hover .folder-item {
-  &::before {
-    position: absolute;
-    left: 0.5rem;
-    content: '';
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    height: 100%;
+.project {
+  .folder-item {
+    &::before {
+      transition: all 200ms ease-in;
+      position: absolute;
+      left: 0.5rem;
+      content: '';
+      border-left: 1px solid transparent;
+      height: 100%;
+    }
+  }
+
+  &:hover {
+    .folder-item {
+      &::before {
+        transition: all 200ms ease-in;
+        position: absolute;
+        left: 0.5rem;
+        content: '';
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        height: 100%;
+      }
+    }
   }
 }
 

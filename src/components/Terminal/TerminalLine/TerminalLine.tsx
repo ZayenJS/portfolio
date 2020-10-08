@@ -32,7 +32,7 @@ const TerminalLine: FC<TerminalLineProps> = ({
     <div className={styles.TerminalLine}>
       <Path owner={owner} path={path} machineName={machineName} date={date} />
       <Typed
-        style={{ paddingLeft: '2rem' }}
+        style={{ paddingLeft: '2.5rem' }}
         strings={typedStrings}
         typeSpeed={typeSpeed}
         cursorChar={'_'}

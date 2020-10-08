@@ -178,9 +178,9 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
   return (
     <div className={styles.Terminal}>
       <TerminalHeader shouldActivateDevMode={() => shouldActivateDevMode(true)} />
-      <main className={styles.Terminal__Main}>
-        <div>
-          <TerminalWelcome disableButton={state.firstLine.typed} onContinue={hasUserReadHandler} />
+      <div className={styles.Terminal__Content}>
+        <TerminalWelcome disableButton={state.firstLine.typed} onContinue={hasUserReadHandler} />
+        <main className={styles.Terminal__Main}>
           {firstLine}
           {state.firstLine.typed ? (
             <div>
@@ -205,8 +205,8 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
           ) : null}
           {secondLine}
           {thirdLine}
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 };

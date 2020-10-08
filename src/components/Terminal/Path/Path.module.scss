@@ -4,15 +4,16 @@
   position: relative;
   color: rgba(100, 100, 100, 0.75);
   padding-left: 1rem;
+  margin-bottom: 0.5rem;
 
   &::before {
     content: '';
     position: absolute;
-    top: 0.8rem;
-    left: 0rem;
-    height: 1.6rem;
-    width: 1rem;
-    border: 1px solid #fff;
+    top: 0.6rem;
+    left: -0.25rem;
+    height: 1.75rem;
+    width: 1.25rem;
+    border: 2px solid #fff;
     border-right: none;
     border-radius: 5px 0 0 5px;
   }
@@ -24,7 +25,7 @@
     width: 0.75rem;
     border: 2px solid #fff;
     border-radius: 50%;
-    top: 1.95rem;
+    top: 1.9rem;
     left: 1rem;
   }
 

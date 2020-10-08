@@ -36,12 +36,17 @@ const TerminalWelcome: FC<TerminalWelcomeProps> = ({ disableButton, onContinue }
 
   return (
     <div className={styles.TerminalWelcome}>
-      <h1 dangerouslySetInnerHTML={wrappedASCII}></h1>
+      <header>
+        <h1 dangerouslySetInnerHTML={wrappedASCII} />
+      </header>
+      <main>Bienvenue sur mon portfolio</main>
 
       {isVisible ? (
-        <button style={{ width: 'fit-content' }} onClick={clickHandler} type="button">
-          Continuer
-        </button>
+        <footer>
+          <button style={{ width: 'fit-content' }} onClick={clickHandler} type="button">
+            Continuer
+          </button>
+        </footer>
       ) : null}
     </div>
   );

@@ -9,14 +9,18 @@
   height: calc(100vh - 3rem);
   width: 100vw;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  font-family: 'Fira Code', monospace;
 
-  &__Main {
-    font-size: 1.25em;
+  &__Content {
     opacity: 0.85;
     background-color: #000;
     height: calc(100vh - 5rem);
     padding: 1rem 2rem;
+  }
+
+  &__Main {
+    font-size: 1.15em;
   }
 
   &__LsResult {
@@ -25,7 +29,7 @@
     background-color: rgb(23, 68, 23);
     color: #fff;
     margin-right: 2rem;
-    font-size: 0.8em;
+    font-size: 1em;
 
     &:focus {
       background-color: rgb(23, 68, 23);
