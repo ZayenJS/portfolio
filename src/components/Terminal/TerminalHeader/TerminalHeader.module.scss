@@ -1,7 +1,11 @@
 @import '../../../assets/scss/variables';
 
 .TerminalHeader {
+  position: fixed;
   @include flex(center, space-between, row nowrap);
+  left: 0;
+  right: 0;
+  z-index: 200;
   background-color: #333;
 
   &__Tabs {

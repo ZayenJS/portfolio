@@ -39,7 +39,9 @@ const TerminalWelcome: FC<TerminalWelcomeProps> = ({ disableButton, onContinue }
       <header>
         <h1 dangerouslySetInnerHTML={wrappedASCII} />
       </header>
-      <main>Bienvenue sur mon portfolio</main>
+      <main>
+        <h2>Bienvenue sur mon portfolio</h2>
+      </main>
 
       {isVisible ? (
         <footer>

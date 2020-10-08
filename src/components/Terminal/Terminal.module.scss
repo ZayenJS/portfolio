@@ -11,11 +11,13 @@
   color: #fff;
   font-size: 1rem;
   font-family: 'Fira Code', monospace;
+  overflow: auto;
 
   &__Content {
     opacity: 0.85;
     background-color: #000;
-    height: calc(100vh - 5rem);
+    min-height: calc(100vh - 5rem);
+    margin-top: 2rem;
     padding: 1rem 2rem;
   }
 

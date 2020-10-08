@@ -43,9 +43,16 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
   });
 
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     buttonRef.current?.focus();
+    if (state.user.hasRead) {
+      const container = terminalRef.current;
+      if (container) {
+        container.scrollTop = container?.scrollHeight;
+      }
+    }
   });
 
   const history = useHistory();
@@ -176,7 +183,7 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
   }
 
   return (
-    <div className={styles.Terminal}>
+    <div ref={terminalRef} className={styles.Terminal}>
       <TerminalHeader shouldActivateDevMode={() => shouldActivateDevMode(true)} />
       <div className={styles.Terminal__Content}>
         <TerminalWelcome disableButton={state.firstLine.typed} onContinue={hasUserReadHandler} />
