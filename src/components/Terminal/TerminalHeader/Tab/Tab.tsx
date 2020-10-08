@@ -5,10 +5,10 @@ import tux from '../../../../assets/images/icons/Tux.svg';
 import styles from './Tab.module.scss';
 
 interface TabProps {
-  chooseMode: () => void;
+  shouldActivateDevMode: () => void;
 }
 
-const Tab: FC<TabProps> = ({ chooseMode }) => {
+const Tab: FC<TabProps> = ({ shouldActivateDevMode }) => {
   return (
     <div className={styles.Tab}>
       <div className={styles.Tab__Title}>
@@ -17,7 +17,7 @@ const Tab: FC<TabProps> = ({ chooseMode }) => {
         </span>
         <span>~/Desktop</span>
       </div>
-      <div onClick={chooseMode} className={styles.Tab__Close}></div>
+      <div onClick={shouldActivateDevMode} className={styles.Tab__Close}></div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ import TerminalLine from './TerminalLine/TerminalLine';
 import TerminalWelcome from './TerminalWelcome/TerminalWelcome';
 
 interface TerminalProps {
-  chooseMode: (shouldKeepDevMode: boolean) => void;
+  shouldActivateDevMode: (activate: boolean) => void;
 }
 
 interface Line {
@@ -30,7 +30,7 @@ interface State {
   thirdLine: Line;
 }
 
-const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
+const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
   const [state, setState] = useState<State>({
     user: {
       hasRead: false,
@@ -132,7 +132,7 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
           startDelay={getRandomInt(800, 1000)}
           onStringTyped={() => {
             updateState('thirdLine', 'thirdLine');
-            chooseMode(true);
+            shouldActivateDevMode(true);
             history.push('/code/readme.md');
           }}
           onStringTypedDelay={getRandomInt(1250, 2000)}
@@ -166,7 +166,7 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
           startDelay={getRandomInt(800, 1000)}
           onStringTyped={() => {
             updateState('thirdLine', 'thirdLine');
-            chooseMode(false);
+            shouldActivateDevMode(false);
             history.push('/');
           }}
           onStringTypedDelay={getRandomInt(1250, 1700)}
@@ -177,7 +177,7 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
 
   return (
     <div className={styles.Terminal}>
-      <TerminalHeader chooseMode={() => chooseMode(true)} />
+      <TerminalHeader shouldActivateDevMode={() => shouldActivateDevMode(true)} />
       <main className={styles.Terminal__Main}>
         <div>
           <TerminalWelcome disableButton={state.firstLine.typed} onContinue={hasUserReadHandler} />

@@ -3,14 +3,14 @@ import Tab from './Tab/Tab';
 import styles from './TerminalHeader.module.scss';
 
 interface TerminalHeaderProps {
-  chooseMode: () => void;
+  shouldActivateDevMode: () => void;
 }
 
-const TerminalHeader: FC<TerminalHeaderProps> = ({ chooseMode }) => {
+const TerminalHeader: FC<TerminalHeaderProps> = ({ shouldActivateDevMode }) => {
   return (
     <div className={styles.TerminalHeader}>
       <div className={styles.TerminalHeader__Tabs}>
-        <Tab chooseMode={chooseMode} />
+        <Tab shouldActivateDevMode={shouldActivateDevMode} />
         <span title="Nouvel Onglet" className={styles.TerminalHeader__Tabs__NewTab}>
           +
         </span>
@@ -19,7 +19,9 @@ const TerminalHeader: FC<TerminalHeaderProps> = ({ chooseMode }) => {
       <div className={styles.TerminalHeader__Controls}>
         <span className={styles.TerminalHeader__Controls__Minimize}></span>
         <span className={styles.TerminalHeader__Controls__Maximize}></span>
-        <span onClick={chooseMode} className={styles.TerminalHeader__Controls__Close}></span>
+        <span
+          onClick={shouldActivateDevMode}
+          className={styles.TerminalHeader__Controls__Close}></span>
       </div>
     </div>
   );

@@ -1,1 +1,14 @@
 @import '../../../assets/scss/variables';
+
+.TerminalWelcome {
+  font-size: 0.7em;
+
+  h1 {
+    margin: 0.5rem 0 2rem;
+
+    pre {
+      font-family: 'Courier New', Courier, monospace;
+      color: rgb(33, 138, 65);
+    }
+  }
+}

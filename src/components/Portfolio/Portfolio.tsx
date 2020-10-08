@@ -11,8 +11,8 @@ const Portfolio: FC<PortfolioProps> = ({ history, location, match }) => {
   const [isDevMode, setIsDevMode] = useState(false);
   const [hasChosen, setHasChosen] = useState(false);
 
-  const choiceHandler = (shouldKeepDevMode: boolean) => {
-    setIsDevMode(shouldKeepDevMode);
+  const choiceHandler = (shouldActivateDevMode: boolean) => {
+    setIsDevMode(shouldActivateDevMode);
     setHasChosen(true);
   };
 
@@ -27,7 +27,7 @@ const Portfolio: FC<PortfolioProps> = ({ history, location, match }) => {
           location={location}
           match={match}
         />
-        <Terminal chooseMode={choiceHandler} />
+        <Terminal shouldActivateDevMode={choiceHandler} />
       </>
     );
   } else if (hasChosen && isDevMode) {
