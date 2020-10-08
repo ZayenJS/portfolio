@@ -13,6 +13,7 @@ const SearchBar: FC<SearchBarProps> = () => {
         isHovered ? [styles.SearchBar, styles.SearchBar__Hovered].join(' ') : styles.SearchBar
       }>
       <input
+        tabIndex={-1}
         type="text"
         value={value}
         onChange={(event) => setValue(event.target.value)}

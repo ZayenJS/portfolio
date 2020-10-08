@@ -9,12 +9,37 @@
   height: calc(100vh - 3rem);
   width: 100vw;
   color: #fff;
+  font-size: 1.2rem;
 
   &__Main {
     font-size: 1.25em;
     opacity: 0.95;
     background-color: #000;
     height: calc(100vh - 5rem);
-    padding: 1rem;
+    padding: 1rem 2rem;
+  }
+
+  &__LsResult {
+    border: none;
+    color: rgb(0, 0, 0);
+    background-color: rgb(23, 68, 23);
+    color: #fff;
+    margin-right: 2rem;
+    font-size: 0.8em;
+
+    &:focus {
+      background-color: rgb(23, 68, 23);
+    }
+
+    &:hover {
+      background-color: green;
+    }
+
+    &:disabled {
+      cursor: default;
+      &:hover {
+        background-color: rgb(23, 68, 23);
+      }
+    }
   }
 }

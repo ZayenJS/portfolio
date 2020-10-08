@@ -1,132 +1,176 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import dayjs from 'dayjs';
-import Typed from 'react-typed';
 
 import TerminalHeader from './TerminalHeader/TerminalHeader';
 
 import styles from './Terminal.module.scss';
-import Path from './Path/Path';
 import { useHistory } from 'react-router-dom';
 import { getRandomInt } from '../../utils';
+import TerminalLine from './TerminalLine/TerminalLine';
 
 interface TerminalProps {
   chooseMode: (shouldKeepDevMode: boolean) => void;
 }
 
+interface Line {
+  typed: boolean;
+  answered: boolean;
+  date: string;
+  path: string;
+}
+
+interface State {
+  user: {
+    hasRead: boolean;
+    hasChosen: boolean;
+    choice?: 'dev' | 'basic';
+  };
+  initialDate: string;
+  firstLine: Line;
+  secondLine: Line;
+  thirdLine: Line;
+}
+
 const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
   const date = `${dayjs().format('YY-MM-DD')} - ${dayjs().format('HH:MM:ss')} `;
 
-  const [state, setState] = useState({
-    answer: {
-      hasAnswered: false,
-      choice: '',
+  const [state, setState] = useState<State>({
+    user: {
+      hasRead: false,
+      hasChosen: false,
+      choice: undefined,
     },
-    first: { typed: false, answered: false, date },
-    second: { typed: false, answered: false, date },
-    third: { typed: false, answered: false, date },
+    initialDate: date,
+    firstLine: { typed: false, answered: false, date, path: '' },
+    secondLine: { typed: false, answered: false, date, path: '' },
+    thirdLine: { typed: false, answered: false, date, path: '' },
+  });
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    buttonRef.current?.focus();
   });
 
   const history = useHistory();
 
-  const t = (e: React.FormEvent) => {
+  const hasUserReadHandler = (e: React.FormEvent) => {
     e.preventDefault();
     setState({
       ...state,
-      answer: { hasAnswered: true, choice: 'dev' },
+      user: { ...state.user, hasRead: true },
+      firstLine: { ...state.firstLine, date, path: '~/Documents' },
     });
   };
 
-  let first = null,
-    second = null,
-    third = null;
+  const userAnswerHandler = (choice: 'dev' | 'basic') => {
+    setState({
+      ...state,
+      user: { ...state.user, hasChosen: true, choice },
+    });
+  };
 
-  if (state.answer.hasAnswered) {
-    first = (
-      <div>
-        <Path owner="david" path="~" machineName="David-Pc" date={state.first.date} />
-        <Typed
-          style={{ paddingLeft: '1rem' }}
-          strings={['cd ~/Documents/dev/projects/Portfolio']}
-          typeSpeed={getRandomInt(100, 150)}
-          cursorChar={'_'}
-          onStringTyped={(_: any, typedElem: any) =>
-            setTimeout(() => {
-              typedElem.cursor.remove();
-              setState({
-                ...state,
-                first: { ...state.first, typed: true },
-                second: {
-                  ...state.second,
-                  date,
-                },
-              });
-            }, getRandomInt(500, 800))
-          }
-        />
-      </div>
+  const updateState = (
+    current: 'firstLine' | 'secondLine' | 'thirdLine',
+    next: 'firstLine' | 'secondLine' | 'thirdLine',
+  ) => {
+    setState({
+      ...state,
+      [current]: { ...state[current], typed: true },
+      [next]: {
+        ...state[next],
+        date,
+      },
+    });
+  };
+
+  let firstLine = null,
+    secondLine = null,
+    thirdLine = null;
+
+  if (state.user.hasRead) {
+    firstLine = (
+      <TerminalLine
+        owner="david"
+        path={state.firstLine.path}
+        machineName="David-Pc"
+        date={state.secondLine.date}
+        typedStrings={['ls']}
+        typeSpeed={getRandomInt(120, 200)}
+        onStringTyped={() => updateState('firstLine', 'secondLine')}
+        onStringTypedDelay={getRandomInt(400, 700)}
+      />
     );
   }
-  if (state.first.typed) {
-    second = (
-      <div>
-        <Path
+
+  if (state.user.hasChosen && state.user.choice === 'dev') {
+    secondLine = (
+      <TerminalLine
+        owner="david"
+        path="~/Documents"
+        machineName="David-Pc"
+        date={state.secondLine.date}
+        typedStrings={['cd ./dev/projects/Portfolio']}
+        typeSpeed={getRandomInt(80, 105)}
+        startDelay={getRandomInt(50, 200)}
+        onStringTyped={() => updateState('secondLine', 'thirdLine')}
+        onStringTypedDelay={getRandomInt(200, 500)}
+      />
+    );
+
+    if (state.secondLine.typed) {
+      thirdLine = (
+        <TerminalLine
           owner="david"
           path="~/Documents/dev/projects/Portfolio"
           machineName="David-Pc"
-          date={state.second.date}
+          date={state.thirdLine.date}
+          typedStrings={['code README.md ; exit;']}
+          typeSpeed={getRandomInt(120, 165)}
+          startDelay={getRandomInt(800, 1000)}
+          onStringTyped={() => {
+            updateState('thirdLine', 'thirdLine');
+            chooseMode(true);
+            history.push('/code/readme.md');
+          }}
+          onStringTypedDelay={getRandomInt(1250, 2000)}
         />
-        <Typed
-          style={{ paddingLeft: '1rem' }}
-          strings={['ls']}
-          typeSpeed={getRandomInt(120, 200)}
-          cursorChar={'_'}
-          startDelay={getRandomInt(1000, 1700)}
-          onStringTyped={(_: any, typedElem: any) =>
-            setTimeout(() => {
-              typedElem.cursor.remove();
-              setState({
-                ...state,
-                second: { ...state.second, typed: true },
-                third: {
-                  ...state.third,
-                  date,
-                },
-              });
-            }, getRandomInt(700, 900))
-          }
-        />
-      </div>
+      );
+    }
+  } else if (state.user.hasChosen && state.user.choice === 'basic') {
+    secondLine = (
+      <TerminalLine
+        owner="david"
+        path="~/Documents"
+        machineName="David-Pc"
+        date={state.secondLine.date}
+        typedStrings={['cd ./basic']}
+        typeSpeed={getRandomInt(100, 110)}
+        startDelay={getRandomInt(50, 200)}
+        onStringTyped={() => updateState('secondLine', 'thirdLine')}
+        onStringTypedDelay={getRandomInt(200, 500)}
+      />
     );
-  }
-  if (state.second.typed) {
-    third = (
-      <div>
-        <Path
+
+    if (state.secondLine.typed) {
+      thirdLine = (
+        <TerminalLine
           owner="david"
-          path="~/Documents/dev/projects/Portfolio"
+          path="~/Documents/basic"
           machineName="David-Pc"
-          date={state.third.date}
+          date={state.thirdLine.date}
+          typedStrings={['chrome basic; exit;']}
+          typeSpeed={getRandomInt(120, 150)}
+          startDelay={getRandomInt(800, 1000)}
+          onStringTyped={() => {
+            updateState('thirdLine', 'thirdLine');
+            chooseMode(false);
+            history.push('/');
+          }}
+          onStringTypedDelay={getRandomInt(1250, 1700)}
         />
-        <Typed
-          style={{ paddingLeft: '1rem' }}
-          strings={state.answer.choice === 'dev' ? ['code .; exit '] : ['cd basic; exit']}
-          typeSpeed={getRandomInt(150, 215)}
-          cursorChar={'_'}
-          startDelay={getRandomInt(800, 1100)}
-          onStringTyped={(_: any, typedElem: any) =>
-            setTimeout(() => {
-              typedElem.cursor.remove();
-              setState({
-                ...state,
-                third: { ...state.third, typed: true },
-              });
-              chooseMode(state.answer.choice === 'dev' ? true : false);
-              history.push(state.answer.choice === 'dev' ? '/code' : '/');
-            }, getRandomInt(1250, 2000))
-          }
-        />
-      </div>
-    );
+      );
+    }
   }
 
   return (
@@ -134,14 +178,64 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
       <TerminalHeader chooseMode={() => chooseMode(true)} />
       <main className={styles.Terminal__Main}>
         <div>
-          <form onSubmit={t}>
-            <Path owner="david" path="~" machineName="David-Pc" date={state.first.date} />
-            <div style={{ paddingLeft: '1rem' }}>
-              blabal basic ou dev ?
-              <input type="text" />
+          <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem fugiat ea veniam harum
+            asperiores dolorem. Inventore enim dolores fugit nesciunt aliquam. Facilis, assumenda
+            qui repellendus cum officia corporis esse commodi. Voluptatem dignissimos enim harum
+            dolorum porro error quis, accusantium officia quisquam voluptate impedit? Mollitia quasi
+            rerum esse maxime eum, in reiciendis, dignissimos ratione aperiam neque eveniet
+            necessitatibus, veniam nulla natus! Debitis, quisquam, corporis nihil at enim, a
+            assumenda hic suscipit laudantium deserunt doloremque repudiandae odit dolorem! Saepe
+            tenetur aperiam quas quam facilis veniam reprehenderit et cum minima, sunt enim sed?
+            Totam ipsum molestias velit vel laudantium ipsam labore explicabo voluptatibus tempore
+            necessitatibus vero asperiores natus, tenetur enim aspernatur, beatae debitis corrupti
+            illo, distinctio inventore cupiditate. Quae dolores mollitia at officiis? Porro nulla
+            provident, autem illo earum quam quisquam vel vero ipsum suscipit nobis consequuntur
+            commodi fugiat! Omnis in, nostrum eos iusto ipsum ad dolorum, quas facere unde earum
+            officia minus. Corporis nulla, error, ea dolore accusamus voluptatum eaque officiis
+            architecto amet soluta officia in id quibusdam voluptates modi distinctio illum eius
+            placeat? Nam magnam nesciunt molestiae eveniet enim possimus voluptates. Perferendis,
+            soluta? Dignissimos, pariatur dolorum quae nihil harum voluptatem iure repellat magni
+            corporis expedita molestias. Ipsam voluptates ad quae sunt ipsum possimus quaerat in
+            quo. Deleniti itaque suscipit nesciunt ab. Totam quasi debitis, architecto sunt
+            similique alias, inventore quibusdam dicta, voluptatum rem et magni ipsa? Ad
+            consectetur, quos asperiores blanditiis maiores, id nostrum sunt corporis velit
+            consequatur, necessitatibus sequi natus! Aspernatur, debitis natus. Ab ullam ex
+            voluptatem ratione culpa atque placeat amet laudantium deleniti. Unde ducimus doloremque
+            reprehenderit ut magni voluptates debitis provident vero dolor non, sapiente dolore
+            delectus! Voluptate. Recusandae sed sequi dolores harum quod pariatur accusamus
+            voluptate eius fuga, quae, porro eum excepturi, ipsa reprehenderit! Quasi error
+            excepturi, animi culpa quisquam cumque, deleniti eligendi voluptatem veniam sed
+            architecto.
+            <button style={{ width: 'fit-content' }} onClick={hasUserReadHandler} type="button">
+              Continuer
+            </button>
+          </div>
+          {firstLine}
+          {state.firstLine.typed ? (
+            <div>
+              <button
+                disabled={state.user.hasChosen}
+                className={styles.Terminal__LsResult}
+                ref={buttonRef}
+                tabIndex={1}
+                type="button"
+                onClick={() => userAnswerHandler('dev')}>
+                dev
+              </button>
+              <button
+                disabled={state.user.hasChosen}
+                className={styles.Terminal__LsResult}
+                tabIndex={1}
+                type="button"
+                onClick={() => userAnswerHandler('basic')}>
+                basic
+              </button>
             </div>
-          </form>
-          {first} {second} {third}
+          ) : null}
+          {secondLine}
+
+          {thirdLine}
         </div>
       </main>
     </div>
