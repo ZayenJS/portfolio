@@ -25,25 +25,21 @@ interface State {
     hasChosen: boolean;
     choice?: 'dev' | 'basic';
   };
-  initialDate: string;
   firstLine: Line;
   secondLine: Line;
   thirdLine: Line;
 }
 
 const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
-  const date = `${dayjs().format('YY-MM-DD')} - ${dayjs().format('HH:mm:ss')} `;
-
   const [state, setState] = useState<State>({
     user: {
       hasRead: false,
       hasChosen: false,
       choice: undefined,
     },
-    initialDate: date,
-    firstLine: { typed: false, answered: false, date },
-    secondLine: { typed: false, answered: false, date },
-    thirdLine: { typed: false, answered: false, date },
+    firstLine: { typed: false, answered: false, date: '' },
+    secondLine: { typed: false, answered: false, date: '' },
+    thirdLine: { typed: false, answered: false, date: '' },
   });
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -58,7 +54,10 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
     setState({
       ...state,
       user: { ...state.user, hasRead: true },
-      firstLine: { ...state.firstLine, date },
+      firstLine: {
+        ...state.firstLine,
+        date: `${dayjs().format('YY-MM-DD')} - ${dayjs().format('HH:mm:ss')} `,
+      },
     });
   };
 
@@ -66,7 +65,10 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
     setState({
       ...state,
       user: { ...state.user, hasChosen: true, choice },
-      secondLine: { ...state.secondLine, date },
+      secondLine: {
+        ...state.secondLine,
+        date: `${dayjs().format('YY-MM-DD')} - ${dayjs().format('HH:mm:ss')} `,
+      },
     });
   };
 
@@ -79,7 +81,7 @@ const Terminal: FC<TerminalProps> = ({ chooseMode }) => {
       [current]: { ...state[current], typed: true },
       [next]: {
         ...state[next],
-        date,
+        date: `${dayjs().format('YY-MM-DD')} - ${dayjs().format('HH:mm:ss')} `,
       },
     });
   };
