@@ -41,3 +41,8 @@ export interface ITerminalState {
 }
 
 export type ContactMeField = 'name' | 'email' | 'message';
+export interface IContactMeFields {
+  name: { value: string; hasError: boolean };
+  email: { value: string; hasError: boolean };
+  message: { value: string; hasError: boolean };
+}

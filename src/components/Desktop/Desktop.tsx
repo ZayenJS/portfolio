@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useState } from 'react';
+import React, { CSSProperties, FC } from 'react';
 import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 
 import Layout from '../Layout/Layout';

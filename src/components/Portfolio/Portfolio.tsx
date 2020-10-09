@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import Desktop from '../Desktop/Desktop';
 import Terminal from '../Terminal/Terminal';
 
-import styles from './Portfolio.module.scss';
+// import styles from './Portfolio.module.scss';
 
 interface PortfolioProps extends RouteComponentProps {}
 

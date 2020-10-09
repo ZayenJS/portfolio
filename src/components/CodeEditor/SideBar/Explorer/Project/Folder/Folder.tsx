@@ -1,11 +1,11 @@
-import React, { FC, SetStateAction, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { FC, SetStateAction } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import reactTs from '../../../../../../assets/images/icons/react_ts.svg';
 import html from '../../../../../../assets/images/icons/html.svg';
 import publicFolder from '../../../../../../assets/images/icons/folder-public.svg';
-import openPublicFolder from '../../../../../../assets/images/icons/folder-public-open.svg';
-import srcFolder from '../../../../../../assets/images/icons/folder-src.svg';
+// import openPublicFolder from '../../../../../../assets/images/icons/folder-public-open.svg';
+// import srcFolder from '../../../../../../assets/images/icons/folder-src.svg';
 import openSrcFolder from '../../../../../../assets/images/icons/folder-src-open.svg';
 
 import styles from './Folder.module.scss';

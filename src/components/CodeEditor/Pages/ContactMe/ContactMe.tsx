@@ -1,32 +1,54 @@
 import React, { FC, useState } from 'react';
-import { ContactMeField } from '../../../../models';
+import { ContactMeField, IContactMeFields } from '../../../../models';
 import styles from './ContactMe.module.scss';
 import Field from './Field/Field';
 
 interface ContactMeProps {}
 
 const ContactMe: FC<ContactMeProps> = () => {
-  const [state, setState] = useState({
-    name: '',
-    email: '',
-    message: '',
+  const [state, setState] = useState<IContactMeFields>({
+    name: { value: '', hasError: false },
+    email: { value: '', hasError: false },
+    message: { value: '', hasError: false },
   });
 
   const onChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     name: ContactMeField,
   ) => {
-    setState({ ...state, [name]: event.target.value });
+    setState({ ...state, [name]: { ...state[name], value: event.target.value, hasError: false } });
   };
 
   const formSubmitHandler = (event: React.FormEvent) => {
     event.preventDefault();
+
+    for (const key in state) {
+      const prop = key as ContactMeField;
+
+      if (!state[prop].value) {
+        setState({
+          ...state,
+          [prop]: {
+            ...state[prop],
+            hasError: true,
+          },
+        });
+        return alert(`ReferenceError : ${key} is not defined`);
+      }
+    }
 
     console.log('Message sent !');
   };
 
   return (
     <section className={styles.ContactMe} style={{ lineHeight: '22px' }}>
+      <div>
+        <span className="await">import</span>
+        <span className="variable"> axios </span>
+        <span className="await">from </span>
+        <span className="string-color">'axios'</span>;
+      </div>
+      <br />
       <div>
         <p className="comments">
           /* Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quaerat doloremque
@@ -39,14 +61,16 @@ const ContactMe: FC<ContactMeProps> = () => {
           esse, illum explicabo amet ducimus error, sequi doloremque. */
         </p>
       </div>
-
-      <form onSubmit={formSubmitHandler} style={{ color: '#fff' }}>
+      <br />
+      <form onSubmit={formSubmitHandler}>
         <Field
           type="text"
           keyword="const"
           dataType="string"
           fieldName="name"
-          value={state.name}
+          hasError={state.name.hasError}
+          value={state.name.value}
+          autoFocus={true}
           setValue={onChangeHandler}
         />
         <Field
@@ -54,7 +78,8 @@ const ContactMe: FC<ContactMeProps> = () => {
           keyword="const"
           dataType="string"
           fieldName="email"
-          value={state.email}
+          hasError={state.email.hasError}
+          value={state.email.value}
           setValue={onChangeHandler}
         />
         <Field
@@ -62,7 +87,8 @@ const ContactMe: FC<ContactMeProps> = () => {
           keyword="const"
           dataType="string"
           fieldName="message"
-          value={state.message}
+          hasError={state.message.hasError}
+          value={state.message.value}
           setValue={onChangeHandler}
         />
         <br />
@@ -72,7 +98,9 @@ const ContactMe: FC<ContactMeProps> = () => {
           <span className="variable">message</span>: <span className="data-type">string</span>)
           =&gt; {'{'}
           <div>
-            <span className="await indent">await</span> axios.post(websiteUrl , {'{'}
+            <span className="await indent">await</span>
+            <span className="variable"> axios</span>.<span className="span function">post</span>(
+            <span className="string-color">'https://example.com/'</span>, {'{'}
             <div className="indent">
               <div className="indent">
                 <span className="attribute">name</span>,

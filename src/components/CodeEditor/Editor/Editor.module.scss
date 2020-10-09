@@ -3,11 +3,12 @@
 .Editor {
   width: calc(100% - 11rem - 3rem);
   overflow: auto;
+  padding: 1rem;
+  color: #eee;
 }
 
 .IndexHTML {
   @include flex(stretch, flex-start, row nowrap);
-  padding: 1rem;
 
   &__Lines {
     width: 78px;
