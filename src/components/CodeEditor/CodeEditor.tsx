@@ -28,8 +28,8 @@ const CodeEditor: FC<CodeEditorProps> = ({ match }) => {
           <Route path={`${match.path}/readme.md`}>
             <TitleBar title="README.md" />
           </Route>
-          <Route path={`${match.path}/hireme.tsx`}>
-            <TitleBar title="HireMe.tsx" />
+          <Route path={`${match.path}/contactme.tsx`}>
+            <TitleBar title="ContactMe.tsx" />
           </Route>
           <Route path={`${match.path}/index.html`}>
             <TitleBar title="index.html" />
@@ -40,7 +40,7 @@ const CodeEditor: FC<CodeEditorProps> = ({ match }) => {
           {activeItem ? <SideBar activeItem={activeItem} /> : null}
           <Switch>
             <Route path={`${match.path}/readme.md`} component={Editor} />
-            <Route path={`${match.path}/hireme.tsx`} component={Editor} />
+            <Route path={`${match.path}/contactme.tsx`} component={Editor} />
             <Route path={`${match.path}/index.html`} component={Editor} />
           </Switch>
         </main>

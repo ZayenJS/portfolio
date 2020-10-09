@@ -1,37 +1,22 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 import TerminalHeader from './TerminalHeader/TerminalHeader';
-
-import styles from './Terminal.module.scss';
-import { useHistory } from 'react-router-dom';
-import { getRandomInt } from '../../utils';
 import TerminalLine from './TerminalLine/TerminalLine';
 import TerminalWelcome from './TerminalWelcome/TerminalWelcome';
+
+import { getRandomInt } from '../../utils';
+import { ITerminalState } from '../../models';
+
+import styles from './Terminal.module.scss';
 
 interface TerminalProps {
   shouldActivateDevMode: (activate: boolean) => void;
 }
 
-interface Line {
-  typed: boolean;
-  answered: boolean;
-  date: string;
-}
-
-interface State {
-  user: {
-    hasRead: boolean;
-    hasChosen: boolean;
-    choice?: 'dev' | 'basic';
-  };
-  firstLine: Line;
-  secondLine: Line;
-  thirdLine: Line;
-}
-
 const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
-  const [state, setState] = useState<State>({
+  const [state, setState] = useState<ITerminalState>({
     user: {
       hasRead: false,
       hasChosen: false,
@@ -105,9 +90,9 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
         machineName="David-Pc"
         date={state.firstLine.date}
         typedStrings={['ls']}
-        typeSpeed={getRandomInt(120, 200)}
+        typeSpeed={getRandomInt(100, 120)}
         onStringTyped={() => updateState('firstLine', 'secondLine')}
-        onStringTypedDelay={getRandomInt(400, 700)}
+        onStringTypedDelay={getRandomInt(200, 500)}
       />
     );
   }
@@ -120,10 +105,10 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
         machineName="David-Pc"
         date={state.secondLine.date}
         typedStrings={['cd ./dev/projects/Portfolio']}
-        typeSpeed={getRandomInt(80, 105)}
-        startDelay={getRandomInt(50, 200)}
+        typeSpeed={getRandomInt(55, 85)}
+        startDelay={getRandomInt(50, 150)}
         onStringTyped={() => updateState('secondLine', 'thirdLine')}
-        onStringTypedDelay={getRandomInt(200, 500)}
+        onStringTypedDelay={getRandomInt(200, 400)}
       />
     );
 
@@ -135,14 +120,14 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
           machineName="David-Pc"
           date={state.thirdLine.date}
           typedStrings={['code README.md ; exit;']}
-          typeSpeed={getRandomInt(120, 165)}
-          startDelay={getRandomInt(800, 1000)}
+          typeSpeed={getRandomInt(80, 120)}
+          startDelay={getRandomInt(400, 800)}
           onStringTyped={() => {
             updateState('thirdLine', 'thirdLine');
             shouldActivateDevMode(true);
             history.push('/code/readme.md');
           }}
-          onStringTypedDelay={getRandomInt(1250, 2000)}
+          onStringTypedDelay={getRandomInt(1000, 1500)}
         />
       );
     }
@@ -154,10 +139,10 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
         machineName="David-Pc"
         date={state.secondLine.date}
         typedStrings={['cd ./basic']}
-        typeSpeed={getRandomInt(100, 110)}
+        typeSpeed={getRandomInt(70, 90)}
         startDelay={getRandomInt(50, 200)}
         onStringTyped={() => updateState('secondLine', 'thirdLine')}
-        onStringTypedDelay={getRandomInt(200, 500)}
+        onStringTypedDelay={getRandomInt(150, 400)}
       />
     );
 
@@ -169,14 +154,14 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
           machineName="David-Pc"
           date={state.thirdLine.date}
           typedStrings={['chrome basic; exit;']}
-          typeSpeed={getRandomInt(120, 150)}
-          startDelay={getRandomInt(800, 1000)}
+          typeSpeed={getRandomInt(60, 100)}
+          startDelay={getRandomInt(300, 700)}
           onStringTyped={() => {
             updateState('thirdLine', 'thirdLine');
             shouldActivateDevMode(false);
             history.push('/');
           }}
-          onStringTypedDelay={getRandomInt(1250, 1700)}
+          onStringTypedDelay={getRandomInt(500, 1000)}
         />
       );
     }

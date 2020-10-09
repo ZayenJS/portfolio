@@ -9,9 +9,9 @@ const IndexHTML: FC<IndexHTMLProps> = () => {
     <div className={styles.IndexHTML}>
       <HTML tagName="" isDOCTYPE={true} />
       <HTML tagName="html" attributes={[{ name: 'lang', value: 'en' }]}>
-        <HTML className={styles.IndexHTML__Indent} tagName="head">
+        <HTML className="indent" tagName="head">
           <HTML
-            className={styles.IndexHTML__Indent}
+            className="indent"
             isSelfClosing={true}
             tagName="meta"
             attributes={[{ name: 'charset', value: 'utf-8' }]}
@@ -23,7 +23,7 @@ const IndexHTML: FC<IndexHTMLProps> = () => {
               { name: 'rel', value: 'icon' },
               { name: 'href', value: '%PUBLIC_URL%/favicon.ico' },
             ]}
-            className={styles.IndexHTML__Indent}
+            className="indent"
           />
           <HTML
             isSelfClosing={true}
@@ -32,19 +32,19 @@ const IndexHTML: FC<IndexHTMLProps> = () => {
               { name: 'name', value: 'viewport' },
               { name: 'content', value: 'width=device-width, initial-scale=1' },
             ]}
-            className={styles.IndexHTML__Indent}
+            className="indent"
           />
           <HTML
             isSelfClosing={true}
             tagName="meta"
             attributes={[{ name: 'theme-color', value: '#000000' }]}
-            className={styles.IndexHTML__Indent}
+            className="indent"
           />
           <HTML
             isSelfClosing={true}
             tagName="meta"
             attributes={[{ name: 'description', value: 'Web site created using create-react-app' }]}
-            className={styles.IndexHTML__Indent}
+            className="indent"
           />
           <HTML
             isSelfClosing={true}
@@ -53,10 +53,10 @@ const IndexHTML: FC<IndexHTMLProps> = () => {
               { name: 'rel', value: 'apple-touch-icon' },
               { name: 'href', value: '%PUBLIC_URL%/logo192.png' },
             ]}
-            className={styles.IndexHTML__Indent}
+            className="indent"
           />
-          <HTML isComment={true} className={styles.IndexHTML__Indent} tagName="">
-            <div className={styles.IndexHTML__Indent}>
+          <HTML isComment={true} className="indent" tagName="">
+            <div className="indent">
               manifest.json provides metadata used when your web app is installed on a user's mobile
               device or desktop. See
               https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -69,10 +69,10 @@ const IndexHTML: FC<IndexHTMLProps> = () => {
               { name: 'rel', value: 'manifest' },
               { name: 'href', value: '%PUBLIC_URL%/manifest.json' },
             ]}
-            className={styles.IndexHTML__Indent}
+            className="indent"
           />
-          <HTML className={styles.IndexHTML__Indent} isComment={true} tagName="">
-            <div className={styles.IndexHTML__Indent}>
+          <HTML className="indent" isComment={true} tagName="">
+            <div className="indent">
               Notice the use of %PUBLIC_URL% in the tags above. It will be replaced with the URL of
               the `public` folder during the build. Only files inside the `public` folder can be
               referenced from the HTML. Unlike "/favicon.ico" or "favicon.ico",
@@ -81,20 +81,17 @@ const IndexHTML: FC<IndexHTMLProps> = () => {
               build`.
             </div>
           </HTML>
-          <HTML tagName="title" className={styles.IndexHTML__Indent}>
+          <HTML tagName="title" className="indent">
             React App
           </HTML>
         </HTML>
-        <HTML className={styles.IndexHTML__Indent} tagName="body">
-          <HTML tagName="noscript" className={styles.IndexHTML__Indent}>
+        <HTML className="indent" tagName="body">
+          <HTML tagName="noscript" className="indent">
             You need to enable JavaScript to run this app.
           </HTML>
-          <HTML
-            className={styles.IndexHTML__Indent}
-            tagName="div"
-            attributes={[{ name: 'id', value: 'root' }]}>
+          <HTML className="indent" tagName="div" attributes={[{ name: 'id', value: 'root' }]}>
             <HTML isComment={true} tagName="">
-              <div className={styles.IndexHTML__Indent}>
+              <div className="indent">
                 This HTML file is a template. If you open it directly in the browser, you will see
                 an empty page. You can add webfonts, meta tags, or analytics to this file. The build
                 step will place the bundled scripts into the &lt;body&gt; tag. To begin the

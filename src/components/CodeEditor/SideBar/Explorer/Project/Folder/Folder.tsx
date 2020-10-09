@@ -68,10 +68,10 @@ const Folder: FC<FolderProps> = ({ name, indentSize = 0, isCollapsed, setIsColla
               <NavLink
                 activeClassName="active-file"
                 style={{ paddingLeft: `${indentSize + 1.75}rem` }}
-                to="/code/hireme.tsx"
+                to="/code/contactme.tsx"
                 className={[styles.Folder__Items, 'folder-item'].join(' ')}>
                 <img src={reactTs} alt="" />
-                HireMe.tsx
+                ContactMe.tsx
               </NavLink>
             )}
           </div>

@@ -8,8 +8,8 @@ import styles from './Portfolio.module.scss';
 interface PortfolioProps extends RouteComponentProps {}
 
 const Portfolio: FC<PortfolioProps> = ({ history, location, match }) => {
-  const [isDevMode, setIsDevMode] = useState(false);
-  const [hasChosen, setHasChosen] = useState(false);
+  const [isDevMode, setIsDevMode] = useState(true);
+  const [hasChosen, setHasChosen] = useState(true);
 
   const choiceHandler = (shouldActivateDevMode: boolean) => {
     setIsDevMode(shouldActivateDevMode);

@@ -41,6 +41,7 @@ const TerminalWelcome: FC<TerminalWelcomeProps> = ({ disableButton, onContinue }
       </header>
       <main>
         <h2>Bienvenue sur mon portfolio</h2>
+        <div></div>
       </main>
 
       {isVisible ? (

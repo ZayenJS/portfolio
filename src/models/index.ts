@@ -22,3 +22,22 @@ export interface IProject {
   src: boolean;
   public: boolean;
 }
+
+interface Line {
+  typed: boolean;
+  answered: boolean;
+  date: string;
+}
+
+export interface ITerminalState {
+  user: {
+    hasRead: boolean;
+    hasChosen: boolean;
+    choice?: 'dev' | 'basic';
+  };
+  firstLine: Line;
+  secondLine: Line;
+  thirdLine: Line;
+}
+
+export type ContactMeField = 'name' | 'email' | 'message';

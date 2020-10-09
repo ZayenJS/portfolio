@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import Line from '../Line/Line';
-import HireMe from '../Pages/HireMe/HireMe';
+import ContactMe from '../Pages/ContactMe/ContactMe';
 import IndexHTML from '../Pages/IndexHTML/IndexHTML';
 import Readme from '../Pages/Readme/Readme';
 
@@ -15,8 +15,8 @@ const Editor: FC<EditorProps> = ({ match }) => {
     case '/code/readme.md':
       content = <Readme />;
       break;
-    case '/code/hireme.tsx':
-      content = <HireMe />;
+    case '/code/contactme.tsx':
+      content = <ContactMe />;
       break;
     case '/code/index.html':
       content = (
