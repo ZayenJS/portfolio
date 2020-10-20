@@ -3,8 +3,9 @@
 .Header {
   &__Basic {
     @include flex(center, space-between, row nowrap);
-    padding: 1rem;
+    padding: $gutter;
     grid-area: header;
+    position: relative;
 
     &__Navigation {
       ul {
@@ -13,6 +14,13 @@
         li {
           font-size: 1.6rem;
           margin: 0 1rem;
+          transition: transform 100ms ease, color 100ms ease;
+
+          &:hover {
+            color: #00ff95;
+            transform: scale(1.1);
+            transition: transform 250ms ease, color 250ms ease;
+          }
         }
       }
     }

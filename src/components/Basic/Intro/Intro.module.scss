@@ -6,8 +6,10 @@
     transform: translateX(0) skew(-16deg, 0deg);
   }
   75% {
-    opacity: 0.75;
     transform: translateX(-125%) skew(-16deg, 0deg);
+  }
+  90% {
+    opacity: 0.75;
   }
   100% {
     transform: translateX(-125%) skew(-16deg, 0deg);
@@ -21,8 +23,10 @@
     transform: translateX(0) skew(-16deg, 0deg);
   }
   75% {
-    opacity: 0.75;
     transform: translateX(125%) skew(-16deg, 0deg);
+  }
+  90% {
+    opacity: 0.75;
   }
   100% {
     transform: translateX(125%) skew(-16deg, 0deg);

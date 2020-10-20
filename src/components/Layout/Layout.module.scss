@@ -11,6 +11,9 @@
 
     &__Main {
       grid-area: main;
+      margin: 0 auto;
+      max-width: 900px;
+      position: relative;
     }
   }
 }

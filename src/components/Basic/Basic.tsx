@@ -21,9 +21,12 @@ const Basic: FC<BasicProps> = () => {
   return (
     <div className={styles.Basic}>
       {state.isIntroEnded ? null : <Intro onIntroEnd={onIntroEnd} />}
-      <ParticleBackground />
       <Layout isDevMode={false} isBasic={true}>
-        test
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi modi voluptate
+          expedita? Libero commodi possimus aliquam, in labore officia, unde dolore quidem obcaecati
+          iste reprehenderit soluta accusantium eveniet sunt id!
+        </p>
       </Layout>
     </div>
   );

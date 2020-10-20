@@ -14,15 +14,15 @@ const Header: FC<HeaderProps> = ({ isBasic }) => {
   if (isBasic) {
     header = (
       <header className={styles.Header__Basic}>
-        <div className={styles.Header__Basic__Title}>
+        <NavLink to="/" activeClassName="" className={styles.Header__Basic__Title}>
           <h1>
             <img style={{ width: '20rem' }} src={logo} alt="" />
           </h1>
-        </div>
+        </NavLink>
         <nav className={styles.Header__Basic__Navigation}>
           <ul>
             <li>
-              <NavLink activeClassName="normal--active" to="/">
+              <NavLink activeClassName="normal--active" exact to="/">
                 Home
               </NavLink>
             </li>
