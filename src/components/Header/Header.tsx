@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-// import logo from '../../assets/images/logo.jpg';
+import logo from '../../assets/images/logo.svg';
 
 import styles from './Header.module.scss';
 
@@ -14,7 +14,9 @@ const Header: FC<HeaderProps> = ({ isBasic }) => {
     header = (
       <header className={styles.Header__Basic}>
         <div>
-          <h1>{/* <img style={{ width: '20rem' }} src={logo} alt="" /> */}</h1>
+          <h1>
+            <img style={{ width: '20rem' }} src={logo} alt="" />
+          </h1>
         </div>
       </header>
     );
