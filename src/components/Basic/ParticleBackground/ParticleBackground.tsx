@@ -10,7 +10,7 @@ const ParticleBackground: FC<ParticleBackgroundProps> = () => {
       params={{
         background: {
           color: {
-            value: '#444',
+            value: '#140A29',
           },
         },
         fpsLimit: 60,
