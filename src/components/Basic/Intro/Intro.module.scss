@@ -33,14 +33,14 @@
 @keyframes slideToBottomLeft {
   0% {
     opacity: 1;
-    transform: translate(25%, -175%);
+    transform: translate(150%, -150%);
   }
   50% {
     opacity: 0.75;
-    transform: translate(-200%, 175%);
+    transform: translate(-225%, 225%);
   }
   100% {
-    transform: translate(-200%, 175%);
+    transform: translate(-225%, 225%);
     opacity: 0;
   }
 }
@@ -88,9 +88,9 @@
     position: absolute;
     z-index: 2;
     font-size: 27.5rem;
-    top: 50%;
+    // top: 50%;
     left: 50%;
-    transform: translate(25%, -175%);
+    transform: translate(150%, -150%);
     animation: slideToBottomLeft 4500ms 500ms forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
