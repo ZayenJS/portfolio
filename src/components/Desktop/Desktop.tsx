@@ -19,7 +19,7 @@ interface DesktopProps extends RouteComponentProps {
 
 const Desktop: FC<DesktopProps> = ({ history, style, isDevMode = false }) => {
   return (
-    <Layout isDevMode={isDevMode}>
+    <Layout isDevMode={isDevMode} isBasic={false}>
       <div style={style ?? {}} className={styles.Desktop}>
         <div className={styles.Desktop__Icons}>
           <DesktopIcon id="recycle-bin" src={recycleBin} alt="recycle bin icon" label="Corbeille" />

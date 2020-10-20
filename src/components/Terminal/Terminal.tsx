@@ -125,7 +125,7 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
           onStringTyped={() => {
             updateState('thirdLine', 'thirdLine');
             shouldActivateDevMode(true);
-            history.push('/code/readme.md');
+            // history.push('/code/readme.md');
           }}
           onStringTypedDelay={getRandomInt(1000, 1500)}
         />
@@ -153,13 +153,13 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
           path="~/Documents/basic"
           machineName="David-Pc"
           date={state.thirdLine.date}
-          typedStrings={['chrome basic; exit;']}
+          typedStrings={['google-chrome basic; exit;']}
           typeSpeed={getRandomInt(60, 100)}
           startDelay={getRandomInt(300, 700)}
           onStringTyped={() => {
             updateState('thirdLine', 'thirdLine');
             shouldActivateDevMode(false);
-            history.push('/');
+            // history.push('/');
           }}
           onStringTypedDelay={getRandomInt(500, 1000)}
         />

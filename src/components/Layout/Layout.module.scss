@@ -1,1 +1,8 @@
 @import '../../assets/scss/variables';
+
+.Layout {
+  &__Basic {
+    position: relative;
+    z-index: 1;
+  }
+}

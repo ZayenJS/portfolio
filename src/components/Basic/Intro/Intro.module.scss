@@ -1,0 +1,121 @@
+@import '../../../assets/scss/variables';
+
+@keyframes slideToLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0) skew(-16deg, 0deg);
+  }
+  75% {
+    opacity: 0.75;
+    transform: translateX(-125%) skew(-16deg, 0deg);
+  }
+  100% {
+    transform: translateX(-125%) skew(-16deg, 0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes slideToRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0) skew(-16deg, 0deg);
+  }
+  75% {
+    opacity: 0.75;
+    transform: translateX(125%) skew(-16deg, 0deg);
+  }
+  100% {
+    transform: translateX(125%) skew(-16deg, 0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes slideToBottomLeft {
+  0% {
+    opacity: 1;
+    transform: translate(25%, -175%);
+  }
+  50% {
+    opacity: 0.75;
+    transform: translate(-200%, 175%);
+  }
+  100% {
+    transform: translate(-200%, 175%);
+    opacity: 0;
+  }
+}
+
+.Intro {
+  position: relative;
+  font-size: 40rem;
+  color: #19725e;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  z-index: 100;
+
+  &__Left {
+    &::before {
+      content: '';
+      position: fixed;
+      background: #222;
+      top: 0;
+      bottom: 0;
+      left: -1rem;
+      width: 50%;
+      transform: skew(16deg, 0);
+    }
+
+    @include flex(center, flex-end, row nowrap);
+    padding-right: $gutter * 1.5;
+    position: fixed;
+    z-index: 1;
+    background: #222;
+    top: 0;
+    bottom: 0;
+    left: -1rem;
+    width: 50.5%;
+    transform: skew(-16deg, 0deg);
+    animation: slideToLeft 2000ms 750ms forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  &__Middle {
+    position: absolute;
+    z-index: 2;
+    font-size: 27.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(25%, -175%);
+    animation: slideToBottomLeft 4500ms 500ms forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  &__Right {
+    &::before {
+      content: '';
+      position: fixed;
+      background: #222;
+      top: 0;
+      bottom: 0;
+      right: -1rem;
+      width: 50%;
+      transform: skew(16deg, 0);
+    }
+
+    @include flex(center, flex-start, row nowrap);
+    padding-left: $gutter * 1.5;
+    position: fixed;
+    z-index: 1;
+    background: #222;
+    top: 0;
+    bottom: 0;
+    right: 1rem;
+    width: 50.5%;
+    transform: skew(-16deg, 0deg);
+    animation: slideToRight 2000ms 750ms forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
