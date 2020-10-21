@@ -46,3 +46,11 @@ export interface IContactMeFields {
   email: { value: string; hasError: boolean };
   message: { value: string; hasError: boolean };
 }
+export interface IWorkProject {
+  name: string;
+  description: string;
+  image: string;
+  url?: string;
+  repository?: string;
+  technos: { name: string; logo: string }[];
+}

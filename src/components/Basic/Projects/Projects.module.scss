@@ -1,0 +1,9 @@
+@import '../../../assets/scss/variables';
+
+.Projects {
+  @include flex(stretch, space-between, column nowrap);
+
+  @include md {
+    flex-flow: row wrap;
+  }
+}

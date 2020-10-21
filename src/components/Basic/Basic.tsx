@@ -8,6 +8,8 @@ import Projects from './Projects/Projects';
 import Skills from './Skills/Skills';
 import Contact from './Contact/Contact';
 
+import { projs } from '../../data';
+
 import styles from './Basic.module.scss';
 
 interface BasicProps extends RouteComponentProps {
@@ -29,7 +31,10 @@ const Basic: FC<BasicProps> = ({ setIsDevMode }) => {
       <Layout isDevMode={false} setIsDevMode={setIsDevMode} isBasic={true}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/projets" component={Projects} />
+          <Route
+            path="/projets"
+            render={(routeProps) => <Projects {...routeProps} projects={projs} />}
+          />
           <Route path="/competences" component={Skills} />
           <Route path="/contact" component={Contact} />
         </Switch>
