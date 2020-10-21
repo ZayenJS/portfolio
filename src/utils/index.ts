@@ -18,3 +18,5 @@ export const getSpeakerClasses = (volume: number, styles: any) => {
 
 export const getRandomInt = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min) + min + 1);
+
+export const baseTitle = 'David Nogueira - Développeur web | Portfolio';

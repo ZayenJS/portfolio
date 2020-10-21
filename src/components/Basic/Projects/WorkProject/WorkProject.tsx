@@ -12,38 +12,40 @@ const Project: FC<ProjectProps> = ({
 }) => {
   return (
     <div className={styles.Project}>
-      <h2 className={styles.Project__Name}>{name}</h2>
-      <div className={styles.Project__ImageContainer}>
-        <img src={image} alt={`${name} site preview`} />
+      <div>
+        <h2 className={styles.Project__Name}>{name}</h2>
+        <div className={styles.Project__ImageContainer}>
+          <img src={image} alt={`${name} site preview`} />
+        </div>
+        <p className={styles.Project__Description}>{description}</p>
+        {url ? (
+          <a
+            className={styles.Project__Link}
+            href={url}
+            title="Aller sur le site"
+            target="_blank"
+            rel="noopener noreferrer">
+            {url}
+          </a>
+        ) : (
+          <p>Pas en ligne pour le moment...</p>
+        )}
+        {repository ? (
+          <a
+            className={styles.Project__Link}
+            href={repository}
+            title="Aller sur le repo github"
+            target="_blank"
+            rel="noopener noreferrer">
+            {repository}
+          </a>
+        ) : null}
       </div>
-      <p className={styles.Project__Description}>{description}</p>
-      {url ? (
-        <a
-          className={styles.Project__Link}
-          href={url}
-          title="Aller sur le site"
-          target="_blank"
-          rel="noopener noreferrer">
-          {url}
-        </a>
-      ) : (
-        <p>Pas en ligne pour le moment...</p>
-      )}
-      {repository ? (
-        <a
-          className={styles.Project__Link}
-          href={repository}
-          title="Aller sur le repo github"
-          target="_blank"
-          rel="noopener noreferrer">
-          {repository}
-        </a>
-      ) : null}
       <div>
         <ul className={styles.Project__TechnosList}>
           {technos.map(({ name, logo }) => (
-            <li className={styles.Project__TechnosList__Item} key={name}>
-              <img src={logo} alt="" />
+            <li title={name} className={styles.Project__TechnosList__Item} key={name}>
+              <img src={logo} alt={`icone ${name}`} />
             </li>
           ))}
         </ul>

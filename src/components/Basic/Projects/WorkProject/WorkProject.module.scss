@@ -1,6 +1,7 @@
 @import '../../../../assets/scss/variables';
 
 .Project {
+  @include flex(flex-start, space-between, column nowrap);
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);

@@ -26,7 +26,7 @@ const Basic: FC<BasicProps> = ({ setIsDevMode }) => {
   };
 
   return (
-    <div className={styles.Basic}>
+    <div className={[styles.Basic, 'normal'].join(' ')}>
       {state.isIntroEnded ? null : <Intro onIntroEnd={onIntroEnd} />}
       <Layout isDevMode={false} setIsDevMode={setIsDevMode} isBasic={true}>
         <Switch>

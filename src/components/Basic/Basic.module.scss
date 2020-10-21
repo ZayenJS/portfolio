@@ -3,4 +3,9 @@
 .Basic {
   background-color: #fff;
   color: #fff;
+
+  ::selection {
+    color: #00ff95;
+    background-color: #13011148;
+  }
 }

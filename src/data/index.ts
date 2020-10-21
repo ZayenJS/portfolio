@@ -1,12 +1,13 @@
-import { IWorkProject } from '../models';
+import { IWorkProject, Technos } from '../models';
 
 import brownskinBeautyImage from '../assets/images/WorkProjects/brownskinbeauty.png';
 import rpgGameImage from '../assets/images/WorkProjects/rpgGame.png';
 import sensimeImage from '../assets/images/WorkProjects/sensime.png';
 import theTavernImage from '../assets/images/WorkProjects/the-tavern.png';
 import covidTrackerImage from '../assets/images/WorkProjects/covid-tracker.png';
+import portfolio from '../assets/images/WorkProjects/portfolio.png';
 
-import html from '../assets/images/icons/html.svg';
+import html from '../assets/images/icons/html-5.svg';
 import css from '../assets/images/icons/css.svg';
 import javascript from '../assets/images/icons/javascript.svg';
 import typescript from '../assets/images/icons/typescript.svg';
@@ -27,7 +28,7 @@ export const projs: IWorkProject[] = [
     technos: [
       { name: 'HTML', logo: html },
       { name: 'CSS', logo: css },
-      { name: 'Javascript', logo: javascript },
+      { name: 'JavaScript', logo: javascript },
     ],
   },
   {
@@ -40,7 +41,7 @@ export const projs: IWorkProject[] = [
     technos: [
       { name: 'HTML', logo: html },
       { name: 'CSS', logo: css },
-      { name: 'Javascript', logo: javascript },
+      { name: 'JavaScript', logo: javascript },
     ],
   },
   {
@@ -52,8 +53,8 @@ export const projs: IWorkProject[] = [
     technos: [
       { name: 'React', logo: react },
       { name: 'Redux', logo: redux },
-      { name: 'Typescript', logo: typescript },
-      { name: 'SCSS', logo: sass },
+      { name: 'TypeScript', logo: typescript },
+      { name: 'SASS/SCSS', logo: sass },
       { name: 'NodeJS', logo: nodejs },
       { name: 'Postgresql', logo: postgresql },
     ],
@@ -67,7 +68,7 @@ export const projs: IWorkProject[] = [
     technos: [
       { name: 'React', logo: react },
       { name: 'Redux', logo: redux },
-      { name: 'SCSS', logo: sass },
+      { name: 'SASS/SCSS', logo: sass },
       { name: 'NodeJS', logo: nodejs },
       { name: 'Postgresql', logo: postgresql },
       { name: 'Socket.io', logo: socketIo },
@@ -83,8 +84,20 @@ export const projs: IWorkProject[] = [
     technos: [
       { name: 'React', logo: react },
       { name: 'Redux', logo: redux },
-      { name: 'Typescript', logo: typescript },
-      { name: 'SCSS', logo: sass },
+      { name: 'TypeScript', logo: typescript },
+      { name: 'SASS/SCSS', logo: sass },
+    ],
+  },
+  {
+    name: 'portfolio',
+    description: 'Le portfolio sur lequel vous vous trouvez actuellement 😁',
+    image: portfolio,
+    url: 'https://davidnogueira.dev',
+    repository: 'https://github.com/ZayenJS/portfolio',
+    technos: [
+      { name: 'React', logo: react },
+      { name: 'TypeScript', logo: typescript },
+      { name: 'SASS/SCSS', logo: sass },
     ],
   },
 ];

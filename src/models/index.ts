@@ -52,5 +52,17 @@ export interface IWorkProject {
   image: string;
   url?: string;
   repository?: string;
-  technos: { name: string; logo: string }[];
+  technos: { name: Technos; logo: string }[];
 }
+
+export type Technos =
+  | 'HTML'
+  | 'CSS'
+  | 'JavaScript'
+  | 'TypeScript'
+  | 'React'
+  | 'Redux'
+  | 'SASS/SCSS'
+  | 'NodeJS'
+  | 'Postgresql'
+  | 'Socket.io';

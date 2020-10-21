@@ -19,6 +19,10 @@
   min-height: 100vh;
   overflow: hidden;
 
+  ::selection {
+    background-color: #9cdcfe3a;
+  }
+
   &__Unmount {
     @extend .Portfolio;
 
