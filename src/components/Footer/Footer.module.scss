@@ -125,7 +125,17 @@
   }
 
   &__Basic {
+    @include flex(center, center, row nowrap);
     grid-area: footer;
     position: relative;
+    height: 5rem;
+
+    &__Content {
+      @include flex(baseline, center, row nowrap);
+
+      span {
+        margin: 0 0.25rem;
+      }
+    }
   }
 }

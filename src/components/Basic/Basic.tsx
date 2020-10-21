@@ -1,15 +1,20 @@
 import React, { FC, useState } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 
+import Intro from './Intro/Intro';
 import Layout from '../Layout/Layout';
+import Home from './Home/Home';
+import Projects from './Projects/Projects';
+import Skills from './Skills/Skills';
+import Contact from './Contact/Contact';
 
 import styles from './Basic.module.scss';
-import Intro from './Intro/Intro';
-import ParticleBackground from './ParticleBackground/ParticleBackground';
 
-interface BasicProps extends RouteComponentProps {}
+interface BasicProps extends RouteComponentProps {
+  setIsDevMode: () => void;
+}
 
-const Basic: FC<BasicProps> = () => {
+const Basic: FC<BasicProps> = ({ setIsDevMode }) => {
   const [state, setState] = useState({
     isIntroEnded: false,
   });
@@ -21,12 +26,13 @@ const Basic: FC<BasicProps> = () => {
   return (
     <div className={styles.Basic}>
       {state.isIntroEnded ? null : <Intro onIntroEnd={onIntroEnd} />}
-      <Layout isDevMode={false} isBasic={true}>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi modi voluptate
-          expedita? Libero commodi possimus aliquam, in labore officia, unde dolore quidem obcaecati
-          iste reprehenderit soluta accusantium eveniet sunt id!
-        </p>
+      <Layout isDevMode={false} setIsDevMode={setIsDevMode} isBasic={true}>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/projets" component={Projects} />
+          <Route path="/competences" component={Skills} />
+          <Route path="/contact" component={Contact} />
+        </Switch>
       </Layout>
     </div>
   );

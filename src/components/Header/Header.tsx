@@ -32,8 +32,8 @@ const Header: FC<HeaderProps> = ({ isBasic }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink activeClassName="normal--active" to="/a-propos">
-                A propos
+              <NavLink activeClassName="normal--active" to="/competences">
+                Compétences
               </NavLink>
             </li>
             <li>

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import ParticleBackground from '../Basic/ParticleBackground/ParticleBackground';
 
+import ParticleBackground from '../Basic/ParticleBackground/ParticleBackground';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
@@ -9,20 +9,19 @@ import styles from './Layout.module.scss';
 interface LayoutProps {
   isDevMode: boolean;
   isBasic: boolean;
+  setIsDevMode?: () => void;
 }
 
-const Layout: FC<LayoutProps> = ({ children, isDevMode, isBasic }) => {
+const Layout: FC<LayoutProps> = ({ children, isDevMode, setIsDevMode, isBasic }) => {
   let layout = null;
   if (isBasic) {
     layout = (
       <>
         <div className={styles.Layout__Basic}>
-          <div style={{ gridArea: 'header' }}>
-            <ParticleBackground />
-          </div>
+          <ParticleBackground style={{ gridArea: 'header' }} />
           <Header isBasic={true} />
           <main className={styles.Layout__Basic__Main}>{children}</main>
-          <Footer isDevMode={false} isBasic={true} />
+          <Footer setIsDevMode={setIsDevMode} isDevMode={false} isBasic={true} />
         </div>
       </>
     );

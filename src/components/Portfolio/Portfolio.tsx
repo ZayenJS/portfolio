@@ -58,7 +58,14 @@ const Portfolio: FC<PortfolioProps> = ({ history, location, match }) => {
       </div>
     );
   } else if (state.hasChosen && !state.isDevMode) {
-    content = <Basic history={history} location={location} match={match} />;
+    content = (
+      <Basic
+        history={history}
+        location={location}
+        match={match}
+        setIsDevMode={() => setState({ ...state, isDevMode: true })}
+      />
+    );
   }
 
   return content;
