@@ -1,0 +1,11 @@
+@import '../../../../assets/scss/variables';
+
+.Hamburger {
+  background-color: #00ff94;
+  height: 2rem;
+  width: 2rem;
+
+  @include lg {
+    display: none;
+  }
+}

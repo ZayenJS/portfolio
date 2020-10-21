@@ -1,0 +1,61 @@
+@import '../../../assets/scss/variables';
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: 10rem;
+  }
+}
+
+@keyframes slideDownUp {
+  from {
+    height: 10rem;
+  }
+  to {
+    height: 0;
+  }
+}
+
+.HeaderNav {
+  &__Links {
+    @include flex(center, center, column nowrap);
+    position: absolute;
+    overflow: hidden;
+    top: 10rem;
+    left: 0;
+    right: 0;
+    animation: slideDownUp 500ms forwards;
+    z-index: 1;
+    background-color: #110157;
+
+    &__Open {
+      @extend .HeaderNav__Links;
+      animation: slideDown 500ms forwards;
+    }
+
+    &__Desktop {
+      @include flex(center, center, row nowrap);
+    }
+
+    &__Item {
+      font-size: 1.6rem;
+      margin: 0 1rem;
+      transition: transform 100ms ease, color 100ms ease;
+      width: 40%;
+      display: inline-block;
+
+      @include lg {
+        display: inline;
+        width: fit-content;
+      }
+
+      &:hover {
+        color: #00ff95;
+        transform: scale(1.1);
+        transition: transform 250ms ease, color 250ms ease;
+      }
+    }
+  }
+}

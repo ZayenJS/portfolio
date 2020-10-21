@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import logo from '../../assets/images/logo.svg';
+import HeaderNav from './HeaderNav/HeaderNav';
 
+import logo from '../../assets/images/logo.svg';
 import styles from './Header.module.scss';
 
 interface HeaderProps {
@@ -11,6 +12,7 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ isBasic }) => {
   let header = null;
+
   if (isBasic) {
     header = (
       <header className={styles.Header__Basic}>
@@ -19,30 +21,7 @@ const Header: FC<HeaderProps> = ({ isBasic }) => {
             <img style={{ width: '20rem' }} src={logo} alt="" />
           </h1>
         </NavLink>
-        <nav className={styles.Header__Basic__Navigation}>
-          <ul>
-            <li>
-              <NavLink activeClassName="normal--active" exact to="/">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink activeClassName="normal--active" to="/projets">
-                Projets
-              </NavLink>
-            </li>
-            <li>
-              <NavLink activeClassName="normal--active" to="/competences">
-                Compétences
-              </NavLink>
-            </li>
-            <li>
-              <NavLink activeClassName="normal--active" to="/contact">
-                Contact
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
+        <HeaderNav />
       </header>
     );
   }

@@ -34,7 +34,7 @@ export const projs: IWorkProject[] = [
   {
     name: 'Find Your Way',
     description:
-      "Petit jeu réalisé en javascript dans le cadre de ma formation developpeur web fullstack javascript chez O'Clock.",
+      "Petit jeu réalisé en javascript dans le cadre de ma formation developpeur web fullstack javascript chez O'Clock. (mon meilleur score : niveau 46 😉)",
     image: rpgGameImage,
     url: 'https://zayenjs.github.io/find-your-way-game/',
     repository: 'https://github.com/ZayenJS/find-your-way-game',
