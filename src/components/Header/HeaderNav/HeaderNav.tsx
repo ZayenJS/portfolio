@@ -50,7 +50,7 @@ const HeaderNav: FC<HeaderNavProps> = () => {
 
   return (
     <nav className={styles.HeaderNav}>
-      <Hamburger toggleMenu={toggleMenu} />
+      <Hamburger toggleMenu={toggleMenu} isOpen={state.isMenuOpen} />
       <ul className={state.isMenuOpen ? state.menuClass.opened : state.menuClass.closed}>
         <li className={styles.HeaderNav__Links__Item}>
           <NavLink activeClassName="normal--active" exact to="/">

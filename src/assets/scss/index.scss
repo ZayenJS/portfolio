@@ -92,8 +92,13 @@ html {
 
 // navlink styles
 .normal--active {
-  padding: 0.25rem 0;
-  border-bottom: 4px solid #00ff94;
+  padding: 0.25rem 0.5rem;
+  border-left: 4px solid #00ff94;
+
+  @include lg {
+    padding: 0.25rem 0;
+    border-bottom: 4px solid #00ff94;
+  }
 }
 
 .active {

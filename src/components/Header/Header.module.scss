@@ -3,8 +3,20 @@
 .Header {
   &__Basic {
     @include flex(center, space-between, row nowrap);
-    padding: $gutter;
     grid-area: header;
+    padding: $gutter / 2;
     position: relative;
+
+    @include lg {
+      padding: $gutter;
+    }
+
+    img {
+      width: 12rem;
+
+      @include lg {
+        width: 20rem;
+      }
+    }
   }
 }
