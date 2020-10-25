@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
+import * as EmailValidator from 'email-validator';
 import axios from 'axios';
 
 import Field from './Field/Field';
@@ -10,27 +11,38 @@ import styles from './Contact.module.scss';
 interface ContactProps {}
 
 type ContactState = {
-  [key in ContactStateProp]: { value: string; hasError: boolean };
+  [key in ContactStateProp]: {
+    value: string;
+    hasError: boolean;
+  };
 };
 
 export type ContactStateProp = 'Nom' | 'Objet' | 'Message' | 'Email';
 
 const Contact: FC<ContactProps> = () => {
-  const [state, setState] = useState<ContactState>({
+  const [state, setState] = useState<ContactState & { hasError: boolean }>({
     Nom: { hasError: false, value: '' },
     Objet: { hasError: false, value: '' },
     Message: { hasError: false, value: '' },
     Email: { hasError: false, value: '' },
+    hasError: false,
   });
 
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
-    let updatedState = { ...state };
-    let hasError;
+
+    if (!EmailValidator.validate(state.Email.value)) {
+      return setState({ ...state, Email: { ...state.Email, hasError: true }, hasError: true });
+    }
+
+    let updatedState = { ...state, hasError: false };
 
     for (const key in state) {
       if (!state[key as ContactStateProp].value) {
-        hasError = true;
+        if (key === 'hasError') continue;
+
+        updatedState.hasError = true;
+
         updatedState[key as ContactStateProp] = {
           ...state[key as ContactStateProp],
           hasError: true,
@@ -38,11 +50,11 @@ const Contact: FC<ContactProps> = () => {
       } else {
         updatedState[key as ContactStateProp] = {
           ...state[key as ContactStateProp],
-          hasError: false,
         };
       }
     }
-    if (hasError) {
+
+    if (updatedState.hasError) {
       return setState(updatedState);
     }
 
@@ -53,16 +65,34 @@ const Contact: FC<ContactProps> = () => {
   };
 
   const sendData = async (data: FormData) => {
-    const response = await axios.post('https://formspree.io/f/meqpgdyo', data, {});
+    try {
+      const response = await axios.post('https://formspree.io/f/meqpgdyo', data, {});
 
-    console.log(response);
+      console.log(response);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const onFieldChange = (
     name: ContactStateProp,
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    setState({ ...state, [name]: { ...state[name], value: event.target.value, hasError: false } });
+    let hasError = false;
+
+    for (const key in state) {
+      if (state[key as ContactStateProp].hasError) {
+        if (key === 'hasError') continue;
+
+        hasError = true;
+      }
+    }
+
+    setState({
+      ...state,
+      [name]: { ...state[name], value: event.target.value, hasError: false },
+      hasError,
+    });
   };
 
   useEffect(() => {
@@ -80,7 +110,7 @@ const Contact: FC<ContactProps> = () => {
       />
       <Field
         name="Email"
-        type="text"
+        type="email"
         hasError={state.Email.hasError}
         value={state.Email.value}
         setValue={onFieldChange}
@@ -99,7 +129,7 @@ const Contact: FC<ContactProps> = () => {
         value={state.Message.value}
         setValue={onFieldChange}
       />
-      <button tabIndex={1} type="submit">
+      <button disabled={state.hasError} tabIndex={1} type="submit">
         Envoyer
       </button>
     </form>
