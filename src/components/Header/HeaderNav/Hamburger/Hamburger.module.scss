@@ -1,11 +1,224 @@
 @import '../../../../assets/scss/variables';
 
+@keyframes firstLineLeft {
+  from {
+    transform: rotate(0) translate(0);
+  }
+  to {
+    transform: rotate(-315deg) translate(0.4rem, 0.25rem);
+  }
+}
+@keyframes firstLineLeftReverse {
+  from {
+    transform: rotate(-315deg) translate(0.4rem, 0.25rem);
+  }
+  to {
+    transform: rotate(0) translate(0);
+  }
+}
+
+@keyframes firstLineRight {
+  from {
+    transform: rotate(0) translate(2);
+  }
+  to {
+    transform: rotate(315deg) translate(-0.4rem, 0.25rem);
+  }
+}
+@keyframes firstLineRightReverse {
+  from {
+    transform: rotate(315deg) translate(-0.4rem, 0.25rem);
+  }
+  to {
+    transform: rotate(0) translate(2);
+  }
+}
+
+@keyframes secondLineLeft {
+  from {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+}
+@keyframes secondLineRight {
+  from {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+}
+
+@keyframes secondLineLeftReverse {
+  from {
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes secondLineRightReverse {
+  from {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes thirdLineLeft {
+  from {
+    transform: rotate(0) translate(2);
+  }
+  to {
+    transform: rotate(315deg) translate(0.4rem, -0.25rem);
+  }
+}
+@keyframes thirdLineRight {
+  from {
+    transform: rotate(0) translate(2);
+  }
+  to {
+    transform: rotate(-315deg) translate(-0.4rem, -0.25rem);
+  }
+}
+
+@keyframes thirdLineLeftReverse {
+  from {
+    transform: rotate(315deg) translate(0.4rem, -0.25rem);
+  }
+  to {
+    transform: rotate(0) translate(2);
+  }
+}
+@keyframes thirdLineRightReverse {
+  from {
+    transform: rotate(-315deg) translate(-0.4rem, -0.25rem);
+  }
+  to {
+    transform: rotate(0) translate(2);
+  }
+}
+
 .Hamburger {
-  background-color: #00ff94;
-  height: 2rem;
-  width: 2rem;
+  @include flex(center, center, column nowrap);
+  border: 1px solid #00ff94;
+  height: 2.5rem;
+  width: 2.5rem;
 
   @include lg {
     display: none;
+  }
+
+  &__First,
+  &__Second,
+  &__Third {
+    @include flex(center, center, row nowrap);
+    height: 0.25rem;
+    width: 80%;
+    margin: auto;
+
+    div {
+      height: 100%;
+      width: 50%;
+      border: 1px solid #00ff94;
+      background: #00ff94;
+      border-radius: 25px;
+
+      &:first-child {
+        border-right: none;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+
+      &:last-child {
+        border-left: none;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+    }
+  }
+
+  &__First {
+    div {
+      &:first-child {
+        animation: firstLineLeftReverse 250ms forwards;
+      }
+    }
+    div {
+      &:last-child {
+        animation: firstLineRightReverse 250ms forwards;
+      }
+    }
+  }
+
+  &__Second {
+    div {
+      &:first-child {
+        animation: secondLineLeftReverse 250ms forwards;
+      }
+    }
+    div {
+      &:last-child {
+        animation: secondLineRightReverse 250ms forwards;
+      }
+    }
+  }
+
+  &__Third {
+    div {
+      &:first-child {
+        animation: thirdLineLeftReverse 250ms forwards;
+      }
+    }
+    div {
+      &:last-child {
+        animation: thirdLineRightReverse 250ms forwards;
+      }
+    }
+  }
+
+  &__First__Open {
+    @extend .Hamburger__First;
+    div {
+      &:first-child {
+        animation: firstLineLeft 250ms forwards;
+      }
+      &:last-child {
+        animation: firstLineRight 250ms forwards;
+        transform: rotate(-45deg) translate(-0.4rem, 0.25rem);
+      }
+    }
+  }
+
+  &__Second__Open {
+    @extend .Hamburger__Second;
+    div {
+      &:first-child {
+        animation: secondLineLeft 250ms forwards;
+      }
+
+      &:last-child {
+        animation: secondLineRight 250ms forwards;
+      }
+    }
+  }
+
+  &__Third__Open {
+    @extend .Hamburger__Third;
+    div {
+      &:first-child {
+        animation: thirdLineLeft 250ms forwards;
+      }
+      &:last-child {
+        animation: thirdLineRight 250ms forwards;
+      }
+    }
   }
 }

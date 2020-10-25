@@ -18,7 +18,7 @@ const Header: FC<HeaderProps> = ({ isBasic }) => {
       <header className={styles.Header__Basic}>
         <NavLink to="/" activeClassName="" className={styles.Header__Basic__Title}>
           <h1>
-            <img style={{ width: '20rem' }} src={logo} alt="" />
+            <img src={logo} alt="" />
           </h1>
         </NavLink>
         <HeaderNav />

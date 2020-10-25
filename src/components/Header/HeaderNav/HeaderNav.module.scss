@@ -23,12 +23,12 @@
     @include flex(center, center, column nowrap);
     position: absolute;
     overflow: hidden;
-    top: 10rem;
+    top: 5rem;
     left: 0;
     right: 0;
     animation: slideDownUp 500ms forwards;
     z-index: 1;
-    background-color: #110157;
+    background-color: #0a161f;
 
     &__Open {
       @extend .HeaderNav__Links;
@@ -42,19 +42,23 @@
     &__Item {
       font-size: 1.6rem;
       margin: 0 1rem;
-      transition: transform 100ms ease, color 100ms ease;
+      padding: 0.25rem 0;
       width: 40%;
       display: inline-block;
 
       @include lg {
         display: inline;
         width: fit-content;
+        transition: transform 100ms ease, color 100ms ease;
       }
 
       &:hover {
         color: #00ff95;
-        transform: scale(1.1);
-        transition: transform 250ms ease, color 250ms ease;
+
+        @include lg {
+          transition: transform 250ms ease, color 250ms ease;
+          transform: scale(1.1);
+        }
       }
     }
   }
