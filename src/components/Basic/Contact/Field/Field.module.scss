@@ -1,0 +1,78 @@
+.Field {
+  position: relative;
+  margin: 2rem 0;
+
+  input,
+  textarea {
+    color: #fff;
+    margin: 0.25rem 0;
+    padding: 1rem;
+    width: 100%;
+    border: none;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    transition: all 300ms ease-in-out;
+  }
+
+  label {
+    position: absolute;
+  }
+
+  input {
+    height: 3rem;
+    border-bottom: 4px solid transparent;
+
+    + label {
+      bottom: 50%;
+      transform: translateY(50%);
+      left: 1rem;
+      transition: all 250ms ease-in-out;
+      font-size: 1.25em;
+    }
+
+    + .FilledInput {
+      font-size: 0.9em;
+      transition: all 250ms ease-in-out;
+      bottom: 4rem;
+      color: #00ff94;
+    }
+
+    &:focus {
+      border-bottom: 4px solid #00ff94;
+
+      + .EmptyInput {
+        font-size: 0.9em;
+        transition: all 250ms ease-in-out;
+        bottom: 4rem;
+      }
+    }
+  }
+
+  textarea {
+    min-height: 7.5rem;
+    border-bottom: 4px solid transparent;
+    + label {
+      bottom: 2rem;
+      transform: translateY(50%);
+      left: 1rem;
+      transition: all 250ms ease-in-out;
+      font-size: 1.25em;
+    }
+
+    + .FilledInput {
+      font-size: 0.9em;
+      transition: all 250ms ease-in-out;
+      bottom: 9rem;
+    }
+
+    &:focus {
+      border: 4px solid #00ff94;
+      outline: none;
+
+      + .EmptyInput {
+        font-size: 0.9em;
+        transition: all 250ms ease-in-out;
+        bottom: 9rem;
+      }
+    }
+  }
+}

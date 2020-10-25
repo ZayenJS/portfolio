@@ -1,0 +1,24 @@
+@import '../../../assets/scss/variables';
+
+.Contact {
+  @include md {
+    max-width: 600px;
+    margin: auto;
+  }
+
+  button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.2em;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    background: rgba(155, 155, 155, 0.5);
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+      background-color: #00ff94;
+      color: #130111;
+    }
+  }
+}
