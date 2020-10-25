@@ -1,3 +1,5 @@
+@import '../../../../assets/scss/variables';
+
 .Field {
   position: relative;
   margin: 2rem 0;
@@ -33,12 +35,11 @@
       font-size: 0.9em;
       transition: all 250ms ease-in-out;
       bottom: 4rem;
-      color: #00ff94;
+      color: $normal-secondary-color;
     }
 
     &:focus {
-      border-bottom: 4px solid #00ff94;
-
+      border-bottom: 4px solid $normal-secondary-color;
       + .EmptyInput {
         font-size: 0.9em;
         transition: all 250ms ease-in-out;
@@ -50,6 +51,7 @@
   textarea {
     min-height: 7.5rem;
     border-bottom: 4px solid transparent;
+
     + label {
       bottom: 2rem;
       transform: translateY(50%);
@@ -65,7 +67,7 @@
     }
 
     &:focus {
-      border: 4px solid #00ff94;
+      border: 4px solid $normal-secondary-color;
       outline: none;
 
       + .EmptyInput {
@@ -74,5 +76,20 @@
         bottom: 9rem;
       }
     }
+  }
+}
+
+.Error {
+  input,
+  textarea {
+    background-color: $normal-danger;
+  }
+
+  input {
+    border-bottom: 4px solid $normal-danger;
+  }
+
+  textarea {
+    border: 4px solid $normal-danger;
   }
 }

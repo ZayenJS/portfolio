@@ -16,8 +16,9 @@
     background: rgba(155, 155, 155, 0.5);
     transition: all 250ms ease-in-out;
 
-    &:hover {
-      background-color: #00ff94;
+    &:hover,
+    &:focus {
+      background-color: $normal-secondary-color;
       color: #130111;
     }
   }

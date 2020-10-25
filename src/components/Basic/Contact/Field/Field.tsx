@@ -1,16 +1,21 @@
 import React, { ChangeEvent, FC } from 'react';
+import { ContactStateProp } from '../Contact';
 
 import styles from './Field.module.scss';
 
 interface FieldProps {
-  name: string;
+  name: ContactStateProp;
+  hasError: boolean;
   type: string;
   value: string;
   withLabel?: boolean;
-  setValue: (name: string, event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  setValue: (
+    name: ContactStateProp,
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
 }
 
-const Field: FC<FieldProps> = ({ name, type, withLabel = true, value, setValue }) => {
+const Field: FC<FieldProps> = ({ name, hasError, type, withLabel = true, value, setValue }) => {
   const label = (
     <label className={!value.length ? styles.EmptyInput : styles.FilledInput} htmlFor={name}>
       {name}
@@ -75,7 +80,7 @@ const Field: FC<FieldProps> = ({ name, type, withLabel = true, value, setValue }
       );
   }
 
-  return <div className={styles.Field}>{field}</div>;
+  return <div className={[styles.Field, hasError ? styles.Error : ''].join(' ')}>{field}</div>;
 };
 
 export default Field;

@@ -108,7 +108,7 @@
 
 .Hamburger {
   @include flex(center, center, column nowrap);
-  border: 1px solid #00ff94;
+  border: 1px solid $normal-secondary-color;
   height: 2.5rem;
   width: 2.5rem;
 
@@ -127,8 +127,8 @@
     div {
       height: 100%;
       width: 50%;
-      border: 1px solid #00ff94;
-      background: #00ff94;
+      border: 1px solid $normal-secondary-color;
+      background: $normal-secondary-color;
       border-radius: 25px;
 
       &:first-child {
