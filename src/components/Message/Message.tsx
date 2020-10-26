@@ -1,14 +1,22 @@
 import React, { CSSProperties, FC } from 'react';
 
 interface MessageProps {
-  content: string;
+  successMessage: string;
+  errorMessage: string;
+  hasError: boolean;
   className?: string;
   style?: CSSProperties;
 }
 
-const Message: FC<MessageProps> = ({ content, style, className }) => (
+const Message: FC<MessageProps> = ({
+  successMessage,
+  errorMessage,
+  hasError,
+  style,
+  className,
+}) => (
   <div className={className} style={style}>
-    {content}
+    {hasError ? errorMessage : successMessage}
   </div>
 );
 

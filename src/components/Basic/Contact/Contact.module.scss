@@ -44,8 +44,15 @@
 }
 
 .SuccessMessage {
-  position: absolute;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  width: 100%;
+  border: 2px solid opacify($color: $normal-success, $amount: 1);
+  background-color: $normal-success;
 }
 
 .ErrorMessage {
+  @extend .SuccessMessage;
+  border: 2px solid opacify($color: $normal-danger, $amount: 1);
+  background-color: $normal-danger;
 }

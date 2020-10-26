@@ -21,7 +21,9 @@ type FieldsState = {
 interface ContactState {
   hasError: boolean;
   hasFormBeenSubmited: boolean;
-  message: string;
+  hasTriedToSubmit: boolean;
+  successMessage: string;
+  errorMessage: string;
   isFormValid: boolean;
 }
 
@@ -35,7 +37,9 @@ const Contact: FC<ContactProps> = () => {
     Email: { hasError: false, value: '' },
     hasError: false,
     hasFormBeenSubmited: false,
-    message: 'Tous les champs sont requis !',
+    hasTriedToSubmit: false,
+    errorMessage: 'Tous les champs sont requis !',
+    successMessage: 'Votre message a bien été envoyé !',
     isFormValid: false,
   });
 
@@ -48,7 +52,8 @@ const Contact: FC<ContactProps> = () => {
         Email: { ...state.Email, hasError: true },
         hasError: true,
         hasFormBeenSubmited: true,
-        message: "Cet email n'est pas un email valide !",
+        hasTriedToSubmit: true,
+        errorMessage: "Cet email n'est pas un email valide !",
       });
     }
 
@@ -56,12 +61,22 @@ const Contact: FC<ContactProps> = () => {
       ...state,
       hasError: false,
       hasFormBeenSubmited: true,
-      message: 'Tous les champs sont requis !',
+      hasTriedToSubmit: true,
+      errorMessage: 'Tous les champs sont requis !',
     };
 
     for (const key in state) {
       if (!state[key as ContactStateProp].value) {
-        if (['hasError', 'isFormValid', 'hasFormBeenSubmited', 'message'].includes(key)) {
+        if (
+          [
+            'hasError',
+            'isFormValid',
+            'hasFormBeenSubmited',
+            'hasTriedToSubmit',
+            'errorMessage',
+            'successMessage',
+          ].includes(key)
+        ) {
           continue;
         }
 
@@ -97,8 +112,12 @@ const Contact: FC<ContactProps> = () => {
       setState((prevState) => ({
         ...prevState,
         hasFormBeenSubmited: true,
-        message: 'Votre message a bien été envoyé !',
+        successMessage: 'Votre message a bien été envoyé !',
       }));
+
+      setTimeout(() => {
+        setState((prevState) => ({ ...prevState, hasFormBeenSubmited: false }));
+      }, 5000);
     } catch (e) {
       console.error(e);
     }
@@ -110,15 +129,27 @@ const Contact: FC<ContactProps> = () => {
   ) => {
     let hasError = false;
     let isFormValid = true;
-    let message = state.message;
+    let errorMessage = state.errorMessage;
 
-    for (const key in state) {
-      if (['hasError', 'isFormValid', 'hasFormBeenSubmited', 'message'].includes(key)) continue;
+    if (state.hasTriedToSubmit) {
+      for (const key in state) {
+        if (
+          [
+            'hasError',
+            'isFormValid',
+            'hasFormBeenSubmited',
+            'hasTriedToSubmit',
+            'errorMessage',
+            'successMessage',
+          ].includes(key)
+        )
+          continue;
 
-      if (state[key as ContactStateProp].hasError || !state[key as ContactStateProp].value) {
-        hasError = true;
-        isFormValid = false;
-        message = 'Tous les champs sont requis !';
+        if (state[key as ContactStateProp].hasError || !state[key as ContactStateProp].value) {
+          hasError = true;
+          isFormValid = false;
+          errorMessage = 'Tous les champs sont requis !';
+        }
       }
     }
 
@@ -127,8 +158,8 @@ const Contact: FC<ContactProps> = () => {
       [name]: { ...state[name], value: event.target.value, hasError: false },
       hasError,
       isFormValid,
-      message,
-      // hasFormBeenSubmited: false,
+      errorMessage,
+      hasFormBeenSubmited: false,
     });
   };
 
@@ -140,7 +171,12 @@ const Contact: FC<ContactProps> = () => {
     <form onSubmit={formSubmitHandler} className={styles.Contact}>
       <div className={styles.FormControl}>
         {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
-          <Message content={state.message} />
+          <Message
+            className={state.hasError ? styles.ErrorMessage : styles.SuccessMessage}
+            errorMessage={state.errorMessage}
+            successMessage={state.successMessage}
+            hasError={state.hasError}
+          />
         ) : null}
         <Field
           name="Nom"
