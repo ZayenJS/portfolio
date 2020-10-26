@@ -14,7 +14,7 @@
       margin: 0 auto;
       max-width: 1000px;
       position: relative;
-      width: 100%;
+      width: fit-content;
 
       @include xl {
         max-width: 1500px;

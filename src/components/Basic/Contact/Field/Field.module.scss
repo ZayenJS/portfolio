@@ -2,7 +2,8 @@
 
 .Field {
   position: relative;
-  margin: 2rem 0;
+  margin: 1rem 0;
+  width: 100%;
 
   input,
   textarea {
@@ -64,6 +65,7 @@
       font-size: 0.9em;
       transition: all 250ms ease-in-out;
       bottom: 9rem;
+      color: $normal-secondary-color;
     }
 
     &:focus {

@@ -7,41 +7,66 @@ import Field from './Field/Field';
 import { baseTitle } from '../../../utils';
 
 import styles from './Contact.module.scss';
+import Message from '../../Message/Message';
 
 interface ContactProps {}
 
-type ContactState = {
+type FieldsState = {
   [key in ContactStateProp]: {
     value: string;
     hasError: boolean;
   };
 };
 
+interface ContactState {
+  hasError: boolean;
+  hasFormBeenSubmited: boolean;
+  message: string;
+  isFormValid: boolean;
+}
+
 export type ContactStateProp = 'Nom' | 'Objet' | 'Message' | 'Email';
 
 const Contact: FC<ContactProps> = () => {
-  const [state, setState] = useState<ContactState & { hasError: boolean }>({
+  const [state, setState] = useState<ContactState & FieldsState>({
     Nom: { hasError: false, value: '' },
     Objet: { hasError: false, value: '' },
     Message: { hasError: false, value: '' },
     Email: { hasError: false, value: '' },
     hasError: false,
+    hasFormBeenSubmited: false,
+    message: 'Tous les champs sont requis !',
+    isFormValid: false,
   });
 
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
 
     if (!EmailValidator.validate(state.Email.value)) {
-      return setState({ ...state, Email: { ...state.Email, hasError: true }, hasError: true });
+      return setState({
+        ...state,
+        Email: { ...state.Email, hasError: true },
+        hasError: true,
+        hasFormBeenSubmited: true,
+        message: "Cet email n'est pas un email valide !",
+      });
     }
 
-    let updatedState = { ...state, hasError: false };
+    let updatedState = {
+      ...state,
+      hasError: false,
+      hasFormBeenSubmited: true,
+      message: 'Tous les champs sont requis !',
+    };
 
     for (const key in state) {
       if (!state[key as ContactStateProp].value) {
-        if (key === 'hasError') continue;
+        if (['hasError', 'isFormValid', 'hasFormBeenSubmited', 'message'].includes(key)) {
+          continue;
+        }
 
         updatedState.hasError = true;
+        updatedState.isFormValid = false;
 
         updatedState[key as ContactStateProp] = {
           ...state[key as ContactStateProp],
@@ -69,6 +94,11 @@ const Contact: FC<ContactProps> = () => {
       const response = await axios.post('https://formspree.io/f/meqpgdyo', data, {});
 
       console.log(response);
+      setState((prevState) => ({
+        ...prevState,
+        hasFormBeenSubmited: true,
+        message: 'Votre message a bien été envoyé !',
+      }));
     } catch (e) {
       console.error(e);
     }
@@ -79,12 +109,16 @@ const Contact: FC<ContactProps> = () => {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     let hasError = false;
+    let isFormValid = true;
+    let message = state.message;
 
     for (const key in state) {
-      if (state[key as ContactStateProp].hasError) {
-        if (key === 'hasError') continue;
+      if (['hasError', 'isFormValid', 'hasFormBeenSubmited', 'message'].includes(key)) continue;
 
+      if (state[key as ContactStateProp].hasError || !state[key as ContactStateProp].value) {
         hasError = true;
+        isFormValid = false;
+        message = 'Tous les champs sont requis !';
       }
     }
 
@@ -92,6 +126,9 @@ const Contact: FC<ContactProps> = () => {
       ...state,
       [name]: { ...state[name], value: event.target.value, hasError: false },
       hasError,
+      isFormValid,
+      message,
+      // hasFormBeenSubmited: false,
     });
   };
 
@@ -101,37 +138,42 @@ const Contact: FC<ContactProps> = () => {
 
   return (
     <form onSubmit={formSubmitHandler} className={styles.Contact}>
-      <Field
-        name="Nom"
-        type="text"
-        hasError={state.Nom.hasError}
-        value={state.Nom.value}
-        setValue={onFieldChange}
-      />
-      <Field
-        name="Email"
-        type="email"
-        hasError={state.Email.hasError}
-        value={state.Email.value}
-        setValue={onFieldChange}
-      />
-      <Field
-        name="Objet"
-        type="text"
-        hasError={state.Objet.hasError}
-        value={state.Objet.value}
-        setValue={onFieldChange}
-      />
-      <Field
-        name="Message"
-        type="textarea"
-        hasError={state.Message.hasError}
-        value={state.Message.value}
-        setValue={onFieldChange}
-      />
-      <button disabled={state.hasError} tabIndex={1} type="submit">
-        Envoyer
-      </button>
+      <div className={styles.FormControl}>
+        {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
+          <Message content={state.message} />
+        ) : null}
+        <Field
+          name="Nom"
+          type="text"
+          hasError={state.Nom.hasError}
+          value={state.Nom.value}
+          setValue={onFieldChange}
+        />
+        <Field
+          name="Email"
+          type="email"
+          hasError={state.Email.hasError}
+          value={state.Email.value}
+          setValue={onFieldChange}
+        />
+        <Field
+          name="Objet"
+          type="text"
+          hasError={state.Objet.hasError}
+          value={state.Objet.value}
+          setValue={onFieldChange}
+        />
+        <Field
+          name="Message"
+          type="textarea"
+          hasError={state.Message.hasError}
+          value={state.Message.value}
+          setValue={onFieldChange}
+        />
+        <button disabled={state.hasError} tabIndex={1} type="submit">
+          Envoyer
+        </button>
+      </div>
     </form>
   );
 };
