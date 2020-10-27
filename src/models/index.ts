@@ -33,7 +33,7 @@ export interface ITerminalState {
   user: {
     hasRead: boolean;
     hasChosen: boolean;
-    choice?: 'dev' | 'basic';
+    choice?: 'dev' | 'normal';
   };
   firstLine: Line;
   secondLine: Line;

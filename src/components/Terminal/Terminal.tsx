@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 import TerminalHeader from './TerminalHeader/TerminalHeader';
@@ -40,8 +39,6 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
     }
   });
 
-  const history = useHistory();
-
   const hasUserReadHandler = () => {
     setState({
       ...state,
@@ -53,7 +50,7 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
     });
   };
 
-  const userAnswerHandler = (choice: 'dev' | 'basic') => {
+  const userAnswerHandler = (choice: 'dev' | 'normal') => {
     setState({
       ...state,
       user: { ...state.user, hasChosen: true, choice },
@@ -131,14 +128,14 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
         />
       );
     }
-  } else if (state.user.hasChosen && state.user.choice === 'basic') {
+  } else if (state.user.hasChosen && state.user.choice === 'normal') {
     secondLine = (
       <TerminalLine
         owner="david"
         path="~/Documents"
         machineName="David-Pc"
         date={state.secondLine.date}
-        typedStrings={['cd ./basic']}
+        typedStrings={['cd ./normal']}
         typeSpeed={getRandomInt(70, 90)}
         startDelay={getRandomInt(50, 200)}
         onStringTyped={() => updateState('secondLine', 'thirdLine')}
@@ -150,10 +147,10 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
       thirdLine = (
         <TerminalLine
           owner="david"
-          path="~/Documents/basic"
+          path="~/Documents/normal"
           machineName="David-Pc"
           date={state.thirdLine.date}
-          typedStrings={['google-chrome basic; exit;']}
+          typedStrings={['google-chrome normal; exit;']}
           typeSpeed={getRandomInt(60, 100)}
           startDelay={getRandomInt(300, 700)}
           onStringTyped={() => {
@@ -190,8 +187,8 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
                 className={styles.Terminal__LsResult}
                 tabIndex={1}
                 type="button"
-                onClick={() => userAnswerHandler('basic')}>
-                basic
+                onClick={() => userAnswerHandler('normal')}>
+                normal
               </button>
             </div>
           ) : null}

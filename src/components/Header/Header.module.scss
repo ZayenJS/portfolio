@@ -1,7 +1,7 @@
 @import '../../assets/scss/variables';
 
 .Header {
-  &__Basic {
+  &__Normal {
     @include flex(center, space-between, row nowrap);
     grid-area: header;
     padding: $gutter / 2;

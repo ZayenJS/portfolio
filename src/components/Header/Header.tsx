@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import HeaderNav from './HeaderNav/HeaderNav';
@@ -7,16 +7,16 @@ import logo from '../../assets/images/logo.svg';
 import styles from './Header.module.scss';
 
 interface HeaderProps {
-  isBasic: boolean;
+  isNormalMode: boolean;
 }
 
-const Header: FC<HeaderProps> = ({ isBasic }) => {
+const Header: FC<HeaderProps> = ({ isNormalMode }) => {
   let header = null;
 
-  if (isBasic) {
+  if (isNormalMode) {
     header = (
-      <header className={styles.Header__Basic}>
-        <NavLink to="/" activeClassName="" className={styles.Header__Basic__Title}>
+      <header className={styles.Header__Normal}>
+        <NavLink to="/" activeClassName="" className={styles.Header__Normal__Title}>
           <h1>
             <img src={logo} alt="" />
           </h1>

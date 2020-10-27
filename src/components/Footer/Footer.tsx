@@ -14,16 +14,16 @@ import styles from './Footer.module.scss';
 interface FooterProps {
   isDevMode: boolean;
   setIsDevMode?: () => void;
-  isBasic: boolean;
+  isNormalMode: boolean;
 }
 
-const Footer: FC<FooterProps> = ({ isDevMode, setIsDevMode, isBasic }) => {
+const Footer: FC<FooterProps> = ({ isDevMode, setIsDevMode, isNormalMode }) => {
   let footer = null;
 
-  if (isBasic) {
+  if (isNormalMode) {
     footer = (
-      <footer className={styles.Footer__Basic}>
-        <div className={styles.Footer__Basic__Content}>
+      <footer className={styles.Footer__Normal}>
+        <div className={styles.Footer__Normal__Content}>
           <div>
             <img style={{ width: '2rem' }} src={logoIcon} alt="" />
             <span>&copy; 2020 tous droits reservés.</span>
@@ -33,7 +33,7 @@ const Footer: FC<FooterProps> = ({ isDevMode, setIsDevMode, isBasic }) => {
         </div>
       </footer>
     );
-  } else if (isDevMode || (!isDevMode && !isBasic)) {
+  } else if (isDevMode || (!isDevMode && !isNormalMode)) {
     footer = (
       <footer className={styles.Footer__Dev}>
         <section className={styles.Footer__Dev__Left}>

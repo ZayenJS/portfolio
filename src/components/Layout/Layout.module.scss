@@ -1,7 +1,7 @@
 @import '../../assets/scss/variables';
 
 .Layout {
-  &__Basic {
+  &__Normal {
     display: grid;
     grid-template-rows: fit-content(8rem) auto fit-content(5rem);
     grid-template-areas: 'header' 'main' 'footer';

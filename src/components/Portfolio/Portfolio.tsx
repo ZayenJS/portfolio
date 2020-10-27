@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import Basic from '../Basic/Basic';
+import NormalMode from '../NormalMode/NormalMode';
 import Desktop from '../Desktop/Desktop';
 import Terminal from '../Terminal/Terminal';
 
@@ -59,7 +59,7 @@ const Portfolio: FC<PortfolioProps> = ({ history, location, match }) => {
     );
   } else if (state.hasChosen && !state.isDevMode) {
     content = (
-      <Basic
+      <NormalMode
         history={history}
         location={location}
         match={match}

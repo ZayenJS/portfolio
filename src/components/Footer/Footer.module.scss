@@ -124,7 +124,7 @@
     }
   }
 
-  &__Basic {
+  &__Normal {
     @include flex(center, center, row nowrap);
     grid-area: footer;
     position: relative;

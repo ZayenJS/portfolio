@@ -10,7 +10,6 @@ import googleChrome from '../../assets/images/chrome.png';
 import styles from './Desktop.module.scss';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import DesktopIcon from './DesktopIcon/DesktopIcon';
-// import Terminal from '../Terminal/Terminal';
 
 interface DesktopProps extends RouteComponentProps {
   style?: CSSProperties;
@@ -19,7 +18,7 @@ interface DesktopProps extends RouteComponentProps {
 
 const Desktop: FC<DesktopProps> = ({ history, style, isDevMode = false }) => {
   return (
-    <Layout isDevMode={isDevMode} isBasic={false}>
+    <Layout isDevMode={isDevMode} isNormalMode={false}>
       <div style={style ?? {}} className={styles.Desktop}>
         <div className={styles.Desktop__Icons}>
           <DesktopIcon id="recycle-bin" src={recycleBin} alt="recycle bin icon" label="Corbeille" />
