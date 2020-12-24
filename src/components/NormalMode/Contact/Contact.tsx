@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import * as EmailValidator from 'email-validator';
 import axios from 'axios';
 
@@ -8,6 +8,7 @@ import { baseTitle } from '../../../utils';
 
 import styles from './Contact.module.scss';
 import Message from '../../Message/Message';
+import { Helmet } from 'react-helmet';
 
 interface ContactProps {}
 
@@ -144,54 +145,55 @@ const Contact: FC<ContactProps> = () => {
     setState(updatedState);
   };
 
-  useEffect(() => {
-    document.title = `${baseTitle} - Contact`;
-  }, []);
-
   return (
-    <form onSubmit={formSubmitHandler} className={styles.Contact}>
-      <div className={styles.FormControl}>
-        {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
-          <Message
-            className={state.hasError ? styles.ErrorMessage : styles.SuccessMessage}
-            errorMessage={state.errorMessage}
-            successMessage={state.successMessage}
-            hasError={state.hasError}
+    <>
+      <Helmet>
+        <title>{baseTitle} - Contact</title>
+      </Helmet>
+      <form onSubmit={formSubmitHandler} className={styles.Contact}>
+        <div className={styles.FormControl}>
+          {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
+            <Message
+              className={state.hasError ? styles.ErrorMessage : styles.SuccessMessage}
+              errorMessage={state.errorMessage}
+              successMessage={state.successMessage}
+              hasError={state.hasError}
+            />
+          ) : null}
+          <Field
+            name="Nom"
+            type="text"
+            hasError={state.Nom.hasError}
+            value={state.Nom.value}
+            setValue={onFieldChange}
           />
-        ) : null}
-        <Field
-          name="Nom"
-          type="text"
-          hasError={state.Nom.hasError}
-          value={state.Nom.value}
-          setValue={onFieldChange}
-        />
-        <Field
-          name="Email"
-          type="email"
-          hasError={state.Email.hasError}
-          value={state.Email.value}
-          setValue={onFieldChange}
-        />
-        <Field
-          name="Objet"
-          type="text"
-          hasError={state.Objet.hasError}
-          value={state.Objet.value}
-          setValue={onFieldChange}
-        />
-        <Field
-          name="Message"
-          type="textarea"
-          hasError={state.Message.hasError}
-          value={state.Message.value}
-          setValue={onFieldChange}
-        />
-        <button disabled={state.hasError} tabIndex={1} type="submit">
-          Envoyer
-        </button>
-      </div>
-    </form>
+          <Field
+            name="Email"
+            type="email"
+            hasError={state.Email.hasError}
+            value={state.Email.value}
+            setValue={onFieldChange}
+          />
+          <Field
+            name="Objet"
+            type="text"
+            hasError={state.Objet.hasError}
+            value={state.Objet.value}
+            setValue={onFieldChange}
+          />
+          <Field
+            name="Message"
+            type="textarea"
+            hasError={state.Message.hasError}
+            value={state.Message.value}
+            setValue={onFieldChange}
+          />
+          <button disabled={state.hasError} tabIndex={1} type="submit">
+            Envoyer
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

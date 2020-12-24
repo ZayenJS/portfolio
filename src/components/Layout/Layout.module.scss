@@ -1,20 +1,26 @@
 @import '../../assets/scss/variables';
+@import '../../assets/scss/keyframes';
 
 .Layout {
   &__Normal {
     display: grid;
-    grid-template-rows: fit-content(8rem) auto fit-content(5rem);
-    grid-template-areas: 'header' 'main' 'footer';
-    min-height: 100vh;
+    grid-template-rows: auto 4rem;
+    grid-template-columns: 1fr 10fr;
+    grid-template-areas: 'header main' 'header footer';
     position: relative;
     z-index: 1;
+    background-color: #222;
 
     &__Main {
       grid-area: main;
-      margin: 0 auto;
+      padding: 1rem;
       max-width: 1000px;
       position: relative;
-      width: fit-content;
+      min-height: calc(100vh - 4rem);
+
+      &__Change {
+        animation: swap 1 1s ease;
+      }
 
       @include xl {
         max-width: 1500px;

@@ -18,7 +18,7 @@ interface NormalModeProps extends RouteComponentProps {
 
 const NormalMode: FC<NormalModeProps> = ({ setIsDevMode }) => {
   const [state, setState] = useState({
-    isIntroEnded: false,
+    isIntroEnded: true,
   });
 
   const onIntroEnd = () => {

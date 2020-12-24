@@ -52,42 +52,41 @@
 // global styles
 body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: #222;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #222 #444;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 8px;
+  background: linear-gradient(
+    197deg,
+    rgb(26, 26, 26) 0%,
+    rgba(70, 102, 97, 0.5) 50%,
+    rgba(59, 226, 173, 0.3536765047816002) 100%
+  );
+}
+
+// ::-webkit-scrollbar-thumb:window-inactive {
+//   background-color: #222;
+// }
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 #root {
   background-color: #222;
-}
-
-// scroll bar styles
-html {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: #222 #444;
-
-  ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 10px;
-    height: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #222;
-    border-radius: 0px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    cursor: pointer;
-    border-radius: 5px;
-    background: #444;
-  }
-
-  ::-webkit-scrollbar-thumb:window-inactive {
-    background-color: #222;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
 }
 
 // navlink styles

@@ -68,6 +68,11 @@ const HeaderNav: FC<HeaderNavProps> = () => {
           </NavLink>
         </li>
         <li className={styles.HeaderNav__Links__Item}>
+          <a href="https://dev-with-dave.fr" target="_blank" rel="noopener noreferrer">
+            Blog
+          </a>
+        </li>
+        <li className={styles.HeaderNav__Links__Item}>
           <NavLink activeClassName="normal--active" to="/contact">
             Contact
           </NavLink>

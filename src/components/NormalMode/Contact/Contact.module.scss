@@ -3,6 +3,7 @@
 .Contact {
   width: 90vw;
   height: 100%;
+  margin: auto;
 
   @include md {
     max-width: 600px;
@@ -41,6 +42,12 @@
   @include flex(center, center, column nowrap);
   height: 100%;
   width: 100%;
+
+  div,
+  button {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .SuccessMessage {
