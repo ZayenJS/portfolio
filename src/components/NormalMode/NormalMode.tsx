@@ -1,7 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 
-import Intro from './Intro/Intro';
 import Layout from '../Layout/Layout';
 import Home from './Home/Home';
 import Projects from './Projects/Projects';
@@ -17,17 +16,8 @@ interface NormalModeProps extends RouteComponentProps {
 }
 
 const NormalMode: FC<NormalModeProps> = ({ setIsDevMode }) => {
-  const [state, setState] = useState({
-    isIntroEnded: true,
-  });
-
-  const onIntroEnd = () => {
-    setState({ ...state, isIntroEnded: true });
-  };
-
   return (
     <div className={[styles.NormalMode, 'normal'].join(' ')}>
-      {state.isIntroEnded ? null : <Intro onIntroEnd={onIntroEnd} />}
       <Layout isDevMode={false} setIsDevMode={setIsDevMode} isNormalMode={true}>
         <Switch>
           <Route exact path="/" component={Home} />

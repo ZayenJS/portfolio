@@ -20,7 +20,7 @@ const Projects: FC<ProjectsProps> = ({ projects }) => {
       </Helmet>
       <section className={styles.Projects}>
         {projects.map((project: IWorkProject) => (
-          <WorkProjectProject project={project} />
+          <WorkProjectProject key={project.name} project={project} />
         ))}
       </section>
     </>
