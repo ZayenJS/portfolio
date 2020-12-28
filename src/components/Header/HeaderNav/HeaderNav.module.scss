@@ -1,4 +1,5 @@
 @import '../../../assets/scss/variables';
+@import '../../../assets/scss/keyframes';
 
 @keyframes slideDown {
   from {
@@ -7,7 +8,6 @@
   }
   50% {
     opacity: 1;
-
   }
   to {
     height: 10rem;
@@ -21,7 +21,8 @@
   }
   50% {
     opacity: 0.9;
-  }100%{
+  }
+  100% {
     height: 0;
     opacity: 0;
   }
@@ -51,26 +52,53 @@
     }
 
     &__Item {
-      font-size: 1.4rem;
-      margin:  1rem 0;
-      padding: 0.25rem 0;
-      width: 40%;
-      display: inline-block;
+      @include flex(center, space-between, row nowrap);
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      width: 100%;
+      cursor: pointer;
 
-      @include lg {
-        display: inline;
-        width: fit-content;
-        transition: transform 100ms ease, color 100ms ease;
+      a {
+        @include flex(center, space-between, row nowrap);
+        padding: 0.5rem 0;
       }
 
-      &:hover {
-        color: #00ff95;
-
-        @include lg {
-          transition: transform 250ms ease, color 250ms ease;
-          transform: scale(1.1);
-        }
+      @include lg {
+        transition: transform 100ms ease, color 100ms ease;
       }
     }
   }
+}
+
+.NavLink {
+  animation: shrink 500ms ease forwards;
+
+  &.Hovered {
+    animation: grow 500ms ease forwards;
+  }
+}
+
+.Icons {
+  font-family: $navicons-font-family;
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+
+.Home span::after {
+  @extend .Icons;
+  content: $icon-home;
+}
+.Projects span::after {
+  @extend .Icons;
+  content: $icon-suitcase;
+}
+.Skills span::after {
+  display: inline-block;
+  padding: 0.5rem 0;
+  font-family: $icomoon-font-family;
+  content: $icon-settings;
+}
+.Contact span::after {
+  @extend .Icons;
+  content: $icon-mail;
 }

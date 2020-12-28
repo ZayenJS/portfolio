@@ -12,6 +12,28 @@
     bottom: 0;
     height: 100vh;
     z-index: 20;
+    transform: translateX(-7rem);
+    transition: all 400ms ease-in-out;
+    width: 10rem;
+
+    h1 {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 500ms ease-in, transform 400ms ease-in-out;
+    }
+
+    a:hover,
+    span:hover {
+      color: #00ff95;
+
+      @include lg {
+        transition: color 250ms ease;
+      }
+    }
+
+    &.Hovered {
+      transform: translateX(0);
+    }
 
     img {
       width: 12rem;

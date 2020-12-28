@@ -1,5 +1,7 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { State } from '../../../store/reducers';
 import Hamburger from './Hamburger/Hamburger';
 
 import styles from './HeaderNav.module.scss';
@@ -48,35 +50,96 @@ const HeaderNav: FC<HeaderNavProps> = () => {
 
   const toggleMenu = () => setState({ ...state, isMenuOpen: !state.isMenuOpen });
 
+  const history = useHistory();
+
+  const navigateTo = (path: string) => {
+    history.push(path);
+  };
+  let activePath: string;
+  switch (history.location.pathname) {
+    case '/projets':
+      activePath = 'projects';
+      break;
+    case '/':
+      activePath = 'home';
+      break;
+    case '/competences':
+      activePath = 'skills';
+      break;
+    case '/contact':
+      activePath = 'contact';
+      break;
+    default:
+      activePath = '';
+  }
+
+  const links = [
+    {
+      type: 'internal',
+      path: '/',
+      name: 'Home',
+      textContent: 'Home',
+    },
+    {
+      type: 'internal',
+      path: '/projets',
+      name: 'Projects',
+      textContent: 'Projets',
+    },
+    {
+      type: 'internal',
+      path: '/competences',
+      name: 'Skills',
+      textContent: 'Skills',
+    },
+    // {
+    //   type: 'external',
+    //   path: 'https://dev-with-dave.fr',
+    //   name: 'Blog',
+    //   textContent: 'Blog',
+    // },
+    {
+      type: 'internal',
+      path: '/contact',
+      name: 'Contact',
+      textContent: 'Contact',
+    },
+  ];
+
+  const { isHeaderHovered } = useSelector((state: State) => state.global);
+
   return (
     <nav className={styles.HeaderNav}>
       <Hamburger toggleMenu={toggleMenu} isOpen={state.isMenuOpen} />
       <ul className={state.isMenuOpen ? state.menuClass.opened : state.menuClass.closed}>
-        <li className={styles.HeaderNav__Links__Item}>
-          <NavLink activeClassName="normal--active" exact to="/">
-            Home
-          </NavLink>
-        </li>
-        <li className={styles.HeaderNav__Links__Item}>
-          <NavLink activeClassName="normal--active" to="/projets">
-            Projets
-          </NavLink>
-        </li>
-        <li className={styles.HeaderNav__Links__Item}>
-          <NavLink activeClassName="normal--active" to="/competences">
-            Compétences
-          </NavLink>
-        </li>
-        <li className={styles.HeaderNav__Links__Item}>
-          <a href="https://dev-with-dave.fr" target="_blank" rel="noopener noreferrer">
-            Blog
-          </a>
-        </li>
-        <li className={styles.HeaderNav__Links__Item}>
-          <NavLink activeClassName="normal--active" to="/contact">
-            Contact
-          </NavLink>
-        </li>
+        {links.map((link) => (
+          <li
+            key={link.path}
+            onClick={() => (link.type === 'internal' ? navigateTo(link.path) : '')}
+            className={[styles.HeaderNav__Links__Item, styles[link.name]].join(' ')}>
+            {link.type === 'internal' ? (
+              <NavLink
+                to={link.path}
+                exact={link.path === '/'}
+                activeClassName="normal--active"
+                className={
+                  isHeaderHovered
+                    ? [styles.NavLink, styles.Hovered].join(' ')
+                    : [styles.NavLink].join(' ')
+                }>
+                {link.textContent}
+              </NavLink>
+            ) : (
+              <a href={link.path} rel="noopener noreferrer" target="_blank">
+                {link.textContent}
+              </a>
+            )}
+            <span
+              className={
+                activePath.toLowerCase() === link.name.toLowerCase() ? 'normal--active' : ''
+              }></span>
+          </li>
+        ))}
       </ul>
     </nav>
   );

@@ -1,53 +1,6 @@
 @import './reset.scss';
 @import './variables';
-
-@font-face {
-  font-family: '#{$icomoon-font-family}';
-  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?s3lb61');
-  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?s3lb61#iefix')
-      format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?s3lb61') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?s3lb61') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?s3lb61##{$icomoon-font-family}')
-      format('svg');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: '#{$codicon-font-family}';
-  src: url('#{$codicon-font-path}/#{$codicon-font-family}.ttf?5d4d76ab2ce5108968ad644d591a16a6')
-    format('truetype');
-}
-
-.codicon[class*='codicon-'] {
-  font: normal normal normal 16px/1 codicon;
-  display: inline-block;
-  text-decoration: none;
-  text-rendering: auto;
-  text-align: center;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-[class^='icon-'],
-[class*=' icon-'] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: '#{$icomoon-font-family}' !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import './fonts';
 
 // global styles
 body {
@@ -91,14 +44,8 @@ body {
 
 // navlink styles
 .normal--active {
-  padding: 0.25rem 0.5rem;
-  border-left: 4px solid $normal-secondary-color;
-
-  @include lg {
-    padding: 0.25rem 0;
-    border-left: none;
-    border-bottom: 4px solid $normal-secondary-color;
-  }
+  // padding: 0.25rem 0.5rem;
+  border-bottom: 4px solid $normal-secondary-color !important;
 }
 
 .active {

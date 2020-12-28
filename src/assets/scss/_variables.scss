@@ -4,6 +4,15 @@ $icomoon-font-path: '../fonts/icomoon' !default;
 $codicon-font-family: 'codicon' !default;
 $codicon-font-path: '../fonts/codicon' !default;
 
+$brands-font-family: 'brands' !default;
+$brands-font-path: '../fonts/brands' !default;
+
+$malt-font-family: 'malt' !default;
+$malt-font-path: '../fonts/malt' !default;
+
+$navicons-font-family: 'navicons' !default;
+$navicons-font-path: '../fonts/navicons' !default;
+
 $codicon-new-file: '\ea7f';
 $codicon-new-folder: '\ea80';
 $codicon-refresh: '\eb37';
@@ -88,10 +97,87 @@ $icon-circle-o: '\f10c';
 $icon-terminal: '\f120';
 $icon-user-circle-o: '\f2be';
 
+$brand-amazon: '\e902';
+$brand-amazonaws: '\e901';
+$brand-angular: '\e903';
+$brand-bitcoin: '\e904';
+$brand-c: '\e909';
+$brand-cplusplus: '\e905';
+$brand-csharp: '\e906';
+$brand-css3: '\e90a';
+$brand-dell: '\e91c';
+$brand-deno: '\e91e';
+$brand-discord: '\e92c';
+$brand-docker: '\e91f';
+$brand-dot-net: '\e920';
+$brand-ebay: '\e921';
+$brand-expo: '\e923';
+$brand-facebook: '\e924';
+$brand-gimp: '\e925';
+$brand-git: '\e90b';
+$brand-github: '\e926';
+$brand-googleplay: '\e927';
+$brand-groupon: '\e928';
+$brand-heroku: '\e929';
+$brand-html5: '\e90c';
+$brand-intel: '\e92b';
+$brand-ios: '\e92d';
+$brand-java: '\e92e';
+$brand-javascript: '\e90d';
+$brand-linkedin: '\e92f';
+$brand-markdown: '\e90e';
+$brand-messenger: '\e930';
+$brand-microsoftedge: '\e931';
+$brand-microsoftexcel: '\e932';
+$brand-microsoftoutlook: '\e933';
+$brand-microsoftpowerpoint: '\e934';
+$brand-microsoftword: '\e935';
+$brand-mongodb: '\e90f';
+$brand-mysql: '\e936';
+$brand-nativescript: '\e937';
+$brand-netlify: '\e938';
+$brand-node-dot-js: '\e910';
+$brand-nodemon: '\e939';
+$brand-npm: '\e911';
+$brand-paypal: '\e93a';
+$brand-php: '\e93b';
+$brand-postgresql: '\e912';
+$brand-prettier: '\e913';
+$brand-python: '\e914';
+$brand-react: '\e915';
+$brand-redux: '\e916';
+$brand-sass: '\e917';
+$brand-slack: '\e93c';
+$brand-spotify: '\e918';
+$brand-stackoverflow: '\e919';
+$brand-strapi: '\e93d';
+$brand-twitch: '\e93e';
+$brand-twitter: '\e93f';
+$brand-typescript: '\e91a';
+$brand-ubuntu: '\e940';
+$brand-udemy: '\e941';
+$brand-unity: '\e942';
+$brand-visualstudio: '\e943';
+$brand-visualstudiocode: '\e944';
+$brand-vue-dot-js: '\e945';
+$brand-whatsapp: '\e946';
+$brand-windows1: '\e91b';
+$brand-wordpress: '\e947';
+$brand-yarn: '\e91d';
+$brand-youtube: '\e948';
+
+$icon-malt: '\e997';
+
+$icon-home: '\e902';
+$icon-suitcase: '\e900';
+$icon-mail: '\e901';
+
 $editor-opening-time: 320ms;
 
 $gutter: 2rem;
 $windows-blue: #0a93bd;
+$twitter-color: #1a91da;
+$malt-color: #fc5656;
 
 $normal-primary-color: #161616;
 $normal-secondary-color: #00ff94;

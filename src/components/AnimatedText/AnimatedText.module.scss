@@ -94,7 +94,7 @@
 
 .Spin {
   display: inline-block;
-  animation: spin 1 800ms ease-out forwards;
+  animation: spin 1 1000ms ease-out forwards;
 
   &:hover {
     color: $normal-secondary-color;
