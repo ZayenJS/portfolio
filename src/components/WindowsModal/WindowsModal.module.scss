@@ -1,0 +1,108 @@
+@import '../../assets/scss/variables';
+
+.WindowsBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 3rem;
+  right: 0;
+  z-index: 5000;
+}
+
+.WindowsModal {
+  display: grid;
+  grid-template-rows: 2rem auto;
+  grid-template-areas: 'header' 'main';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  min-height: 8rem;
+  min-width: 18rem;
+  background-color: #eaeaea;
+  font-size: 0.9rem;
+
+  &__Header {
+    @include flex(center, space-between, row nowrap);
+    grid-area: header;
+    background-color: #fff;
+    height: 2rem;
+    width: 100%;
+
+    &__Text {
+      padding-left: 0.5rem;
+    }
+
+    &__Close {
+      @include flex(center, center, row nowrap);
+      height: 2rem;
+      width: 2rem;
+      font-family: $icomoon-font-family;
+      font-size: 1.1rem;
+      color: #ccc;
+      cursor: pointer;
+      transition: all 110ms ease-in-out;
+
+      &::before {
+        content: $icon-clear;
+      }
+
+      &:hover {
+        background-color: red;
+        color: #fff;
+        transition: all 110ms ease-in-out;
+      }
+    }
+  }
+
+  &__Main {
+    @include flex(center, flex-start, row nowrap);
+    grid-area: main;
+    padding: 1rem 0.5rem;
+
+    &__Caution {
+      img {
+        width: 2rem;
+      }
+    }
+
+    &__Content {
+      @include flex(center, space-between, column nowrap);
+      height: 100%;
+      margin: 0 0.5rem;
+      line-height: 1.4;
+
+      &__Message {
+      }
+
+      &__ButtonsContainer {
+        text-align: right;
+        width: 100%;
+
+        button {
+          padding: 0.3rem 2rem;
+          margin-left: 1rem;
+          border: 1px solid rgba(125, 125, 125, 0.8);
+          background-color: #ddd;
+          transition: border 250ms ease-in-out, background-color 250ms ease-in-out,
+            box-shadow 100ms ease-in-out;
+
+          &:hover {
+            border: 1px solid $windows-blue;
+            background-color: lighten(
+              $color: transparentize($color: $windows-blue, $amount: 0.85),
+              $amount: 45%
+            );
+            transition: border 250ms ease-in-out, background-color 250ms ease-in-out,
+              box-shadow 100ms ease-in-out;
+          }
+
+          &:focus {
+            box-shadow: inset 0 0 0 2px rgb(0, 89, 255);
+          }
+        }
+      }
+    }
+  }
+}

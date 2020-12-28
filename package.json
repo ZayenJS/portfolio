@@ -10,13 +10,19 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "axios": "^0.21.0",
+    "dayjs": "^1.9.1",
+    "email-validator": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "react-particles-js": "^3.4.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "redux": "^4.0.5",
-    "typescript": "~3.7.2"
+    "react-tsparticles": "^1.18.5",
+    "react-typed": "^1.2.0",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,8 +46,12 @@
     ]
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.0",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
-    "@types/redux": "^3.6.0"
+    "@types/redux": "^3.6.0",
+    "node-sass": "^4.14.1",
+    "redux-devtools-extension": "^2.13.8",
+    "typescript": "^4.0.3"
   }
 }

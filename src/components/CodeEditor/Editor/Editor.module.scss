@@ -1,0 +1,26 @@
+@import '../../../assets/scss/variables';
+
+.Editor {
+  width: calc(100% - 11rem - 3rem);
+  overflow: auto;
+  padding: 1rem;
+  color: #eee;
+}
+
+.IndexHTML {
+  @include flex(stretch, flex-start, row nowrap);
+
+  &__Lines {
+    width: 78px;
+    font-size: 16px;
+    font-feature-settings: 'liga', 'calt';
+    line-height: 22px;
+    letter-spacing: 0px;
+    color: grey;
+    margin-right: 1rem;
+  }
+
+  &__Line {
+    @include flex(center, center, column nowrap);
+  }
+}

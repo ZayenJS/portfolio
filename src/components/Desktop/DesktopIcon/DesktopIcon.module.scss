@@ -1,0 +1,44 @@
+@import '../../../assets/scss/variables';
+
+.DesktopIcon {
+  width: $gutter * 1.5;
+
+  &__Container {
+    position: relative;
+    padding: 0 0.25rem;
+    margin: 0.5rem 0;
+    width: 6rem;
+    height: fit-content;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: 75ms ease-in-out all;
+    cursor: default;
+
+    &:hover {
+      transition: 75ms ease-in-out all;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    p {
+      color: #fff;
+      font-size: 1em;
+      margin-top: 0.25rem;
+      line-height: 1.4;
+    }
+
+    &__Selected {
+      background-color: rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+
+      &:hover {
+        background-color: rgba(145, 201, 253, 0.3);
+      }
+    }
+  }
+
+  &__RecycleBin {
+    width: 1rem;
+    margin-right: 1rem;
+  }
+}

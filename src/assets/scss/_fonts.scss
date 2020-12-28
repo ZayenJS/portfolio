@@ -1,0 +1,83 @@
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?s3lb61');
+  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?s3lb61#iefix')
+      format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?s3lb61') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?s3lb61') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?s3lb61##{$icomoon-font-family}')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: '#{$codicon-font-family}';
+  src: url('#{$codicon-font-path}/#{$codicon-font-family}.ttf?5d4d76ab2ce5108968ad644d591a16a6')
+    format('truetype');
+}
+
+@font-face {
+  font-family: '#{$brands-font-family}';
+  src: url('#{$brands-font-path}/#{$brands-font-family}.eot?mmo846');
+  src: url('#{$brands-font-path}/#{$brands-font-family}.eot?mmo846#iefix')
+      format('embedded-opentype'),
+    url('#{$brands-font-path}/#{$brands-font-family}.ttf?mmo846') format('truetype'),
+    url('#{$brands-font-path}/#{$brands-font-family}.woff?mmo846') format('woff'),
+    url('#{$brands-font-path}/#{$brands-font-family}.svg?mmo846##{$brands-font-family}')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: '#{$malt-font-family}';
+  src: url('#{$malt-font-path}/#{$malt-font-family}.eot');
+  src: url('#{$malt-font-path}/#{$malt-font-family}.eot?#iefix') format('embedded-opentype'),
+    url('#{$malt-font-path}/#{$malt-font-family}.woff') format('woff'),
+    url('#{$malt-font-path}/#{$malt-font-family}.ttf') format('truetype'),
+    url('#{$malt-font-path}/#{$malt-font-family}.svg#malt') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: '#{$navicons-font-family}';
+  src: url('#{$navicons-font-path}/#{$navicons-font-family}.eot');
+  src: url('#{$navicons-font-path}/#{$navicons-font-family}.eot?#iefix') format('embedded-opentype'),
+    url('#{$navicons-font-path}/#{$navicons-font-family}.woff') format('woff'),
+    url('#{$navicons-font-path}/#{$navicons-font-family}.ttf') format('truetype'),
+    url('#{$navicons-font-path}/#{$navicons-font-family}.svg#malt') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.codicon[class*='codicon-'] {
+  font: normal normal normal 16px/1 codicon;
+  display: inline-block;
+  text-decoration: none;
+  text-rendering: auto;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
