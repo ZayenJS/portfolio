@@ -9,6 +9,8 @@ import { baseTitle } from '../../../utils';
 import styles from './Contact.module.scss';
 import Message from '../../Message/Message';
 import { Helmet } from 'react-helmet';
+import { motion } from 'framer-motion';
+import { pageTransition } from '../../../constants/framer-motion';
 
 interface ContactProps {}
 
@@ -150,7 +152,13 @@ const Contact: FC<ContactProps> = () => {
       <Helmet>
         <title>{baseTitle} - Contact</title>
       </Helmet>
-      <form onSubmit={formSubmitHandler} className={styles.Contact}>
+      <motion.form
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pageTransition}
+        onSubmit={formSubmitHandler}
+        className={styles.Contact}>
         <div className={styles.FormControl}>
           {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
             <Message
@@ -192,7 +200,7 @@ const Contact: FC<ContactProps> = () => {
             Envoyer
           </button>
         </div>
-      </form>
+      </motion.form>
     </>
   );
 };

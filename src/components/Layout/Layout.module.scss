@@ -5,26 +5,22 @@
   &__Normal {
     display: grid;
     grid-template-rows: auto 4rem;
-    grid-template-columns: 10rem auto;
+    grid-template-columns: 2rem auto;
     grid-template-areas: 'header main' 'header footer';
     position: relative;
     z-index: 1;
     background-color: #222;
+    transition: all 400ms ease-in-out;
+
+    &.HeaderHovered {
+      padding-left: $gutter * 2 + 3rem;
+    }
 
     &__Main {
       grid-area: main;
-      padding: 1rem;
-      max-width: 1000px;
+      padding: $gutter * 2;
       position: relative;
       min-height: calc(100vh - 4rem);
-
-      &__Change {
-        animation: swap 1 1s ease;
-      }
-
-      @include xl {
-        max-width: 1500px;
-      }
     }
   }
 }

@@ -1,19 +1,26 @@
 import React, { FC } from 'react';
+import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
+
 import { baseTitle } from '../../../utils';
 import AnimatedText from '../../AnimatedText/AnimatedText';
 
 import styles from './Home.module.scss';
+import { pageTransition } from '../../../constants/framer-motion';
 
 interface HomeProps {}
 
 const Home: FC<HomeProps> = () => {
   return (
-    <div className={styles.Home}>
+    <motion.div
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageTransition}
+      className={styles.Home}>
       <Helmet>
         <title>{baseTitle} - Accueil</title>
       </Helmet>
-
       <h1>
         <AnimatedText
           appearingAnimation="roll-in-left"
@@ -92,39 +99,51 @@ const Home: FC<HomeProps> = () => {
         <br />
         <AnimatedText
           appearingAnimation="bounce-in"
-          delay={250}
+          delay={350}
           animationName="rubber-band"
-          letter="J"
+          letter="M"
         />
         <AnimatedText
           appearingAnimation="bounce-in"
-          delay={300}
+          delay={400}
           animationName="rubber-band"
-          letter="e"
-        />{' '}
+          letter="o"
+        />
         <AnimatedText
           appearingAnimation="bounce-in"
           delay={450}
           animationName="rubber-band"
-          letter="s"
-        />
+          letter="i"
+        />{' '}
         <AnimatedText
           appearingAnimation="bounce-in"
           delay={500}
           animationName="rubber-band"
-          letter="u"
+          letter="c"
         />
         <AnimatedText
           appearingAnimation="bounce-in"
           delay={550}
           animationName="rubber-band"
-          letter="i"
+          letter="'"
         />
         <AnimatedText
           appearingAnimation="bounce-in"
           delay={600}
           animationName="rubber-band"
+          letter="e"
+        />
+        <AnimatedText
+          appearingAnimation="bounce-in"
+          delay={650}
+          animationName="rubber-band"
           letter="s"
+        />
+        <AnimatedText
+          appearingAnimation="bounce-in"
+          delay={700}
+          animationName="rubber-band"
+          letter="t"
         />{' '}
         <AnimatedText
           appearingAnimation={'bounce-in'}
@@ -268,7 +287,7 @@ const Home: FC<HomeProps> = () => {
           letter="JavaScript"
         />
       </h2>
-    </div>
+    </motion.div>
   );
 };
 

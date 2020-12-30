@@ -26,7 +26,7 @@ const ParticleBackground: FC<ParticleBackgroundProps> = ({ style }) => {
               },
               onHover: {
                 enable: true,
-                mode: 'repulse',
+                mode: 'bubbles',
               },
               resize: true,
             },
@@ -51,10 +51,10 @@ const ParticleBackground: FC<ParticleBackgroundProps> = ({ style }) => {
               value: '#fff',
             },
             links: {
-              color: '#fff',
-              distance: 150,
+              color: '#00ff94',
+              distance: 50,
               enable: true,
-              opacity: 0.5,
+              opacity: 0.2,
               width: 1,
             },
             collisions: {
@@ -65,13 +65,13 @@ const ParticleBackground: FC<ParticleBackgroundProps> = ({ style }) => {
               enable: true,
               outMode: 'bounce',
               random: true,
-              speed: 4,
+              speed: 2,
               straight: false,
             },
             number: {
               density: {
                 enable: true,
-                value_area: 1000,
+                value_area: 1250,
               },
               value: 40,
             },
@@ -83,7 +83,7 @@ const ParticleBackground: FC<ParticleBackgroundProps> = ({ style }) => {
             },
             size: {
               random: true,
-              value: 5,
+              value: 3,
             },
           },
           detectRetina: true,

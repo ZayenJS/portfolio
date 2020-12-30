@@ -1,5 +1,7 @@
+import { motion } from 'framer-motion';
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet';
+import { pageTransition } from '../../../constants/framer-motion';
 import { baseTitle } from '../../../utils';
 
 import styles from './Skills.module.scss';
@@ -13,14 +15,19 @@ const Skills: FC<SkillsProps> = () => {
         <title>{baseTitle} - Compétences</title>
       </Helmet>
 
-      <div className={styles.Skills}>
+      <motion.section
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pageTransition}
+        className={styles.Skills}>
         <div>Skills Component</div>
         <a
           href="/competences"
           download={require('../../../assets/cv-david-nogueira-developpeur-web.pdf')}>
           Télécharger mon cv
         </a>
-      </div>
+      </motion.section>
     </>
   );
 };

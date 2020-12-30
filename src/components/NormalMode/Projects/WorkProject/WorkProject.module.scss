@@ -1,55 +1,108 @@
 @import '../../../../assets/scss/variables';
 
 .Project {
-  @include flex(flex-start, space-between, column nowrap);
+  @include flex(flex-end, space-between, column nowrap);
   border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);
   padding: $gutter;
-  margin: $gutter;
-  background-color: rgb(5, 22, 15);
+  height: fit-content;
+  max-width: 1400px;
+  margin: auto;
 
-  @include md {
-    width: 40%;
-  }
+  border-radius: 5px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
 
-  @include xl {
-    width: 25%;
-  }
+  @supports not ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
+    position: relative;
 
-  &__Name {
-    font-size-adjust: 1;
-    font-size: 2em;
-    text-align: center;
-    text-transform: capitalize;
-    margin-bottom: $gutter;
-  }
-
-  &__ImageContainer {
-    width: 100%;
-    img {
-      max-width: 100%;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.1);
+      filter: blur(15px);
     }
   }
 
-  &__Description {
-    margin: $gutter/2 0;
+  &__Container {
+    margin: $gutter;
+
+    @supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+
+    width: 100%;
   }
+}
 
-  &__Link {
-    display: block;
-    margin: $gutter/4 0;
+.Title {
+  font-size: 2em;
+  text-align: left;
+  text-transform: capitalize;
+  margin-bottom: $gutter;
+  width: 100%;
+}
+
+.Content {
+  width: 50%;
+  margin: 0 2rem;
+
+  &__Container {
+    @include flex(stretch, space-between, row nowrap);
+    width: 100%;
   }
+}
 
-  &__TechnosList {
-    @include flex(center, end, row nowrap);
-    margin-top: $gutter;
+.Description {
+  margin: $gutter/2 0;
+  font-size: 1.4rem;
+  text-align: justify;
+  line-height: 1.4;
+}
 
-    &__Item {
-      img {
-        width: 2rem;
-        margin: 0 $gutter/6;
-      }
+.ImageContainer {
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    width: 25rem;
+  }
+}
+
+.Links {
+  @include flex(center, flex-end, row nowrap);
+}
+
+.Link {
+  margin: $gutter $gutter;
+  border: 1px solid $normal-secondary-color;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1.2em;
+  transition: all 175ms ease-in-out;
+
+  &:hover,
+  &:active {
+    background-color: $normal-secondary-color;
+    color: $normal-primary-color;
+  }
+}
+
+.TechnosList {
+  @include flex(center, flex-end, row nowrap);
+  margin-top: $gutter;
+
+  &__Item {
+    img {
+      width: 2.25rem;
+      margin: 0 $gutter/6;
     }
   }
 }

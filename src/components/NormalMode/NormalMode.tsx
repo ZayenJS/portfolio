@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { Route, RouteComponentProps, Switch } from 'react-router-dom';
+import { Route, RouteComponentProps, Switch, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import Layout from '../Layout/Layout';
 import Home from './Home/Home';
@@ -16,18 +17,23 @@ interface NormalModeProps extends RouteComponentProps {
 }
 
 const NormalMode: FC<NormalModeProps> = ({ setIsDevMode }) => {
+  const location = useLocation();
+
   return (
     <div className={[styles.NormalMode, 'normal'].join(' ')}>
       <Layout isDevMode={false} setIsDevMode={setIsDevMode} isNormalMode={true}>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route
-            path="/projets"
-            render={(routeProps) => <Projects {...routeProps} projects={projs} />}
-          />
-          <Route path="/competences" component={Skills} />
-          <Route path="/contact" component={Contact} />
-        </Switch>
+        <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.pathname}>
+            <Route key="/" exact path="/" render={() => <Home />} />
+            <Route
+              key="/projets"
+              path="/projets"
+              render={(routeProps) => <Projects {...routeProps} projects={projs} />}
+            />
+            <Route path="/competences" component={Skills} />
+            <Route path="/contact" component={Contact} />
+          </Switch>
+        </AnimatePresence>
       </Layout>
     </div>
   );
