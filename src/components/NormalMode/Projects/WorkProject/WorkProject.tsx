@@ -1,5 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import Tilt from 'react-parallax-tilt';
+
 import { IWorkProject } from '../../../../models';
+import ImageGallery from '../../../ImageGallery/ImageGallery';
+import Portal from '../../../Portal/Portal';
 
 import styles from './WorkProject.module.scss';
 
@@ -8,49 +12,75 @@ interface ProjectProps {
 }
 
 const Project: FC<ProjectProps> = ({
-  project: { name, description, url, image, repository, technos },
+  project: { name, description, url, image, gallery, repository, technos },
 }) => {
+  const [state, setState] = useState({ isGalleryVisible: false });
+  const showGallery = () => {
+    setState({ ...state, isGalleryVisible: true });
+  };
+
   return (
-    <div className={styles.Project}>
-      <div>
-        <h2 className={styles.Project__Name}>{name}</h2>
-        <div className={styles.Project__ImageContainer}>
-          <img src={image} alt={`${name} site preview`} />
-        </div>
-        <p className={styles.Project__Description}>{description}</p>
-        {url ? (
-          <a
-            className={styles.Project__Link}
-            href={url}
-            title="Aller sur le site"
-            target="_blank"
-            rel="noopener noreferrer">
-            {url}
-          </a>
-        ) : (
-          <p>Pas en ligne pour le moment...</p>
-        )}
-        {repository ? (
-          <a
-            className={styles.Project__Link}
-            href={repository}
-            title="Aller sur le repo github"
-            target="_blank"
-            rel="noopener noreferrer">
-            {repository}
-          </a>
-        ) : null}
+    <>
+      <div className={styles.Project__Container}>
+        <Tilt tiltMaxAngleX={2} tiltMaxAngleY={1}>
+          <div className={styles.Project}>
+            <h2 className={styles.Title}>{name}</h2>
+            <div className={styles.Content__Container}>
+              <div className={styles.ImageContainer}>
+                <img
+                  style={gallery?.length ? { cursor: 'pointer' } : {}}
+                  onClick={() => showGallery()}
+                  src={image}
+                  alt={`${name} site preview`}
+                />
+                {state.isGalleryVisible && gallery?.length ? (
+                  <Portal>
+                    <ImageGallery
+                      hideGallery={() => setState({ ...state, isGalleryVisible: false })}
+                      gallery={gallery}
+                    />
+                  </Portal>
+                ) : null}
+              </div>
+              <div className={styles.Content}>
+                <div className={styles.Description__Container}>
+                  <p className={styles.Description}>{description}</p>
+                  <div className={styles.Links}>
+                    {url ? (
+                      <a
+                        className={styles.Link}
+                        href={url}
+                        title="Aller sur le site"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Accéder au site
+                      </a>
+                    ) : null}
+                    {repository ? (
+                      <a
+                        className={styles.Link}
+                        href={repository}
+                        title="Aller sur le repo github"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Voir le repo sur GitHub
+                      </a>
+                    ) : null}
+                  </div>
+                </div>
+                <ul className={styles.TechnosList}>
+                  {technos.map(({ name, logo }) => (
+                    <li title={name} className={styles.TechnosList__Item} key={name}>
+                      <img src={logo} alt={`icone ${name}`} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </Tilt>
       </div>
-      <div>
-        <ul className={styles.Project__TechnosList}>
-          {technos.map(({ name, logo }) => (
-            <li title={name} className={styles.Project__TechnosList__Item} key={name}>
-              <img src={logo} alt={`icone ${name}`} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    </>
   );
 };
 

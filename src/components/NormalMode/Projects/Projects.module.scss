@@ -2,7 +2,6 @@
 
 .Projects {
   @include flex(stretch, space-between, column nowrap);
-  overflow: auto;
   position: relative;
   z-index: 1;
 

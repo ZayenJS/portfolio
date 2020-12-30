@@ -50,6 +50,7 @@ export interface IWorkProject {
   name: string;
   description: string;
   image: string;
+  gallery?: string[];
   url?: string;
   repository?: string;
   technos: { name: Technos; logo: string }[];

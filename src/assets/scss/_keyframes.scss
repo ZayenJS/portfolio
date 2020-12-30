@@ -332,6 +332,23 @@
 
 /**
  * ----------------------------------------
+ * animation fade-out-fwd
+ * ----------------------------------------
+ */
+
+@keyframes fade-out-fwd {
+  0% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+}
+
+/**
+ * ----------------------------------------
  * animation puff-in-vertical
  * ----------------------------------------
  */
@@ -568,5 +585,27 @@
   }
   to {
     width: 100%;
+  }
+}
+
+@keyframes fade-in-centered {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes fade-out-centered {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%);
   }
 }

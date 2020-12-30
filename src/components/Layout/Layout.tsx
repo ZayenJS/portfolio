@@ -5,6 +5,9 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
 import styles from './Layout.module.scss';
+import particlesStyle from '../../constants/particlesStyle';
+import { useSelector } from 'react-redux';
+import { State } from '../../store/reducers';
 
 interface LayoutProps {
   isDevMode: boolean;
@@ -14,12 +17,18 @@ interface LayoutProps {
 
 const Layout: FC<LayoutProps> = ({ children, isDevMode, setIsDevMode, isNormalMode }) => {
   let layout = null;
+
+  const { isHeaderHovered } = useSelector((state: State) => state.global);
+
   if (isNormalMode) {
     layout = (
       <>
-        <div className={styles.Layout__Normal}>
-          <ParticleBackground style={{ gridArea: 'header' }} />
+        <div
+          className={[styles.Layout__Normal, isHeaderHovered ? styles.HeaderHovered : ''].join(
+            ' ',
+          )}>
           <Header isNormalMode={true} />
+          <ParticleBackground style={particlesStyle} />
           <main className={styles.Layout__Normal__Main}>{children}</main>
           <Footer setIsDevMode={setIsDevMode} isDevMode={false} isNormalMode={true} />
         </div>
