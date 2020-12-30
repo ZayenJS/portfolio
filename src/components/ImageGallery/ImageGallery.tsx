@@ -76,6 +76,8 @@ const ImageGallery: FC<ImageGalleryProps> = ({ gallery, hideGallery }) => {
     }
   };
 
+  const hasMoreThanOnePic = gallery?.length && gallery.length > 1;
+
   return (
     <>
       <Backdrop onBackdropClick={() => setState({ ...state, isHidingGallery: true })} />
@@ -86,25 +88,27 @@ const ImageGallery: FC<ImageGalleryProps> = ({ gallery, hideGallery }) => {
       </div>
       <div
         onAnimationEnd={onHideGallery}
+        style={hasMoreThanOnePic ? {} : { width: '75%' }}
         className={[
           styles.ImageGallery__Container,
           state.isHidingGallery ? styles.FadeOut : '',
         ].join(' ')}>
         <div
           className={styles.ImageGallery}
-          style={gallery?.length && gallery.length <= 1 ? { justifyContent: 'center' } : {}}>
-          {gallery?.length && gallery?.length > 1 ? (
+          style={hasMoreThanOnePic ? {} : { justifyContent: 'center' }}>
+          {hasMoreThanOnePic ? (
             <div onClick={imageStateChange} data-name="left" className={styles.Arrow__Left}>
               ‹
             </div>
           ) : null}
           <img
             onAnimationEnd={imageChange}
+            style={hasMoreThanOnePic ? {} : { width: '100%' }}
             className={[styles.Image, state.isAppearing ? styles.FadeIn : styles.FadeOut].join(' ')}
             src={state.image}
             alt=""
           />
-          {gallery?.length && gallery?.length > 1 ? (
+          {hasMoreThanOnePic ? (
             <div onClick={imageStateChange} data-name="right" className={styles.Arrow__Right}>
               ›
             </div>
