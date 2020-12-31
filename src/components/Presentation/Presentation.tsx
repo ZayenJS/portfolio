@@ -43,7 +43,7 @@ const Presentation: FC<PresentationProps> = ({ classNames, appearingAnimation, d
       <p>
         J'ai d'abord commencé par me former en autodidacte puis j'ai rejoins les salles de classe
         virtuelle de l'école{' '}
-        <a href="https://oclock.io/" rel="noopener noreferrer">
+        <a href="https://oclock.io/" target="_blank" rel="noopener noreferrer">
           o'clock
         </a>
       </p>
