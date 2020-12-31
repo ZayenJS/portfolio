@@ -32,6 +32,11 @@
   }
 }
 
+.BounceIn {
+  display: inline-block;
+  animation: bounce-in 1s both ease-in-out;
+}
+
 .BounceInLeft {
   display: inline-block;
   animation: bounce-in-left 1.1s both;
@@ -47,9 +52,9 @@
   animation: bounce-in-fwd 1.1s both;
 }
 
-.BounceIn {
+.BounceInAppear {
   display: inline-block;
-  animation: bounce-in 0.75s both;
+  animation: bounce-in-appear 0.75s both;
 }
 
 .RollInLeft {

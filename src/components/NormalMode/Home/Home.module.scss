@@ -1,4 +1,5 @@
 @import '../../../assets/scss/variables';
+@import '../../../assets/scss/keyframes';
 
 .Home {
   position: relative;
@@ -8,13 +9,30 @@
   height: 100%;
   padding: $gutter * 2;
 
-  h1 {
-    font-family: 'Francois One', Arial, Helvetica, sans-serif;
-    font-size: 3.5rem;
-    line-height: 1.2;
-  }
+  &__Presentation {
+    &__Container {
+      margin: 1rem 0;
+      line-height: 1.4;
+      font-size: 1.2em;
+      width: 50%;
 
-  h2 {
-    font-size: 1.8rem;
+      p {
+        margin: 1rem 0;
+      }
+    }
+
+    &__Cta {
+      display: inline-block;
+      padding: 0.5rem;
+      border-radius: 5px;
+      background-color: transparent;
+      border: 1px solid $normal-secondary-color;
+      transition: all 250ms ease-in-out;
+
+      &:hover {
+        background-color: $normal-secondary-color;
+        color: $normal-primary-color;
+      }
+    }
   }
 }
