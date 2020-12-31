@@ -1,9 +1,24 @@
 @import '../../../assets/scss/variables';
 
+.Container {
+  font-size: 1rem;
+
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1.2em;
+    line-height: 1.4;
+    width: 50%;
+    text-align: justify;
+  }
+}
+
 .Contact {
+  font-size: 1em;
   width: 90vw;
   height: 100%;
-  margin: auto;
 
   @include md {
     max-width: 600px;
@@ -17,7 +32,7 @@
     width: 100%;
     padding: 1rem;
     margin: 1rem 0;
-    font-size: 1.2em;
+    font-size: 1em;
     color: #fff;
     border: 2px solid rgba(255, 255, 255, 0.15);
     border-radius: 2px;
@@ -34,6 +49,15 @@
       background: rgba(15, 15, 15, 0.75);
       color: unset;
       cursor: not-allowed;
+    }
+  }
+
+  &__Id {
+    @include flex(center, space-between, row nowrap);
+    width: 100%;
+
+    div {
+      width: 47.5%;
     }
   }
 }

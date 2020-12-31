@@ -1,25 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
-import styles from './AnimatedText.module.scss';
 
-type AnimationStyle =
-  | 'none'
-  | 'rubber-band'
-  | 'shadow-drop-center'
-  | 'wave'
-  | 'wave-appear'
-  | 'bounce-in-left'
-  | 'bounce-in-top'
-  | 'bounce-in-forward'
-  | 'bounce-in'
-  | 'roll-in-left'
-  | 'fade-in-forward'
-  | 'puff-in-vertical'
-  | 'puff-in-horizontal'
-  | 'newspaper'
-  | 'focus-in-contract'
-  | 'slit-in'
-  | 'spin'
-  | 'pulsate';
+import { AnimationStyle } from '../../models';
+
+import styles from './AnimatedText.module.scss';
 
 interface AnimatedTextProps {
   letter: string;
@@ -55,6 +38,9 @@ const AnimatedText: FC<AnimatedTextProps> = ({
     case 'wave-appear':
       animationClassName += 'WaveAppear';
       break;
+    case 'bounce-in':
+      animationClassName += 'BounceIn';
+      break;
     case 'bounce-in-left':
       animationClassName += 'BounceInLeft';
       break;
@@ -64,8 +50,8 @@ const AnimatedText: FC<AnimatedTextProps> = ({
     case 'bounce-in-forward':
       animationClassName += 'BounceInForward';
       break;
-    case 'bounce-in':
-      animationClassName += 'BounceIn';
+    case 'bounce-in-appear':
+      animationClassName += 'BounceInAppear';
       break;
     case 'roll-in-left':
       animationClassName += 'RollInLeft';

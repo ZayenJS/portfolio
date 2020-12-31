@@ -67,3 +67,24 @@ export type Technos =
   | 'NodeJS'
   | 'Postgresql'
   | 'Socket.io';
+
+export type AnimationStyle =
+  | 'none'
+  | 'rubber-band'
+  | 'shadow-drop-center'
+  | 'wave'
+  | 'wave-appear'
+  | 'bounce-in'
+  | 'bounce-in-left'
+  | 'bounce-in-top'
+  | 'bounce-in-forward'
+  | 'bounce-in-appear'
+  | 'roll-in-left'
+  | 'fade-in-forward'
+  | 'puff-in-vertical'
+  | 'puff-in-horizontal'
+  | 'newspaper'
+  | 'focus-in-contract'
+  | 'slit-in'
+  | 'spin'
+  | 'pulsate';

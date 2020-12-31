@@ -11,6 +11,7 @@ import Message from '../../Message/Message';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { pageTransition } from '../../../constants/framer-motion';
+import AnimatedText from '../../AnimatedText/AnimatedText';
 
 interface ContactProps {}
 
@@ -152,55 +153,67 @@ const Contact: FC<ContactProps> = () => {
       <Helmet>
         <title>{baseTitle} - Contact</title>
       </Helmet>
-      <motion.form
+      <motion.div
         initial="initial"
         animate="animate"
         exit="exit"
         variants={pageTransition}
-        onSubmit={formSubmitHandler}
-        className={styles.Contact}>
-        <div className={styles.FormControl}>
-          {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
-            <Message
-              className={state.hasError ? styles.ErrorMessage : styles.SuccessMessage}
-              errorMessage={state.errorMessage}
-              successMessage={state.successMessage}
-              hasError={state.hasError}
+        className={styles.Container}>
+        <h1>Contact</h1>
+        <p>
+          Je suis intéréssé principalement par les missions en freelance en télétravail. Cependant,
+          n'hésitez pas à me contacter en utilisant ce formulaire de contact si vous avez des
+          questions, que mon profil vous interesse ou que vous voulez simplement entrer en contact
+          avec moi (hello
+          <AnimatedText letter="👋🏻" animationName="wave" />
+          ), je reste ouvert à toute proposition.
+        </p>
+        <motion.form onSubmit={formSubmitHandler} className={styles.Contact}>
+          <div className={styles.FormControl}>
+            {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
+              <Message
+                className={state.hasError ? styles.ErrorMessage : styles.SuccessMessage}
+                errorMessage={state.errorMessage}
+                successMessage={state.successMessage}
+                hasError={state.hasError}
+              />
+            ) : null}
+            <fieldset className={styles.Contact__Id}>
+              <Field
+                name="Nom"
+                type="text"
+                hasError={state.Nom.hasError}
+                value={state.Nom.value}
+                setValue={onFieldChange}
+              />
+              <Field
+                name="Email"
+                type="email"
+                hasError={state.Email.hasError}
+                value={state.Email.value}
+                setValue={onFieldChange}
+              />
+            </fieldset>
+            <Field
+              name="Objet"
+              type="text"
+              hasError={state.Objet.hasError}
+              value={state.Objet.value}
+              setValue={onFieldChange}
             />
-          ) : null}
-          <Field
-            name="Nom"
-            type="text"
-            hasError={state.Nom.hasError}
-            value={state.Nom.value}
-            setValue={onFieldChange}
-          />
-          <Field
-            name="Email"
-            type="email"
-            hasError={state.Email.hasError}
-            value={state.Email.value}
-            setValue={onFieldChange}
-          />
-          <Field
-            name="Objet"
-            type="text"
-            hasError={state.Objet.hasError}
-            value={state.Objet.value}
-            setValue={onFieldChange}
-          />
-          <Field
-            name="Message"
-            type="textarea"
-            hasError={state.Message.hasError}
-            value={state.Message.value}
-            setValue={onFieldChange}
-          />
-          <button disabled={state.hasError} tabIndex={1} type="submit">
-            Envoyer
-          </button>
-        </div>
-      </motion.form>
+            <Field
+              name="Message"
+              type="textarea"
+              hasError={state.Message.hasError}
+              value={state.Message.value}
+              setValue={onFieldChange}
+            />
+            <button disabled={state.hasError} tabIndex={1} type="submit">
+              Envoyer
+            </button>
+          </div>
+        </motion.form>
+      </motion.div>
     </>
   );
 };

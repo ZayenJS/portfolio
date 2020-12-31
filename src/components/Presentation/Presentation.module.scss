@@ -1,0 +1,14 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/keyframes';
+
+.Presentation {
+  position: relative;
+}
+
+.Cta {
+  animation: rubber-band 1.3s both 1 ease-in-out;
+}
+
+.FadeInForward {
+  animation: fade-in-fwd 0.8s both ease-in-out;
+}
