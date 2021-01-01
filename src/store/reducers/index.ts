@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import page, { pageState } from './page';
-import global, { globalState } from './global';
+import devMode, { DevModeState } from './devMode';
+import normalMode, { NormalModeState } from './normalMode';
 
 export interface State {
-  page: pageState;
-  global: globalState;
+  normalMode: NormalModeState;
+  devMode: DevModeState;
 }
 
-const reducer = combineReducers({ page, global });
+const reducer = combineReducers<State>({ normalMode, devMode });
 
 export default reducer;

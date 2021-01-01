@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimationStyle } from '../../models';
-import AnimatedText from '../AnimatedText/AnimatedText';
 
 import styles from './Presentation.module.scss';
 
@@ -37,28 +36,36 @@ const Presentation: FC<PresentationProps> = ({ classNames, appearingAnimation, d
     <div style={{ animationDelay }} className={[baseClassname, classNames?.container].join(' ')}>
       <p className={classNames?.intro}>
         Après plusieurs années à faire des petits boulots qui ne me correspondaient pas, j'ai entamé
-        en Janvier 2020 une reconversion dans ce qui me plait depuis toujours :{' '}
-        <AnimatedText animationName="bounce-in" letter="le Web" />.
+        en Janvier 2020 une reconversion dans ce qui me plait depuis toujours : le Web.
       </p>
       <p>
         J'ai d'abord commencé par me former en autodidacte puis j'ai rejoins les salles de classe
         virtuelle de l'école{' '}
-        <a href="https://oclock.io/" rel="noopener noreferrer">
-          o'clock
+        <a
+          className={styles.Oclock}
+          href="https://oclock.io/"
+          target="_blank"
+          rel="noopener noreferrer">
+          <div>
+            <img src={require('../../assets/images/o-clock-full-cream.svg')} alt="logo O'Clock" />
+          </div>
         </a>
+        .
       </p>
 
-      <p>
-        Mon sens de la rigueur et ma forte envie d'apprendre m'ont permis de faire en sorte de
-        toujours réussir les défis proposés et de mener à bien les projets qui m'ont été confiés.
-      </p>
-
-      <p
-        onMouseEnter={() => setState({ ...state, isCtaHovered: true })}
-        onAnimationEnd={() => setState({ ...state, isCtaHovered: false })}
-        className={[classNames?.cta, state.isCtaHovered ? styles.Cta : ''].join(' ')}>
-        <Link to="/contact">me contacter</Link>
-      </p>
+      <div>
+        <p>
+          Mon sens de la rigueur et ma forte envie d'apprendre m'ont permis de faire en sorte de
+          toujours réussir les défis proposés et de mener à bien les projets qui m'ont été confiés.
+        </p>
+        <Link
+          onMouseEnter={() => setState({ ...state, isCtaHovered: true })}
+          onAnimationEnd={() => setState({ ...state, isCtaHovered: false })}
+          className={[classNames?.cta, state.isCtaHovered ? styles.Cta : ''].join(' ')}
+          to="/contact">
+          me contacter
+        </Link>
+      </div>
     </div>
   );
 };

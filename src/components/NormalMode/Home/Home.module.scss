@@ -2,6 +2,7 @@
 @import '../../../assets/scss/keyframes';
 
 .Home {
+  @include flex(stretch, space-between, row nowrap);
   position: relative;
   z-index: 1;
   width: fit-content;
@@ -9,12 +10,33 @@
   height: 100%;
   padding: $gutter * 2;
 
+  section {
+    width: 45%;
+
+    &:first-child {
+      @include flex(flex-start, space-between, column nowrap);
+    }
+
+    &:last-child {
+      @include flex(flex-start, space-between, column nowrap);
+      opacity: 0;
+      animation: fade-in-fwd 1500ms 2.5s forwards ease-in-out;
+
+      button {
+        @extend .Home__Presentation__Cta;
+        color: #fff;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        width: fit-content;
+      }
+    }
+  }
+
   &__Presentation {
     &__Container {
+      font-size: 1.4rem;
       margin: 1rem 0;
-      line-height: 1.4;
-      font-size: 1.2em;
-      width: 50%;
+      line-height: 1.5;
 
       p {
         margin: 1rem 0;
@@ -23,7 +45,7 @@
 
     &__Cta {
       display: inline-block;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
       border-radius: 5px;
       background-color: transparent;
       border: 1px solid $normal-secondary-color;
@@ -35,4 +57,10 @@
       }
     }
   }
+}
+
+.Me {
+  width: 17.5rem;
+  border-bottom-left-radius: 75px;
+  border-bottom-right-radius: 75px;
 }

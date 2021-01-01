@@ -9,78 +9,68 @@ const AnimatedTitle: FC<AnimatedTitleProps> = () => {
   return (
     <div className={styles.AnimatedTitle}>
       <h1>
-        <AnimatedText
-          appearingAnimation="roll-in-left"
-          animationName="spin"
-          delay={250}
-          letter="H"
-        />
+        <AnimatedText appearingAnimation="roll-in-left" animationName="spin" delay={250} text="H" />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           animationName="rubber-band"
           delay={450}
-          letter="e"
+          text="e"
         />
         <AnimatedText
           appearingAnimation="bounce-in-forward"
           animationName="rubber-band"
           delay={350}
-          letter="l"
+          text="l"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           animationName="rubber-band"
           delay={400}
-          letter="l"
+          text="l"
         />
         <AnimatedText
           appearingAnimation="bounce-in-forward"
           animationName="rubber-band"
           delay={450}
-          letter="o"
+          text="o"
         />{' '}
-        <AnimatedText
-          appearingAnimation="roll-in-left"
-          animationName="spin"
-          delay={500}
-          letter="W"
-        />
+        <AnimatedText appearingAnimation="roll-in-left" animationName="spin" delay={500} text="W" />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           animationName="rubber-band"
           delay={700}
-          letter="o"
+          text="o"
         />
         <AnimatedText
           appearingAnimation="bounce-in-forward"
           animationName="rubber-band"
           delay={750}
-          letter="r"
+          text="r"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           animationName="rubber-band"
           delay={800}
-          letter="l"
+          text="l"
         />
         <AnimatedText
           appearingAnimation="bounce-in-forward"
           animationName="rubber-band"
           delay={850}
-          letter="d"
+          text="d"
         />{' '}
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           animationName="rubber-band"
           delay={900}
-          letter="!"
+          text="!"
         />{' '}
         <span role="img" aria-label="émoji main qui fait coucou">
           <AnimatedText
             appearingAnimation="wave-appear"
             animationName="wave"
             delay={1000}
-            letter="👋🏻"
+            text="👋🏻"
           />
         </span>
         <br />
@@ -88,176 +78,176 @@ const AnimatedTitle: FC<AnimatedTitleProps> = () => {
           appearingAnimation="bounce-in-appear"
           delay={350}
           animationName="rubber-band"
-          letter="M"
+          text="M"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={400}
           animationName="rubber-band"
-          letter="o"
+          text="o"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={450}
           animationName="rubber-band"
-          letter="i"
+          text="i"
         />{' '}
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={500}
           animationName="rubber-band"
-          letter="c"
+          text="c"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={550}
           animationName="rubber-band"
-          letter="'"
+          text="'"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={600}
           animationName="rubber-band"
-          letter="e"
+          text="e"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={650}
           animationName="rubber-band"
-          letter="s"
+          text="s"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={700}
           animationName="rubber-band"
-          letter="t"
+          text="t"
         />{' '}
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={650}
           animationName="rubber-band"
-          letter="D"
+          text="D"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={700}
           animationName="rubber-band"
-          letter="a"
+          text="a"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={750}
           animationName="rubber-band"
-          letter="v"
+          text="v"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={800}
           animationName="rubber-band"
-          letter="i"
+          text="i"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={850}
           animationName="rubber-band"
-          letter="d"
+          text="d"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={850}
           animationName="rubber-band"
-          letter=","
+          text=","
         />{' '}
         <br />
         <AnimatedText
           appearingAnimation={'roll-in-left'}
           delay={600}
           animationName="spin"
-          letter="d"
+          text="d"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={950}
           animationName="rubber-band"
-          letter="é"
+          text="é"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1000}
           animationName="rubber-band"
-          letter="v"
+          text="v"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1050}
           animationName="rubber-band"
-          letter="e"
+          text="e"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1100}
           animationName="rubber-band"
-          letter="l"
+          text="l"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1150}
           animationName="rubber-band"
-          letter="o"
+          text="o"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1200}
           animationName="rubber-band"
-          letter="p"
+          text="p"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1250}
           animationName="rubber-band"
-          letter="p"
+          text="p"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1300}
           animationName="rubber-band"
-          letter="e"
+          text="e"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1350}
           animationName="rubber-band"
-          letter="u"
+          text="u"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1400}
           animationName="rubber-band"
-          letter="r"
+          text="r"
         />{' '}
         <AnimatedText
           appearingAnimation={'roll-in-left'}
           delay={1000}
           animationName="spin"
-          letter="w"
+          text="w"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1500}
           animationName="rubber-band"
-          letter="e"
+          text="e"
         />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           delay={1550}
           animationName="rubber-band"
-          letter="b"
+          text="b"
         />
         <AnimatedText
           appearingAnimation={'bounce-in-top'}
           delay={1500}
           animationName="rubber-band"
-          letter="."
+          text="."
         />{' '}
       </h1>
       <h2>
@@ -265,13 +255,13 @@ const AnimatedTitle: FC<AnimatedTitleProps> = () => {
           appearingAnimation="slit-in"
           delay={900}
           animationName="pulsate"
-          letter="Développeur"
+          text="Développeur"
         />{' '}
         <AnimatedText
           appearingAnimation="slit-in"
           delay={900}
           animationName="pulsate"
-          letter="JavaScript"
+          text="JavaScript"
         />
       </h2>
     </div>

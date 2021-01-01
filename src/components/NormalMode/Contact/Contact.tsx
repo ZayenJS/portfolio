@@ -165,7 +165,7 @@ const Contact: FC<ContactProps> = () => {
           n'hésitez pas à me contacter en utilisant ce formulaire de contact si vous avez des
           questions, que mon profil vous interesse ou que vous voulez simplement entrer en contact
           avec moi (hello
-          <AnimatedText letter="👋🏻" animationName="wave" />
+          <AnimatedText text="👋🏻" animationName="wave" />
           ), je reste ouvert à toute proposition.
         </p>
         <motion.form onSubmit={formSubmitHandler} className={styles.Contact}>
@@ -208,7 +208,7 @@ const Contact: FC<ContactProps> = () => {
               value={state.Message.value}
               setValue={onFieldChange}
             />
-            <button disabled={state.hasError} tabIndex={1} type="submit">
+            <button disabled={state.hasError} tabIndex={0} type="submit">
               Envoyer
             </button>
           </div>

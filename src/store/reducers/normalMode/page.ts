@@ -1,4 +1,4 @@
-import { CHANGE_PAGE, PageActions } from '../actions';
+import { CHANGE_PAGE, PageActions } from '../../actions/normalMode';
 
 export interface pageState {
   isChanging: boolean;

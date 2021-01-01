@@ -87,4 +87,5 @@ export type AnimationStyle =
   | 'focus-in-contract'
   | 'slit-in'
   | 'spin'
-  | 'pulsate';
+  | 'pulsate'
+  | 'scale-up-center';
