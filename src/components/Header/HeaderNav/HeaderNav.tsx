@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { State } from '../../../store/reducers';
+import { State } from '../../../store/reducers/';
 import Hamburger from './Hamburger/Hamburger';
 
 import styles from './HeaderNav.module.scss';
@@ -106,7 +106,7 @@ const HeaderNav: FC<HeaderNavProps> = () => {
     },
   ];
 
-  const { isHeaderHovered } = useSelector((state: State) => state.global);
+  const { isHeaderHovered } = useSelector((state: State) => state.normalMode.global);
 
   return (
     <nav className={styles.HeaderNav}>

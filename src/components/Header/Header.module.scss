@@ -24,7 +24,7 @@
 
     a:hover,
     span:hover {
-      color: #00ff95;
+      color: $normal-secondary-color;
 
       @include lg {
         transition: color 250ms ease;

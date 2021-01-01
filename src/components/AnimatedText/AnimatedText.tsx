@@ -5,7 +5,7 @@ import { AnimationStyle } from '../../models';
 import styles from './AnimatedText.module.scss';
 
 interface AnimatedTextProps {
-  letter: string;
+  text: string;
   animationName: AnimationStyle;
   className?: string;
   delay?: number;
@@ -13,7 +13,7 @@ interface AnimatedTextProps {
 }
 
 const AnimatedText: FC<AnimatedTextProps> = ({
-  letter,
+  text,
   animationName,
   className,
   delay,
@@ -80,11 +80,14 @@ const AnimatedText: FC<AnimatedTextProps> = ({
     case 'pulsate':
       animationClassName += 'Pulsate';
       break;
+    case 'scale-up-center':
+      animationClassName += 'ScaleUpCenter';
+      break;
     default:
       break;
   }
 
-  let cssClass = 'AnimatedText';
+  let cssClass = styles.AnimatedText;
 
   if (className) {
     cssClass += ` ${className}`;
@@ -105,7 +108,7 @@ const AnimatedText: FC<AnimatedTextProps> = ({
             .map((el) => capitalize(el))
             .join('')
         ];
-      cssClass = `AnimatedText ${appearingAnimationClass}`;
+      cssClass = `${styles.AnimatedText} ${appearingAnimationClass}`;
     } else {
       setState({ ...state, hasAppeared: true });
     }
@@ -117,7 +120,7 @@ const AnimatedText: FC<AnimatedTextProps> = ({
       style={{ animationDelay: !state.hasAppeared ? `${delay}ms` : '0ms' }}
       onMouseEnter={() => setState({ ...state, isHovered: true })}
       onAnimationEnd={() => setState({ ...state, isHovered: false, hasAppeared: true })}>
-      {letter}
+      {text}
     </span>
   );
 };

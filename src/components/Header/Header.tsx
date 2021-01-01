@@ -8,7 +8,7 @@ import logo from '../../assets/images/logo.svg';
 import styles from './Header.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../store/reducers';
-import { hoverHeader } from '../../store/actions';
+import { hoverHeader } from '../../store/actions/normalMode';
 
 interface HeaderProps {
   isNormalMode: boolean;
@@ -18,7 +18,7 @@ const Header: FC<HeaderProps> = ({ isNormalMode }) => {
   let header = null;
 
   const dispatch = useDispatch();
-  const { isHeaderHovered } = useSelector((state: State) => state.global);
+  const { isHeaderHovered } = useSelector((state: State) => state.normalMode.global);
 
   if (isNormalMode) {
     header = (

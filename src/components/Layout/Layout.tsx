@@ -18,7 +18,7 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = ({ children, isDevMode, setIsDevMode, isNormalMode }) => {
   let layout = null;
 
-  const { isHeaderHovered } = useSelector((state: State) => state.global);
+  const { isHeaderHovered } = useSelector((state: State) => state.normalMode.global);
 
   if (isNormalMode) {
     layout = (

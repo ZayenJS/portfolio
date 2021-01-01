@@ -1,6 +1,6 @@
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 
-interface ChangePageAction {
+export interface ChangePageAction {
   type: typeof CHANGE_PAGE;
   isChanging: boolean;
 }

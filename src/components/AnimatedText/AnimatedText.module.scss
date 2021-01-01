@@ -2,13 +2,12 @@
 @import '../../assets/scss/keyframes';
 
 .AnimatedText {
+  display: inline-block;
   user-select: none;
 }
 
 .RubberBand {
-  display: inline-block;
   animation: rubber-band 1.3s both 1;
-  cursor: default;
 
   &:hover {
     color: $normal-secondary-color;
@@ -20,10 +19,8 @@
 }
 
 .Wave {
-  display: inline-block;
   transform-origin: 70% 70%;
   animation: wave 1.5s 1 alternate forwards;
-  cursor: default;
 
   &Appear {
     @extend .Wave;
@@ -33,72 +30,59 @@
 }
 
 .BounceIn {
-  display: inline-block;
   animation: bounce-in 1s both ease-in-out;
 }
 
 .BounceInLeft {
-  display: inline-block;
   animation: bounce-in-left 1.1s both;
 }
 
 .BounceInTop {
-  display: inline-block;
   animation: bounce-in-top 1.1s both;
 }
 
 .BounceInForward {
-  display: inline-block;
   animation: bounce-in-fwd 1.1s both;
 }
 
 .BounceInAppear {
-  display: inline-block;
   animation: bounce-in-appear 0.75s both;
 }
 
 .RollInLeft {
-  display: inline-block;
   animation: roll-in-left 0.6s ease-out both;
 }
 
 .FadeInForward {
-  display: inline-block;
   animation: fade-in-fwd 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .PuffInVertical {
   opacity: 0;
-  display: inline-block;
   animation: puff-in-vertical 1s 1 normal none ease;
 }
 
 .PuffInHorizontal {
   opacity: 0;
-  display: inline-block;
   animation: puff-in-horizontal 1s 1 normal none ease;
 }
 
 .Newspaper {
   opacity: 0;
-  display: inline-block;
   animation: newspaper 750ms 1 normal none ease-out;
 }
 
 .FocusInContract {
   opacity: 0;
-  display: inline-block;
   animation: focus-in-contract 1 750ms normal none ease;
 }
 
 .SlitIn {
   opacity: 0;
-  display: inline-block;
   animation: slit-in 1 1.5s normal none linear;
 }
 
 .Spin {
-  display: inline-block;
   animation: spin 1 1000ms ease-out forwards;
 
   &:hover {
@@ -107,10 +91,13 @@
 }
 
 .Pulsate {
-  display: inline-block;
   animation: pulsate 1 800ms ease-out forwards;
 
   &:hover {
     color: $normal-secondary-color;
   }
+}
+
+.ScaleUpCenter {
+  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }

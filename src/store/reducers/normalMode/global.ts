@@ -1,4 +1,4 @@
-import { GlobalActions, HOVER_HEADER } from '../actions';
+import { GlobalActions, HOVER_HEADER } from '../../actions/normalMode';
 
 export interface globalState {
   isHeaderHovered: boolean;
