@@ -23,7 +23,7 @@ interface HomeState {
 const Home: FC<HomeProps> = () => {
   const [state, setState] = useState<HomeState>({
     isAccessoriesPickerVisible: false,
-    accessories: ['mustache', 'top-hat', 'sunglasses'],
+    accessories: [],
     isChangeAccessoryButtonHovered: false,
   });
 
@@ -62,8 +62,13 @@ const Home: FC<HomeProps> = () => {
         {state.accessories.map((accessory) => (
           <Accessory key={accessory} name={accessory} />
         ))}
-        {state.isAccessoriesPickerVisible ? (
-          <Portal>
+        <Portal>
+          <div
+            style={
+              state.isAccessoriesPickerVisible
+                ? {}
+                : { opacity: 0, pointerEvents: 'none', zIndex: 0 }
+            }>
             <AccessoryPicker
               setAccessories={setAccessories}
               selectedAccessories={state.accessories}
@@ -71,8 +76,8 @@ const Home: FC<HomeProps> = () => {
                 setState((prevState) => ({ ...prevState, isAccessoriesPickerVisible: false }))
               }
             />
-          </Portal>
-        ) : null}
+          </div>
+        </Portal>
 
         <button
           className={state.isChangeAccessoryButtonHovered ? styles.Spin : ''}

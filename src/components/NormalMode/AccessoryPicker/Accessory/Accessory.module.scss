@@ -1,67 +1,82 @@
+@import '../../../../assets/scss/variables';
+
 .Accessory {
   position: absolute;
   cursor: grab;
 }
 
+.Selected {
+  border: 2px solid $normal-secondary-color !important;
+  background: lighten($color: $normal-secondary-color, $amount: 42.5) !important;
+}
+
 .Icon {
-  &__TieStriped {
+  &__Monocle {
+    grid-column: 6;
     grid-row: 1 / 3;
-    grid-column: 1/2;
   }
 }
 
-.Beard {
-  @extend .Accessory;
-  width: 10rem;
+.BeardBlack {
+  width: 12.5rem;
 }
 
-.Mustache {
-  @extend .Accessory;
-  width: 6rem;
-  top: 26.75rem;
-  left: 49%;
+.BigChestnutBeard {
+  width: 13rem;
 }
 
-.Eyeglasses {
-  @extend .Accessory;
-  width: 10rem;
-}
-
-.Sunglasses {
-  @extend .Accessory;
-  width: 10rem;
-  top: 22rem;
-  left: 49%;
-}
-
-.TopHat {
-  @extend .Accessory;
-  width: 15rem;
-  top: 6rem;
-  left: 48%;
-}
-
-.TieStriped {
-  @extend .Accessory;
-  width: 6rem;
-}
-
-.CapCop {
-  @extend .Accessory;
-  width: 16rem;
+.BlondHair {
+  width: 17.5rem;
 }
 
 .CapGraduate {
-  @extend .Accessory;
+  width: 25rem;
+}
+
+.Cigarette {
+  width: 4rem;
+}
+
+.HairBlack {
+  width: 15rem;
+}
+
+.HairChestnutWoman1 {
+  width: 23rem;
+}
+
+.HairChestnutWoman2 {
+  width: 23rem;
+}
+
+.HairPurpleWoman {
+  width: 17rem;
+}
+
+.MelonHat {
   width: 18rem;
 }
 
-.Cap {
-  @extend .Accessory;
-  width: 12rem;
+.Monocle {
+  width: 4rem;
 }
 
-.FangsVampire {
-  @extend .Accessory;
+.MustacheGentleman {
+  width: 8rem;
+}
+
+.Scar {
   width: 4rem;
+}
+
+.SmokingCigarette {
+  width: 6rem;
+}
+
+.SmokingPipe {
+  width: 6rem;
+}
+
+.VikingHelmet {
+  width: 20rem;
 }

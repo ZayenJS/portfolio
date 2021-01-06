@@ -5,6 +5,7 @@
   width: fit-content;
   top: 50%;
   left: 50%;
+  height: 100vh;
   transform: translate(-50%, -50%);
   z-index: 10000;
 
@@ -46,22 +47,26 @@
         transition: all 200ms ease-in-out;
       }
     }
+  }
+}
 
-    button {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      margin-top: 1rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      color: $normal-primary-color;
-      background-color: transparent;
-      border: 1px solid $normal-primary-color;
-      transition: all 250ms ease-in-out;
+.ButtonsContainer {
+  @include flex(center, space-around, row wrap);
 
-      &:hover {
-        background-color: $normal-primary-color;
-        color: $normal-secondary-color;
-      }
+  button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: $normal-primary-color;
+    background-color: transparent;
+    border: 1px solid $normal-primary-color;
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+      background-color: $normal-primary-color;
+      color: $normal-secondary-color;
     }
   }
 }
