@@ -80,6 +80,7 @@ const Home: FC<HomeProps> = () => {
         </Portal>
 
         <button
+          title="Changer les accessoires"
           className={state.isChangeAccessoryButtonHovered ? styles.Spin : ''}
           onMouseEnter={() =>
             setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: true }))
