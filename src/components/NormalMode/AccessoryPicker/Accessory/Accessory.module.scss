@@ -1,6 +1,6 @@
 .Accessory {
   position: absolute;
-  transform: translate(-50%);
+  cursor: grab;
 }
 
 .Icon {
@@ -10,11 +10,21 @@
   }
 }
 
+.Beard {
+  @extend .Accessory;
+  width: 10rem;
+}
+
 .Mustache {
   @extend .Accessory;
   width: 6rem;
   top: 26.75rem;
   left: 49%;
+}
+
+.Eyeglasses {
+  @extend .Accessory;
+  width: 10rem;
 }
 
 .Sunglasses {
@@ -32,17 +42,26 @@
 }
 
 .TieStriped {
+  @extend .Accessory;
   width: 6rem;
 }
 
 .CapCop {
+  @extend .Accessory;
   width: 16rem;
 }
 
 .CapGraduate {
+  @extend .Accessory;
   width: 18rem;
 }
 
 .Cap {
+  @extend .Accessory;
   width: 12rem;
+}
+
+.FangsVampire {
+  @extend .Accessory;
+  width: 4rem;
 }

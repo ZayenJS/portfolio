@@ -17,12 +17,14 @@ interface HomeProps {}
 interface HomeState {
   isAccessoriesPickerVisible: boolean;
   accessories: Accessories[];
+  isChangeAccessoryButtonHovered: boolean;
 }
 
 const Home: FC<HomeProps> = () => {
   const [state, setState] = useState<HomeState>({
     isAccessoriesPickerVisible: false,
     accessories: ['mustache', 'top-hat', 'sunglasses'],
+    isChangeAccessoryButtonHovered: false,
   });
 
   const setAccessories = (accessories: Accessories[]) => {
@@ -72,8 +74,17 @@ const Home: FC<HomeProps> = () => {
           </Portal>
         ) : null}
 
-        <button onClick={() => setState({ ...state, isAccessoriesPickerVisible: true })}>
-          Changer les accessoires
+        <button
+          className={state.isChangeAccessoryButtonHovered ? styles.Spin : ''}
+          onMouseEnter={() =>
+            setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: true }))
+          }
+          onAnimationEnd={() =>
+            setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: false }))
+          }
+          onClick={() => setState({ ...state, isAccessoriesPickerVisible: true })}>
+          <span className={styles.Arrow}>&larr;</span>
+          <span className={styles.Arrow}>&rarr;</span>
         </button>
       </motion.section>
     </motion.div>

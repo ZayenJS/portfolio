@@ -39,10 +39,11 @@
       right: auto !important;
       position: static !important;
       transform: none !important;
-      transition: all 200ms ease-in-out;
+      transition: all 400ms ease-in-out;
 
       &:hover {
         transform: scale(1.2) !important;
+        transition: all 200ms ease-in-out;
       }
     }
 
@@ -50,6 +51,7 @@
       display: inline-block;
       padding: 0.5rem 1rem;
       margin-top: 1rem;
+      font-size: 1rem;
       border-radius: 5px;
       color: $normal-primary-color;
       background-color: transparent;

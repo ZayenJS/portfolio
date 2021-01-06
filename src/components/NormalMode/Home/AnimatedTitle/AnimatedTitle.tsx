@@ -9,7 +9,12 @@ const AnimatedTitle: FC<AnimatedTitleProps> = () => {
   return (
     <div className={styles.AnimatedTitle}>
       <h1>
-        <AnimatedText appearingAnimation="roll-in-left" animationName="spin" delay={250} text="H" />
+        <AnimatedText
+          appearingAnimation="roll-in-left"
+          animationName="spin-two-turns"
+          delay={250}
+          text="H"
+        />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           animationName="rubber-band"
@@ -34,7 +39,12 @@ const AnimatedTitle: FC<AnimatedTitleProps> = () => {
           delay={450}
           text="o"
         />{' '}
-        <AnimatedText appearingAnimation="roll-in-left" animationName="spin" delay={500} text="W" />
+        <AnimatedText
+          appearingAnimation="roll-in-left"
+          animationName="spin-two-turns"
+          delay={500}
+          text="W"
+        />
         <AnimatedText
           appearingAnimation="bounce-in-appear"
           animationName="rubber-band"
@@ -74,161 +84,50 @@ const AnimatedTitle: FC<AnimatedTitleProps> = () => {
           />
         </span>
         <br />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={350}
-          animationName="rubber-band"
-          text="M"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={400}
-          animationName="rubber-band"
-          text="o"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={450}
-          animationName="rubber-band"
-          text="i"
-        />{' '}
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={500}
-          animationName="rubber-band"
-          text="c"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={550}
-          animationName="rubber-band"
-          text="'"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={600}
-          animationName="rubber-band"
-          text="e"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={650}
-          animationName="rubber-band"
-          text="s"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={700}
-          animationName="rubber-band"
-          text="t"
-        />{' '}
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={650}
-          animationName="rubber-band"
-          text="D"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={700}
-          animationName="rubber-band"
-          text="a"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={750}
-          animationName="rubber-band"
-          text="v"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={800}
-          animationName="rubber-band"
-          text="i"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={850}
-          animationName="rubber-band"
-          text="d"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={850}
-          animationName="rubber-band"
-          text=","
-        />{' '}
+        {['M', 'o', 'i'].map((letter, i) => (
+          <AnimatedText
+            key={i + letter}
+            text={letter}
+            delay={700 + (i + 1) * 50}
+            appearingAnimation="bounce-in-appear"
+            animationName="rubber-band"
+          />
+        ))}{' '}
+        {['c', "'", 'e', 's', 't'].map((letter, i) => (
+          <AnimatedText
+            appearingAnimation="bounce-in-appear"
+            delay={900 + (i + 1) * 50}
+            animationName="rubber-band"
+            text={letter}
+          />
+        ))}{' '}
+        {['D', 'a', 'v', 'i', 'd', ','].map((letter, i) => (
+          <AnimatedText
+            appearingAnimation="bounce-in-appear"
+            delay={1150 + (i + 1) * 50}
+            animationName="rubber-band"
+            text={letter}
+          />
+        ))}{' '}
         <br />
         <AnimatedText
           appearingAnimation={'roll-in-left'}
           delay={600}
-          animationName="spin"
+          animationName="spin-two-turns"
           text="d"
         />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={950}
-          animationName="rubber-band"
-          text="é"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={1000}
-          animationName="rubber-band"
-          text="v"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={1050}
-          animationName="rubber-band"
-          text="e"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={1100}
-          animationName="rubber-band"
-          text="l"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={1150}
-          animationName="rubber-band"
-          text="o"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={1200}
-          animationName="rubber-band"
-          text="p"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={1250}
-          animationName="rubber-band"
-          text="p"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={1300}
-          animationName="rubber-band"
-          text="e"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={1350}
-          animationName="rubber-band"
-          text="u"
-        />
-        <AnimatedText
-          appearingAnimation="bounce-in-appear"
-          delay={1400}
-          animationName="rubber-band"
-          text="r"
-        />{' '}
+        {['é', 'v', 'e', 'l', 'o', 'p', 'p', 'e', 'u', 'r'].map((letter, i) => (
+          <AnimatedText
+            appearingAnimation={'bounce-in-appear'}
+            delay={600 + (i + 1) * 75}
+            animationName="rubber-band"
+            text={letter}
+          />
+        ))}{' '}
         <AnimatedText
           appearingAnimation={'roll-in-left'}
           delay={1000}
-          animationName="spin"
+          animationName="spin-two-turns"
           text="w"
         />
         <AnimatedText

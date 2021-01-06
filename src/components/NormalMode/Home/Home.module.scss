@@ -14,20 +14,41 @@
     width: 45%;
 
     &:first-child {
-      @include flex(flex-start, space-between, column nowrap);
+      @include flex(flex-start, center, column nowrap);
     }
 
     &:last-child {
       @include flex(flex-start, space-between, column nowrap);
       opacity: 0;
       animation: fade-in-fwd 1500ms 2.5s forwards ease-in-out;
+      position: relative;
 
       button {
         @extend .Home__Presentation__Cta;
+        position: absolute;
+        right: 0;
         color: #fff;
         font-size: 1.4rem;
-        line-height: 1.5;
-        width: fit-content;
+        width: 3rem;
+        height: 3rem;
+
+        &.Spin {
+          animation: spin-one-turn 1s 1 both ease-in-out;
+        }
+
+        .Arrow {
+          position: absolute;
+
+          &:first-child {
+            left: 20%;
+            top: 10%;
+          }
+
+          &:last-child {
+            right: 20%;
+            bottom: 10%;
+          }
+        }
       }
     }
   }

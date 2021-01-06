@@ -514,7 +514,7 @@
 * ----------------------------------------
 */
 
-@keyframes spin {
+@keyframes spin-one-turn {
   0% {
     transform: rotate(0);
   }
@@ -523,16 +523,38 @@
   }
 
   35% {
-    transform: rotate(1090deg);
+    transform: rotate(370deg);
   }
 
   50%,
   55% {
-    transform: rotate(1100deg);
+    transform: rotate(380deg);
   }
 
   100% {
-    transform: rotate(1080deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-two-turns {
+  0% {
+    transform: rotate(0);
+  }
+  10% {
+    transform: rotate(-15deg);
+  }
+
+  35% {
+    transform: rotate(730deg);
+  }
+
+  50%,
+  55% {
+    transform: rotate(740deg);
+  }
+
+  100% {
+    transform: rotate(720deg);
   }
 }
 
