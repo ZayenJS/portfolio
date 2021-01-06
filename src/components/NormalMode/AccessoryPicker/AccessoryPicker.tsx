@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useEffect, useState } from 'react';
+import React, { FC, FormEvent, useState } from 'react';
 import Backdrop from '../../Backdrop/Backdrop';
 import Accessory from './Accessory/Accessory';
 
@@ -10,16 +10,22 @@ interface AccessoryPickerProps {
 }
 
 export type Accessories =
-  | 'beard'
-  | 'cap-cop'
+  | 'beard-black'
+  | 'big-chestnut-beard'
+  | 'cigarette'
+  | 'smoking-cigarette'
+  | 'smoking-pipe'
+  | 'monocle'
+  | 'blond-hair'
+  | 'hair-black'
+  | 'hair-chestnut-woman-1'
+  | 'hair-chestnut-woman-2'
+  | 'hair-purple-woman'
+  | 'viking-helmet'
   | 'cap-graduate'
-  | 'cap'
-  | 'eyeglasses'
-  | 'fangs-vampire'
-  | 'mustache'
-  | 'sunglasses'
-  | 'tie-striped'
-  | 'top-hat';
+  | 'melon-hat'
+  | 'mustache-gentleman'
+  | 'scar';
 
 interface AccessoryPickerState {
   selectedAccessories: Accessories[];
@@ -33,16 +39,22 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({
   const [state, setState] = useState<AccessoryPickerState>({
     selectedAccessories,
     accessories: [
-      'beard',
-      'cap',
-      'cap-cop',
+      'beard-black',
+      'big-chestnut-beard',
+      'cigarette',
+      'smoking-cigarette',
+      'smoking-pipe',
+      'monocle',
+      'blond-hair',
+      'hair-black',
+      'hair-chestnut-woman-1',
+      'hair-chestnut-woman-2',
+      'hair-purple-woman',
+      'viking-helmet',
       'cap-graduate',
-      'eyeglasses',
-      'fangs-vampire',
-      'mustache',
-      'sunglasses',
-      'tie-striped',
-      'top-hat',
+      'melon-hat',
+      'mustache-gentleman',
+      'scar',
     ],
   });
 
@@ -72,6 +84,13 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({
     setAccessories(state.selectedAccessories);
     hideAccessoryPicker();
   };
+
+  const removeAll = () => {
+    setState((prevState) => ({ ...prevState, selectedAccessories: [] }));
+    setAccessories([]);
+    hideAccessoryPicker();
+  };
+
   let message = 'Choisir';
 
   message +=
@@ -89,17 +108,24 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({
           <div className={styles.Cross} onClick={hideAccessoryPicker}>
             ✖
           </div>
-          <fieldset>
-            {state.accessories.map((accessory) => (
-              <Accessory
-                icon={true}
-                isSelected={state.selectedAccessories.includes(accessory)}
-                name={accessory}
-                selectAccessory={selectAccessory}
-              />
-            ))}
-          </fieldset>
-          <button>{message}</button>
+          <>
+            <fieldset>
+              {state.accessories.map((accessory) => (
+                <Accessory
+                  icon={true}
+                  isSelected={state.selectedAccessories.includes(accessory)}
+                  name={accessory}
+                  selectAccessory={selectAccessory}
+                />
+              ))}
+            </fieldset>
+            <div className={styles.ButtonsContainer}>
+              <button type="submit">{message}</button>
+              <button type="button" onClick={removeAll}>
+                Enlever tout
+              </button>
+            </div>
+          </>
         </form>
       </div>
     </>

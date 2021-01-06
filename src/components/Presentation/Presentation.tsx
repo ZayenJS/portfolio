@@ -46,9 +46,9 @@ const Presentation: FC<PresentationProps> = ({ classNames, appearingAnimation, d
           href="https://oclock.io/"
           target="_blank"
           rel="noopener noreferrer">
-          <div>
+          <span>
             <img src={require('../../assets/images/o-clock-full-cream.svg')} alt="logo O'Clock" />
-          </div>
+          </span>
         </a>
         .
       </p>

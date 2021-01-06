@@ -82,8 +82,16 @@
   animation: slit-in 1 1.5s normal none linear;
 }
 
-.Spin {
-  animation: spin 1 1000ms ease-out forwards;
+.SpinOneTurn {
+  animation: spin-one-turn 1 1000ms ease-out forwards;
+
+  &:hover {
+    color: $normal-secondary-color;
+  }
+}
+
+.SpinTwoTurns {
+  animation: spin-two-turns 1 1000ms ease-out forwards;
 
   &:hover {
     color: $normal-secondary-color;

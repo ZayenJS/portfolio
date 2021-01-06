@@ -74,8 +74,11 @@ const AnimatedText: FC<AnimatedTextProps> = ({
     case 'slit-in':
       animationClassName += 'SlitIn';
       break;
-    case 'spin':
-      animationClassName += 'Spin';
+    case 'spin-one-turn':
+      animationClassName += 'SpinOneTurn';
+      break;
+    case 'spin-two-turns':
+      animationClassName += 'SpinTwoTurns';
       break;
     case 'pulsate':
       animationClassName += 'Pulsate';

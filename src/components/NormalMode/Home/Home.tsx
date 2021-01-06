@@ -17,12 +17,14 @@ interface HomeProps {}
 interface HomeState {
   isAccessoriesPickerVisible: boolean;
   accessories: Accessories[];
+  isChangeAccessoryButtonHovered: boolean;
 }
 
 const Home: FC<HomeProps> = () => {
   const [state, setState] = useState<HomeState>({
     isAccessoriesPickerVisible: false,
-    accessories: ['mustache', 'top-hat', 'sunglasses'],
+    accessories: [],
+    isChangeAccessoryButtonHovered: false,
   });
 
   const setAccessories = (accessories: Accessories[]) => {
@@ -60,8 +62,13 @@ const Home: FC<HomeProps> = () => {
         {state.accessories.map((accessory) => (
           <Accessory key={accessory} name={accessory} />
         ))}
-        {state.isAccessoriesPickerVisible ? (
-          <Portal>
+        <Portal>
+          <div
+            style={
+              state.isAccessoriesPickerVisible
+                ? {}
+                : { opacity: 0, pointerEvents: 'none', zIndex: 0 }
+            }>
             <AccessoryPicker
               setAccessories={setAccessories}
               selectedAccessories={state.accessories}
@@ -69,11 +76,21 @@ const Home: FC<HomeProps> = () => {
                 setState((prevState) => ({ ...prevState, isAccessoriesPickerVisible: false }))
               }
             />
-          </Portal>
-        ) : null}
+          </div>
+        </Portal>
 
-        <button onClick={() => setState({ ...state, isAccessoriesPickerVisible: true })}>
-          Changer les accessoires
+        <button
+          title="Changer les accessoires"
+          className={state.isChangeAccessoryButtonHovered ? styles.Spin : ''}
+          onMouseEnter={() =>
+            setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: true }))
+          }
+          onAnimationEnd={() =>
+            setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: false }))
+          }
+          onClick={() => setState({ ...state, isAccessoriesPickerVisible: true })}>
+          <span className={styles.Arrow}>&larr;</span>
+          <span className={styles.Arrow}>&rarr;</span>
         </button>
       </motion.section>
     </motion.div>

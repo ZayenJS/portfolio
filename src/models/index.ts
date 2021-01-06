@@ -86,6 +86,7 @@ export type AnimationStyle =
   | 'newspaper'
   | 'focus-in-contract'
   | 'slit-in'
-  | 'spin'
+  | 'spin-one-turn'
+  | 'spin-two-turns'
   | 'pulsate'
   | 'scale-up-center';

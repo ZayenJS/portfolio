@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useRef } from 'react';
+import React, { FC, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 import { Accessories } from '../AccessoryPicker';
@@ -8,14 +8,13 @@ import styles from './Accessory.module.scss';
 interface AccessoryProps {
   name: Accessories;
   selectAccessory?: (newAccessoryName: Accessories) => void;
-
   icon?: boolean;
   isSelected?: boolean;
 }
 
 const Accessory: FC<AccessoryProps> = ({ icon, name, isSelected, selectAccessory }) => {
   const constraintsRef = useRef<HTMLElement>(document.body);
-  const source = require(`../../../../assets/images/accessories/${name}.svg`);
+  const source = require(`../../../../assets/images/accessories/${name}.png`);
 
   const className = name
     .split('-')
@@ -28,9 +27,8 @@ const Accessory: FC<AccessoryProps> = ({ icon, name, isSelected, selectAccessory
 
   return icon ? (
     <img
-      className={styles[`Icon__${className}`]}
+      className={[styles[`Icon__${className}`], isSelected ? styles.Selected : ''].join(' ')}
       onClick={onAccessoryClick}
-      style={isSelected ? { border: '2px solid #00ff94' } : {}}
       src={source}
       alt=""
     />
@@ -38,7 +36,7 @@ const Accessory: FC<AccessoryProps> = ({ icon, name, isSelected, selectAccessory
     <motion.img
       drag
       dragConstraints={constraintsRef}
-      className={styles[className]}
+      className={[styles.Accessory, styles[className]].join(' ')}
       src={source}
       alt=""
     />
