@@ -1,4 +1,5 @@
-import React, { FC, FormEvent, useState } from 'react';
+import { motion } from 'framer-motion';
+import React, { FC, FormEvent, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Accessories } from '../../../models';
 import { removeAllAccessories, setAccessories } from '../../../store/actions/normalMode';
@@ -13,13 +14,20 @@ interface AccessoryPickerProps {
 
 interface AccessoryPickerState {
   selectedAccessories: Accessories[];
+  isDraggable: boolean;
+  isMouseDown: boolean;
 }
 
 const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
+  const dragConstraints = useRef<HTMLElement>(document.body);
   const { accessories, selectedAccessories } = useSelector(
     (state: State) => state.normalMode.global,
   );
-  const [state, setState] = useState<AccessoryPickerState>({ selectedAccessories });
+  const [state, setState] = useState<AccessoryPickerState>({
+    selectedAccessories,
+    isDraggable: false,
+    isMouseDown: false,
+  });
   const dispatch = useDispatch();
 
   const selectAccessory = (name: Accessories) => {
@@ -57,14 +65,38 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
 
   if (!state.selectedAccessories.length) message = "Ne pas choisir d'accessoire";
 
+  const mouseDownHandler = (event: React.MouseEvent) => {
+    if ((event.target as HTMLDivElement).classList[0]?.includes('Cross')) {
+      return setState((prevState) => ({ ...prevState, isMouseDown: true, isDraggable: false }));
+    }
+    setState((prevState) => ({ ...prevState, isMouseDown: true }));
+  };
+
+  const setDraggable = () => {
+    if (!state.isMouseDown) {
+      return setState((prevState) => ({ ...prevState, isDraggable: false }));
+    }
+  };
+
   return (
     <>
       <Backdrop onBackdropClick={hideAccessoryPicker} />
       <div className={styles.AccessoryPicker}>
-        <form onSubmit={onFormSubmit}>
-          <div className={styles.Cross} onClick={hideAccessoryPicker}>
-            ✖
-          </div>
+        <motion.form
+          drag={state.isDraggable}
+          dragConstraints={dragConstraints}
+          dragMomentum={false}
+          onSubmit={onFormSubmit}>
+          <header
+            onMouseDown={mouseDownHandler}
+            onMouseUp={() => setState((prevState) => ({ ...prevState, isMouseDown: false }))}
+            onMouseEnter={() => setState((prevState) => ({ ...prevState, isDraggable: true }))}
+            onMouseLeave={setDraggable}>
+            <div>Choix des accessoires</div>
+            <div className={styles.Cross} onClick={hideAccessoryPicker}>
+              ✖
+            </div>
+          </header>
           <>
             <fieldset>
               {accessories.map((accessory) => (
@@ -83,7 +115,7 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
               </button>
             </div>
           </>
-        </form>
+        </motion.form>
       </div>
     </>
   );

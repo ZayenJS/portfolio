@@ -26,12 +26,15 @@ const Accessory: FC<AccessoryProps> = ({ icon, name, selectAccessory, isSelected
   };
 
   return icon ? (
-    <img
-      className={[styles[`Icon__${className}`], isSelected ? styles.Selected : ''].join(' ')}
+    <div
       onClick={onAccessoryClick}
-      src={source}
-      alt=""
-    />
+      className={[
+        styles.AccessoryContainer,
+        styles[`Icon__${className}`],
+        isSelected ? styles.Selected : '',
+      ].join(' ')}>
+      <img src={source} alt={`accessoire ${name}`} />
+    </div>
   ) : (
     <motion.img
       drag
