@@ -93,11 +93,12 @@ export type AnimationStyle =
 
 export type Accessories =
   | 'beard-black'
+  | 'black-suit-white-shirt'
   | 'blond-hair'
   | 'blunt-thug-life'
+  | 'bow-tie'
   | 'cap-graduate'
   | 'cap-scumbag'
-  | 'cigarette'
   | 'eyeglasses'
   | 'hair-black'
   | 'hair-chestnut-woman-1'
@@ -109,8 +110,23 @@ export type Accessories =
   | 'melon-hat'
   | 'monocle'
   | 'mustache-gentleman'
-  | 'scar'
+  | 'rose'
+  | 'round-glasses'
+  | 'shirt'
   | 'smoking-cigarette'
   | 'smoking-pipe'
+  | 'suit'
   | 'thug-life-glasses'
-  | 'viking-helmet';
+  | 'top-hat'
+  | 'viking-helmet'
+  | 'xmas-beard'
+  | 'xmas-hat';
+
+export interface Outfit {
+  'gentleman-1': Accessories[];
+  'gentleman-2': Accessories[];
+  cov19: Accessories[];
+  xmas: Accessories[];
+  godfather: Accessories[];
+  thug: Accessories[];
+}

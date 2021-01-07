@@ -88,13 +88,14 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
           dragMomentum={false}
           onSubmit={onFormSubmit}>
           <header
+            style={state.isMouseDown ? { cursor: 'grabbing' } : {}}
             onMouseDown={mouseDownHandler}
             onMouseUp={() => setState((prevState) => ({ ...prevState, isMouseDown: false }))}
             onMouseEnter={() => setState((prevState) => ({ ...prevState, isDraggable: true }))}
             onMouseLeave={setDraggable}>
             <div>Choix des accessoires</div>
             <div className={styles.Cross} onClick={hideAccessoryPicker}>
-              ✖
+              <span>✖</span>
             </div>
           </header>
           <>

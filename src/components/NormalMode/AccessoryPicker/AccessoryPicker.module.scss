@@ -19,6 +19,7 @@
     header {
       @include flex(center, center, row nowrap);
       position: relative;
+      cursor: grab;
       padding: 0 1rem;
       top: 0;
       left: 0;
@@ -66,19 +67,35 @@
 }
 
 .Cross {
-  width: fit-content !important;
-  display: inline-block;
   position: absolute;
   top: 50%;
-  right: 1rem;
+  right: 0;
+  width: 4rem;
+  height: 100%;
   transform: translateY(-50%);
   color: $normal-primary-color;
   font-size: 1.4rem;
   z-index: 1500;
   cursor: pointer;
+  background-color: transparent;
   transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
   &:hover {
-    transform: rotate(180deg) translateY(50%);
+    background-color: opacify($color: $normal-danger, $amount: 0.25);
+    span {
+      transform: rotate(180deg) translate(50%, 50%);
+      color: #fff;
+    }
+  }
+
+  span {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    right: 1rem;
+    width: fit-content !important;
+    transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 }
