@@ -90,3 +90,21 @@ export type AnimationStyle =
   | 'spin-two-turns'
   | 'pulsate'
   | 'scale-up-center';
+
+export type Accessories =
+  | 'beard-black'
+  | 'big-chestnut-beard'
+  | 'cigarette'
+  | 'smoking-cigarette'
+  | 'smoking-pipe'
+  | 'monocle'
+  | 'blond-hair'
+  | 'hair-black'
+  | 'hair-chestnut-woman-1'
+  | 'hair-chestnut-woman-2'
+  | 'hair-purple-woman'
+  | 'viking-helmet'
+  | 'cap-graduate'
+  | 'melon-hat'
+  | 'mustache-gentleman'
+  | 'scar';

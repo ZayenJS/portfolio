@@ -1,93 +1,47 @@
 import React, { FC, FormEvent, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Accessories } from '../../../models';
+import { removeAllAccessories, setAccessories } from '../../../store/actions/normalMode';
+import { State } from '../../../store/reducers';
 import Backdrop from '../../Backdrop/Backdrop';
 import Accessory from './Accessory/Accessory';
 
 import styles from './AccessoryPicker.module.scss';
 interface AccessoryPickerProps {
   hideAccessoryPicker: () => void;
-  setAccessories: (accessories: Accessories[]) => void;
-  selectedAccessories: Accessories[];
 }
-
-export type Accessories =
-  | 'beard-black'
-  | 'big-chestnut-beard'
-  | 'cigarette'
-  | 'smoking-cigarette'
-  | 'smoking-pipe'
-  | 'monocle'
-  | 'blond-hair'
-  | 'hair-black'
-  | 'hair-chestnut-woman-1'
-  | 'hair-chestnut-woman-2'
-  | 'hair-purple-woman'
-  | 'viking-helmet'
-  | 'cap-graduate'
-  | 'melon-hat'
-  | 'mustache-gentleman'
-  | 'scar';
 
 interface AccessoryPickerState {
   selectedAccessories: Accessories[];
-  accessories: Accessories[];
 }
-const AccessoryPicker: FC<AccessoryPickerProps> = ({
-  hideAccessoryPicker,
-  setAccessories,
-  selectedAccessories,
-}) => {
-  const [state, setState] = useState<AccessoryPickerState>({
-    selectedAccessories,
-    accessories: [
-      'beard-black',
-      'big-chestnut-beard',
-      'cigarette',
-      'smoking-cigarette',
-      'smoking-pipe',
-      'monocle',
-      'blond-hair',
-      'hair-black',
-      'hair-chestnut-woman-1',
-      'hair-chestnut-woman-2',
-      'hair-purple-woman',
-      'viking-helmet',
-      'cap-graduate',
-      'melon-hat',
-      'mustache-gentleman',
-      'scar',
-    ],
-  });
 
-  const selectAccessory = (newAccessoryName: Accessories) => {
-    const alreadyExist = state.selectedAccessories.find(
-      (accessory) => accessory === newAccessoryName,
-    );
+const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
+  const [state, setState] = useState<AccessoryPickerState>({ selectedAccessories: [] });
+  const dispatch = useDispatch();
+  const { accessories } = useSelector((state: State) => state.normalMode.global);
 
+  const selectAccessory = (name: Accessories) => {
+    const alreadyExist = state.selectedAccessories.find((accessory) => accessory === name);
     if (!alreadyExist) {
       return setState((prevState) => ({
         ...prevState,
-        selectedAccessories: [...state.selectedAccessories, newAccessoryName],
+        selectedAccessories: [...state.selectedAccessories, name],
       }));
     }
-
     setState((prevState) => ({
       ...prevState,
-      selectedAccessories: prevState.selectedAccessories.filter(
-        (accessory) => accessory !== newAccessoryName,
-      ),
+      selectedAccessories: state.selectedAccessories.filter((accessory) => accessory !== name),
     }));
   };
 
   const onFormSubmit = (event: FormEvent) => {
     event.preventDefault();
-
-    setAccessories(state.selectedAccessories);
+    dispatch(setAccessories(state.selectedAccessories));
     hideAccessoryPicker();
   };
 
   const removeAll = () => {
-    setState((prevState) => ({ ...prevState, selectedAccessories: [] }));
-    setAccessories([]);
+    dispatch(removeAllAccessories());
     hideAccessoryPicker();
   };
 
@@ -110,12 +64,12 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({
           </div>
           <>
             <fieldset>
-              {state.accessories.map((accessory) => (
+              {accessories.map((accessory) => (
                 <Accessory
-                  icon={true}
-                  isSelected={state.selectedAccessories.includes(accessory)}
-                  name={accessory}
                   selectAccessory={selectAccessory}
+                  isSelected={state.selectedAccessories.includes(accessory)}
+                  icon={true}
+                  name={accessory}
                 />
               ))}
             </fieldset>

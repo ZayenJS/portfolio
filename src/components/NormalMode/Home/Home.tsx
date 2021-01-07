@@ -1,36 +1,20 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
+
+import { pageTransition } from '../../../constants/framer-motion';
+
+import AnimatedTitle from './AnimatedTitle/AnimatedTitle';
+import Presentation from '../../Presentation/Presentation';
+import InteractivePicture from '../../InteractivePicture/InteractivePicture';
 
 import { baseTitle } from '../../../utils';
 
 import styles from './Home.module.scss';
-import { pageTransition } from '../../../constants/framer-motion';
-import AnimatedTitle from './AnimatedTitle/AnimatedTitle';
-import Presentation from '../../Presentation/Presentation';
-import AccessoryPicker, { Accessories } from '../AccessoryPicker/AccessoryPicker';
-import Portal from '../../Portal/Portal';
-import Accessory from '../AccessoryPicker/Accessory/Accessory';
 
 interface HomeProps {}
 
-interface HomeState {
-  isAccessoriesPickerVisible: boolean;
-  accessories: Accessories[];
-  isChangeAccessoryButtonHovered: boolean;
-}
-
 const Home: FC<HomeProps> = () => {
-  const [state, setState] = useState<HomeState>({
-    isAccessoriesPickerVisible: false,
-    accessories: [],
-    isChangeAccessoryButtonHovered: false,
-  });
-
-  const setAccessories = (accessories: Accessories[]) => {
-    setState((prevState) => ({ ...prevState, accessories }));
-  };
-
   return (
     <motion.div
       initial="initial"
@@ -53,46 +37,7 @@ const Home: FC<HomeProps> = () => {
           delay={2300}
         />
       </section>
-      <motion.section>
-        <img
-          className={styles.Me}
-          src={require('../../../assets/images/david-detour.png')}
-          alt=""
-        />
-        {state.accessories.map((accessory) => (
-          <Accessory key={accessory} name={accessory} />
-        ))}
-        <Portal>
-          <div
-            style={
-              state.isAccessoriesPickerVisible
-                ? {}
-                : { opacity: 0, pointerEvents: 'none', zIndex: 0 }
-            }>
-            <AccessoryPicker
-              setAccessories={setAccessories}
-              selectedAccessories={state.accessories}
-              hideAccessoryPicker={() =>
-                setState((prevState) => ({ ...prevState, isAccessoriesPickerVisible: false }))
-              }
-            />
-          </div>
-        </Portal>
-
-        <button
-          title="Changer les accessoires"
-          className={state.isChangeAccessoryButtonHovered ? styles.Spin : ''}
-          onMouseEnter={() =>
-            setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: true }))
-          }
-          onAnimationEnd={() =>
-            setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: false }))
-          }
-          onClick={() => setState({ ...state, isAccessoriesPickerVisible: true })}>
-          <span className={styles.Arrow}>&larr;</span>
-          <span className={styles.Arrow}>&rarr;</span>
-        </button>
-      </motion.section>
+      <InteractivePicture src={require('../../../assets/images/david-detour.png')} />
     </motion.div>
   );
 };
