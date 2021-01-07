@@ -32,7 +32,7 @@ const INITIAL_STATE: globalState = {
     'mustache-gentleman',
     'scar',
   ],
-  selectedAccessories: [],
+  selectedAccessories: ['melon-hat', 'monocle', 'mustache-gentleman', 'smoking-pipe'],
 };
 
 const reducer = (state: globalState = INITIAL_STATE, action: GlobalActions): globalState => {

@@ -2,10 +2,10 @@
 @import '../../assets/scss/keyframes';
 
 .InteractivePicture {
-  @include flex(flex-start, space-between, column nowrap);
   opacity: 0;
   animation: fade-in-fwd 1500ms 2.5s forwards ease-in-out;
   position: relative;
+  width: 35% !important;
 
   button {
     position: absolute;

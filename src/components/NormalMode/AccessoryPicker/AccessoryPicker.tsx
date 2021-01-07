@@ -16,9 +16,11 @@ interface AccessoryPickerState {
 }
 
 const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
-  const [state, setState] = useState<AccessoryPickerState>({ selectedAccessories: [] });
+  const { accessories, selectedAccessories } = useSelector(
+    (state: State) => state.normalMode.global,
+  );
+  const [state, setState] = useState<AccessoryPickerState>({ selectedAccessories });
   const dispatch = useDispatch();
-  const { accessories } = useSelector((state: State) => state.normalMode.global);
 
   const selectAccessory = (name: Accessories) => {
     const alreadyExist = state.selectedAccessories.find((accessory) => accessory === name);
@@ -41,6 +43,7 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
   };
 
   const removeAll = () => {
+    setState((prevState) => ({ ...prevState, selectedAccessories: [] }));
     dispatch(removeAllAccessories());
     hideAccessoryPicker();
   };
