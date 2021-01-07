@@ -1,35 +1,55 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
+
+import { pageTransition } from '../../../constants/framer-motion';
+
+import AnimatedTitle from './AnimatedTitle/AnimatedTitle';
+import Presentation from '../../Presentation/Presentation';
+import InteractivePicture from '../../InteractivePicture/InteractivePicture';
 
 import { baseTitle } from '../../../utils';
 
 import styles from './Home.module.scss';
-import { pageTransition } from '../../../constants/framer-motion';
-import AnimatedTitle from './AnimatedTitle/AnimatedTitle';
-import Presentation from '../../Presentation/Presentation';
-import AccessoryPicker, { Accessories } from '../AccessoryPicker/AccessoryPicker';
-import Portal from '../../Portal/Portal';
-import Accessory from '../AccessoryPicker/Accessory/Accessory';
+import { useSelector } from 'react-redux';
+import { State } from '../../../store/reducers';
 
 interface HomeProps {}
 
-interface HomeState {
-  isAccessoriesPickerVisible: boolean;
-  accessories: Accessories[];
-  isChangeAccessoryButtonHovered: boolean;
-}
-
 const Home: FC<HomeProps> = () => {
-  const [state, setState] = useState<HomeState>({
-    isAccessoriesPickerVisible: false,
-    accessories: [],
-    isChangeAccessoryButtonHovered: false,
-  });
+  const { selectedAccessories } = useSelector((state: State) => state.normalMode.global);
 
-  const setAccessories = (accessories: Accessories[]) => {
-    setState((prevState) => ({ ...prevState, accessories }));
-  };
+  useEffect(() => {
+    let audio = new Audio();
+
+    if (
+      selectedAccessories.includes('thug-life-glasses') &&
+      selectedAccessories.includes('blunt-thug-life')
+    ) {
+      audio.src = require('../../../assets/sounds/thug-life-music.mp3');
+    } else if (
+      selectedAccessories.includes('xmas-beard') &&
+      selectedAccessories.includes('xmas-hat') &&
+      selectedAccessories.includes('round-glasses')
+    ) {
+      audio.src = require('../../../assets/sounds/all-i-want.mp3');
+    } else if (
+      selectedAccessories.includes('black-suit-white-shirt') &&
+      selectedAccessories.includes('bow-tie') &&
+      selectedAccessories.includes('rose')
+    ) {
+      audio.src = require('../../../assets/sounds/godfather.mp3');
+    }
+
+    if (audio.src) {
+      audio.play();
+    }
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [selectedAccessories]);
 
   return (
     <motion.div
@@ -53,46 +73,7 @@ const Home: FC<HomeProps> = () => {
           delay={2300}
         />
       </section>
-      <motion.section>
-        <img
-          className={styles.Me}
-          src={require('../../../assets/images/david-detour.png')}
-          alt=""
-        />
-        {state.accessories.map((accessory) => (
-          <Accessory key={accessory} name={accessory} />
-        ))}
-        <Portal>
-          <div
-            style={
-              state.isAccessoriesPickerVisible
-                ? {}
-                : { opacity: 0, pointerEvents: 'none', zIndex: 0 }
-            }>
-            <AccessoryPicker
-              setAccessories={setAccessories}
-              selectedAccessories={state.accessories}
-              hideAccessoryPicker={() =>
-                setState((prevState) => ({ ...prevState, isAccessoriesPickerVisible: false }))
-              }
-            />
-          </div>
-        </Portal>
-
-        <button
-          title="Changer les accessoires"
-          className={state.isChangeAccessoryButtonHovered ? styles.Spin : ''}
-          onMouseEnter={() =>
-            setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: true }))
-          }
-          onAnimationEnd={() =>
-            setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: false }))
-          }
-          onClick={() => setState({ ...state, isAccessoriesPickerVisible: true })}>
-          <span className={styles.Arrow}>&larr;</span>
-          <span className={styles.Arrow}>&rarr;</span>
-        </button>
-      </motion.section>
+      <InteractivePicture src={require('../../../assets/images/david-detour.png')} />
     </motion.div>
   );
 };

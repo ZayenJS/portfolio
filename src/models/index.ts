@@ -90,3 +90,43 @@ export type AnimationStyle =
   | 'spin-two-turns'
   | 'pulsate'
   | 'scale-up-center';
+
+export type Accessories =
+  | 'beard-black'
+  | 'black-suit-white-shirt'
+  | 'blond-hair'
+  | 'blunt-thug-life'
+  | 'bow-tie'
+  | 'cap-graduate'
+  | 'cap-scumbag'
+  | 'eyeglasses'
+  | 'hair-black'
+  | 'hair-chestnut-woman-1'
+  | 'hair-chestnut-woman-2'
+  | 'hair-purple-woman'
+  | 'mask-groucho'
+  | 'mask-guy-fawkes'
+  | 'mask'
+  | 'melon-hat'
+  | 'monocle'
+  | 'mustache-gentleman'
+  | 'rose'
+  | 'round-glasses'
+  | 'shirt'
+  | 'smoking-cigarette'
+  | 'smoking-pipe'
+  | 'suit'
+  | 'thug-life-glasses'
+  | 'top-hat'
+  | 'viking-helmet'
+  | 'xmas-beard'
+  | 'xmas-hat';
+
+export interface Outfit {
+  'gentleman-1': Accessories[];
+  'gentleman-2': Accessories[];
+  cov19: Accessories[];
+  xmas: Accessories[];
+  godfather: Accessories[];
+  thug: Accessories[];
+}

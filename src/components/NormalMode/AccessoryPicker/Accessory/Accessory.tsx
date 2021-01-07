@@ -1,18 +1,18 @@
 import React, { FC, useRef } from 'react';
 import { motion } from 'framer-motion';
 
-import { Accessories } from '../AccessoryPicker';
+import { Accessories } from '../../../../models';
 
 import styles from './Accessory.module.scss';
 
 interface AccessoryProps {
   name: Accessories;
-  selectAccessory?: (newAccessoryName: Accessories) => void;
   icon?: boolean;
+  selectAccessory?: (name: Accessories) => void;
   isSelected?: boolean;
 }
 
-const Accessory: FC<AccessoryProps> = ({ icon, name, isSelected, selectAccessory }) => {
+const Accessory: FC<AccessoryProps> = ({ icon, name, selectAccessory, isSelected }) => {
   const constraintsRef = useRef<HTMLElement>(document.body);
   const source = require(`../../../../assets/images/accessories/${name}.png`);
 
@@ -26,12 +26,15 @@ const Accessory: FC<AccessoryProps> = ({ icon, name, isSelected, selectAccessory
   };
 
   return icon ? (
-    <img
-      className={[styles[`Icon__${className}`], isSelected ? styles.Selected : ''].join(' ')}
+    <div
       onClick={onAccessoryClick}
-      src={source}
-      alt=""
-    />
+      className={[
+        styles.AccessoryContainer,
+        styles[`Icon__${className}`],
+        isSelected ? styles.Selected : '',
+      ].join(' ')}>
+      <img src={source} alt={`accessoire ${name}`} />
+    </div>
   ) : (
     <motion.img
       drag

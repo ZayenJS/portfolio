@@ -1,93 +1,58 @@
-import React, { FC, FormEvent, useState } from 'react';
+import { motion } from 'framer-motion';
+import React, { FC, FormEvent, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Accessories } from '../../../models';
+import { removeAllAccessories, setAccessories } from '../../../store/actions/normalMode';
+import { State } from '../../../store/reducers';
 import Backdrop from '../../Backdrop/Backdrop';
 import Accessory from './Accessory/Accessory';
 
 import styles from './AccessoryPicker.module.scss';
 interface AccessoryPickerProps {
   hideAccessoryPicker: () => void;
-  setAccessories: (accessories: Accessories[]) => void;
-  selectedAccessories: Accessories[];
 }
-
-export type Accessories =
-  | 'beard-black'
-  | 'big-chestnut-beard'
-  | 'cigarette'
-  | 'smoking-cigarette'
-  | 'smoking-pipe'
-  | 'monocle'
-  | 'blond-hair'
-  | 'hair-black'
-  | 'hair-chestnut-woman-1'
-  | 'hair-chestnut-woman-2'
-  | 'hair-purple-woman'
-  | 'viking-helmet'
-  | 'cap-graduate'
-  | 'melon-hat'
-  | 'mustache-gentleman'
-  | 'scar';
 
 interface AccessoryPickerState {
   selectedAccessories: Accessories[];
-  accessories: Accessories[];
+  isDraggable: boolean;
+  isMouseDown: boolean;
 }
-const AccessoryPicker: FC<AccessoryPickerProps> = ({
-  hideAccessoryPicker,
-  setAccessories,
-  selectedAccessories,
-}) => {
+
+const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
+  const dragConstraints = useRef<HTMLElement>(document.body);
+  const { accessories, selectedAccessories } = useSelector(
+    (state: State) => state.normalMode.global,
+  );
   const [state, setState] = useState<AccessoryPickerState>({
     selectedAccessories,
-    accessories: [
-      'beard-black',
-      'big-chestnut-beard',
-      'cigarette',
-      'smoking-cigarette',
-      'smoking-pipe',
-      'monocle',
-      'blond-hair',
-      'hair-black',
-      'hair-chestnut-woman-1',
-      'hair-chestnut-woman-2',
-      'hair-purple-woman',
-      'viking-helmet',
-      'cap-graduate',
-      'melon-hat',
-      'mustache-gentleman',
-      'scar',
-    ],
+    isDraggable: false,
+    isMouseDown: false,
   });
+  const dispatch = useDispatch();
 
-  const selectAccessory = (newAccessoryName: Accessories) => {
-    const alreadyExist = state.selectedAccessories.find(
-      (accessory) => accessory === newAccessoryName,
-    );
-
+  const selectAccessory = (name: Accessories) => {
+    const alreadyExist = state.selectedAccessories.find((accessory) => accessory === name);
     if (!alreadyExist) {
       return setState((prevState) => ({
         ...prevState,
-        selectedAccessories: [...state.selectedAccessories, newAccessoryName],
+        selectedAccessories: [...state.selectedAccessories, name],
       }));
     }
-
     setState((prevState) => ({
       ...prevState,
-      selectedAccessories: prevState.selectedAccessories.filter(
-        (accessory) => accessory !== newAccessoryName,
-      ),
+      selectedAccessories: state.selectedAccessories.filter((accessory) => accessory !== name),
     }));
   };
 
   const onFormSubmit = (event: FormEvent) => {
     event.preventDefault();
-
-    setAccessories(state.selectedAccessories);
+    dispatch(setAccessories(state.selectedAccessories));
     hideAccessoryPicker();
   };
 
   const removeAll = () => {
     setState((prevState) => ({ ...prevState, selectedAccessories: [] }));
-    setAccessories([]);
+    dispatch(removeAllAccessories());
     hideAccessoryPicker();
   };
 
@@ -100,22 +65,47 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({
 
   if (!state.selectedAccessories.length) message = "Ne pas choisir d'accessoire";
 
+  const mouseDownHandler = (event: React.MouseEvent) => {
+    if ((event.target as HTMLDivElement).classList[0]?.includes('Cross')) {
+      return setState((prevState) => ({ ...prevState, isMouseDown: true, isDraggable: false }));
+    }
+    setState((prevState) => ({ ...prevState, isMouseDown: true }));
+  };
+
+  const setDraggable = () => {
+    if (!state.isMouseDown) {
+      return setState((prevState) => ({ ...prevState, isDraggable: false }));
+    }
+  };
+
   return (
     <>
       <Backdrop onBackdropClick={hideAccessoryPicker} />
       <div className={styles.AccessoryPicker}>
-        <form onSubmit={onFormSubmit}>
-          <div className={styles.Cross} onClick={hideAccessoryPicker}>
-            ✖
-          </div>
+        <motion.form
+          drag={state.isDraggable}
+          dragConstraints={dragConstraints}
+          dragMomentum={false}
+          onSubmit={onFormSubmit}>
+          <header
+            style={state.isMouseDown ? { cursor: 'grabbing' } : {}}
+            onMouseDown={mouseDownHandler}
+            onMouseUp={() => setState((prevState) => ({ ...prevState, isMouseDown: false }))}
+            onMouseEnter={() => setState((prevState) => ({ ...prevState, isDraggable: true }))}
+            onMouseLeave={setDraggable}>
+            <div>Choix des accessoires</div>
+            <div className={styles.Cross} onClick={hideAccessoryPicker}>
+              <span>✖</span>
+            </div>
+          </header>
           <>
             <fieldset>
-              {state.accessories.map((accessory) => (
+              {accessories.map((accessory) => (
                 <Accessory
-                  icon={true}
-                  isSelected={state.selectedAccessories.includes(accessory)}
-                  name={accessory}
                   selectAccessory={selectAccessory}
+                  isSelected={state.selectedAccessories.includes(accessory)}
+                  icon={true}
+                  name={accessory}
                 />
               ))}
             </fieldset>
@@ -126,7 +116,7 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({
               </button>
             </div>
           </>
-        </form>
+        </motion.form>
       </div>
     </>
   );
