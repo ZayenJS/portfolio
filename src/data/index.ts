@@ -22,7 +22,9 @@ import socketIo from '../assets/images/icons/socket.svg';
 export const projs: IWorkProject[] = [
   {
     name: 'brownskin beauty',
-    description: 'Site vitrine réalisé pour une cliente créatrice de cosmétiques en tout genre.',
+    description: `Site vitrine réalisé pour une cliente
+      créatrice de cosmétiques en tout genre.
+      Je me suis chargé du code, du design et du logo et de la mise en ligne.`,
     image: brownskinBeautyImage1,
     gallery: [brownskinBeautyImage1],
     url: 'http://brownskinbeauty.fr',
@@ -35,8 +37,11 @@ export const projs: IWorkProject[] = [
   },
   {
     name: 'Find Your Way',
-    description:
-      "Petit jeu réalisé en javascript dans le cadre de ma formation developpeur web fullstack javascript chez O'Clock. (mon meilleur score : niveau 46 😉)",
+    description: `Petit jeu réalisé en javascript dans le cadre de
+      ma formation developpeur web fullstack javascript chez O'Clock.
+      J'y ai ajouté quelques fonctionnalités suplémentaires
+      comme par exemple : pièges, vies, niveaux
+      (mon meilleur score : niveau 46 😉).`,
     image: rpgGameImage1,
     gallery: [rpgGameImage1],
     url: 'https://zayenjs.github.io/find-your-way-game/',
@@ -49,7 +54,7 @@ export const projs: IWorkProject[] = [
   },
   {
     name: "sensi'me",
-    description: 'Blog crée pour une cliente.',
+    description: 'Blog crée pour une cliente sans CMS.',
     image: sensimeImage1,
     gallery: [sensimeImage1],
     url: '',
@@ -65,8 +70,12 @@ export const projs: IWorkProject[] = [
   },
   {
     name: 'The Tavern',
-    description:
-      "Site réalisé dans le cadre du projet de fin de formation de la formation developpeur web fullstack JS de l'école O'Clock. Il s'agit du premier réseau social dédié au jeu de rôle.",
+    description: `Site réalisé dans le cadre du projet de fin
+      de formation de la formation developpeur web
+      fullstack JS de l'école O'Clock.
+      Il s'agit du premier réseau social dédié au jeu de rôle.
+      Il est composé de deux parties principales :
+      un fil d'actualité et une salle de jeu avec chat et partage d'écran.`,
     image: theTavernImage1,
     gallery: [theTavernImage1, rjsImage1, brownskinBeautyImage1],
     repository: 'https://github.com/the-tavern-social-network/the-tavern',
@@ -81,8 +90,10 @@ export const projs: IWorkProject[] = [
   },
   {
     name: 'covid tracker',
-    description:
-      "Application permettant de suivre l'évolution du COVID-19 au fil du temps par pays ou globalement.",
+    description: `Application permettant de suivre l'évolution
+      du COVID-19 au fil du temps par pays ou globalement.
+      L'application permet aussi d'obtenir les dernières infos
+      du covid par pays.`,
     image: covidTrackerImage1,
     gallery: [covidTrackerImage1],
     url: '',
@@ -96,8 +107,11 @@ export const projs: IWorkProject[] = [
   },
   {
     name: 'cli-rjs',
-    description:
-      " It's a tool to help speed up productivity in React projects and stop copying, pasting, and renaming files each time you want to create a new component. It can init a new project (thanks to create-react-app) or create components from the command line",
+    description: `Mon premier package NPM ! Il sert à améliorer la productivité dans un projet react
+      et permet d'arrêter les copier-coller en tout genre lors de la création de composants.
+      Il est capable de créer un nouveau projet avec des options afin d'initialiser le projet avec typescript,
+      redux, ou bien react-router directement à la création du projet.
+      Il permet aussi de créer des composants directement en ligne de commande.`,
     image: rjsImage1,
     url: 'https://www.npmjs.com/package/cli-rjs',
     repository: 'https://github.com/rjs-cli/rjs-cli',
