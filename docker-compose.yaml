@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  front:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: portfolio-front
+    expose:
+      - 8011
+    ports:
+      - 8011:3000
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - back
+    restart: unless-stopped
+
+  back:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: portfolio-back
+    expose:
+      - 8010
+    ports:
+      - 8010:3000
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres
+    container_name: portfolio-db
+    ports:
+      - 5555:5432
+    environment:
+      POSTGRES_PASSWORD: portfolio
+      POSTGRES_USER: portfolio
+    volumes:
+      - portfolio-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  typeorm:
+    build:
+      context: ./server
+      dockerfile: typeorm/Dockerfile
+    volumes:
+      - ./server:/app
+    entrypoint: ['typeorm']
+
+volumes:
+  portfolio-data:

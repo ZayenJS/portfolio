@@ -1,0 +1,61 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  username: String!
+  email: String!
+  type: String!
+  createdAt: String!
+  updatedAt: String
+}
+
+type Project {
+  id: ID!
+  name: String!
+  description: String!
+  url: String!
+  repository: String!
+  createdAt: String!
+  updatedAt: String
+  images: String!
+  technologies: [Technology!]!
+}
+
+type Technology {
+  id: ID!
+  name: String!
+  icon_url: String!
+  createdAt: String!
+  updatedAt: String
+  projects: [Project!]!
+}
+
+type Error {
+  field: String
+  type: String
+  message: String!
+}
+
+type UserResponse {
+  errors: [Error!]
+  user: User
+}
+
+type Query {
+  hello: String!
+  checkAuth: UserResponse!
+}
+
+type Mutation {
+  login(data: UserLoginData!): UserResponse!
+  logout: Boolean!
+}
+
+input UserLoginData {
+  emailOrUsername: String!
+  password: String!
+}
