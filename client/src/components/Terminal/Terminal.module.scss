@@ -1,0 +1,56 @@
+@import '../../assets/scss/variables';
+
+.Terminal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px var(--dark-color);
+  height: 50rem;
+  width: 65rem;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Fira Code', monospace;
+
+  &:not(.Focused) {
+    .Terminal_Content {
+      filter: brightness(80%);
+    }
+  }
+
+  &_Content {
+    opacity: 0.95;
+    background-color: var(--dark-color);
+    padding: 0 0.5rem;
+    height: calc(100% - 3rem);
+    overflow: hidden auto;
+    transition: filter 200ms ease;
+  }
+
+  &_Main {
+    font-size: 1.15em;
+  }
+
+  &_LsResult {
+    border: none;
+    background-color: rgb(23, 68, 23);
+    color: #fff;
+    margin-right: 2rem;
+    font-size: 1em;
+
+    &:focus {
+      background-color: rgb(23, 68, 23);
+    }
+
+    &:hover {
+      background-color: green;
+    }
+
+    &:disabled {
+      cursor: default;
+      &:hover {
+        background-color: rgb(23, 68, 23);
+      }
+    }
+  }
+}

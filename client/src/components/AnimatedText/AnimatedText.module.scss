@@ -1,0 +1,111 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/keyframes';
+
+.AnimatedText {
+  display: inline-block;
+  user-select: none;
+}
+
+.RubberBand {
+  animation: rubber-band 1.3s both 1;
+
+  &:hover {
+    color: $normal-secondary-color;
+  }
+}
+
+.ShadowDropCenter {
+  animation: shadow-drop-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.Wave {
+  transform-origin: 70% 70%;
+  animation: wave 1.5s 1 alternate forwards;
+
+  &Appear {
+    @extend .Wave;
+    opacity: 0;
+    animation: wave-appear 1.5s 1 alternate forwards;
+  }
+}
+
+.BounceIn {
+  animation: bounce-in 1s both ease-in-out;
+}
+
+.BounceInLeft {
+  animation: bounce-in-left 1.1s both;
+}
+
+.BounceInTop {
+  animation: bounce-in-top 1.1s both;
+}
+
+.BounceInForward {
+  animation: bounce-in-fwd 1.1s both;
+}
+
+.BounceInAppear {
+  animation: bounce-in-appear 0.75s both;
+}
+
+.RollInLeft {
+  animation: roll-in-left 0.6s ease-out both;
+}
+
+.FadeInForward {
+  animation: fade-in-fwd 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.PuffInVertical {
+  opacity: 0;
+  animation: puff-in-vertical 1s 1 normal none ease;
+}
+
+.PuffInHorizontal {
+  opacity: 0;
+  animation: puff-in-horizontal 1s 1 normal none ease;
+}
+
+.Newspaper {
+  opacity: 0;
+  animation: newspaper 750ms 1 normal none ease-out;
+}
+
+.FocusInContract {
+  opacity: 0;
+  animation: focus-in-contract 1 750ms normal none ease;
+}
+
+.SlitIn {
+  opacity: 0;
+  animation: slit-in 1 1.5s normal none linear;
+}
+
+.SpinOneTurn {
+  animation: spin-one-turn 1 1000ms ease-out forwards;
+
+  &:hover {
+    color: $normal-secondary-color;
+  }
+}
+
+.SpinTwoTurns {
+  animation: spin-two-turns 1 1000ms ease-out forwards;
+
+  &:hover {
+    color: $normal-secondary-color;
+  }
+}
+
+.Pulsate {
+  animation: pulsate 1 800ms ease-out forwards;
+
+  &:hover {
+    color: $normal-secondary-color;
+  }
+}
+
+.ScaleUpCenter {
+  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}

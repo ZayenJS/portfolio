@@ -1,0 +1,24 @@
+@import '../../assets/scss/variables';
+
+@keyframes unmount {
+  from {
+    background-color: #fff;
+    opacity: 1;
+  }
+  to {
+    background-color: #222;
+    opacity: 0;
+  }
+}
+
+.Portfolio {
+  ::selection {
+    background-color: #9cdcfe3a;
+  }
+
+  &__Unmount {
+    @extend .Portfolio;
+
+    animation: unmount 1000ms forwards ease;
+  }
+}

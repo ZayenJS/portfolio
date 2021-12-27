@@ -1,0 +1,78 @@
+@import '../../../../../assets/scss/';
+
+.Project {
+  @include flex(stretch, flex-start, column nowrap);
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+
+  img {
+    margin-right: 0.5rem;
+    width: 1rem;
+  }
+
+  &__Header {
+    @include flex(center, center, row nowrap);
+    font-size: 1.1em;
+
+    h3 {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    &__Chevron {
+      transform: rotate(90deg);
+      margin-right: 0.25rem;
+
+      &::before {
+        font-family: $icomoon-font-family;
+        content: $icon-chevron-right;
+      }
+    }
+
+    &__Container {
+      @include flex(center, flex-start, row nowrap);
+      height: 1.1rem;
+    }
+  }
+
+  &__Body {
+    @include flex(stretch, center, column nowrap);
+    text-transform: none;
+    padding: 0.5rem 0;
+
+    a,
+    span {
+      cursor: pointer;
+    }
+
+    &__Items {
+      @include flex(center, flex-start, row nowrap);
+      padding: 0.25rem 1rem;
+
+      transition: background-color 250ms ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 200ms ease;
+      }
+
+      &__Active {
+        background-color: rgba(34, 91, 216, 0.25);
+      }
+    }
+
+    &__HireMe {
+      @extend .Project__Body__Items;
+    }
+
+    &__Readme {
+      @extend .Project__Body__Items;
+    }
+
+    &__YarnLock {
+      @extend .Project__Body__Items;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+@import '../../../assets/scss/variables';
+
+.AccessoryPicker {
+  @include flex(center, center, row nowrap);
+  position: fixed;
+  width: fit-content;
+  top: 50%;
+  left: 50%;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+
+  form {
+    background-color: #dfdfdf;
+    padding-bottom: 2rem;
+    position: relative;
+    text-align: center;
+
+    header {
+      @include flex(center, center, row nowrap);
+      position: relative;
+      cursor: grab;
+      padding: 0 1rem;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    }
+
+    div:first-child {
+      @include flex(center, center, row nowrap);
+      width: 90%;
+      margin: auto;
+      height: 100%;
+      font-size: 1.2em;
+    }
+
+    fieldset {
+      display: grid;
+      padding: 2rem;
+      grid-template-columns: repeat(6, 1fr);
+      place-items: stretch;
+      gap: 1rem;
+    }
+  }
+}
+
+.ButtonsContainer {
+  @include flex(center, space-around, row wrap);
+
+  button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: $normal-primary-color;
+    background-color: transparent;
+    border: 1px solid $normal-primary-color;
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+      background-color: $normal-primary-color;
+      color: $normal-secondary-color;
+    }
+  }
+}
+
+.Cross {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 4rem;
+  height: 100%;
+  transform: translateY(-50%);
+  color: $normal-primary-color;
+  font-size: 1.4rem;
+  z-index: 1500;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  &:hover {
+    background-color: opacify($color: $normal-danger, $amount: 0.25);
+    span {
+      transform: rotate(180deg) translate(50%, 50%);
+      color: #fff;
+    }
+  }
+
+  span {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    right: 1rem;
+    width: fit-content !important;
+    transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}

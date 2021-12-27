@@ -1,0 +1,13 @@
+@import '../../../assets/scss/variables';
+
+.Container {
+  @include flex(center, space-between);
+  padding: 0 1rem;
+  background-color: #151824;
+  color: #fff;
+}
+
+.Left {
+  @include flex(center);
+  gap: 2rem;
+}

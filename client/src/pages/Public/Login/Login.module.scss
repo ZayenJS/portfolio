@@ -1,0 +1,10 @@
+// @import "path_to_file";
+
+.Container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  width: 100%;
+}

@@ -1,0 +1,41 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/keyframes';
+
+.Presentation {
+  position: relative;
+}
+
+.Oclock {
+  display: inline-block;
+  border-bottom: 2px solid $normal-secondary-color;
+
+  span {
+    @include flex(center, center, row nowrap);
+    position: relative;
+    padding: 0.3rem 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      height: 0.38rem;
+      width: 0.38rem;
+      background-color: red;
+      top: 0.3rem;
+      left: 0.9rem;
+    }
+  }
+
+  img {
+    width: 5rem;
+    position: relative;
+  }
+}
+
+.Cta {
+  animation: rubber-band 1.3s both 1 ease-in-out;
+}
+
+.FadeInForward {
+  animation: fade-in-fwd 0.8s both ease-in-out;
+}

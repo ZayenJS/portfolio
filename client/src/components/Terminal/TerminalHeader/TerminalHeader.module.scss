@@ -1,0 +1,142 @@
+@import '../../../assets/scss/variables';
+
+$hover-color: lighten(purple, 20%);
+
+.Container {
+  @include flex(center, space-between);
+  background-color: #0c0e14;
+  padding: 1rem;
+  height: 3rem;
+  transition: color 200ms ease;
+  color: #ddd;
+  cursor: default;
+
+  svg {
+    transition: color 200ms ease;
+  }
+
+  &:active {
+    cursor: move;
+  }
+
+  &:not(.Focused) {
+    filter: brightness(92%);
+    color: #999;
+
+    svg {
+      filter: brightness(0.5);
+    }
+
+    .Action_Button {
+      background-color: grey;
+    }
+  }
+}
+
+.Menu {
+  @include flex(center, center);
+  gap: 1rem;
+}
+
+.Add_Tab {
+  @include flex(center, center);
+  gap: 1rem;
+}
+
+.Tab_Count {
+  @include flex(center, center);
+  gap: 0.5rem;
+  transition: color 200ms ease;
+
+  &:hover {
+    color: $hover-color;
+
+    &:after {
+      color: $hover-color;
+    }
+  }
+
+  &:after {
+    font-family: $portfolio-font-family;
+    content: $p-dropdown-arrow;
+  }
+}
+
+.Plus {
+  &:before {
+    font-family: $portfolio-font-family;
+    content: $p-plus;
+    transition: color 200ms ease;
+  }
+
+  &:hover:before {
+    color: $hover-color;
+  }
+}
+
+.Action_Buttons {
+  @include flex(center, center);
+  gap: 0.75rem;
+}
+
+.Action_Button {
+  @include flex(center, center);
+  height: 1rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  cursor: default;
+  transition: background-color 200ms ease;
+
+  &:before {
+    opacity: 0;
+    font-family: $portfolio-font-family;
+    transition: opacity 200ms ease;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &:nth-child(1) {
+    background-color: gold;
+
+    &:before {
+      content: $p-dash;
+      color: darken(gold, 25%);
+    }
+
+    &:hover {
+      background-color: gold;
+    }
+  }
+
+  &:nth-child(2) {
+    background-color: purple;
+
+    &:before {
+      content: $p-forbid;
+      transform: rotate(90deg);
+      font-weight: bold;
+      color: purple;
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  &:nth-child(3) {
+    background-color: red;
+    padding: 0.5rem;
+
+    &:before {
+      content: $p-cross;
+      transform: scale(0.9);
+      color: darken(red, 15%);
+    }
+
+    &:hover {
+      background-color: red;
+    }
+  }
+}

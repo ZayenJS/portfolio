@@ -1,0 +1,56 @@
+@import '../../../../assets/scss/variables';
+
+.SearchBar {
+  position: relative;
+  width: 21.5rem;
+  height: 100%;
+  background-color: rgba(60, 60, 60, 0.5);
+
+  &:hover {
+    background-color: rgba(100, 100, 100, 0.25);
+  }
+
+  &::after {
+    content: $icon-search;
+    font-family: $icomoon-font-family;
+    position: absolute;
+    top: 50%;
+    left: 0.5rem;
+    transform: rotate(90deg) translate(-50%, 0);
+    color: #aaa;
+    font-size: 1.5rem;
+  }
+
+  input {
+    position: absolute;
+    height: inherit;
+    width: 100%;
+    background-color: inherit;
+    border: none;
+    font-size: 0.95rem;
+    padding-left: 2.5rem;
+    border: 1px solid rgba(175, 175, 175, 0.5);
+
+    &:focus {
+      background-color: #fff;
+      color: #222;
+      border: 3px solid #0b67c9;
+    }
+
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+
+  &__Hovered {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 21.5rem;
+      height: 100%;
+      border: 3px solid rgba(200, 200, 200, 0.5);
+    }
+  }
+}

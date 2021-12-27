@@ -1,0 +1,54 @@
+@import '../../../assets/scss/variables';
+
+.TerminalWelcome {
+  h1 {
+    margin-bottom: 2rem;
+
+    pre {
+      color: rgb(33, 138, 65);
+    }
+  }
+
+  main {
+    width: 100%;
+    line-height: 1.5;
+
+    p {
+      margin: 2rem 0;
+      text-align: justify;
+    }
+  }
+
+  footer {
+    button {
+      border: none;
+      background-color: transparent;
+      color: rgb(33, 138, 65);
+      font-size: 1.5em;
+      border-bottom: 2px solid transparent;
+      transition: all 150ms;
+      width: fit-content;
+
+      &::after {
+        content: '';
+        display: block;
+        border-bottom: solid 2px rgb(43, 179, 84);
+        transform: scaleX(0);
+        transition: transform 200ms ease-in-out;
+        transform-origin: 0% 50%;
+      }
+
+      &:hover {
+        color: rgb(43, 179, 84);
+
+        &::after {
+          content: '';
+          transform: scale(1);
+          width: 100%;
+          height: 2px;
+          transform-origin: 0% 50%;
+        }
+      }
+    }
+  }
+}

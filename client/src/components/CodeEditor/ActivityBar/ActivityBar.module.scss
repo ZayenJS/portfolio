@@ -1,0 +1,79 @@
+@import '../../../assets/scss/variables';
+
+.ActivityBar {
+  @include flex(center, space-between, column nowrap);
+  height: 100%;
+  width: $gutter * 1.5;
+  background-color: #333;
+  overflow: auto;
+
+  ul {
+    width: 100%;
+  }
+
+  li {
+    @include flex(center, center, row nowrap);
+    padding: 0.5rem;
+    height: 3rem;
+    margin-bottom: 0.3rem;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &__Actions {
+    font-family: $codicon-font-family;
+    li {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    &__Explorer {
+      &::before {
+        content: $codicon-explorer;
+      }
+    }
+
+    &__Search {
+      &::before {
+        content: $codicon-search;
+      }
+    }
+
+    &__GitBranch {
+      &::before {
+        content: $codicon-gitbranch;
+      }
+    }
+
+    &__Debug {
+      &::before {
+        content: $codicon-debug;
+      }
+    }
+
+    &__Extensions {
+      &::before {
+        content: $codicon-extensions;
+      }
+    }
+
+    &__Profile {
+      font-family: $codicon-font-family;
+
+      &::before {
+        content: $codicon-user;
+      }
+    }
+
+    &__Settings {
+      margin-bottom: $gutter/4 !important;
+
+      &::before {
+        content: $codicon-settings;
+      }
+    }
+  }
+}
