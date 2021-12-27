@@ -28,6 +28,14 @@
   background-color: #1e1e1e;
   animation: appear $editor-opening-time 1 forwards ease-in-out;
 
+  header {
+    width: 100%;
+
+    &:active {
+      cursor: move;
+    }
+  }
+
   &__Content {
     @include flex(stretch, flex-start, row wrap);
     height: 100%;

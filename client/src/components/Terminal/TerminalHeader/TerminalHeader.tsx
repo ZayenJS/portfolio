@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react';
 import archlinuxIcon from '@iconify/icons-logos/archlinux';
 
 import classes from './TerminalHeader.module.scss';
+import WindowActionButtons from '../../WindowActionButtons/WindowActionButtons';
 
 export interface TerminalHeaderProps {
   id: string;
@@ -20,12 +21,7 @@ const TerminalHeader: FC<TerminalHeaderProps> = ({ id, focused }) => {
         </div>
       </div>
       <span>Tilix: david@the-archlinux:~</span>
-
-      <div className={classes.Action_Buttons}>
-        <button type="button" className={classes.Action_Button} />
-        <button type="button" className={classes.Action_Button} />
-        <button type="button" className={classes.Action_Button} />
-      </div>
+      <WindowActionButtons onMinimize={() => null} onMaximize={() => null} onClose={() => null} />
     </div>
   );
 };

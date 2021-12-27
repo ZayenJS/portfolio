@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './TerminalWelcome.module.scss';
 
 interface TerminalWelcomeProps {
@@ -41,11 +41,14 @@ const TerminalWelcome: FC<TerminalWelcomeProps> = ({ onContinue }) => {
       </header>
       <main>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure aliquam doloribus commodi
-          alias magni, culpa nemo similique officiis facere fuga quos molestias voluptates dicta.
-          Perferendis perspiciatis iure nihil rem veniam. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Assumenda aperiam dolor qui, neque architecto blanditiis pariatur quo
-          reprehenderit quaerat eligendi aliquam fugit, sint similique nemo tempore velit libero.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam nemo illum quo recusandae
+          aspernatur repellat deserunt aperiam ipsum velit, voluptatum voluptatem adipisci
+          reprehenderit voluptate officia numquam molestiae quam suscipit quia laudantium! Ipsa amet
+          aperiam ipsum nulla, tempore hic laudantium beatae sapiente cumque obcaecati quia,
+          consequuntur inventore iste error molestias neque maxime possimus numquam ratione ducimus!
+          Sequi beatae consequatur id nihil sint quo modi perferendis veritatis itaque, cum totam
+          rerum deleniti deserunt ipsa reiciendis commodi maiores architecto quos? Nesciunt, odio
+          iusto.
         </p>
       </main>
 

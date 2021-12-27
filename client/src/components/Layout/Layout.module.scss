@@ -25,9 +25,9 @@
   }
 
   &_Dev {
-    --desktop-menu-bar-height: 2.5rem;
     display: grid;
     grid-template-rows: var(--desktop-menu-bar-height) auto;
+    overflow: hidden;
 
     & > main {
       height: calc(100vh - var(--desktop-menu-bar-height));

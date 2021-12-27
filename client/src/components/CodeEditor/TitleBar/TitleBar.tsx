@@ -1,8 +1,11 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { useHistory } from 'react-router-dom';
+
+import { Icon } from '@iconify/react';
+import fileTypeVscode from '@iconify/icons-vscode-icons/file-type-vscode';
 
 import TitleBarItem from '../TitleBar/TitleBarItem/TitleBarItem';
-
-import vscodeIcon from '../../../assets/images/Visual_Studio_Code_1.35_icon.svg';
+import WindowActionButtons from '../../WindowActionButtons/WindowActionButtons';
 
 import styles from './TitleBar.module.scss';
 
@@ -12,6 +15,7 @@ interface TitleBarProps {
 
 const TitleBar: FC<TitleBarProps> = ({ title }) => {
   let fileName;
+  const history = useHistory();
 
   if (title) {
     fileName = title + ' - ';
@@ -24,7 +28,7 @@ const TitleBar: FC<TitleBarProps> = ({ title }) => {
       <div className={styles.TitleBar__Menu}>
         <ul>
           <li>
-            <img src={vscodeIcon} alt="vscode icon" style={{ width: '1rem' }} />
+            <Icon icon={fileTypeVscode} width={20} />
           </li>
           <TitleBarItem category="menu" text="File" />
           <TitleBarItem category="menu" text="Edit" />
@@ -37,17 +41,11 @@ const TitleBar: FC<TitleBarProps> = ({ title }) => {
         </ul>
       </div>
       <h2 className={styles.TitleBar__FileName}>{fileName}Portfolio - Visual Studio Code</h2>
-      <div className={styles.TitleBar__WindowControl}>
-        <ul>
-          <TitleBarItem category="window-control" control="minimize" />
-          <TitleBarItem category="window-control" control="maximize" />
-          <TitleBarItem
-            category="window-control"
-            hoveredClass={styles.Icon__Exit}
-            control="close"
-          />
-        </ul>
-      </div>
+      <WindowActionButtons
+        onMinimize={() => null}
+        onMaximize={() => null}
+        onClose={() => history.push('/')}
+      />
     </header>
   );
 };

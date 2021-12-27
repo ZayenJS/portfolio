@@ -1,0 +1,68 @@
+@import '../../assets/scss/variables';
+
+.Container {
+  @include flex(center, center);
+  gap: 0.75rem;
+}
+
+.Action_Button {
+  @include flex(center, center);
+  height: 1rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: none;
+  cursor: default;
+  transition: background-color 200ms ease;
+
+  &:before {
+    opacity: 0;
+    font-family: $portfolio-font-family;
+    transition: opacity 200ms ease;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &:nth-child(1) {
+    background-color: gold;
+
+    &:before {
+      content: $p-dash;
+      color: darken(gold, 25%);
+    }
+
+    &:hover {
+      background-color: gold;
+    }
+  }
+
+  &:nth-child(2) {
+    background-color: purple;
+
+    &:before {
+      content: $p-forbid;
+      transform: rotate(90deg);
+      font-weight: bold;
+      color: purple;
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  &:nth-child(3) {
+    background-color: red;
+    padding: 0.5rem;
+
+    &:before {
+      content: $p-cross;
+      transform: scale(0.9);
+      color: darken(red, 15%);
+    }
+
+    &:hover {
+      background-color: red;
+    }
+  }
+}

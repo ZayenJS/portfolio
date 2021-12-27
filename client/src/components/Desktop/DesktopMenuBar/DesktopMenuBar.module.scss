@@ -5,9 +5,55 @@
   padding: 0 1rem;
   background-color: #151824;
   color: #fff;
+  font-size: 0.75rem;
+  height: var(--desktop-menu-bar-height);
+
+  .Left > *,
+  .Right > *,
+  time {
+    @include flex(center, center);
+    transition: background-color 175ms ease;
+    border-radius: 20px;
+    height: 70%;
+  }
+
+  * + * {
+    cursor: default;
+
+    &:not(.Icon) {
+      padding: 0 1rem;
+    }
+  }
+
+  .Left > *:hover,
+  .Right > *:hover,
+  time:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+  }
 }
 
-.Left {
+.Icon {
+  width: 3rem;
+  padding: 0.25rem 0;
+}
+
+.Left,
+.Right {
   @include flex(center);
   gap: 2rem;
+  height: 100%;
+}
+
+.Current_App {
+  gap: 0.5rem;
+  filter: grayscale(1);
+}
+
+.Right {
+  padding-right: 0 !important;
+}
+
+.Icon_Container {
+  @include flex(center, center);
+  gap: 1rem;
 }

@@ -1,5 +1,7 @@
 import { FC, useEffect, useMemo, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
+import bxlSpotify from '@iconify/icons-bx/bxl-spotify';
 
 import brave from '../../../assets/images/icons/dock/brave.svg';
 import chrome from '../../../assets/images/icons/dock/google-chrome.svg';
@@ -7,7 +9,9 @@ import code from '../../../assets/images/icons/dock/code.svg';
 import tilix from '../../../assets/images/icons/dock/tilix.svg';
 import slack from '../../../assets/images/icons/dock/slack.svg';
 import trash from '../../../assets/images/icons/dock/user-trash.svg';
+
 import classes from './DesktopDock.module.scss';
+import { Icon } from '@iconify/react';
 
 export interface DesktopDockProps {}
 
@@ -30,6 +34,17 @@ const DesktopDock: FC<DesktopDockProps> = () => {
 
   return (
     <div className={`${classes.Container} ${state.isVisible ? classes.Visible : ''}`}>
+      <div className={classes.Apps} data-title="Afficher les applications">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
       <div data-title="Brave">
         <img src={brave} alt="" />
       </div>
@@ -44,6 +59,9 @@ const DesktopDock: FC<DesktopDockProps> = () => {
       </div>
       <div data-title="Slack">
         <img src={slack} alt="" />
+      </div>
+      <div data-title="Spotify">
+        <Icon icon={bxlSpotify} width={100} color="#1ed760" enableBackground={'transparent'} />
       </div>
       <hr />
       <div data-title="Trash">
