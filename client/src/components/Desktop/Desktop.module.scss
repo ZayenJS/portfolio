@@ -2,7 +2,7 @@
 
 .Desktop {
   @include flex(center, center, row nowrap);
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background: #555 url('../../assets/images/arch-5.jpg') no-repeat center center;
   background-size: cover;

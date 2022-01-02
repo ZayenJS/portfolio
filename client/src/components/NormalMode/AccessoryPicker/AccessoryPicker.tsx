@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
 import React, { FC, FormEvent, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useAccessories } from '../../../hooks/useAccessories';
 import { Accessories } from '../../../models';
-import { removeAllAccessories, setAccessories } from '../../../store/actions/normalMode';
-import { State } from '../../../store/reducers';
 import Backdrop from '../../Backdrop/Backdrop';
 import Accessory from './Accessory/Accessory';
 
@@ -20,15 +19,13 @@ interface AccessoryPickerState {
 
 const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
   const dragConstraints = useRef<HTMLElement>(document.body);
-  const { accessories, selectedAccessories } = useSelector(
-    (state: State) => state.normalMode.global,
-  );
+  const { accessories, selectedAccessories, removeAllAccessories, setAccessories } =
+    useAccessories();
   const [state, setState] = useState<AccessoryPickerState>({
     selectedAccessories,
     isDraggable: false,
     isMouseDown: false,
   });
-  const dispatch = useDispatch();
 
   const selectAccessory = (name: Accessories) => {
     const alreadyExist = state.selectedAccessories.find((accessory) => accessory === name);
@@ -46,13 +43,13 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
 
   const onFormSubmit = (event: FormEvent) => {
     event.preventDefault();
-    dispatch(setAccessories(state.selectedAccessories));
+    setAccessories(state.selectedAccessories);
     hideAccessoryPicker();
   };
 
   const removeAll = () => {
     setState((prevState) => ({ ...prevState, selectedAccessories: [] }));
-    dispatch(removeAllAccessories());
+    removeAllAccessories();
     hideAccessoryPicker();
   };
 

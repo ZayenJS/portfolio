@@ -6,7 +6,7 @@ import Field from './Field/Field';
 
 import { baseTitle } from '../../../utils';
 
-import styles from './Contact.module.scss';
+import classes from './Contact.module.scss';
 import Message from '../../Message/Message';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
@@ -158,61 +158,69 @@ const Contact: FC<ContactProps> = () => {
         animate="animate"
         exit="exit"
         variants={pageTransition}
-        className={styles.Container}>
-        <h1>Contact</h1>
-        <p>
-          Je suis intéréssé principalement par les missions en freelance en télétravail. Cependant,
-          n'hésitez pas à me contacter en utilisant ce formulaire de contact si vous avez des
-          questions, que mon profil vous interesse ou que vous voulez simplement entrer en contact
-          avec moi (hello
-          <AnimatedText text="👋🏻" animationName="wave" />
-          ), je reste ouvert à toute proposition.
-        </p>
-        <motion.form onSubmit={formSubmitHandler} className={styles.Contact}>
-          <div className={styles.FormControl}>
-            {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
-              <Message
-                className={state.hasError ? styles.ErrorMessage : styles.SuccessMessage}
-                errorMessage={state.errorMessage}
-                successMessage={state.successMessage}
-                hasError={state.hasError}
-              />
-            ) : null}
-            <fieldset className={styles.Contact__Id}>
-              <Field
-                name="Nom"
-                type="text"
-                hasError={state.Nom.hasError}
-                value={state.Nom.value}
-                setValue={onFieldChange}
-              />
-              <Field
-                name="Email"
-                type="email"
-                hasError={state.Email.hasError}
-                value={state.Email.value}
-                setValue={onFieldChange}
-              />
-            </fieldset>
-            <Field
-              name="Objet"
-              type="text"
-              hasError={state.Objet.hasError}
-              value={state.Objet.value}
-              setValue={onFieldChange}
-            />
-            <Field
-              name="Message"
-              type="textarea"
-              hasError={state.Message.hasError}
-              value={state.Message.value}
-              setValue={onFieldChange}
-            />
-            <button disabled={state.hasError} tabIndex={0} type="submit">
-              Envoyer
-            </button>
+        className={classes.Container}>
+        <div className={classes.Content}>
+          <div>
+            <h1>Contact</h1>
+            <p>
+              Je suis intéréssé principalement par les missions en freelance en télétravail.
+              Cependant, n'hésitez pas à me contacter en utilisant ce formulaire de contact si vous
+              avez des questions, que mon profil vous interesse ou que vous voulez simplement entrer
+              en contact avec moi (hello
+              <AnimatedText text="👋🏻" animationName="wave" />
+              ), je reste ouvert à toute proposition.
+            </p>
           </div>
-        </motion.form>
+          <motion.form onSubmit={formSubmitHandler} className={classes.Contact}>
+            <div className={classes.FormControl}>
+              {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
+                <Message
+                  className={state.hasError ? classes.ErrorMessage : classes.SuccessMessage}
+                  errorMessage={state.errorMessage}
+                  successMessage={state.successMessage}
+                  hasError={state.hasError}
+                />
+              ) : null}
+              <fieldset className={classes.Contact__Id}>
+                <Field
+                  name="Nom"
+                  type="text"
+                  hasError={state.Nom.hasError}
+                  value={state.Nom.value}
+                  setValue={onFieldChange}
+                />
+                <Field
+                  name="Email"
+                  type="email"
+                  hasError={state.Email.hasError}
+                  value={state.Email.value}
+                  setValue={onFieldChange}
+                />
+              </fieldset>
+              <Field
+                name="Objet"
+                type="text"
+                hasError={state.Objet.hasError}
+                value={state.Objet.value}
+                setValue={onFieldChange}
+              />
+              <Field
+                name="Message"
+                type="textarea"
+                hasError={state.Message.hasError}
+                value={state.Message.value}
+                setValue={onFieldChange}
+              />
+              <button disabled={state.hasError} tabIndex={0} type="submit">
+                Envoyer
+              </button>
+            </div>
+          </motion.form>
+        </div>
+        <iframe
+          title="map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d169097.1589776075!2d2.110008553319217!3d48.530489093292395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5cff896af791f%3A0x30b82c3688b2b30!2sEssonne!5e0!3m2!1sfr!2sfr!4v1640734873829!5m2!1sfr!2sfr"
+          loading="lazy"></iframe>
       </motion.div>
     </>
   );

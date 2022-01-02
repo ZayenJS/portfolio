@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import ReactTyped from 'react-typed';
 
 import Path from '../Path/Path';
@@ -25,16 +25,23 @@ const TerminalLine: FC<TerminalLineProps> = ({
   startDelay = 0,
   onStringTyped,
 }) => {
-  const [state, setState] = useState({ isTyped: false });
+  const [state, setState] = useState({ isTyped: false, typing: true });
+
+  useEffect(() => {
+    if (state.isTyped && !state.typing) {
+      // between 100ms and 400ms
+      const timeoutTime = Math.floor(Math.random() * (400 - 100) + 100);
+
+      const timeout = setTimeout(() => {
+        onStringTyped();
+      }, timeoutTime);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [onStringTyped, state.isTyped, state.typing]);
 
   const stringTypedHandler = () => {
-    // between 400ms and 1000ms
-    const timeout = Math.floor(Math.random() * (1000 - 400) + 400);
-
-    setTimeout(() => {
-      onStringTyped();
-      setState((ps) => ({ ...ps, isTyped: true }));
-    }, timeout);
+    setState((ps) => ({ ...ps, isTyped: true, typing: false }));
   };
 
   return (

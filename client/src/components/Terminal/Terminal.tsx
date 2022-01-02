@@ -13,7 +13,7 @@ import { StringUtil } from '../../utils/StringUtil';
 import { useElementClick } from '../../hooks/useElementClick';
 
 interface TerminalProps {
-  shouldActivateDevMode: (activate: boolean) => void;
+  activateDevMode: (activate: boolean) => void;
 }
 
 interface Line {
@@ -33,7 +33,7 @@ export interface ITerminalState {
   defaultPosition?: { x: number; y: number };
 }
 
-const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
+const Terminal: FC<TerminalProps> = ({ activateDevMode }) => {
   const [state, setState] = useState<ITerminalState>({
     user: {
       hasRead: false,
@@ -123,7 +123,7 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
           startDelay={getRandomInt(400, 800)}
           onStringTyped={() => {
             updateState('thirdLine');
-            shouldActivateDevMode(true);
+            activateDevMode(true);
             // history.push('/code/readme.md');
           }}
           onStringTypedDelay={getRandomInt(1000, 1500)}
@@ -155,7 +155,7 @@ const Terminal: FC<TerminalProps> = ({ shouldActivateDevMode }) => {
           startDelay={getRandomInt(300, 700)}
           onStringTyped={() => {
             updateState('thirdLine');
-            shouldActivateDevMode(false);
+            activateDevMode(false);
             // history.push('/');
           }}
           onStringTypedDelay={getRandomInt(500, 1000)}

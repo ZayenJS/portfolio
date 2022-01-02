@@ -5,6 +5,7 @@
   position: relative;
   z-index: 1;
   gap: 5rem;
+  padding: $gutter * 2;
 
   @include xl {
     gap: 10rem;

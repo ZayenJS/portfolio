@@ -6,32 +6,30 @@ import Header from '../Header/Header';
 
 import styles from './Layout.module.scss';
 import particlesStyle from '../../constants/particlesStyle';
-import { useSelector } from 'react-redux';
-import { State } from '../../store/reducers';
 import DesktopMenuBar from '../Desktop/DesktopMenuBar/DesktopMenuBar';
-import DesktopDock from '../Desktop/DesktopDock/DesktopDock';
+import { useHeader } from '../../hooks/useHeader';
+import { useMode } from '../../hooks/useMode';
+import { Mode } from '../../models';
 
-interface LayoutProps {
-  isDevMode: boolean;
-  isNormalMode: boolean;
-}
+interface LayoutProps {}
 
-const Layout: FC<LayoutProps> = ({ children, isDevMode, isNormalMode }) => {
-  const { isHeaderHovered } = useSelector((state: State) => state.normalMode.global);
+const Layout: FC<LayoutProps> = ({ children }) => {
+  const { isHeaderHovered } = useHeader();
+  const { mode } = useMode();
 
-  if (isNormalMode) {
+  if (mode === Mode.NORMAL) {
     return (
       <div
         className={[styles.Layout_Normal, isHeaderHovered ? styles.HeaderHovered : ''].join(' ')}>
-        <Header isNormalMode={true} />
+        <Header />
         <ParticleBackground style={particlesStyle} />
         <main className={styles.Layout_Normal_Main}>{children}</main>
-        <Footer isNormalMode={true} />
+        <Footer />
       </div>
     );
   }
 
-  if (isDevMode || (!isDevMode && !isNormalMode)) {
+  if (mode === Mode.DEV || mode === Mode.NONE) {
     return (
       <div className={styles.Layout_Dev}>
         <DesktopMenuBar />

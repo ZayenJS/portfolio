@@ -16,6 +16,12 @@ body {
   scrollbar-color: rgba(59, 226, 173, 0.3536765047816002) rgba(44, 255, 188, 0.354);
   overflow-x: hidden;
 }
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

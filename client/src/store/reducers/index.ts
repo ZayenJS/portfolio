@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-import devMode, { DevModeState } from './devMode';
-import normalMode, { NormalModeState } from './normalMode';
+import accessories, { AccessoriesState } from './accessories.reducer';
 import auth, { AuthState } from './auth.reducer';
 import user, { UserState } from './user.reducer';
+import global, { GlobalState } from './global.reducer';
 
 export interface State {
-  normalMode: NormalModeState;
-  devMode: DevModeState;
+  accessories: AccessoriesState;
   auth: AuthState;
   user: UserState;
+  global: GlobalState;
 }
 
-const reducer = combineReducers<State>({ normalMode, devMode, auth, user });
+const reducer = combineReducers<State>({ accessories, auth, user, global });
 
 export default reducer;

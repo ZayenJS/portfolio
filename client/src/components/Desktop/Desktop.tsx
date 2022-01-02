@@ -6,18 +6,20 @@ import Layout from '../Layout/Layout';
 import styles from './Desktop.module.scss';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import DesktopDock from './DesktopDock/DesktopDock';
+import { useMode } from '../../hooks/useMode';
+import { Mode } from '../../models';
 
 interface DesktopProps extends RouteComponentProps {
   style?: CSSProperties;
-  isDevMode?: boolean;
 }
 
-const Desktop: FC<DesktopProps> = ({ history, style, isDevMode = false }) => {
+const Desktop: FC<DesktopProps> = ({ history, style }) => {
+  const { mode } = useMode();
+
   return (
-    <Layout isDevMode={isDevMode} isNormalMode={false}>
+    <Layout>
       <div style={style ?? {}} className={styles.Desktop}>
-        <div className={styles.Desktop__Icons}></div>
-        {isDevMode ? (
+        {mode === Mode.DEV ? (
           <Switch>
             <Route path="/code" component={CodeEditor} />
           </Switch>

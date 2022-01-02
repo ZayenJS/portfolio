@@ -4,21 +4,27 @@
 .Layout {
   &_Normal {
     display: grid;
-    grid-template-rows: auto 4rem;
-    grid-template-columns: 2rem auto;
-    grid-template-areas: 'header main' 'header footer';
+    grid-template-rows: 4rem auto 4rem;
+    grid-template-areas: 'header' 'main' 'footer';
     position: relative;
     z-index: 1;
     background-color: #222;
     transition: all 400ms ease-in-out;
 
+    @include lg {
+      grid-template-rows: auto 4rem;
+      grid-template-columns: 2rem auto;
+      grid-template-areas: 'header main' 'header footer';
+    }
+
     &.HeaderHovered {
-      padding-left: $gutter * 2 + 3rem;
+      @include lg {
+        padding-left: $gutter * 2 + 3rem;
+      }
     }
 
     &_Main {
       grid-area: main;
-      padding: $gutter * 2;
       position: relative;
       min-height: calc(100vh - 4rem);
     }

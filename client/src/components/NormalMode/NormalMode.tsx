@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Route, RouteComponentProps, Switch, useLocation } from 'react-router-dom';
+import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import Layout from '../Layout/Layout';
@@ -12,16 +12,12 @@ import { projs } from '../../data';
 
 import styles from './NormalMode.module.scss';
 
-interface NormalModeProps extends RouteComponentProps {
-  setIsDevMode: () => void;
-}
+interface NormalModeProps extends RouteComponentProps {}
 
-const NormalMode: FC<NormalModeProps> = ({ setIsDevMode }) => {
-  const location = useLocation();
-
+const NormalMode: FC<NormalModeProps> = ({ location }) => {
   return (
     <div className={[styles.NormalMode, 'normal'].join(' ')}>
-      <Layout isDevMode={false} isNormalMode={true}>
+      <Layout>
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.pathname}>
             <Route key="/" exact path="/" render={() => <Home />} />

@@ -1,16 +1,27 @@
 import { motion } from 'framer-motion';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { pageTransition } from '../../../constants/framer-motion';
+import { useHeader } from '../../../hooks/useHeader';
 import { baseTitle } from '../../../utils';
 
-import styles from './Skills.module.scss';
+import classes from './Skills.module.scss';
+import SkillsSphere from './SkillsSphere/SkillsSphere';
 
 interface SkillsProps {}
 
 const resume = require('../../../assets/cv-david-nogueira-developpeur-web.pdf');
 
 const Skills: FC<SkillsProps> = () => {
+  const { isHeaderHovered } = useHeader();
+  const [state, setState] = useState({
+    resumeClasses: `${classes.Resume_Link} ${classes.Mounting}`,
+  });
+
+  const updateResumeLinkClasses = () => {
+    setState((ps) => ({ ...ps, resumeClasses: classes.Resume_Link }));
+  };
+
   return (
     <>
       <Helmet>
@@ -22,9 +33,14 @@ const Skills: FC<SkillsProps> = () => {
         animate="animate"
         exit="exit"
         variants={pageTransition}
-        className={styles.Skills}>
-        <div>Skills Component</div>
-        <a href="/competences" download={resume}>
+        className={classes.Container}>
+        <SkillsSphere />
+
+        <a
+          className={`${state.resumeClasses} ${isHeaderHovered ? classes.Header_Hovered : ''}`}
+          onAnimationEnd={updateResumeLinkClasses}
+          href="/competences"
+          download={resume}>
           Télécharger mon cv
         </a>
       </motion.section>

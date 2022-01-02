@@ -29,26 +29,37 @@
 }
 
 .HeaderNav {
+  @include flex(stretch, space-between, column nowrap);
   width: 100%;
+  height: 100%;
 
   &__Links {
     @include flex(center, center, column nowrap);
-    position: absolute;
-    overflow: hidden;
-    top: 5rem;
-    left: 0;
-    right: 0;
-    animation: slideDownUp 500ms forwards;
     z-index: 1;
-    background-color: #0a161f;
 
-    &__Open {
-      @extend .HeaderNav__Links;
-      animation: slideDown 500ms forwards;
+    @include lg {
+      @include flex(flex-start, center, column nowrap);
+      width: 100%;
+      position: relative;
+      animation: none;
+      background-color: transparent;
+      top: auto;
     }
 
-    &__Desktop {
-      @include flex(flex-start, center, column nowrap);
+    &.Open {
+      animation: slideDown 500ms forwards;
+
+      @include lg {
+        animation: none;
+      }
+    }
+
+    &.Closed {
+      animation: slideDownUp 500ms forwards;
+
+      @include lg {
+        animation: none;
+      }
     }
 
     &__Item {
@@ -70,11 +81,33 @@
   }
 }
 
-.NavLink {
-  animation: shrink 500ms ease forwards;
+.Menu {
+  @include flex(center, space-between, column nowrap);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #0a161f;
 
-  &.Hovered {
-    animation: grow 500ms ease forwards;
+  @include lg {
+    @include flex(flex-start, space-between, column nowrap);
+    position: static;
+    width: auto;
+    background-color: transparent;
+  }
+}
+
+.NavLink {
+  animation: grow 500ms ease forwards;
+
+  @include lg {
+    animation: shrink 500ms ease forwards;
+
+    &.Hovered {
+      animation: grow 500ms ease forwards;
+    }
   }
 }
 

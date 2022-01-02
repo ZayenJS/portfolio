@@ -1,15 +1,16 @@
 import { FC } from 'react';
 
 import logoIcon from '../../assets/images/logo-icon.svg';
+import { useMode } from '../../hooks/useMode';
+import { Mode } from '../../models';
 
 import styles from './Footer.module.scss';
 
-interface FooterProps {
-  isNormalMode: boolean;
-}
+interface FooterProps {}
 
-const Footer: FC<FooterProps> = ({ isNormalMode }) => {
-  if (isNormalMode) {
+const Footer: FC<FooterProps> = () => {
+  const { mode } = useMode();
+  if (mode === Mode.NORMAL) {
     return (
       <footer className={styles.Footer__Normal}>
         <div className={styles.Footer__Normal__Content}>

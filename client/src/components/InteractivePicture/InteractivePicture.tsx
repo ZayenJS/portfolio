@@ -1,14 +1,12 @@
 import { motion } from 'framer-motion';
-import React, { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useState } from 'react';
 
 import Accessory from '../NormalMode/AccessoryPicker/Accessory/Accessory';
 import AccessoryPicker from '../NormalMode/AccessoryPicker/AccessoryPicker';
 import Portal from '../Portal/Portal';
 
-import { State } from '../../store/reducers';
-
-import styles from './InteractivePicture.module.scss';
+import classes from './InteractivePicture.module.scss';
+import { useAccessories } from '../../hooks/useAccessories';
 interface InteractivePictureProps {
   src: string;
 }
@@ -24,11 +22,11 @@ const InteractivePicture: FC<InteractivePictureProps> = ({ src }) => {
     isChangeAccessoryButtonHovered: false,
   });
 
-  const { selectedAccessories } = useSelector((state: State) => state.normalMode.global);
+  const { selectedAccessories } = useAccessories();
 
   return (
-    <motion.section className={styles.InteractivePicture}>
-      <img className={styles.Picture} src={src} alt="" />
+    <motion.section className={classes.InteractivePicture}>
+      <img className={classes.Picture} src={src} alt="" />
       {selectedAccessories.map((accessory) => (
         <Accessory key={accessory} name={accessory} />
       ))}
@@ -47,7 +45,7 @@ const InteractivePicture: FC<InteractivePictureProps> = ({ src }) => {
 
       <button
         title="Changer les accessoires"
-        className={state.isChangeAccessoryButtonHovered ? styles.Spin : ''}
+        className={state.isChangeAccessoryButtonHovered ? classes.Spin : ''}
         onMouseEnter={() =>
           setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: true }))
         }
@@ -55,8 +53,8 @@ const InteractivePicture: FC<InteractivePictureProps> = ({ src }) => {
           setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: false }))
         }
         onClick={() => setState({ ...state, isAccessoriesPickerVisible: true })}>
-        <span className={styles.Arrow}>&larr;</span>
-        <span className={styles.Arrow}>&rarr;</span>
+        <span className={classes.Arrow}>&larr;</span>
+        <span className={classes.Arrow}>&rarr;</span>
       </button>
     </motion.section>
   );

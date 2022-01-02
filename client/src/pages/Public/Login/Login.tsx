@@ -15,7 +15,7 @@ const Login: FC<LoginProps> = () => {
   };
 
   return (
-    <Layout isDevMode={false} isNormalMode={true}>
+    <Layout>
       <form className={classes.Container} onSubmit={loginFormSubmitHandler}>
         <Field
           hasError={false}

@@ -1,5 +1,4 @@
-import React, { FC, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 
@@ -10,18 +9,18 @@ import Presentation from '../../Presentation/Presentation';
 import InteractivePicture from '../../InteractivePicture/InteractivePicture';
 
 import { baseTitle } from '../../../utils';
-import { State } from '../../../store/reducers';
 import image from '../../../assets/images/david-detour.png';
 
-import styles from './Home.module.scss';
+import classes from './Home.module.scss';
+import { useAccessories } from '../../../hooks/useAccessories';
 
 interface HomeProps {}
 
 const Home: FC<HomeProps> = () => {
-  const { selectedAccessories } = useSelector((state: State) => state.normalMode.global);
+  const { selectedAccessories } = useAccessories();
 
   useEffect(() => {
-    let audio = new Audio();
+    const audio = new Audio();
 
     if (
       selectedAccessories.includes('thug-life-glasses') &&
@@ -58,7 +57,7 @@ const Home: FC<HomeProps> = () => {
       animate="animate"
       exit="exit"
       variants={pageTransition}
-      className={styles.Home}>
+      className={classes.Home}>
       <Helmet>
         <title>{baseTitle} - Accueil</title>
       </Helmet>
@@ -66,9 +65,9 @@ const Home: FC<HomeProps> = () => {
         <AnimatedTitle />
         <Presentation
           classNames={{
-            container: styles.Home__Presentation__Container,
-            intro: styles.Home__Presentation__Intro,
-            cta: styles.Home__Presentation__Cta,
+            container: classes.Home__Presentation__Container,
+            intro: classes.Home__Presentation__Intro,
+            cta: classes.Home__Presentation__Cta,
           }}
           appearingAnimation="fade-in-forward"
           delay={2300}

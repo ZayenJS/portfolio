@@ -120,3 +120,9 @@ export interface Outfit {
   godfather: Accessories[];
   thug: Accessories[];
 }
+
+export enum Mode {
+  DEV = 'DEV',
+  NORMAL = 'NORMAL',
+  NONE = 'NONE',
+}

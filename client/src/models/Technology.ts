@@ -1,10 +1,11 @@
+import { Technos } from '.';
 import { StringUtil } from '../utils/StringUtil';
 import { BaseModel } from './BaseModel';
 
 export class Technology extends BaseModel {
   // private _projects!: Project[];
 
-  constructor(id: number, private _name: string, private _iconUrl: string) {
+  constructor(id: number, private _name: Technos, private _iconUrl: string) {
     super(id);
   }
 

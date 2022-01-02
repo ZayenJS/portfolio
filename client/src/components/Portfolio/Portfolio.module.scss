@@ -16,9 +16,7 @@
     background-color: #9cdcfe3a;
   }
 
-  &__Unmount {
-    @extend .Portfolio;
-
+  &.Unmount {
     animation: unmount 1000ms forwards ease;
   }
 }

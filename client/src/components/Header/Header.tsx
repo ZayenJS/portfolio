@@ -1,38 +1,36 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import HeaderNav from './HeaderNav/HeaderNav';
 import SocialNetworks from './SocialNetworks/SocialNetWorks';
 
 import logo from '../../assets/images/logo.svg';
-import styles from './Header.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../../store/reducers';
-import { hoverHeader } from '../../store/actions/normalMode';
+import classes from './Header.module.scss';
+import { useDispatch } from 'react-redux';
+import { useHeader } from '../../hooks/useHeader';
+import { Mode } from '../../models';
+import { useMode } from '../../hooks/useMode';
 
-interface HeaderProps {
-  isNormalMode: boolean;
-}
+interface HeaderProps {}
 
-const Header: FC<HeaderProps> = ({ isNormalMode }) => {
+const Header: FC<HeaderProps> = () => {
   let header = null;
 
-  const dispatch = useDispatch();
-  const { isHeaderHovered } = useSelector((state: State) => state.normalMode.global);
+  const { isHeaderHovered, hoverHeader } = useHeader();
+  const { mode } = useMode();
 
-  if (isNormalMode) {
+  if (mode === Mode.NORMAL) {
     header = (
       <header
-        onMouseEnter={() => dispatch(hoverHeader(true))}
-        onMouseLeave={() => dispatch(hoverHeader(false))}
-        className={[styles.Header__Normal, isHeaderHovered ? styles.Hovered : ''].join(' ')}>
-        <NavLink to="/" activeClassName="" className={styles.Header__Normal__Title}>
-          <h1 style={!isHeaderHovered ? { opacity: 0, transform: 'translateX(-7rem)' } : {}}>
+        onMouseEnter={() => hoverHeader(true)}
+        onMouseLeave={() => hoverHeader(false)}
+        className={[classes.Header__Normal, isHeaderHovered ? classes.Hovered : ''].join(' ')}>
+        <NavLink to="/" activeClassName="" className={classes.Header__Normal__Title}>
+          <h1 style={isHeaderHovered ? {} : { opacity: 0, transform: 'translateX(-7rem)' }}>
             <img src={logo} alt="" />
           </h1>
         </NavLink>
         <HeaderNav />
-        <SocialNetworks />
       </header>
     );
   }

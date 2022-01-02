@@ -1,68 +1,55 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import NormalMode from '../NormalMode/NormalMode';
 import Desktop from '../Desktop/Desktop';
 import Terminal from '../Terminal/Terminal';
 
-import styles from './Portfolio.module.scss';
+import classes from './Portfolio.module.scss';
+import { useMode } from '../../hooks/useMode';
+import { Mode } from '../../models';
 
 interface PortfolioProps extends RouteComponentProps {}
 
 const Portfolio: FC<PortfolioProps> = ({ history, location, match }) => {
-  const [state, setState] = useState({
-    startUnmountAnimation: false,
-    isDevMode: false,
-    hasChosen: false,
-  });
+  const { mode, changeMode } = useMode();
+  const [animate, setAnimate] = useState(false);
 
-  const choiceHandler = (shouldActivateDevMode: boolean) => {
-    setState((prevState) => ({
-      ...prevState,
-      isDevMode: shouldActivateDevMode,
-      hasChosen: shouldActivateDevMode,
-      startUnmountAnimation: true,
-    }));
+  const choiceHandler = (activateDevMode: boolean) => {
+    if (activateDevMode) {
+      history.push('/code/readme.md');
+      changeMode(Mode.DEV);
+      return;
+    }
 
-    if (shouldActivateDevMode) history.push('/code/readme.md');
+    setAnimate(true);
   };
 
   const setMode = () => {
-    setState((prevState) => ({ ...prevState, hasChosen: true }));
     history.push('/');
+    changeMode(Mode.NORMAL);
   };
 
-  if (!state.hasChosen) {
+  if (mode === Mode.NONE) {
     return (
       <div
-        className={
-          state.startUnmountAnimation && !state.isDevMode
-            ? styles.Portfolio__Unmount
-            : styles.Portfolio
-        }
+        className={`${classes.Portfolio} ${animate ? classes.Unmount : ''}`}
         onAnimationEnd={setMode}>
         <Desktop history={history} location={location} match={match} />
-        <Terminal shouldActivateDevMode={choiceHandler} />
+        <Terminal activateDevMode={choiceHandler} />
       </div>
     );
   }
 
-  if (state.hasChosen && state.isDevMode) {
+  if (mode === Mode.DEV) {
     return (
-      <div className={styles.Portfolio}>
-        <Desktop history={history} location={location} match={match} isDevMode={true} />
+      <div className={classes.Portfolio}>
+        <Desktop history={history} location={location} match={match} />
       </div>
     );
   }
 
-  if (state.hasChosen && !state.isDevMode) {
-    return (
-      <NormalMode
-        history={history}
-        location={location}
-        match={match}
-        setIsDevMode={() => setState({ ...state, isDevMode: true })}
-      />
-    );
+  if (mode === Mode.NORMAL) {
+    return <NormalMode history={history} location={location} match={match} />;
   }
 
   return null;

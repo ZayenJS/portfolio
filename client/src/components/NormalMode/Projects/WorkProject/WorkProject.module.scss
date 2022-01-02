@@ -1,8 +1,8 @@
 @import '../../../../assets/scss/variables';
 
 .Project__Container {
-  @include flex($flex-flow: column nowrap);
-  gap: 2rem;
+  display: grid;
+  grid-template-rows: 5rem auto;
   border: 1px solid black;
   padding: $gutter;
   max-width: 850px;
@@ -46,6 +46,7 @@
 }
 
 .Content {
+  @include flex(stretch, space-between, column nowrap);
   margin: 0 2rem;
   height: 100%;
 
@@ -64,12 +65,14 @@
 }
 
 .Description {
-  margin: $gutter/2 0;
+  margin: $gutter 0;
   font-size: 1.4rem;
   line-height: 1.4;
   text-align: justify;
 
   @include xl {
+    margin: 0;
+    margin-bottom: calc($gutter / 2);
   }
 }
 
@@ -109,7 +112,7 @@
     min-width: auto;
     max-width: 50%;
     width: 100%;
-    margin: $gutter 0;
+    margin-top: $gutter;
   }
 
   &:hover,

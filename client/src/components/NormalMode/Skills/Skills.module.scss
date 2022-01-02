@@ -1,9 +1,52 @@
 @import '../../../assets/scss/variables';
 
-.Skills {
-  div,
-  a {
-    position: relative;
-    z-index: 1;
+.Container {
+  height: 100%;
+  width: 100%;
+
+  ul {
+    @include flex($flex-flow: row wrap);
+    gap: 8rem;
+  }
+}
+
+.Resume_Link {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  padding: 1.5rem;
+  background-color: transparent;
+  border: 2px solid $normal-secondary-color;
+  border-top: none;
+  border-right: none;
+  border-radius: 0 0 0 20px;
+  font-size: 1.25rem;
+  transition: right 400ms ease-in-out, background-color 250ms ease, color 250ms ease;
+
+  &:hover {
+    background-color: $normal-secondary-color;
+    color: $normal-primary-color;
+  }
+
+  &.Mounting {
+    opacity: 0;
+    transform: translate(100%);
+    animation: t 1 250ms 1750ms forwards ease-out;
+  }
+
+  &.Header_Hovered {
+    right: $gutter * 2 + 3rem;
+  }
+}
+
+@keyframes t {
+  from {
+    opacity: 0;
+    transform: translate(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0);
   }
 }
