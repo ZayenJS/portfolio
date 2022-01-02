@@ -35,7 +35,6 @@ const Skills: FC<SkillsProps> = () => {
         variants={pageTransition}
         className={classes.Container}>
         <SkillsSphere />
-
         <a
           className={`${state.resumeClasses} ${isHeaderHovered ? classes.Header_Hovered : ''}`}
           onAnimationEnd={updateResumeLinkClasses}

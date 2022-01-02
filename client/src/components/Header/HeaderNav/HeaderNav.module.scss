@@ -1,68 +1,28 @@
 @import '../../../assets/scss/variables';
 @import '../../../assets/scss/keyframes';
 
-@keyframes slideDown {
-  from {
-    height: 0;
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  to {
-    height: 10rem;
-  }
-}
-
-@keyframes slideDownUp {
-  from {
-    height: 10rem;
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.9;
-  }
-  100% {
-    height: 0;
-    opacity: 0;
-  }
-}
-
 .HeaderNav {
   @include flex(stretch, space-between, column nowrap);
-  width: 100%;
   height: 100%;
+
+  @include lg {
+    width: 100%;
+  }
 
   &__Links {
     @include flex(center, center, column nowrap);
     z-index: 1;
+    width: 50%;
 
     @include lg {
       @include flex(flex-start, center, column nowrap);
-      width: 100%;
       position: relative;
-      animation: none;
+      width: 100%;
       background-color: transparent;
       top: auto;
     }
 
-    &.Open {
-      animation: slideDown 500ms forwards;
-
-      @include lg {
-        animation: none;
-      }
-    }
-
-    &.Closed {
-      animation: slideDownUp 500ms forwards;
-
-      @include lg {
-        animation: none;
-      }
-    }
-
-    &__Item {
+    li {
       @include flex(center, space-between, row nowrap);
       font-size: 1.2rem;
       margin: 0.5rem 0;
@@ -81,24 +41,35 @@
   }
 }
 
+.Burger {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 500;
+}
+
 .Menu {
-  @include flex(center, space-between, column nowrap);
+  @include flex(center, center, column nowrap);
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   width: 100%;
+  opacity: 0;
   transform: translate(0, -110%);
   background-color: #0a161f;
-  transition: all 250ms ease;
+  transition: transform 300ms ease-in-out, opacity 400ms ease-in-out;
 
-  &.Visible {
+  &.Open {
     transform: translate(0, 0);
+    opacity: 1;
   }
 
   @include lg {
     @include flex(flex-start, space-between, column nowrap);
+    opacity: 1;
+    transform: translate(0, 0);
     position: static;
     width: auto;
     background-color: transparent;
@@ -106,38 +77,77 @@
 }
 
 .NavLink {
-  animation: grow 500ms ease forwards;
+  padding-right: 1rem;
+  width: 100%;
+
+  &:before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    background-color: $normal-secondary-color;
+    width: 0;
+    left: 0;
+    bottom: 0.5rem;
+    transition: width 300ms ease;
+  }
 
   @include lg {
-    animation: shrink 500ms ease forwards;
+    width: 100%;
+
+    &:hover:before {
+      width: 100%;
+    }
+  }
+
+  &.Active {
+    &:before {
+      width: 100%;
+    }
+
+    @include lg {
+      &:before {
+        width: 0;
+      }
+    }
+
+    &::after {
+      border-bottom: 4px solid $normal-secondary-color;
+    }
 
     &.Hovered {
-      animation: grow 500ms ease forwards;
+      &:before {
+        width: 100%;
+      }
     }
   }
 }
 
-.Icons {
-  font-family: $navicons-font-family;
-  display: inline-block;
-  padding: 0.5rem 0;
+@mixin icon($ff, $icon) {
+  &::after {
+    @include flex(center, center);
+    font-family: $ff;
+    font-size: 1.5rem;
+    content: $icon;
+    padding: 0.5rem 0;
+  }
 }
 
-.Home span::after {
-  @extend .Icons;
-  content: $icon-home;
+.Home,
+.Projects,
+.Skills,
+.Contact {
+  position: relative;
 }
-.Projects span::after {
-  @extend .Icons;
-  content: $icon-suitcase;
+
+.Home a {
+  @include icon($navicons-font-family, $icon-home);
 }
-.Skills span::after {
-  display: inline-block;
-  padding: 0.5rem 0;
-  font-family: $icomoon-font-family;
-  content: $icon-settings;
+.Projects a {
+  @include icon($navicons-font-family, $icon-suitcase);
 }
-.Contact span::after {
-  @extend .Icons;
-  content: $icon-mail;
+.Skills a {
+  @include icon($icomoon-font-family, $icon-settings);
+}
+.Contact a {
+  @include icon($navicons-font-family, $icon-mail);
 }

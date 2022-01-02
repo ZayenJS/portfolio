@@ -4,7 +4,6 @@ import { TextureLoader } from 'three';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-// TODO: make the skills image
 import skillsImage from '../../../../assets/images/skills.png';
 
 extend({ OrbitControls });

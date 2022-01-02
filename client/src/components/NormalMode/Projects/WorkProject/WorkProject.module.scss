@@ -51,10 +51,10 @@
 
 .Content {
   @include flex(stretch, space-between, column nowrap);
-  margin: 0 2rem;
   height: 100%;
 
   @include xl {
+    margin: 0 2rem;
     width: 50%;
   }
 
@@ -88,15 +88,19 @@
 
   img {
     max-width: 100%;
-    width: 25rem;
+
+    @include lg {
+      width: 25rem;
+    }
   }
 }
 
 .Links {
-  @include flex(stretch, flex-end, column nowrap);
+  @include flex(center, flex-end, column nowrap);
   gap: 2rem;
 
-  @include xl {
+  @include sm {
+    align-items: stretch;
     flex-direction: row;
   }
 }
@@ -105,7 +109,9 @@
   @include flex(center, center);
   text-align: center;
   border: 1px solid $normal-secondary-color;
-  min-width: 15rem;
+  min-width: 10rem;
+  width: 100%;
+  max-width: 350px;
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.2em;
@@ -113,7 +119,6 @@
   transition: all 175ms ease-in-out;
 
   @include xl {
-    min-width: auto;
     max-width: 50%;
     width: 100%;
     margin-top: $gutter;
@@ -127,13 +132,15 @@
 }
 
 .TechnosList {
-  @include flex(center, flex-end, row nowrap);
+  @include flex(center, flex-end, row wrap);
+  gap: 1rem;
   margin-top: $gutter;
 
   &__Item {
+    width: 2.25rem;
+
     img {
-      width: 2.25rem;
-      margin: 0 $gutter/6;
+      width: 100%;
     }
   }
 }

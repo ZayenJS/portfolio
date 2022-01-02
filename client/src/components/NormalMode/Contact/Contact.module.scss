@@ -1,11 +1,16 @@
 @import '../../../assets/scss/variables';
 
 .Container {
-  @include flex($justify: space-between);
-  padding: calc($gutter * 2);
+  @include flex(center, center, column nowrap);
+  padding: $gutter;
   gap: 4rem;
   font-size: 1rem;
   height: 100%;
+
+  @include lg {
+    @include flex(stretch, space-between, row nowrap);
+    padding: calc($gutter * 2);
+  }
 
   iframe {
     border-radius: 20px;
@@ -35,7 +40,12 @@
 
 .Content,
 iframe {
-  width: 50%;
+  min-height: 50vh;
+  width: 100%;
+
+  @include lg {
+    width: 50%;
+  }
 }
 
 .Contact {

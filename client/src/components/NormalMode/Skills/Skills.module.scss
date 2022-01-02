@@ -29,14 +29,16 @@
     color: $normal-primary-color;
   }
 
-  &.Mounting {
-    opacity: 0;
-    transform: translate(100%);
-    animation: t 1 250ms 1750ms forwards ease-out;
-  }
+  @include lg {
+    &.Mounting {
+      opacity: 0;
+      transform: translate(100%);
+      animation: t 1 250ms 1750ms forwards ease-out;
+    }
 
-  &.Header_Hovered {
-    right: $gutter * 2 + 3rem;
+    &.Header_Hovered {
+      right: $gutter * 2 + 3rem;
+    }
   }
 }
 

@@ -15,6 +15,7 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgba(59, 226, 173, 0.3536765047816002) rgba(44, 255, 188, 0.354);
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 #root {
@@ -60,10 +61,6 @@ body {
 }
 
 // navlink styles
-.normal--active {
-  // padding: 0.25rem 0.5rem;
-  border-bottom: 4px solid $normal-secondary-color !important;
-}
 
 .active {
   border-bottom: 4px solid rgba(25, 164, 206, 0.753);

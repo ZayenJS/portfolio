@@ -43,7 +43,27 @@
 
   &__BluntThugLife {
     grid-row: 3/5;
-    grid-column: 6/6;
+    grid-column: 4/4;
+  }
+
+  &__Rose {
+    grid-row: 7/9;
+    grid-column: 3/3;
+
+    @include lg {
+      grid-row: auto;
+      grid-column: auto;
+    }
+  }
+
+  &__Suit {
+    grid-row: 7/9;
+    grid-column: 4/4;
+
+    @include lg {
+      grid-row: auto;
+      grid-column: auto;
+    }
   }
 }
 
@@ -55,9 +75,9 @@
 }
 
 .BlackSuitWhiteShirt {
-  width: 24rem;
-  left: -3.5rem;
-  top: 18rem;
+  width: 25.9rem;
+  left: -4.6rem;
+  top: 18.2rem;
 }
 
 .BlondHair {
@@ -101,6 +121,7 @@
   width: 10rem;
   top: 9.5rem;
   left: 3.2rem;
+  z-index: 100;
 }
 
 .HairBlack {
@@ -195,9 +216,9 @@
 }
 
 .Suit {
-  width: 41.75rem;
-  left: -12.4rem;
-  bottom: -1.75rem;
+  width: 30rem;
+  left: -7.9rem;
+  bottom: -13.5rem;
 }
 
 .ThugLifeGlasses {

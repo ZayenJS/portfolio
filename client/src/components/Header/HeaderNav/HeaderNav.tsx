@@ -1,10 +1,11 @@
 import { FC, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useHeader } from '../../../hooks/useHeader';
+import { useOverflow } from '../../../hooks/useOverflow';
 import SocialNetWorks from '../SocialNetworks/SocialNetWorks';
 import Hamburger from './Hamburger/Hamburger';
 
-import styles from './HeaderNav.module.scss';
+import classes from './HeaderNav.module.scss';
 
 interface HeaderNavProps {}
 
@@ -72,27 +73,25 @@ const HeaderNav: FC<HeaderNavProps> = () => {
   ];
 
   const { isHeaderHovered } = useHeader();
+  useOverflow(state.isMenuOpen);
 
   return (
-    <nav className={styles.HeaderNav}>
-      <Hamburger toggleMenu={toggleMenu} isOpen={state.isMenuOpen} />
-      <div className={styles.Menu}>
-        <ul className={`${styles.HeaderNav__Links} ${state.isMenuOpen ? styles.Open : ''}`}>
+    <nav className={classes.HeaderNav}>
+      <Hamburger className={classes.Burger} toggleMenu={toggleMenu} isOpen={state.isMenuOpen} />
+      <div className={`${classes.Menu}  ${state.isMenuOpen ? classes.Open : ''}`}>
+        <ul className={`${classes.HeaderNav__Links}`}>
           {links.map((link) => (
             <li
               key={link.path}
               onClick={() => (link.type === 'internal' ? navigateTo(link.path) : '')}
-              className={[styles.HeaderNav__Links__Item, styles[link.name]].join(' ')}>
+              className={[classes.HeaderNav__Links__Item, classes[link.name]].join(' ')}>
               {link.type === 'internal' ? (
                 <NavLink
+                  onClick={toggleMenu}
                   to={link.path}
                   exact={link.path === '/'}
-                  activeClassName="normal--active"
-                  className={
-                    isHeaderHovered
-                      ? [styles.NavLink, styles.Hovered].join(' ')
-                      : [styles.NavLink].join(' ')
-                  }>
+                  activeClassName={classes.Active}
+                  className={`${classes.NavLink} ${isHeaderHovered ? classes.Hovered : ''}`}>
                   {link.textContent}
                 </NavLink>
               ) : (
@@ -100,17 +99,10 @@ const HeaderNav: FC<HeaderNavProps> = () => {
                   {link.textContent}
                 </a>
               )}
-              <span
-                className={
-                  activePath.toLowerCase() === link.name.toLowerCase() ? 'normal--active' : ''
-                }
-              />
             </li>
           ))}
         </ul>
-        <SocialNetWorks
-          className={`${styles.HeaderNav__Links} ${state.isMenuOpen ? styles.Open : ''}`}
-        />
+        <SocialNetWorks className={`${classes.HeaderNav__Links}`} />
       </div>
     </nav>
   );

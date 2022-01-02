@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import { Accessories } from '../../../../models';
@@ -13,7 +13,16 @@ interface AccessoryProps {
 }
 
 const Accessory: FC<AccessoryProps> = ({ icon, name, selectAccessory, isSelected }) => {
-  const constraintsRef = useRef<HTMLElement>(document.body);
+  const [loaded, setLoaded] = useState(false);
+  const constraint = useRef(document.getElementById('main'));
+
+  useEffect(() => {
+    if (!loaded) {
+      setLoaded(true);
+      constraint.current = document.getElementById('main');
+    }
+  });
+
   const source = require(`../../../../assets/images/accessories/${name}.png`);
 
   const className = name
@@ -25,20 +34,23 @@ const Accessory: FC<AccessoryProps> = ({ icon, name, selectAccessory, isSelected
     if (selectAccessory) selectAccessory(name);
   };
 
-  return icon ? (
-    <div
-      onClick={onAccessoryClick}
-      className={[
-        styles.AccessoryContainer,
-        styles[`Icon__${className}`],
-        isSelected ? styles.Selected : '',
-      ].join(' ')}>
-      <img src={source} alt={`accessoire ${name}`} />
-    </div>
-  ) : (
+  if (icon)
+    return (
+      <div
+        onClick={onAccessoryClick}
+        className={[
+          styles.AccessoryContainer,
+          styles[`Icon__${className}`],
+          isSelected ? styles.Selected : '',
+        ].join(' ')}>
+        <img src={source} alt={`accessoire ${name}`} />
+      </div>
+    );
+
+  return (
     <motion.img
       drag
-      dragConstraints={constraintsRef}
+      dragConstraints={constraint}
       className={[styles.Accessory, styles[className]].join(' ')}
       src={source}
       alt=""

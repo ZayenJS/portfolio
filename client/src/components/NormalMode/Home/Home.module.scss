@@ -2,18 +2,34 @@
 @import '../../../assets/scss/keyframes';
 
 .Home {
-  @include flex(stretch, space-between, row nowrap);
+  @include flex(stretch, space-between, column nowrap);
   position: relative;
   z-index: 1;
   width: 100%;
   height: 100%;
-  padding: $gutter * 2;
+  padding: $gutter;
+  overflow: hidden;
+
+  @include lg {
+    padding: $gutter * 2;
+    flex-direction: row;
+  }
 
   section {
-    width: 45%;
+    @include lg {
+      width: 45%;
+    }
 
     &:first-child {
-      @include flex(flex-start, center, column nowrap);
+      @include flex(center, center, column nowrap);
+      border-bottom: 2px solid rgba($normal-secondary-color, 0.5);
+      margin-bottom: 1rem;
+
+      @include lg {
+        align-items: flex-start;
+        border-bottom: none;
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -22,6 +38,7 @@
       font-size: 1.4rem;
       margin: 1rem 0;
       line-height: 1.5;
+      text-align: justify;
 
       p {
         margin: 1rem 0;
@@ -29,12 +46,18 @@
     }
 
     &__Cta {
-      display: inline-block;
+      display: block;
+      width: fit-content;
       padding: 0.5rem 1rem;
       border-radius: 5px;
       background-color: transparent;
       border: 1px solid $normal-secondary-color;
       transition: all 250ms ease-in-out;
+      margin-left: auto;
+
+      @include lg {
+        margin-left: 0;
+      }
 
       &:hover {
         background-color: $normal-secondary-color;

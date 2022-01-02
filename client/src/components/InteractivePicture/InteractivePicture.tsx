@@ -26,10 +26,12 @@ const InteractivePicture: FC<InteractivePictureProps> = ({ src }) => {
 
   return (
     <motion.section className={classes.InteractivePicture}>
-      <img className={classes.Picture} src={src} alt="" />
-      {selectedAccessories.map((accessory) => (
-        <Accessory key={accessory} name={accessory} />
-      ))}
+      <div className={classes.Image_Container}>
+        <img className={classes.Picture} src={src} alt="" />
+        {selectedAccessories.map((accessory) => (
+          <Accessory key={accessory} name={accessory} />
+        ))}
+      </div>
       <Portal>
         <div
           style={
@@ -53,6 +55,7 @@ const InteractivePicture: FC<InteractivePictureProps> = ({ src }) => {
           setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: false }))
         }
         onClick={() => setState({ ...state, isAccessoriesPickerVisible: true })}>
+        <div className={classes.Button_Text}>Changer d'accessoires</div>
         <span className={classes.Arrow}>&larr;</span>
         <span className={classes.Arrow}>&rarr;</span>
       </button>

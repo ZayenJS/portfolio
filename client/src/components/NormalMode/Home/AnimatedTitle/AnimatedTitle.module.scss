@@ -1,13 +1,25 @@
+@import '../../../../assets/scss/variables';
+
 .AnimatedTitle {
   cursor: default;
   h1 {
     font-family: 'Francois One', Arial, Helvetica, sans-serif;
-    font-size: 3.5rem;
+    font-size: 2.85rem;
     line-height: 1.2;
+
+    @include lg {
+      font-size: 3.5rem;
+    }
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+
+    @include lg {
+      margin-bottom: 0;
+      font-size: 1.5rem;
+    }
   }
 }

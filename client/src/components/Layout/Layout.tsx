@@ -23,7 +23,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
         className={[styles.Layout_Normal, isHeaderHovered ? styles.HeaderHovered : ''].join(' ')}>
         <Header />
         <ParticleBackground style={particlesStyle} />
-        <main className={styles.Layout_Normal_Main}>{children}</main>
+        <main id="main" className={styles.Layout_Normal_Main}>
+          {children}
+        </main>
         <Footer />
       </div>
     );
@@ -33,7 +35,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
     return (
       <div className={styles.Layout_Dev}>
         <DesktopMenuBar />
-        <main className={styles.Layout_Dev_Main}>{children}</main>
+        <main id="main" className={styles.Layout_Dev_Main}>
+          {children}
+        </main>
       </div>
     );
   }

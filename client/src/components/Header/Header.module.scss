@@ -2,7 +2,7 @@
 
 .Header {
   &__Normal {
-    @include flex(center, space-between, column nowrap);
+    @include flex(center, space-between, row nowrap);
     background-color: $normal-primary-color;
     grid-area: header;
     padding: $gutter / 2;
@@ -13,7 +13,8 @@
     z-index: 20;
     transition: all 400ms ease-in-out;
 
-    @include xl {
+    @include lg {
+      flex-direction: column;
       bottom: 0;
       transform: translateX(-7rem);
       height: 100vh;
@@ -26,7 +27,7 @@
       transition: opacity 500ms ease-in, transform 400ms ease-in-out;
 
       &:not(.Hovered) {
-        @include xl {
+        @include lg {
           opacity: 0;
           transform: translateX(-7rem);
         }
@@ -37,21 +38,21 @@
     span:hover {
       color: $normal-secondary-color;
 
-      @include xl {
+      @include lg {
         transition: color 250ms ease;
       }
     }
 
     &.Hovered {
-      @include xl {
+      @include lg {
         transform: translateX(0);
       }
     }
 
     img {
-      width: 12rem;
+      width: 8rem;
 
-      @include xl {
+      @include lg {
         width: 5rem;
       }
     }

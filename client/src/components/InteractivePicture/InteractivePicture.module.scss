@@ -2,24 +2,41 @@
 @import '../../assets/scss/keyframes';
 
 .InteractivePicture {
+  @include flex(flex-start, center);
   opacity: 0;
   animation: fade-in-fwd 1500ms 2.5s forwards ease-in-out;
-  position: relative;
-  width: 35% !important;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 37.5rem;
+  margin-top: 8rem;
+
+  @include lg {
+    margin-top: 0;
+    margin: 0;
+    height: auto;
+  }
 
   button {
     position: absolute;
-    right: 0;
+    top: -8rem;
+    left: 0;
+    width: 100%;
     color: #fff;
     font-size: 1.4rem;
-    width: 3rem;
     height: 3rem;
     display: inline-block;
-    padding: 0.5rem 1rem;
     border-radius: 5px;
     background-color: transparent;
     border: 1px solid $normal-secondary-color;
     transition: all 250ms ease-in-out;
+
+    @include lg {
+      padding: 0.5rem 1rem;
+      width: 3rem;
+      right: 0;
+      left: auto;
+      top: 0;
+    }
 
     &:hover {
       background-color: $normal-secondary-color;
@@ -27,22 +44,18 @@
     }
 
     &.Spin {
-      animation: spin-one-turn 1s 1 both ease-in-out;
-    }
-
-    .Arrow {
-      position: absolute;
-
-      &:first-child {
-        left: 20%;
-        top: 10%;
-      }
-
-      &:last-child {
-        right: 20%;
-        bottom: 10%;
+      @include lg {
+        animation: spin-one-turn 1s 1 both ease-in-out;
       }
     }
+  }
+}
+
+.Image_Container {
+  position: relative;
+
+  @include lg {
+    width: 35% !important;
   }
 }
 
@@ -50,4 +63,38 @@
   width: 17.5rem;
   border-bottom-left-radius: 75px;
   border-bottom-right-radius: 75px;
+}
+
+.Button_Text {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+
+  @include lg {
+    display: none;
+  }
+}
+
+.Arrow {
+  position: absolute;
+
+  &:nth-child(2) {
+    display: none;
+
+    @include lg {
+      display: block;
+      left: 20%;
+      top: 10%;
+    }
+  }
+
+  &:last-child {
+    display: none;
+
+    @include lg {
+      display: block;
+      right: 20%;
+      bottom: 10%;
+    }
+  }
 }

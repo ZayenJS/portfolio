@@ -9,7 +9,7 @@ import Presentation from '../../Presentation/Presentation';
 import InteractivePicture from '../../InteractivePicture/InteractivePicture';
 
 import { baseTitle } from '../../../utils';
-import image from '../../../assets/images/david-detour.png';
+import image from '../../../assets/images/david-detour-shirtless.png';
 
 import classes from './Home.module.scss';
 import { useAccessories } from '../../../hooks/useAccessories';

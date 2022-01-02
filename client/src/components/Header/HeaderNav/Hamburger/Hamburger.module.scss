@@ -5,12 +5,12 @@
     transform: rotate(0) translate(0);
   }
   to {
-    transform: rotate(-315deg) translate(0.4rem, 0.25rem);
+    transform: rotate(-315deg) translate(0.4rem, 0.1rem);
   }
 }
 @keyframes firstLineLeftReverse {
   from {
-    transform: rotate(-315deg) translate(0.4rem, 0.25rem);
+    transform: rotate(-315deg) translate(0.4rem, 0.1rem);
   }
   to {
     transform: rotate(0) translate(0);
@@ -22,12 +22,12 @@
     transform: rotate(0) translate(2);
   }
   to {
-    transform: rotate(315deg) translate(-0.4rem, 0.25rem);
+    transform: rotate(315deg) translate(-0.4rem, 0.1rem);
   }
 }
 @keyframes firstLineRightReverse {
   from {
-    transform: rotate(315deg) translate(-0.4rem, 0.25rem);
+    transform: rotate(315deg) translate(-0.4rem, 0.1rem);
   }
   to {
     transform: rotate(0) translate(2);
@@ -77,7 +77,7 @@
     transform: rotate(0) translate(2);
   }
   to {
-    transform: rotate(315deg) translate(0.4rem, -0.25rem);
+    transform: rotate(315deg) translate(0.4rem, -0.1rem);
   }
 }
 @keyframes thirdLineRight {
@@ -85,13 +85,13 @@
     transform: rotate(0) translate(2);
   }
   to {
-    transform: rotate(-315deg) translate(-0.4rem, -0.25rem);
+    transform: rotate(-315deg) translate(-0.4rem, -0.1rem);
   }
 }
 
 @keyframes thirdLineLeftReverse {
   from {
-    transform: rotate(315deg) translate(0.4rem, -0.25rem);
+    transform: rotate(315deg) translate(0.4rem, -0.1rem);
   }
   to {
     transform: rotate(0) translate(2);
@@ -99,7 +99,7 @@
 }
 @keyframes thirdLineRightReverse {
   from {
-    transform: rotate(-315deg) translate(-0.4rem, -0.25rem);
+    transform: rotate(-315deg) translate(-0.4rem, -0.1rem);
   }
   to {
     transform: rotate(0) translate(2);
@@ -108,9 +108,11 @@
 
 .Hamburger {
   @include flex(center, center, column nowrap);
-  border: 1px solid $normal-secondary-color;
-  height: 2.5rem;
-  width: 2.5rem;
+  border: none;
+  padding: 0;
+  height: 2rem;
+  width: 2.25rem;
+  background-color: transparent;
 
   @include lg {
     display: none;
@@ -121,12 +123,12 @@
   &__Third {
     @include flex(center, center, row nowrap);
     height: 0.25rem;
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    margin: auto 0;
 
     div {
       height: 100%;
-      width: 50%;
+      width: 100%;
       border: 1px solid $normal-secondary-color;
       background: $normal-secondary-color;
       border-radius: 25px;

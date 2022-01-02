@@ -50,7 +50,6 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
   const removeAll = () => {
     setState((prevState) => ({ ...prevState, selectedAccessories: [] }));
     removeAllAccessories();
-    hideAccessoryPicker();
   };
 
   let message = 'Choisir';
