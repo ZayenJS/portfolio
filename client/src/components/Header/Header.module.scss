@@ -13,7 +13,7 @@
     z-index: 20;
     transition: all 400ms ease-in-out;
 
-    @include lg {
+    @include xl {
       bottom: 0;
       transform: translateX(-7rem);
       height: 100vh;
@@ -26,8 +26,10 @@
       transition: opacity 500ms ease-in, transform 400ms ease-in-out;
 
       &:not(.Hovered) {
-        opacity: 0;
-        transform: translateX(-7rem);
+        @include xl {
+          opacity: 0;
+          transform: translateX(-7rem);
+        }
       }
     }
 
@@ -35,13 +37,13 @@
     span:hover {
       color: $normal-secondary-color;
 
-      @include lg {
+      @include xl {
         transition: color 250ms ease;
       }
     }
 
     &.Hovered {
-      @include lg {
+      @include xl {
         transform: translateX(0);
       }
     }
@@ -49,7 +51,7 @@
     img {
       width: 12rem;
 
-      @include lg {
+      @include xl {
         width: 5rem;
       }
     }

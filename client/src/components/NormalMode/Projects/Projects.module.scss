@@ -1,7 +1,7 @@
 @import '../../../assets/scss/variables';
 
 .Projects {
-  @include flex(stretch, center, column nowrap);
+  @include flex(center, center, column nowrap);
   position: relative;
   z-index: 1;
   gap: 5rem;
@@ -9,6 +9,7 @@
 
   @include xl {
     gap: 10rem;
+    align-items: stretch;
     flex-flow: row wrap;
   }
 }

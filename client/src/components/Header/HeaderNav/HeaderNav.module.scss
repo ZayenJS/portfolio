@@ -89,7 +89,13 @@
   left: 0;
   bottom: 0;
   width: 100%;
+  transform: translate(0, -110%);
   background-color: #0a161f;
+  transition: all 250ms ease;
+
+  &.Visible {
+    transform: translate(0, 0);
+  }
 
   @include lg {
     @include flex(flex-start, space-between, column nowrap);

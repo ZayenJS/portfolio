@@ -26,7 +26,7 @@ const Header: FC<HeaderProps> = () => {
         onMouseLeave={() => hoverHeader(false)}
         className={[classes.Header__Normal, isHeaderHovered ? classes.Hovered : ''].join(' ')}>
         <NavLink to="/" activeClassName="" className={classes.Header__Normal__Title}>
-          <h1 style={isHeaderHovered ? {} : { opacity: 0, transform: 'translateX(-7rem)' }}>
+          <h1 style={isHeaderHovered ? classes.Hovered : ''}>
             <img src={logo} alt="" />
           </h1>
         </NavLink>
