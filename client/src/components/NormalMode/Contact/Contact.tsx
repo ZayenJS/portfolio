@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { pageTransition } from '../../../constants/framer-motion';
 import AnimatedText from '../../AnimatedText/AnimatedText';
+import { useScrollToTop } from '../../../hooks/useScrollToTop';
 
 interface ContactProps {}
 
@@ -46,6 +47,8 @@ const Contact: FC<ContactProps> = () => {
     successMessage: 'Votre message a bien été envoyé !',
     isFormValid: false,
   });
+
+  useScrollToTop();
 
   const propsToIgnoreForFieldVerification = [
     'hasError',

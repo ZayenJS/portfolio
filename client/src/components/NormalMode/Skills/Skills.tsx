@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { pageTransition } from '../../../constants/framer-motion';
 import { useHeader } from '../../../hooks/useHeader';
+import { useScrollToTop } from '../../../hooks/useScrollToTop';
 import { baseTitle } from '../../../utils';
 
 import classes from './Skills.module.scss';
@@ -17,6 +18,8 @@ const Skills: FC<SkillsProps> = () => {
   const [state, setState] = useState({
     resumeClasses: `${classes.Resume_Link} ${classes.Mounting}`,
   });
+
+  useScrollToTop();
 
   const updateResumeLinkClasses = () => {
     setState((ps) => ({ ...ps, resumeClasses: classes.Resume_Link }));

@@ -10,6 +10,7 @@ import { baseTitle } from '../../../utils';
 import { Helmet } from 'react-helmet';
 import { pageTransition } from '../../../constants/framer-motion';
 import { Technology } from '../../../models/Technology';
+import { useScrollToTop } from '../../../hooks/useScrollToTop';
 
 interface ProjectsProps extends RouteComponentProps {
   projects: IWorkProject[];
@@ -21,6 +22,7 @@ interface ProjectsState {
 
 const Projects: FC<ProjectsProps> = ({ projects }) => {
   const [state, setState] = useState<ProjectsState>({ filter: [] });
+  useScrollToTop();
 
   //  TODO: load technos from backend && implement CRUD for technos
   const technos = [

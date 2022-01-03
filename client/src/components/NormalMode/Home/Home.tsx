@@ -13,11 +13,14 @@ import image from '../../../assets/images/david-detour-shirtless.png';
 
 import classes from './Home.module.scss';
 import { useAccessories } from '../../../hooks/useAccessories';
+import { useScrollToTop } from '../../../hooks/useScrollToTop';
 
 interface HomeProps {}
 
 const Home: FC<HomeProps> = () => {
   const { selectedAccessories } = useAccessories();
+
+  useScrollToTop();
 
   useEffect(() => {
     const audio = new Audio();
