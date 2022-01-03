@@ -1,4 +1,4 @@
-import { IWorkProject } from '../models';
+import { IWorkProject, Technos } from '../models';
 
 import brownskinBeautyImage1 from '../assets/images/WorkProjects/brownskinbeauty.png';
 import rpgGameImage1 from '../assets/images/WorkProjects/rpgGame.png';
@@ -8,7 +8,15 @@ import covidTrackerImage1 from '../assets/images/WorkProjects/covid-tracker.png'
 import portfolioImage1 from '../assets/images/WorkProjects/portfolio.png';
 import ristorante from '../assets/images/WorkProjects/ristorante.png';
 
-import html from '../assets/images/icons/html-5.svg';
+import fairlymade1 from '../assets/images/WorkProjects/fairly-made/1.png';
+import fairlymade2 from '../assets/images/WorkProjects/fairly-made/2.png';
+import fairlymade3 from '../assets/images/WorkProjects/fairly-made/3.png';
+import fairlymade4 from '../assets/images/WorkProjects/fairly-made/4.png';
+import fairlymade5 from '../assets/images/WorkProjects/fairly-made/5.png';
+import fairlymade6 from '../assets/images/WorkProjects/fairly-made/6.png';
+import fairlymade7 from '../assets/images/WorkProjects/fairly-made/7.png';
+
+import html from '../assets/images/icons/html.svg';
 import css from '../assets/images/icons/css.svg';
 import javascript from '../assets/images/icons/javascript.svg';
 import typescript from '../assets/images/icons/typescript.svg';
@@ -16,7 +24,6 @@ import sass from '../assets/images/icons/sass.svg';
 import nodejs from '../assets/images/icons/nodejs.svg';
 import postgresql from '../assets/images/icons/postgresql.svg';
 import react from '../assets/images/icons/react.svg';
-import reactts from '../assets/images/icons/react_ts.svg';
 import redux from '../assets/images/icons/redux.svg';
 import graphql from '../assets/images/icons/graphql.svg';
 import nestjs from '../assets/images/icons/nestjs.svg';
@@ -36,9 +43,9 @@ export const projs: IWorkProject[] = [
     url: 'http://brownskinbeauty.fr',
     repository: 'https://github.com/ZayenJS/brownskinbeauty',
     technos: [
-      { name: 'HTML', logo: html },
-      { name: 'CSS', logo: css },
-      { name: 'JavaScript', logo: javascript },
+      { name: Technos.HTML, logo: html },
+      { name: Technos.CSS, logo: css },
+      { name: Technos.JAVASCRIPT, logo: javascript },
     ],
   },
   {
@@ -53,9 +60,9 @@ export const projs: IWorkProject[] = [
     url: 'https://zayenjs.github.io/find-your-way-game/',
     repository: 'https://github.com/ZayenJS/find-your-way-game',
     technos: [
-      { name: 'HTML', logo: html },
-      { name: 'CSS', logo: css },
-      { name: 'JavaScript', logo: javascript },
+      { name: Technos.HTML, logo: html },
+      { name: Technos.CSS, logo: css },
+      { name: Technos.JAVASCRIPT, logo: javascript },
     ],
   },
   {
@@ -66,12 +73,13 @@ export const projs: IWorkProject[] = [
     url: '',
     repository: 'https://github.com/ZayenJS/sensime',
     technos: [
-      { name: 'React Typescript', logo: reactts },
-      { name: 'Redux', logo: redux },
-      { name: 'SASS/SCSS', logo: sass },
-      { name: 'NodeJS', logo: nodejs },
-      { name: 'Express', logo: express },
-      { name: 'Postgresql', logo: postgresql },
+      { name: Technos.REACT, logo: react },
+      { name: Technos.TYPESCRIPT, logo: typescript },
+      { name: Technos.REDUX, logo: redux },
+      { name: Technos.SASS, logo: sass },
+      { name: Technos.NODE_JS, logo: nodejs },
+      { name: Technos.EXPRESS, logo: express },
+      { name: Technos.POSTGRESQL, logo: postgresql },
     ],
   },
   {
@@ -86,12 +94,12 @@ export const projs: IWorkProject[] = [
     gallery: [theTavernImage1],
     repository: 'https://github.com/the-tavern-social-network/the-tavern',
     technos: [
-      { name: 'React', logo: react },
-      { name: 'Redux', logo: redux },
-      { name: 'SASS/SCSS', logo: sass },
-      { name: 'NodeJS', logo: nodejs },
-      { name: 'Express', logo: express },
-      { name: 'Postgresql', logo: postgresql },
+      { name: Technos.REACT, logo: react },
+      { name: Technos.REDUX, logo: redux },
+      { name: Technos.SASS, logo: sass },
+      { name: Technos.NODE_JS, logo: nodejs },
+      { name: Technos.EXPRESS, logo: express },
+      { name: Technos.POSTGRESQL, logo: postgresql },
     ],
   },
   {
@@ -105,9 +113,10 @@ export const projs: IWorkProject[] = [
     url: '',
     repository: 'https://github.com/ZayenJS/covid-tracker',
     technos: [
-      { name: 'React Typescript', logo: reactts },
-      { name: 'Redux', logo: redux },
-      { name: 'SASS/SCSS', logo: sass },
+      { name: Technos.REACT, logo: react },
+      { name: Technos.TYPESCRIPT, logo: typescript },
+      { name: Technos.REDUX, logo: redux },
+      { name: Technos.SASS, logo: sass },
     ],
   },
   {
@@ -121,8 +130,8 @@ export const projs: IWorkProject[] = [
     url: 'https://www.npmjs.com/package/cli-rjs',
     repository: 'https://github.com/rjs-cli/rjs-cli',
     technos: [
-      { name: 'NodeJS', logo: nodejs },
-      { name: 'TypeScript', logo: typescript },
+      { name: Technos.NODE_JS, logo: nodejs },
+      { name: Technos.TYPESCRIPT, logo: typescript },
     ],
   },
   {
@@ -131,14 +140,39 @@ export const projs: IWorkProject[] = [
     image: ristorante,
     gallery: [ristorante],
     url: 'https://ristorante.david-nogueira.dev',
-    repository: '',
+    repository: 'https://github.com/ZayenJS/dw5-ristorante',
     technos: [
-      { name: 'HTML', logo: html },
-      { name: 'SASS/SCSS', logo: sass },
-      { name: 'JavaScript', logo: javascript },
-      { name: 'PHP', logo: php },
-      { name: 'Twig', logo: twig },
-      { name: 'MySQL', logo: mysql },
+      { name: Technos.HTML, logo: html },
+      { name: Technos.SASS, logo: sass },
+      { name: Technos.JAVASCRIPT, logo: javascript },
+      { name: Technos.TYPESCRIPT, logo: typescript },
+      { name: Technos.PHP, logo: php },
+      { name: Technos.TWIG, logo: twig },
+      { name: Technos.MYSQL, logo: mysql },
+    ],
+  },
+  {
+    name: 'fairly made',
+    description: "Site réalisé en tant que formateur pour enseigner la réalisation d'un site web.",
+    image: fairlymade1,
+    gallery: [
+      fairlymade1,
+      fairlymade2,
+      fairlymade3,
+      fairlymade4,
+      fairlymade5,
+      fairlymade6,
+      fairlymade7,
+    ],
+    url: 'https://fairly-made.david-nogueira.dev',
+    repository: 'https://github.com/ZayenJS/dw5-ristorante',
+    technos: [
+      { name: Technos.HTML, logo: html },
+      { name: Technos.SASS, logo: sass },
+      { name: Technos.JAVASCRIPT, logo: javascript },
+      { name: Technos.PHP, logo: php },
+      { name: Technos.TWIG, logo: twig },
+      { name: Technos.MYSQL, logo: mysql },
     ],
   },
   {
@@ -149,12 +183,13 @@ export const projs: IWorkProject[] = [
     url: 'https://david-nogueira.dev',
     repository: 'https://github.com/ZayenJS/portfolio',
     technos: [
-      { name: 'React Typescript', logo: reactts },
-      { name: 'Redux', logo: redux },
-      { name: 'SASS/SCSS', logo: sass },
-      { name: 'NestJS', logo: nestjs },
-      { name: 'Graphql', logo: graphql },
-      { name: 'Postgresql', logo: postgresql },
+      { name: Technos.REACT, logo: react },
+      { name: Technos.TYPESCRIPT, logo: typescript },
+      { name: Technos.REDUX, logo: redux },
+      { name: Technos.SASS, logo: sass },
+      { name: Technos.NEST_JS, logo: nestjs },
+      { name: Technos.GRAPHQL, logo: graphql },
+      { name: Technos.POSTGRESQL, logo: postgresql },
     ],
   },
 ];

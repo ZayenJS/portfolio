@@ -7,7 +7,7 @@
   font-size: 1rem;
   height: 100%;
 
-  @include lg {
+  @include xl {
     @include flex(stretch, space-between, row nowrap);
     padding: calc($gutter * 2);
   }
@@ -40,10 +40,11 @@
 
 .Content,
 iframe {
-  min-height: 50vh;
+  min-height: 72.5vh;
   width: 100%;
 
-  @include lg {
+  @include xl {
+    min-height: 50vh;
     width: 50%;
   }
 }
@@ -79,9 +80,13 @@ iframe {
   }
 
   &__Id {
-    @include flex(center, space-between, row nowrap);
+    @include flex(center, space-between, column nowrap);
     width: 100%;
-    gap: 3rem;
+
+    @include xl {
+      flex-direction: row;
+      gap: 3rem;
+    }
   }
 }
 

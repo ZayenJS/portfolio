@@ -14,30 +14,22 @@ const HeaderNav: FC<HeaderNavProps> = () => {
     isMenuOpen: false,
   });
 
-  const toggleMenu = () => setState((ps) => ({ ...ps, isMenuOpen: !state.isMenuOpen }));
+  const { isHeaderHovered } = useHeader();
+  const { overflow } = useOverflow();
 
+  const toggleMenu = () => {
+    if (window.matchMedia('min-width(992px)').matches) {
+      overflow(state.isMenuOpen ? '' : 'hidden');
+      return;
+    }
+
+    setState((ps) => ({ ...ps, isMenuOpen: !state.isMenuOpen }));
+  };
   const history = useHistory();
 
   const navigateTo = (path: string) => {
     history.push(path);
   };
-  let activePath: string;
-  switch (history.location.pathname) {
-    case '/projets':
-      activePath = 'projects';
-      break;
-    case '/':
-      activePath = 'home';
-      break;
-    case '/competences':
-      activePath = 'skills';
-      break;
-    case '/contact':
-      activePath = 'contact';
-      break;
-    default:
-      activePath = '';
-  }
 
   const links = [
     {
@@ -71,9 +63,6 @@ const HeaderNav: FC<HeaderNavProps> = () => {
       textContent: 'Contact',
     },
   ];
-
-  const { isHeaderHovered } = useHeader();
-  useOverflow(state.isMenuOpen);
 
   return (
     <nav className={classes.HeaderNav}>

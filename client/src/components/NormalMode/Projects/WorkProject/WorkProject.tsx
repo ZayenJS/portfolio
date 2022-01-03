@@ -1,10 +1,11 @@
 import { FC, useState } from 'react';
+import { useOverflow } from '../../../../hooks/useOverflow';
 
 import { IWorkProject } from '../../../../models';
 import ImageGallery from '../../../ImageGallery/ImageGallery';
 import Portal from '../../../Portal/Portal';
 
-import styles from './WorkProject.module.scss';
+import classes from './WorkProject.module.scss';
 
 interface ProjectProps {
   project: IWorkProject;
@@ -14,15 +15,23 @@ const Project: FC<ProjectProps> = ({
   project: { name, description, url, image, gallery, repository, technos },
 }) => {
   const [state, setState] = useState({ isGalleryVisible: false });
+  const { overflow } = useOverflow();
+
   const showGallery = () => {
+    overflow('hidden');
     setState({ ...state, isGalleryVisible: true });
   };
 
+  const hideGallery = () => {
+    overflow('');
+    setState({ ...state, isGalleryVisible: false });
+  };
+
   return (
-    <div className={styles.Project__Container}>
-      <h2 className={styles.Title}>{name}</h2>
-      <div className={styles.Content__Container}>
-        <div className={styles.ImageContainer}>
+    <div className={classes.Project__Container}>
+      <h2 className={classes.Title}>{name}</h2>
+      <div className={classes.Content__Container}>
+        <div className={classes.ImageContainer}>
           <img
             style={gallery?.length ? { cursor: 'pointer' } : {}}
             onClick={() => showGallery()}
@@ -31,20 +40,20 @@ const Project: FC<ProjectProps> = ({
           />
           {state.isGalleryVisible && gallery?.length ? (
             <Portal>
-              <ImageGallery
-                hideGallery={() => setState({ ...state, isGalleryVisible: false })}
-                gallery={gallery}
-              />
+              {/*
+                //TODO: carousel
+              */}
+              <ImageGallery hideGallery={hideGallery} gallery={gallery} />
             </Portal>
           ) : null}
         </div>
-        <div className={styles.Content}>
-          <p className={styles.Description}>{description}</p>
-          <div className={styles.Footer}>
-            <div className={styles.Links}>
+        <div className={classes.Content}>
+          <p className={classes.Description}>{description}</p>
+          <div className={classes.Footer}>
+            <div className={classes.Links}>
               {url ? (
                 <a
-                  className={styles.Link}
+                  className={classes.Link}
                   href={url}
                   title="Aller sur le site"
                   target="_blank"
@@ -54,7 +63,7 @@ const Project: FC<ProjectProps> = ({
               ) : null}
               {repository ? (
                 <a
-                  className={styles.Link}
+                  className={classes.Link}
                   href={repository}
                   title="Aller sur le dépot github"
                   target="_blank"
@@ -63,16 +72,16 @@ const Project: FC<ProjectProps> = ({
                 </a>
               ) : null}
             </div>
-            <ul className={styles.TechnosList}>
-              {technos.map(({ name, logo }) => (
-                <li title={name} className={styles.TechnosList__Item} key={name}>
-                  <img src={logo} alt={`icone ${name}`} />
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>
+      <ul className={classes.TechnosList}>
+        {technos.map(({ name, logo }) => (
+          <li title={name} className={classes.TechnosList__Item} key={name}>
+            <img src={logo} alt={`icone ${name}`} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

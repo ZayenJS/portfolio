@@ -2,7 +2,7 @@ import React, { FC, SetStateAction } from 'react';
 
 import { getSpeakerClasses } from '../../../../../utils';
 
-import styles from './VolumeMenu.module.scss';
+import classes from './VolumeMenu.module.scss';
 
 interface VolumeMenuProps {
   volume: number;
@@ -15,13 +15,13 @@ const VolumeMenu: FC<VolumeMenuProps> = ({ volume, onVolumeChange }) => {
   };
 
   return (
-    <div className={['volume-menu', styles.VolumeMenu].join(' ')}>
-      <div className={['volume-menu', styles.VolumeMenu__Device].join(' ')}>
+    <div className={['volume-menu', classes.VolumeMenu].join(' ')}>
+      <div className={['volume-menu', classes.VolumeMenu__Device].join(' ')}>
         Périphérique de lecture standard
       </div>
-      <div className={['volume-menu', styles.VolumeMenu__Settings].join(' ')}>
-        <span className={['volume-menu', getSpeakerClasses(volume, styles)].join(' ')}></span>
-        <span className={['volume-menu', styles.VolumeMenu__Range].join(' ')}>
+      <div className={['volume-menu', classes.VolumeMenu__Settings].join(' ')}>
+        <span className={['volume-menu', getSpeakerClasses(volume, classes)].join(' ')}></span>
+        <span className={['volume-menu', classes.VolumeMenu__Range].join(' ')}>
           <input
             className="volume-menu"
             type="range"

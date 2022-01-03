@@ -10,17 +10,20 @@ import Contact from './Contact/Contact';
 
 import { projs } from '../../data';
 
-import styles from './NormalMode.module.scss';
+import classes from './NormalMode.module.scss';
 
 interface NormalModeProps extends RouteComponentProps {}
 
 const NormalMode: FC<NormalModeProps> = ({ location }) => {
   return (
-    <div className={[styles.NormalMode, 'normal'].join(' ')}>
+    <div className={[classes.NormalMode, 'normal'].join(' ')}>
       <Layout>
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.pathname}>
             <Route key="/" exact path="/" render={() => <Home />} />
+            {/*
+              // TODO: load projects from backend && implement backend (CRUD)
+            */}
             <Route
               key="/projets"
               path="/projets"

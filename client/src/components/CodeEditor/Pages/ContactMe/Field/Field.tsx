@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { ContactMeField } from '../../../../../models';
-import styles from './Field.module.scss';
+import classes from './Field.module.scss';
 
 interface FieldProps {
   keyword: string;
@@ -59,7 +59,7 @@ const Field: FC<FieldProps> = ({
               value={value}
               spellCheck={false}
               autoComplete="off"
-              className={[styles.Field__Textarea, 'string-color indent'].join(' ')}
+              className={[classes.Field__Textarea, 'string-color indent'].join(' ')}
               onChange={(event) => setValue(event, fieldName)}
               onKeyDown={onKeyDownHandler}
               onKeyUp={onKeyUpHandler}
@@ -98,7 +98,7 @@ const Field: FC<FieldProps> = ({
   }
 
   return (
-    <div className={styles.Field}>
+    <div className={classes.Field}>
       <label htmlFor={`${fieldName}-input`}>
         <span className="keyword">{keyword}</span>
         <span className="variable"> {fieldName}</span>:{' '}

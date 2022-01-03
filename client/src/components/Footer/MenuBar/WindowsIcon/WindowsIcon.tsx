@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 
-import styles from './WindowsIcon.module.scss';
+import classes from './WindowsIcon.module.scss';
 
 interface WindowsIconProps {}
 
 const WindowsIcon: FC<WindowsIconProps> = () => {
   return (
-    <div className={styles.WindowsIcon}>
+    <div className={classes.WindowsIcon}>
       <span></span>
     </div>
   );

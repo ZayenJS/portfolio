@@ -39,24 +39,24 @@ export interface IWorkProject {
   technos: { name: Technos; logo: string }[];
 }
 
-export type Technos =
-  | 'HTML'
-  | 'CSS'
-  | 'JavaScript'
-  | 'TypeScript'
-  | 'React'
-  | 'React Typescript'
-  | 'Redux'
-  | 'SASS/SCSS'
-  | 'NodeJS'
-  | 'Postgresql'
-  | 'Graphql'
-  | 'NestJS'
-  | 'Express'
-  | 'PHP'
-  | 'Twig'
-  | 'Symfony'
-  | 'MySQL';
+export enum Technos {
+  HTML = 'HTML',
+  CSS = 'CSS',
+  JAVASCRIPT = 'JavaScript',
+  TYPESCRIPT = 'TypeScript',
+  REACT = 'React',
+  REDUX = 'Redux',
+  SASS = 'SASS',
+  NODE_JS = 'NodeJS',
+  POSTGRESQL = 'Postgresql',
+  GRAPHQL = 'Graphql',
+  NEST_JS = 'NestJS',
+  EXPRESS = 'Express',
+  PHP = 'PHP',
+  TWIG = 'Twig',
+  SYMFONY = 'Symfony',
+  MYSQL = 'MySQL',
+}
 
 export type AnimationStyle =
   | 'none'
@@ -81,44 +81,59 @@ export type AnimationStyle =
   | 'pulsate'
   | 'scale-up-center';
 
-export type Accessories =
-  | 'beard-black'
-  | 'black-suit-white-shirt'
-  | 'blond-hair'
-  | 'blunt-thug-life'
-  | 'bow-tie'
+export enum AccessoryType {
+  HEAD = 'HEAD',
+  HAIR = 'HAIR',
+  EYE = 'EYE',
+  FACIAL_HAIR = 'FACIAL_HAIR',
+  MOUTH = 'MOUTH',
+  CLOTH = 'CLOTH',
+  MISC = 'MISC',
+}
+
+export type AccessoryName =
   | 'cap-graduate'
   | 'cap-scumbag'
-  | 'eyeglasses'
+  | 'melon-hat'
+  | 'top-hat'
+  | 'viking-helmet'
+  | 'xmas-hat'
+  | 'blond-hair'
   | 'hair-black'
   | 'hair-chestnut-woman-1'
   | 'hair-chestnut-woman-2'
   | 'hair-purple-woman'
   | 'mask-groucho'
-  | 'mask-guy-fawkes'
-  | 'mask'
-  | 'melon-hat'
+  | 'eyeglasses'
   | 'monocle'
-  | 'mustache-gentleman'
-  | 'rose'
   | 'round-glasses'
-  | 'shirt'
-  | 'smoking-cigarette'
-  | 'smoking-pipe'
-  | 'suit'
   | 'thug-life-glasses'
-  | 'top-hat'
-  | 'viking-helmet'
+  | 'beard-black'
+  | 'mustache-gentleman'
   | 'xmas-beard'
-  | 'xmas-hat';
+  | 'black-suit-white-shirt'
+  | 'shirt'
+  | 'suit'
+  | 'blunt-thug-life'
+  | 'bow-tie'
+  | 'mask'
+  | 'rose'
+  | 'smoking-cigarette'
+  | 'smoking-pipe';
+
+export interface Accessory {
+  type: AccessoryType;
+  name: AccessoryName;
+}
 
 export interface Outfit {
-  'gentleman-1': Accessories[];
-  'gentleman-2': Accessories[];
-  cov19: Accessories[];
-  xmas: Accessories[];
-  godfather: Accessories[];
-  thug: Accessories[];
+  'gentleman-1': Accessory[];
+  'gentleman-2': Accessory[];
+  cov19: Accessory[];
+  xmas: Accessory[];
+  godfather: Accessory[];
+  thug: Accessory[];
+  pimp: Accessory[];
 }
 
 export enum Mode {

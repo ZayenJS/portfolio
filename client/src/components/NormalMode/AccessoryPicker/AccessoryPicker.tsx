@@ -1,43 +1,46 @@
 import { motion } from 'framer-motion';
 import React, { FC, FormEvent, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useAccessories } from '../../../hooks/useAccessories';
-import { Accessories } from '../../../models';
+import { Accessory as AccessoryModel } from '../../../models';
 import Backdrop from '../../Backdrop/Backdrop';
+import CloseCross from '../../CloseCross/CloseCross';
 import Accessory from './Accessory/Accessory';
 
-import styles from './AccessoryPicker.module.scss';
+import classes from './AccessoryPicker.module.scss';
 interface AccessoryPickerProps {
   hideAccessoryPicker: () => void;
 }
 
 interface AccessoryPickerState {
-  selectedAccessories: Accessories[];
+  selectedAccessories: AccessoryModel[];
   isDraggable: boolean;
   isMouseDown: boolean;
 }
 
 const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
   const dragConstraints = useRef<HTMLElement>(document.body);
-  const { accessories, selectedAccessories, removeAllAccessories, setAccessories } =
-    useAccessories();
+  const { accessories, selectedAccessories, setAccessories } = useAccessories();
   const [state, setState] = useState<AccessoryPickerState>({
     selectedAccessories,
     isDraggable: false,
     isMouseDown: false,
   });
 
-  const selectAccessory = (name: Accessories) => {
-    const alreadyExist = state.selectedAccessories.find((accessory) => accessory === name);
+  const selectAccessory = (selectedAccessory: AccessoryModel) => {
+    const alreadyExist = state.selectedAccessories.find(
+      (accessory) => accessory.name === selectedAccessory.name,
+    );
     if (!alreadyExist) {
       return setState((prevState) => ({
         ...prevState,
-        selectedAccessories: [...state.selectedAccessories, name],
+        selectedAccessories: [...state.selectedAccessories, selectedAccessory],
       }));
     }
     setState((prevState) => ({
       ...prevState,
-      selectedAccessories: state.selectedAccessories.filter((accessory) => accessory !== name),
+      selectedAccessories: state.selectedAccessories.filter(
+        (accessory) => accessory.name !== selectedAccessory.name,
+      ),
     }));
   };
 
@@ -49,7 +52,6 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
 
   const removeAll = () => {
     setState((prevState) => ({ ...prevState, selectedAccessories: [] }));
-    removeAllAccessories();
   };
 
   let message = 'Choisir';
@@ -76,8 +78,8 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
 
   return (
     <>
-      <Backdrop onBackdropClick={hideAccessoryPicker} />
-      <div className={styles.AccessoryPicker}>
+      <Backdrop />
+      <div className={classes.Container}>
         <motion.form
           drag={state.isDraggable}
           dragConstraints={dragConstraints}
@@ -89,24 +91,26 @@ const AccessoryPicker: FC<AccessoryPickerProps> = ({ hideAccessoryPicker }) => {
             onMouseUp={() => setState((prevState) => ({ ...prevState, isMouseDown: false }))}
             onMouseEnter={() => setState((prevState) => ({ ...prevState, isDraggable: true }))}
             onMouseLeave={setDraggable}>
-            <div>Choix des accessoires</div>
-            <div className={styles.Cross} onClick={hideAccessoryPicker}>
-              <span>✖</span>
-            </div>
+            <h3 className={classes.Title}>Choix des accessoires</h3>
+            <CloseCross className={classes.Cross} onClose={hideAccessoryPicker} fat windowed />
           </header>
           <>
             <fieldset>
               {accessories.map((accessory) => (
                 <Accessory
-                  key={accessory}
+                  key={accessory.name}
+                  type={accessory.type}
                   selectAccessory={selectAccessory}
-                  isSelected={state.selectedAccessories.includes(accessory)}
+                  isSelected={state.selectedAccessories
+                    .map((el) => el.name)
+                    .includes(accessory.name)}
                   icon={true}
-                  name={accessory}
+                  name={accessory.name}
+                  selectedAccessories={state.selectedAccessories}
                 />
               ))}
             </fieldset>
-            <div className={styles.ButtonsContainer}>
+            <div className={classes.ButtonsContainer}>
               <button type="submit">{message}</button>
               <button type="button" onClick={removeAll}>
                 Enlever tout

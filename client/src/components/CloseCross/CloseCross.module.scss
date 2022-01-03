@@ -1,5 +1,41 @@
-// @import "path_to_file";
+@import '../../assets/scss/variables';
 
 .Container {
-	/* your styles here... */
+  --height: 4px;
+
+  cursor: pointer;
+  width: 2.5rem;
+  height: var(--height);
+  background-color: $normal-secondary-color;
+  transform: rotate(45deg);
+  transition: all 250ms ease;
+
+  &:before {
+    content: '';
+    position: absolute;
+    height: var(--height);
+    left: 0;
+    width: 100%;
+    transform: rotate(90deg);
+    background-color: inherit;
+  }
+
+  &.Fat {
+    --height: 12px;
+  }
+
+  &.Windowed {
+    position: absolute;
+    width: 1.5rem;
+    --height: 8px;
+    top: 50%;
+    right: 1rem;
+    transform: translate(0, -50%) rotate(45deg);
+    background-color: $normal-primary-color;
+
+    &:hover {
+      transform: translate(0, -50%) rotate(225deg);
+      background-color: opacify($normal-danger, 0.25);
+    }
+  }
 }

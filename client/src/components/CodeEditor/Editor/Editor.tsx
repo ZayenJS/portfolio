@@ -5,7 +5,7 @@ import ContactMe from '../Pages/ContactMe/ContactMe';
 import IndexHTML from '../Pages/IndexHTML/IndexHTML';
 import Readme from '../Pages/Readme/Readme';
 
-import styles from './Editor.module.scss';
+import classes from './Editor.module.scss';
 
 interface EditorProps extends RouteComponentProps {}
 
@@ -20,9 +20,9 @@ const Editor: FC<EditorProps> = ({ match }) => {
       break;
     case '/code/index.html':
       content = (
-        <div className={styles.IndexHTML}>
-          <div className={styles.IndexHTML__Lines}>
-            <Line nbOfLines={35} className={styles.IndexHTML__Line} />
+        <div className={classes.IndexHTML}>
+          <div className={classes.IndexHTML__Lines}>
+            <Line nbOfLines={35} className={classes.IndexHTML__Line} />
           </div>
           <IndexHTML />;
         </div>
@@ -33,7 +33,7 @@ const Editor: FC<EditorProps> = ({ match }) => {
       break;
   }
 
-  return <section className={styles.Editor}>{content}</section>;
+  return <section className={classes.Editor}>{content}</section>;
 };
 
 export default Editor;

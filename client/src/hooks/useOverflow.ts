@@ -1,11 +1,3 @@
-import { useEffect } from 'react';
-
-export const useOverflow = (activate: boolean = true) => {
-  useEffect(() => {
-    if (activate) document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [activate]);
-};
+export const useOverflow = () => ({
+  overflow: (overflow: 'hidden' | '') => (document.body.style.overflow = overflow),
+});

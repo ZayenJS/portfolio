@@ -8,7 +8,7 @@ import publicFolder from '../../../../../../assets/images/icons/folder-public.sv
 // import srcFolder from '../../../../../../assets/images/icons/folder-src.svg';
 import openSrcFolder from '../../../../../../assets/images/icons/folder-src-open.svg';
 
-import styles from './Folder.module.scss';
+import classes from './Folder.module.scss';
 import { IProject } from '../../../../../../models';
 
 interface FolderProps {
@@ -24,7 +24,7 @@ const Folder: FC<FolderProps> = ({ name, indentSize = 0, isCollapsed, setIsColla
   switch (name) {
     case 'public':
       content = (
-        <div className={styles.Folder}>
+        <div className={classes.Folder}>
           <div>
             <header
               onClick={() => setIsCollapsed({ ...isCollapsed, public: !isCollapsed.public })}
@@ -41,7 +41,7 @@ const Folder: FC<FolderProps> = ({ name, indentSize = 0, isCollapsed, setIsColla
                 activeClassName="active-file"
                 style={{ paddingLeft: `${indentSize + 1.75}rem` }}
                 to="/code/index.html"
-                className={[styles.Folder__Items, 'folder-item'].join(' ')}>
+                className={[classes.Folder__Items, 'folder-item'].join(' ')}>
                 <img src={html} alt="" />
                 index.html
               </NavLink>
@@ -52,7 +52,7 @@ const Folder: FC<FolderProps> = ({ name, indentSize = 0, isCollapsed, setIsColla
       break;
     case 'src':
       content = (
-        <div className={styles.Folder}>
+        <div className={classes.Folder}>
           <div>
             <header
               onClick={() => setIsCollapsed({ ...isCollapsed, src: !isCollapsed.src })}
@@ -69,7 +69,7 @@ const Folder: FC<FolderProps> = ({ name, indentSize = 0, isCollapsed, setIsColla
                 activeClassName="active-file"
                 style={{ paddingLeft: `${indentSize + 1.75}rem` }}
                 to="/code/contactme.tsx"
-                className={[styles.Folder__Items, 'folder-item'].join(' ')}>
+                className={[classes.Folder__Items, 'folder-item'].join(' ')}>
                 <img src={reactTs} alt="" />
                 ContactMe.tsx
               </NavLink>

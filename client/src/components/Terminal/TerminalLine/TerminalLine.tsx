@@ -3,7 +3,7 @@ import ReactTyped from 'react-typed';
 
 import Path from '../Path/Path';
 
-import styles from './TerminalLine.module.scss';
+import classes from './TerminalLine.module.scss';
 
 interface TerminalLineProps {
   owner: string;
@@ -45,9 +45,9 @@ const TerminalLine: FC<TerminalLineProps> = ({
   };
 
   return (
-    <div className={styles.Container}>
+    <div className={classes.Container}>
       <Path owner={owner} path={path} machineName={machineName} />
-      <div className={styles.Line}>
+      <div className={classes.Line}>
         <span>$</span>
         {state.isTyped ? (
           <p>{typedStrings}</p>

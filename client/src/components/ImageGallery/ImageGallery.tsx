@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import Backdrop from '../Backdrop/Backdrop';
+import CloseCross from '../CloseCross/CloseCross';
 
-import styles from './ImageGallery.module.scss';
+import classes from './ImageGallery.module.scss';
 
 interface ImageGalleryProps {
   gallery?: string[];
@@ -75,24 +76,25 @@ const ImageGallery: FC<ImageGalleryProps> = ({ gallery, hideGallery }) => {
 
   return (
     <>
-      <Backdrop onBackdropClick={() => setState({ ...state, isHidingGallery: true })} />
-      <div
-        className={[styles.Cross, state.isHidingGallery ? styles.FadeOut : ''].join(' ')}
-        onClick={() => setState({ ...state, isHidingGallery: true })}>
-        ✖
-      </div>
+      <Backdrop />
+      <CloseCross
+        fat
+        className={`${classes.Cross} ${state.isHidingGallery ? classes.FadeOut : ''}`}
+        onClose={hideGallery}
+      />
+
       <div
         onAnimationEnd={onHideGallery}
         style={hasMoreThanOnePic ? {} : { width: '75%' }}
         className={[
-          styles.ImageGallery__Container,
-          state.isHidingGallery ? styles.FadeOut : '',
+          classes.ImageGallery__Container,
+          state.isHidingGallery ? classes.FadeOut : '',
         ].join(' ')}>
         <div
-          className={styles.ImageGallery}
+          className={classes.ImageGallery}
           style={hasMoreThanOnePic ? {} : { justifyContent: 'center' }}>
           {hasMoreThanOnePic ? (
-            <div onClick={imageStateChange} data-name="left" className={styles.Arrow__Left}>
+            <div onClick={imageStateChange} data-name="left" className={classes.Arrow__Left}>
               ‹
             </div>
           ) : null}
@@ -100,12 +102,14 @@ const ImageGallery: FC<ImageGalleryProps> = ({ gallery, hideGallery }) => {
           <img
             onAnimationEnd={imageChange}
             style={hasMoreThanOnePic ? {} : { width: '100%' }}
-            className={[styles.Image, state.isAppearing ? styles.FadeIn : styles.FadeOut].join(' ')}
+            className={[classes.Image, state.isAppearing ? classes.FadeIn : classes.FadeOut].join(
+              ' ',
+            )}
             src={state.image}
             alt=""
           />
           {hasMoreThanOnePic ? (
-            <div onClick={imageStateChange} data-name="right" className={styles.Arrow__Right}>
+            <div onClick={imageStateChange} data-name="right" className={classes.Arrow__Right}>
               ›
             </div>
           ) : null}

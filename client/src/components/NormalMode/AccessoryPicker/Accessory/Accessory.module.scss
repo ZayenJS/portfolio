@@ -15,6 +15,8 @@
     border: 2px solid black;
     border-radius: 5px;
     padding: 1rem;
+    min-height: 4rem;
+    overflow: hidden;
     background-color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
     transition: all 400ms ease-in-out;
@@ -22,6 +24,15 @@
     &:hover {
       transform: scale(1.15) !important;
       transition: all 200ms ease-in-out;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      height: 0;
+      transform: rotate(0);
+      transition: height 400ms ease-out;
     }
 
     img {
@@ -35,10 +46,70 @@
   background: lighten($color: $normal-secondary-color, $amount: 42.5) !important;
 }
 
+.Disabled {
+  position: relative;
+
+  img {
+    filter: grayscale(100%);
+  }
+
+  &:hover {
+    transform: none !important;
+    cursor: not-allowed;
+  }
+
+  &::before,
+  &:after {
+    position: absolute;
+    content: '';
+    background: rgba($malt-color, 0.5);
+    display: block;
+    width: 4px;
+    height: 150%;
+    transform: rotate(-45deg);
+    //center the X vertically and horizontally:
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 50000;
+  }
+
+  &:after {
+    transform: rotate(45deg);
+  }
+}
+
 .Icon {
+  $spot--higher: 22deg;
+  $spot--high: 24deg;
+  $spot--medium: 36deg;
+  $spot--medlow: 40deg;
+
   &__Monocle {
     grid-column: 1;
     grid-row: 3 / 5;
+
+    &.Disabled {
+      &::before {
+        transform: rotate(-$spot--high);
+      }
+
+      &::after {
+        transform: rotate($spot--high);
+      }
+
+      @include lg {
+        &::before {
+          transform: rotate(-$spot--higher);
+        }
+
+        &::after {
+          transform: rotate($spot--higher);
+        }
+      }
+    }
   }
 
   &__BluntThugLife {
@@ -60,9 +131,81 @@
     grid-row: 7/9;
     grid-column: 4/4;
 
+    @include max-lg {
+      &::before {
+        transform: rotate(-$spot--high);
+      }
+
+      &::after {
+        transform: rotate($spot--high);
+      }
+    }
+
     @include lg {
       grid-row: auto;
       grid-column: auto;
+    }
+  }
+
+  &__SmokingCigarette.Disabled,
+  &__SmokingPipe.Disabled {
+    @include lg {
+      &::before {
+        transform: rotate(-$spot--medlow);
+      }
+
+      &::after {
+        transform: rotate($spot--medlow);
+      }
+    }
+  }
+
+  &__HAIR.Disabled,
+  &__XmasBeard.Disabled {
+    @include lg {
+      &::before {
+        transform: rotate(-$spot--medium);
+      }
+
+      &::after {
+        transform: rotate($spot--medium);
+      }
+    }
+  }
+
+  &__BeardBlack.Disabled {
+    @include lg {
+      &::before {
+        transform: rotate(-$spot--medlow);
+      }
+
+      &::after {
+        transform: rotate($spot--medlow);
+      }
+    }
+  }
+
+  &__MaskGroucho.Disabled {
+    @include lg {
+      &::before {
+        transform: rotate(-$spot--medium);
+      }
+
+      &::after {
+        transform: rotate($spot--medium);
+      }
+    }
+  }
+
+  &__CLOTH.Disabled {
+    @include lg {
+      &::before {
+        transform: rotate(-$spot--medium);
+      }
+
+      &::after {
+        transform: rotate($spot--medium);
+      }
     }
   }
 }
@@ -91,7 +234,7 @@
   animation: fade-in-fwd 2.75s ease-in-out;
 
   width: 10rem;
-  left: 3.5rem;
+  left: 2.8rem;
   top: 16rem;
   z-index: 150;
 }
@@ -207,12 +350,14 @@
   width: 6rem;
   left: 8.25rem;
   top: 12.25rem;
+  z-index: 250;
 }
 
 .SmokingPipe {
   width: 6rem;
   top: 16.25rem;
   left: 2.2rem;
+  z-index: 250;
 }
 
 .Suit {

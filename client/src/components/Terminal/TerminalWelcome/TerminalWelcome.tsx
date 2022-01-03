@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import styles from './TerminalWelcome.module.scss';
+import classes from './TerminalWelcome.module.scss';
 
 interface TerminalWelcomeProps {
   disableButton: boolean;
@@ -35,7 +35,7 @@ const TerminalWelcome: FC<TerminalWelcomeProps> = ({ onContinue }) => {
   const wrappedASCII = { __html: ASCIIHello };
 
   return (
-    <div className={styles.TerminalWelcome}>
+    <div className={classes.TerminalWelcome}>
       <header>
         <h1 dangerouslySetInnerHTML={wrappedASCII} />
       </header>

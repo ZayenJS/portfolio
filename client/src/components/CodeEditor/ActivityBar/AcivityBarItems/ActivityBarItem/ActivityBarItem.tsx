@@ -1,7 +1,7 @@
 import React, { FC, SetStateAction } from 'react';
 import { ActivityBarItemName, IActivityBarItem } from '../../../../../models';
 
-import styles from './ActivityBarItem.module.scss';
+import classes from './ActivityBarItem.module.scss';
 
 interface ActivityBarItemProps extends IActivityBarItem {
   activeItem: ActivityBarItemName;
@@ -19,8 +19,11 @@ const ActivityBarItem: FC<ActivityBarItemProps> = ({
       onClick={() =>
         setActiveItem ? (activeItem === name ? setActiveItem('') : setActiveItem(name)) : ''
       }
-      className={activeItem === name ? 'editor-activitybar-active' : styles.ActivityBarItem}>
-      <span className={activeItem === name ? [className, styles.ActivityBarItem__Active].join(' ') :className}></span>
+      className={activeItem === name ? 'editor-activitybar-active' : classes.ActivityBarItem}>
+      <span
+        className={
+          activeItem === name ? [className, classes.ActivityBarItem__Active].join(' ') : className
+        }></span>
     </li>
   );
 };

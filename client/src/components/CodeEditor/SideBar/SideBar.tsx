@@ -4,7 +4,7 @@ import Explorer from './Explorer/Explorer';
 
 import { ActivityBarItemName } from '../../../models';
 
-import styles from './SideBar.module.scss';
+import classes from './SideBar.module.scss';
 
 interface SideBarProps {
   activeItem: ActivityBarItemName;
@@ -24,7 +24,7 @@ const SideBar: FC<SideBarProps> = ({ activeItem }) => {
       sideBarContent = null;
   }
 
-  return <div className={styles.SideBar}>{sideBarContent}</div>;
+  return <div className={classes.SideBar}>{sideBarContent}</div>;
 };
 
 export default SideBar;

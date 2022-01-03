@@ -4,7 +4,7 @@ import VolumeMenu from './VolumeMenu/VolumeMenu';
 
 import { getSpeakerClasses } from '../../../../utils';
 
-import styles from './Speaker.module.scss';
+import classes from './Speaker.module.scss';
 
 interface SpeakerProps {}
 
@@ -26,10 +26,10 @@ const Speaker: FC<SpeakerProps> = () => {
   }, []);
 
   return (
-    <div className={[styles.Speaker__Container, 'volume-menu'].join(' ')}>
+    <div className={[classes.Speaker__Container, 'volume-menu'].join(' ')}>
       <span
         onClick={() => setIsVolumeMenuVisible(!isVolumeMenuVisible)}
-        className={[getSpeakerClasses(volume, styles), 'volume-menu'].join(' ')}></span>
+        className={[getSpeakerClasses(volume, classes), 'volume-menu'].join(' ')}></span>
       {isVolumeMenuVisible ? <VolumeMenu volume={volume} onVolumeChange={setVolume} /> : null}
     </div>
   );

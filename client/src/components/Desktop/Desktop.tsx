@@ -3,7 +3,7 @@ import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 
 import Layout from '../Layout/Layout';
 
-import styles from './Desktop.module.scss';
+import classes from './Desktop.module.scss';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import DesktopDock from './DesktopDock/DesktopDock';
 import { useMode } from '../../hooks/useMode';
@@ -18,7 +18,7 @@ const Desktop: FC<DesktopProps> = ({ history, style }) => {
 
   return (
     <Layout>
-      <div style={style ?? {}} className={styles.Desktop}>
+      <div style={style ?? {}} className={classes.Desktop}>
         {mode === Mode.DEV ? (
           <Switch>
             <Route path="/code" component={CodeEditor} />

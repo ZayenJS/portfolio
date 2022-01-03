@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import AnimatedText from '../../../AnimatedText/AnimatedText';
 
-import styles from './AnimatedTitle.module.scss';
+import classes from './AnimatedTitle.module.scss';
 
 interface AnimatedTitleProps {}
 
 const AnimatedTitle: FC<AnimatedTitleProps> = () => (
-  <div className={styles.AnimatedTitle}>
+  <div className={classes.AnimatedTitle}>
     <h1>
       <AnimatedText
         appearingAnimation="roll-in-left"

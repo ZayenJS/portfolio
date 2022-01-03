@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import { AnimationStyle } from '../../models';
 
-import styles from './AnimatedText.module.scss';
+import classes from './AnimatedText.module.scss';
 
 interface AnimatedTextProps {
   text: string;
@@ -94,27 +94,27 @@ const AnimatedText: FC<AnimatedTextProps> = ({
       break;
   }
 
-  let cssClass = styles.AnimatedText;
+  let cssClass = classes.AnimatedText;
 
   if (className) {
     cssClass += ` ${className}`;
   }
 
   if (state.isHovered) {
-    cssClass += ` ${styles[animationClassName]}`;
+    cssClass += ` ${classes[animationClassName]}`;
   }
 
   const capitalize = (str: string) => str[0].toUpperCase() + str.slice(1);
 
   if (!state.hasAppeared && appearingAnimation) {
     const appearingAnimationClass =
-      styles[
+      classes[
         appearingAnimation
           .split('-')
           .map((el) => capitalize(el))
           .join('')
       ];
-    cssClass = `${styles.AnimatedText} ${appearingAnimationClass}`;
+    cssClass = `${classes.AnimatedText} ${appearingAnimationClass}`;
   }
 
   return (

@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC } from 'react';
 
 import { ContactStateProp } from '../Contact';
 
-import styles from './Field.module.scss';
+import classes from './Field.module.scss';
 
 interface FieldProps {
   name: ContactStateProp;
@@ -18,7 +18,7 @@ interface FieldProps {
 
 const Field: FC<FieldProps> = ({ name, hasError, type, withLabel = true, value, setValue }) => {
   const label = (
-    <label className={!value.length ? styles.EmptyInput : styles.FilledInput} htmlFor={name}>
+    <label className={!value.length ? classes.EmptyInput : classes.FilledInput} htmlFor={name}>
       {name}
     </label>
   );
@@ -81,7 +81,7 @@ const Field: FC<FieldProps> = ({ name, hasError, type, withLabel = true, value, 
       );
   }
 
-  return <div className={[styles.Field, hasError ? styles.Error : ''].join(' ')}>{field}</div>;
+  return <div className={[classes.Field, hasError ? classes.Error : ''].join(' ')}>{field}</div>;
 };
 
 export default Field;

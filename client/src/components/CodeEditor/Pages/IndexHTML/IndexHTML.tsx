@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import HTML from './HTML/HTML';
-import styles from './IndexHTML.module.scss';
+import classes from './IndexHTML.module.scss';
 
 interface IndexHTMLProps {}
 
 const IndexHTML: FC<IndexHTMLProps> = () => {
   return (
-    <div className={styles.IndexHTML}>
+    <div className={classes.IndexHTML}>
       <HTML tagName="" isDOCTYPE={true} />
       <HTML tagName="html" attributes={[{ name: 'lang', value: 'en' }]}>
         <HTML className="indent" tagName="head">

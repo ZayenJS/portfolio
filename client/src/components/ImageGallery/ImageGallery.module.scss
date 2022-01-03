@@ -11,31 +11,19 @@
     transform: translate(-50%, -50%);
     z-index: 1000;
     width: 95%;
-    animation: fade-in-centered 400ms ease-in-out;
-
-    &.FadeOut {
-      animation: fade-out-centered 400ms ease-in-out;
-    }
+    animation: appear 400ms ease-in-out;
   }
 }
 
 .Cross {
-  color: $normal-secondary-color;
-  font-size: 3rem;
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1500;
-  cursor: pointer;
-  animation: fade-in-fwd 400ms ease-in-out;
-  transition: all 200ms ease;
+  z-index: 1000;
+  top: 3rem;
+  right: 1.5rem;
 
-  &:hover {
-    transform: rotate(180deg);
-  }
-
-  &.FadeOut {
-    animation: fade-out-fwd 400ms ease-in-out;
+  &:hover,
+  &:active {
+    transform: rotate(225deg);
   }
 }
 
@@ -54,12 +42,4 @@
 
 .Image {
   width: 75%;
-}
-
-.FadeIn {
-  animation: fade-in-fwd 400ms forwards ease-in-out;
-}
-
-.FadeOut {
-  animation: fade-out-fwd 400ms ease-in-out;
 }

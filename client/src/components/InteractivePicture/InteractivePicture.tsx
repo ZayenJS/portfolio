@@ -29,7 +29,7 @@ const InteractivePicture: FC<InteractivePictureProps> = ({ src }) => {
       <div className={classes.Image_Container}>
         <img className={classes.Picture} src={src} alt="" />
         {selectedAccessories.map((accessory) => (
-          <Accessory key={accessory} name={accessory} />
+          <Accessory key={accessory.name} type={accessory.type} name={accessory.name} />
         ))}
       </div>
       <Portal>
@@ -47,7 +47,7 @@ const InteractivePicture: FC<InteractivePictureProps> = ({ src }) => {
 
       <button
         title="Changer les accessoires"
-        className={state.isChangeAccessoryButtonHovered ? classes.Spin : ''}
+        className={state.isChangeAccessoryButtonHovered ? classes.Animate : ''}
         onMouseEnter={() =>
           setState((prevState) => ({ ...prevState, isChangeAccessoryButtonHovered: true }))
         }

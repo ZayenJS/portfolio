@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import oclock from '../../assets/images/o-clock-full-cream.svg';
 
 import { AnimationStyle } from '../../models';
 
-import styles from './Presentation.module.scss';
+import classes from './Presentation.module.scss';
 
 interface PresentationProps {
   appearingAnimation?: AnimationStyle;
@@ -20,7 +20,7 @@ interface PresentationProps {
 const Presentation: FC<PresentationProps> = ({ classNames, appearingAnimation, delay }) => {
   const [state, setState] = useState({ isCtaHovered: false });
 
-  let baseClassname = styles.Presentation;
+  let baseClassname = classes.Presentation;
   let appearingAnimationClass = '';
 
   switch (appearingAnimation) {
@@ -31,7 +31,7 @@ const Presentation: FC<PresentationProps> = ({ classNames, appearingAnimation, d
       break;
   }
 
-  baseClassname += ` ${styles[appearingAnimationClass]}`;
+  baseClassname += ` ${classes[appearingAnimationClass]}`;
 
   const animationDelay = delay ? `${delay}ms` : '0ms';
 
@@ -45,7 +45,7 @@ const Presentation: FC<PresentationProps> = ({ classNames, appearingAnimation, d
         J'ai d'abord commencé par me former en autodidacte puis j'ai rejoins les salles de classe
         virtuelle de l'école{' '}
         <a
-          className={styles.Oclock}
+          className={classes.Oclock}
           href="https://oclock.io/"
           target="_blank"
           rel="noopener noreferrer">
@@ -64,7 +64,7 @@ const Presentation: FC<PresentationProps> = ({ classNames, appearingAnimation, d
         <Link
           onMouseEnter={() => setState({ ...state, isCtaHovered: true })}
           onAnimationEnd={() => setState({ ...state, isCtaHovered: false })}
-          className={[classNames?.cta, state.isCtaHovered ? styles.Cta : ''].join(' ')}
+          className={[classNames?.cta, state.isCtaHovered ? classes.Cta : ''].join(' ')}
           to="/contact">
           me contacter
         </Link>

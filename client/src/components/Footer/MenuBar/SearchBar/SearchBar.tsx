@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import styles from './SearchBar.module.scss';
+import classes from './SearchBar.module.scss';
 
 interface SearchBarProps {}
 
@@ -10,7 +10,7 @@ const SearchBar: FC<SearchBarProps> = () => {
   return (
     <div
       className={
-        isHovered ? [styles.SearchBar, styles.SearchBar__Hovered].join(' ') : styles.SearchBar
+        isHovered ? [classes.SearchBar, classes.SearchBar__Hovered].join(' ') : classes.SearchBar
       }>
       <input
         tabIndex={-1}

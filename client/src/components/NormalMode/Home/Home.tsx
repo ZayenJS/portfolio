@@ -21,22 +21,23 @@ const Home: FC<HomeProps> = () => {
 
   useEffect(() => {
     const audio = new Audio();
+    const selectedAccessoriesNames = selectedAccessories.map((a) => a.name);
 
     if (
-      selectedAccessories.includes('thug-life-glasses') &&
-      selectedAccessories.includes('blunt-thug-life')
+      selectedAccessoriesNames.includes('thug-life-glasses') &&
+      selectedAccessoriesNames.includes('blunt-thug-life')
     ) {
       audio.src = require('../../../assets/sounds/thug-life-music.mp3');
     } else if (
-      selectedAccessories.includes('xmas-beard') &&
-      selectedAccessories.includes('xmas-hat') &&
-      selectedAccessories.includes('round-glasses')
+      selectedAccessoriesNames.includes('xmas-beard') &&
+      selectedAccessoriesNames.includes('xmas-hat') &&
+      selectedAccessoriesNames.includes('round-glasses')
     ) {
       audio.src = require('../../../assets/sounds/all-i-want.mp3');
     } else if (
-      selectedAccessories.includes('black-suit-white-shirt') &&
-      selectedAccessories.includes('bow-tie') &&
-      selectedAccessories.includes('rose')
+      selectedAccessoriesNames.includes('black-suit-white-shirt') &&
+      selectedAccessoriesNames.includes('bow-tie') &&
+      selectedAccessoriesNames.includes('rose')
     ) {
       audio.src = require('../../../assets/sounds/godfather.mp3');
     }
@@ -73,6 +74,7 @@ const Home: FC<HomeProps> = () => {
           delay={2300}
         />
       </section>
+      <hr />
       <InteractivePicture src={image} />
     </motion.div>
   );

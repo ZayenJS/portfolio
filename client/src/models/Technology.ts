@@ -4,9 +4,11 @@ import { BaseModel } from './BaseModel';
 
 export class Technology extends BaseModel {
   // private _projects!: Project[];
+  private _iconUrl: string;
 
-  constructor(id: number, private _name: Technos, private _iconUrl: string) {
+  constructor(id: number, private _name: Technos, _iconUrl?: string) {
     super(id);
+    this._iconUrl = _iconUrl ?? require(`../assets/images/icons/${_name.toLowerCase()}.svg`);
   }
 
   public get name() {

@@ -11,25 +11,42 @@
   overflow: hidden;
 
   @include lg {
+    padding: $gutter $gutter * 2;
+  }
+
+  @include xl {
     padding: $gutter * 2;
     flex-direction: row;
   }
 
   section {
-    @include lg {
+    @include xl {
       width: 45%;
     }
 
     &:first-child {
       @include flex(center, center, column nowrap);
-      border-bottom: 2px solid rgba($normal-secondary-color, 0.5);
-      margin-bottom: 1rem;
 
-      @include lg {
+      @include sm {
         align-items: flex-start;
         border-bottom: none;
         margin-bottom: 0;
       }
+    }
+  }
+
+  hr {
+    width: 100%;
+    background-color: rgba($normal-secondary-color, 0.5);
+    border: none;
+    height: 4px;
+    transform: skew(-60deg);
+    border-radius: 20px;
+    margin: 2rem 0;
+    box-shadow: 1px 1px 1px rgba($normal-secondary-color, 0.25);
+
+    @include xl {
+      display: none;
     }
   }
 
@@ -39,6 +56,7 @@
       margin: 1rem 0;
       line-height: 1.5;
       text-align: justify;
+      width: 100%;
 
       p {
         margin: 1rem 0;
@@ -47,7 +65,7 @@
 
     &__Cta {
       display: block;
-      width: fit-content;
+      text-align: center;
       padding: 0.5rem 1rem;
       border-radius: 5px;
       background-color: transparent;
@@ -55,7 +73,11 @@
       transition: all 250ms ease-in-out;
       margin-left: auto;
 
-      @include lg {
+      @include sm {
+        width: fit-content;
+      }
+
+      @include xl {
         margin-left: 0;
       }
 

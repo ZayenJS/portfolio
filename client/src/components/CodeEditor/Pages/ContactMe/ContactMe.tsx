@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { ContactMeField, IContactMeFields } from '../../../../models';
-import styles from './ContactMe.module.scss';
+import classes from './ContactMe.module.scss';
 import Field from './Field/Field';
 
 interface ContactMeProps {}
@@ -41,7 +41,7 @@ const ContactMe: FC<ContactMeProps> = () => {
   };
 
   return (
-    <section className={styles.ContactMe} style={{ lineHeight: '22px' }}>
+    <section className={classes.ContactMe} style={{ lineHeight: '22px' }}>
       <div>
         <span className="await">import</span>
         <span className="variable"> axios </span>

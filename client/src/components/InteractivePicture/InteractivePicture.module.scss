@@ -8,9 +8,9 @@
   margin: 0 auto;
   width: 100%;
   min-height: 37.5rem;
-  margin-top: 8rem;
+  margin-top: 9rem;
 
-  @include lg {
+  @include xl {
     margin-top: 0;
     margin: 0;
     height: auto;
@@ -30,7 +30,7 @@
     border: 1px solid $normal-secondary-color;
     transition: all 250ms ease-in-out;
 
-    @include lg {
+    @include xl {
       padding: 0.5rem 1rem;
       width: 3rem;
       right: 0;
@@ -43,8 +43,10 @@
       color: $normal-primary-color;
     }
 
-    &.Spin {
-      @include lg {
+    &.Animate {
+      animation: rubber-band 1.3s both 1 ease-in-out;
+
+      @include xl {
         animation: spin-one-turn 1s 1 both ease-in-out;
       }
     }
@@ -54,7 +56,7 @@
 .Image_Container {
   position: relative;
 
-  @include lg {
+  @include xl {
     width: 35% !important;
   }
 }
@@ -70,7 +72,7 @@
   font-weight: bold;
   text-align: center;
 
-  @include lg {
+  @include xl {
     display: none;
   }
 }
@@ -81,7 +83,7 @@
   &:nth-child(2) {
     display: none;
 
-    @include lg {
+    @include xl {
       display: block;
       left: 20%;
       top: 10%;
@@ -91,7 +93,7 @@
   &:last-child {
     display: none;
 
-    @include lg {
+    @include xl {
       display: block;
       right: 20%;
       bottom: 10%;

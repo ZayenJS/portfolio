@@ -1,15 +1,85 @@
 @import '../../../assets/scss/variables';
 
-.Projects {
+.Container {
+  padding: $gutter;
+
+  @include lg {
+    padding: calc($gutter * 2) $gutter;
+  }
+}
+
+.Filter {
+  @include flex(center, center, column nowrap);
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  border: 1px solid black;
+  padding: $gutter;
+  width: 100%;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 0.85rem;
+
+  @include lg {
+    max-width: calc(750px * 2 + 10rem);
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+
+    @include lg {
+      font-size: 2.25em;
+    }
+  }
+
+  ul {
+    @include flex(stretch, center, row wrap);
+    gap: 0.5rem;
+  }
+
+  button {
+    display: block;
+    padding: 0.75rem;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    width: 3.5rem;
+    aspect-ratio: 1;
+    background-color: transparent;
+    transition: border 500ms ease, transform 500ms ease, background-color 250ms ease;
+
+    @include lg {
+      width: 4rem;
+    }
+
+    &.Active {
+      border-color: $normal-secondary-color;
+      background-color: rgba($normal-secondary-color, 0.15);
+    }
+
+    &:hover {
+      border-color: $normal-secondary-color;
+      transform: scale(1.1);
+      transition: border 250ms ease, transform 250ms ease;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    transform: scale(1.2);
+  }
+}
+
+.Content {
   @include flex(center, center, column nowrap);
   position: relative;
   z-index: 1;
   gap: 5rem;
-  padding: $gutter;
-
-  @include lg {
-    padding: clac($gutter * 2);
-  }
 
   @include xl {
     gap: 10rem;

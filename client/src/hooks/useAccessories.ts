@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Accessories } from '../models';
+import { Accessory } from '../models';
 import { removeAllAccessories, setAccessories } from '../store/actions';
 import { State } from '../store/reducers';
 
@@ -10,7 +10,7 @@ export const useAccessories = () => {
   return {
     accessories,
     selectedAccessories,
-    setAccessories: (accessories: Accessories[]) => dispatch(setAccessories({ accessories })),
+    setAccessories: (accessories: Accessory[]) => dispatch(setAccessories({ accessories })),
     removeAllAccessories: () => dispatch(removeAllAccessories()),
   };
 };

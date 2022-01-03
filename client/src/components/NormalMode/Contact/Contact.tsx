@@ -123,7 +123,7 @@ const Contact: FC<ContactProps> = () => {
     name: ContactStateProp,
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const isEmpty = true && event.target.value.length <= 0;
+    const isEmpty = event.target.value.length <= 0;
     const updatedState = {
       ...state,
       [name]: { ...state[name], value: event.target.value, hasError: isEmpty },
@@ -135,7 +135,7 @@ const Contact: FC<ContactProps> = () => {
       for (const key in state) {
         if (propsToIgnoreForFieldVerification.includes(key)) continue;
 
-        let propToCheck = { ...updatedState[key as ContactStateProp] };
+        const propToCheck = { ...updatedState[key as ContactStateProp] };
 
         if (propToCheck.hasError || !propToCheck.value) {
           updatedState.hasError = true;
@@ -147,6 +147,8 @@ const Contact: FC<ContactProps> = () => {
 
     setState(updatedState);
   };
+
+  //  TODO: check form errors && implement backend for mail sending
 
   return (
     <>

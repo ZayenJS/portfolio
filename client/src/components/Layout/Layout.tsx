@@ -4,7 +4,7 @@ import ParticleBackground from '../NormalMode/ParticleBackground/ParticleBackgro
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
-import styles from './Layout.module.scss';
+import classes from './Layout.module.scss';
 import particlesStyle from '../../constants/particlesStyle';
 import DesktopMenuBar from '../Desktop/DesktopMenuBar/DesktopMenuBar';
 import { useHeader } from '../../hooks/useHeader';
@@ -20,10 +20,10 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   if (mode === Mode.NORMAL) {
     return (
       <div
-        className={[styles.Layout_Normal, isHeaderHovered ? styles.HeaderHovered : ''].join(' ')}>
+        className={[classes.Layout_Normal, isHeaderHovered ? classes.HeaderHovered : ''].join(' ')}>
         <Header />
         <ParticleBackground style={particlesStyle} />
-        <main id="main" className={styles.Layout_Normal_Main}>
+        <main id="main" className={classes.Layout_Normal_Main}>
           {children}
         </main>
         <Footer />
@@ -33,9 +33,9 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
   if (mode === Mode.DEV || mode === Mode.NONE) {
     return (
-      <div className={styles.Layout_Dev}>
+      <div className={classes.Layout_Dev}>
         <DesktopMenuBar />
-        <main id="main" className={styles.Layout_Dev_Main}>
+        <main id="main" className={classes.Layout_Dev_Main}>
           {children}
         </main>
       </div>

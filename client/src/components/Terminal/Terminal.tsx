@@ -8,7 +8,7 @@ import TerminalWelcome from './TerminalWelcome/TerminalWelcome';
 
 import { getRandomInt } from '../../utils';
 
-import styles from './Terminal.module.scss';
+import classes from './Terminal.module.scss';
 import { StringUtil } from '../../utils/StringUtil';
 import { useElementClick } from '../../hooks/useElementClick';
 
@@ -183,17 +183,17 @@ const Terminal: FC<TerminalProps> = ({ activateDevMode }) => {
 
   return state.defaultPosition ? (
     <Draggable handle={`#${id}`} defaultPosition={state.defaultPosition}>
-      <div ref={terminalRef} className={`${styles.Terminal} ${focused ? styles.Focused : ''}`}>
+      <div ref={terminalRef} className={`${classes.Terminal} ${focused ? classes.Focused : ''}`}>
         <TerminalHeader id={id} focused={focused} />
-        <div className={styles.Terminal_Content}>
+        <div className={classes.Terminal_Content}>
           <TerminalWelcome disableButton={state.firstLine.typed} onContinue={hasUserReadHandler} />
-          <main className={styles.Terminal_Main}>
+          <main className={classes.Terminal_Main}>
             {firstLine}
             {state.firstLine.typed ? (
               <div>
                 <button
                   disabled={state.user.hasChosen}
-                  className={styles.Terminal_LsResult}
+                  className={classes.Terminal_LsResult}
                   ref={buttonRef}
                   tabIndex={1}
                   type="button"
@@ -202,7 +202,7 @@ const Terminal: FC<TerminalProps> = ({ activateDevMode }) => {
                 </button>
                 <button
                   disabled={state.user.hasChosen}
-                  className={styles.Terminal_LsResult}
+                  className={classes.Terminal_LsResult}
                   tabIndex={1}
                   type="button"
                   onClick={() => userAnswerHandler('normal')}>

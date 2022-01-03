@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 import dayjs from 'dayjs';
 
-import styles from './Clock.module.scss';
+import classes from './Clock.module.scss';
 
 interface ClockProps {}
 
@@ -21,7 +21,7 @@ const Clock: FC<ClockProps> = () => {
   }, []);
 
   return (
-    <div title={dayjs(new Date()).format('dddd D MMMM YYYY')} className={styles.Clock}>
+    <div title={dayjs(new Date()).format('dddd D MMMM YYYY')} className={classes.Clock}>
       <span>{clock.time}</span>
       <span>{clock.date}</span>
     </div>

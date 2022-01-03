@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
-import styles from './Backdrop.module.scss';
+import classes from './Backdrop.module.scss';
 interface BackdropProps {
-  onBackdropClick: () => void;
+  onClick?: () => void;
 }
 
-const Backdrop: FC<BackdropProps> = ({ onBackdropClick }) => {
-  return <div onClick={onBackdropClick} className={styles.Backdrop}></div>;
+const Backdrop: FC<BackdropProps> = ({ onClick }) => {
+  return <div onClick={onClick} className={classes.Backdrop}></div>;
 };
 
 export default Backdrop;

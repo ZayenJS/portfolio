@@ -14,6 +14,8 @@ const Login: FC<LoginProps> = () => {
     event.preventDefault();
   };
 
+  //  TODO: check errors on form && implement backend to login as admin
+
   return (
     <Layout>
       <form className={classes.Container} onSubmit={loginFormSubmitHandler}>

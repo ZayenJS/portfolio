@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styles from './Hamburger.module.scss';
+import classes from './Hamburger.module.scss';
 
 interface HamburgerProps {
   toggleMenu: () => void;
@@ -8,16 +8,16 @@ interface HamburgerProps {
 }
 
 const Hamburger: FC<HamburgerProps> = ({ toggleMenu, isOpen, className }) => (
-  <button type="button" onClick={toggleMenu} className={`${styles.Hamburger} ${className ?? ''}`}>
-    <div className={isOpen ? styles.Hamburger__First__Open : styles.Hamburger__First}>
+  <button type="button" onClick={toggleMenu} className={`${classes.Hamburger} ${className ?? ''}`}>
+    <div className={isOpen ? classes.Hamburger__First__Open : classes.Hamburger__First}>
       <div />
       <div />
     </div>
-    <div className={isOpen ? styles.Hamburger__Second__Open : styles.Hamburger__Second}>
+    <div className={isOpen ? classes.Hamburger__Second__Open : classes.Hamburger__Second}>
       <div />
       <div />
     </div>
-    <div className={isOpen ? styles.Hamburger__Third__Open : styles.Hamburger__Third}>
+    <div className={isOpen ? classes.Hamburger__Third__Open : classes.Hamburger__Third}>
       <div />
       <div />
     </div>
