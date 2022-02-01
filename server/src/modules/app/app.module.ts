@@ -16,9 +16,12 @@ import { Context } from 'src/classes/Context';
 import { AppResolver } from './app.resolver';
 import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { FixturesModule } from '../fixtures/fixtures.module';
 
 @Module({
   imports: [
+    FixturesModule,
     ProjectsModule,
     TechnologiesModule,
     UserModule,
@@ -39,6 +42,9 @@ import { AuthModule } from '../auth/auth.module';
         origin: ['http://localhost:3000', 'https://studio.apollographql.com'],
       },
       context: ({ req, res }: Context) => ({ req, res }),
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), 'public'),
     }),
   ],
   controllers: [AppController],

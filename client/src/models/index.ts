@@ -48,6 +48,7 @@ export enum Technos {
   REDUX = 'Redux',
   SASS = 'SASS',
   NODE_JS = 'NodeJS',
+  MONGO_DB = 'MongoDB',
   POSTGRESQL = 'Postgresql',
   GRAPHQL = 'Graphql',
   NEST_JS = 'NestJS',

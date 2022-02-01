@@ -36,7 +36,8 @@ const Projects: FC<ProjectsProps> = ({ projects }) => {
     new Technology(8, Technos.NODE_JS),
     new Technology(9, Technos.NEST_JS),
     new Technology(10, Technos.PHP),
-    new Technology(11, Technos.GRAPHQL),
+    new Technology(11, Technos.SYMFONY),
+    new Technology(12, Technos.GRAPHQL),
   ];
 
   const setFilter = (tech: Technos) => {
