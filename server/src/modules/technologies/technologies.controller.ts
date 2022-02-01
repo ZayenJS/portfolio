@@ -1,12 +1,11 @@
-import { Query, Resolver } from '@nestjs/graphql';
-import { Technology } from 'src/models/Technology';
+import { Controller, Get } from '@nestjs/common';
 import { TechnologiesService } from './technologies.service';
 
-@Resolver()
-export class TechnologiesResolver {
+@Controller('technologies')
+export class TechnologiesController {
   constructor(private technologyService: TechnologiesService) {}
 
-  @Query(() => [Technology])
+  @Get()
   public async getTechnologies() {
     return this.technologyService.getTechnologies();
   }

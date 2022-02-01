@@ -2,15 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
+type Technology {
   id: ID!
-  firstName: String!
-  lastName: String!
-  username: String!
-  email: String!
-  type: String!
+  name: String!
+  icon_url: String!
   createdAt: String!
   updatedAt: String
+  projects: [Project!]!
 }
 
 type Project {
@@ -25,13 +23,15 @@ type Project {
   technologies: [Technology!]!
 }
 
-type Technology {
+type User {
   id: ID!
-  name: String!
-  icon_url: String!
+  firstName: String!
+  lastName: String!
+  username: String!
+  email: String!
+  type: String!
   createdAt: String!
   updatedAt: String
-  projects: [Project!]!
 }
 
 type Error {
@@ -47,6 +47,7 @@ type UserResponse {
 
 type Query {
   hello: String!
+  getTechnologies: [Technology!]!
   checkAuth: UserResponse!
 }
 
