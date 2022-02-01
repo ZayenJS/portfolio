@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Image {
+  id: ID!
+  url: String!
+  createdAt: String!
+  updatedAt: String
+  project: Project!
+}
+
 type Technology {
   id: ID!
   name: String!
@@ -15,11 +23,11 @@ type Project {
   id: ID!
   name: String!
   description: String!
-  url: String!
-  repository: String!
+  url: String
+  repository: String
   createdAt: String!
   updatedAt: String
-  images: String!
+  images: [Image!]!
   technologies: [Technology!]!
 }
 
@@ -47,7 +55,11 @@ type UserResponse {
 
 type Query {
   hello: String!
+  getProjects: [Project!]!
+  getProjectById(id: String!): Project!
   getTechnologies: [Technology!]!
+  getTechnologyById(id: String!): Technology!
+  getTechnologyByName(name: String!): Technology!
   checkAuth: UserResponse!
 }
 

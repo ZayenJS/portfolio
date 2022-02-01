@@ -1,4 +1,4 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Args, Query, Resolver } from '@nestjs/graphql';
 import { Technology } from 'src/models/Technology';
 import { TechnologiesService } from './technologies.service';
 
@@ -9,5 +9,15 @@ export class TechnologiesResolver {
   @Query(() => [Technology])
   public async getTechnologies() {
     return this.technologyService.getTechnologies();
+  }
+
+  @Query(() => Technology)
+  public async getTechnologyById(@Args('id') id: string) {
+    return this.technologyService.getTechnologyById(id);
+  }
+
+  @Query(() => Technology)
+  public async getTechnologyByName(@Args('name') name: string) {
+    return this.technologyService.getTechnologyByName(name);
   }
 }

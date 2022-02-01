@@ -127,7 +127,7 @@ export const getProjects = () => [
     url: 'https://fairly-made.david-nogueira.dev',
     repository: 'https://github.com/ZayenJS/dw5-ristorante',
     technologies: ['HTML', 'Sass', 'JavaScript', 'PHP', 'Twig', 'MySQL'],
-    images: [],
+    images: ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png'],
   },
   {
     name: 'portfolio',
@@ -143,6 +143,6 @@ export const getProjects = () => [
       'GraphQL',
       'PostgreSQL',
     ],
-    images: [],
+    images: ['portfolio.png'],
   },
 ];

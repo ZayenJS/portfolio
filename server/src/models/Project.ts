@@ -28,11 +28,11 @@ export class Project extends BaseEntity {
   @Column({ type: 'text', nullable: false })
   public description: string;
 
-  @Field(() => String, { nullable: false })
+  @Field(() => String, { nullable: true })
   @Column({ type: 'text', nullable: true })
   public url: string | null;
 
-  @Field(() => String, { nullable: false })
+  @Field(() => String, { nullable: true })
   @Column({ type: 'text', nullable: true })
   public repository: string | null;
 
@@ -44,9 +44,9 @@ export class Project extends BaseEntity {
   @UpdateDateColumn({ name: 'updated_at', nullable: true })
   public updatedAt: string | null;
 
-  @Field(() => String, { nullable: false })
+  @Field(() => [Image], { nullable: false })
   @OneToMany(() => Image, (image) => image.project)
-  images?: string[];
+  images?: Image[];
 
   @Field(() => [Technology], { nullable: false })
   @JoinTable({

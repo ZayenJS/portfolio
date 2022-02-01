@@ -5,6 +5,7 @@ import slugify from 'slugify';
 import { Project } from 'src/models/Project';
 import { Technology } from 'src/models/Technology';
 import { getTechnologies, getProjects } from './data';
+import { Image } from 'src/models/Image';
 
 @Injectable()
 export class FixturesService {
@@ -32,7 +33,6 @@ export class FixturesService {
   public async createProjects(imagesPath: string) {
     try {
       const projects = getProjects();
-      const createdProjects = [];
 
       for (const project of projects) {
         console.log(`Creating project: ${project.name}`);
@@ -77,12 +77,19 @@ export class FixturesService {
           lower: true,
         })}`;
 
+        for (const image of project.images) {
+          const imagePath = `${projectImagePath}/${image}`;
+          const savedImage = await Image.create({
+            url: imagePath,
+            project: createdProject,
+          }).save();
+        }
+
         console.log(`Created project: ${createdProject.name}`);
-        createdProjects.push(newProject);
       }
 
       console.log('Finished loading Projects.');
-      return createdProjects;
+      return Project.find({ relations: ['technologies', 'images'] });
     } catch (e) {
       console.error(e);
       return null;
