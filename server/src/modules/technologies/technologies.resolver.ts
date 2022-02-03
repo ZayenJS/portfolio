@@ -7,8 +7,8 @@ export class TechnologiesResolver {
   constructor(private technologyService: TechnologiesService) {}
 
   @Query(() => [Technology])
-  public async getTechnologies() {
-    return this.technologyService.getTechnologies();
+  public async getTechnologies(@Args('all') all: boolean) {
+    return this.technologyService.getTechnologies(all);
   }
 
   @Query(() => Technology)

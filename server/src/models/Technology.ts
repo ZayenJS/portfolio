@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -22,8 +23,8 @@ export class Technology extends BaseEntity {
   public name: string;
 
   @Field(() => String, { nullable: false })
-  @Column({ type: 'text', nullable: false })
-  public icon_url: string;
+  @Column({ type: 'text', nullable: false, name: 'icon_url' })
+  public iconUrl: string;
 
   @Field(() => String, { nullable: false })
   @CreateDateColumn({ name: 'created_at' })
@@ -34,6 +35,11 @@ export class Technology extends BaseEntity {
   public updatedAt: string | null;
 
   @Field(() => [Project], { nullable: false })
+  @JoinTable({
+    name: 'projects_technologies',
+    inverseJoinColumn: { name: 'project_id', referencedColumnName: 'id' },
+    joinColumn: { name: 'technology_id', referencedColumnName: 'id' },
+  })
   @ManyToMany(() => Project, { nullable: false, onDelete: 'CASCADE' })
   public projects: Project[];
 }

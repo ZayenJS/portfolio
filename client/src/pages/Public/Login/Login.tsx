@@ -1,6 +1,7 @@
 import { FC, FormEvent, useState } from 'react';
 import Layout from '../../../components/Layout/Layout';
 import Field from '../../../components/NormalMode/Contact/Field/Field';
+import { InputName } from '../../../models/Contact';
 
 import classes from './Login.module.scss';
 
@@ -19,22 +20,8 @@ const Login: FC<LoginProps> = () => {
   return (
     <Layout>
       <form className={classes.Container} onSubmit={loginFormSubmitHandler}>
-        <Field
-          hasError={false}
-          name="Email"
-          type="text"
-          value={email}
-          setValue={setEmail}
-          withLabel
-        />
-        <Field
-          hasError={false}
-          name="Nom"
-          type="password"
-          value={password}
-          setValue={setPassword}
-          withLabel
-        />
+        <Field errorMessage="" name={InputName.EMAIL} type="text" label="Email" />
+        <Field errorMessage="" name={InputName.PASSWORD} type="password" label="Mot de passe" />
         <button>Se connecter</button>
       </form>
     </Layout>

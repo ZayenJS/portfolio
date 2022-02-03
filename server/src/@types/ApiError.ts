@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class Error {
+export class ApiError {
   @Field({ nullable: true })
   field?: string;
 

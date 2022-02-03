@@ -1,9 +1,10 @@
 import { StringUtil } from '../utils/StringUtil';
 import { BaseModel } from './BaseModel';
+import { Image } from './Image';
 import { Technology } from './Technology';
 
 export class Project extends BaseModel {
-  private _images: string[] = [];
+  private _images: Image[] = [];
   private _technologies: Technology[] = [];
 
   constructor(
@@ -58,5 +59,9 @@ export class Project extends BaseModel {
 
   public get technologies() {
     return this._technologies;
+  }
+
+  public toString() {
+    return `Project { id: ${this.id}, name: ${this.name}, description: ${this.description}, url: ${this.url}, repository: ${this.repository} }`;
   }
 }

@@ -11,6 +11,8 @@ import { Helmet } from 'react-helmet';
 import { pageTransition } from '../../../constants/framer-motion';
 import { Technology } from '../../../models/Technology';
 import { useScrollToTop } from '../../../hooks/useScrollToTop';
+import { useProjects } from '../../../hooks/useProjects';
+import { useTechnologies } from '../../../hooks/useTechnologies';
 
 interface ProjectsProps extends RouteComponentProps {
   projects: IWorkProject[];
@@ -20,25 +22,11 @@ interface ProjectsState {
   filter: Technos[];
 }
 
-const Projects: FC<ProjectsProps> = ({ projects }) => {
+const Projects: FC<ProjectsProps> = () => {
   const [state, setState] = useState<ProjectsState>({ filter: [] });
   useScrollToTop();
-
-  //  TODO: load technos from backend && implement CRUD for technos
-  const technos = [
-    new Technology(1, Technos.HTML),
-    new Technology(2, Technos.CSS),
-    new Technology(3, Technos.JAVASCRIPT),
-    new Technology(4, Technos.TYPESCRIPT),
-    new Technology(5, Technos.REACT),
-    new Technology(6, Technos.REDUX),
-    new Technology(7, Technos.SASS),
-    new Technology(8, Technos.NODE_JS),
-    new Technology(9, Technos.NEST_JS),
-    new Technology(10, Technos.PHP),
-    new Technology(11, Technos.SYMFONY),
-    new Technology(12, Technos.GRAPHQL),
-  ];
+  const { projects, error: projectError } = useProjects();
+  const { technologies, error: technologiesError } = useTechnologies();
 
   const setFilter = (tech: Technos) => {
     const alreadyPresent = state.filter.find((el) => el === tech);
@@ -52,7 +40,7 @@ const Projects: FC<ProjectsProps> = ({ projects }) => {
   const filteredProjects = projects.filter((project) => {
     if (!state.filter.length) return true;
 
-    for (const tech of project.technos) {
+    for (const tech of project.technologies) {
       if (state.filter.find((el) => el === tech.name)) {
         return true;
       }
@@ -61,7 +49,7 @@ const Projects: FC<ProjectsProps> = ({ projects }) => {
     return false;
   });
 
-  return (
+  return !technologiesError && !projectError ? (
     <>
       <Helmet>
         <title>{baseTitle} - Projets</title>
@@ -75,7 +63,7 @@ const Projects: FC<ProjectsProps> = ({ projects }) => {
         <form className={classes.Filter}>
           <h2>Filtrer par techno</h2>
           <ul>
-            {technos.map((tech) => (
+            {technologies.map((tech) => (
               <li key={tech.name}>
                 <button
                   type="button"
@@ -88,12 +76,18 @@ const Projects: FC<ProjectsProps> = ({ projects }) => {
           </ul>
         </form>
         <div className={classes.Content}>
-          {filteredProjects.map((project: IWorkProject) => (
-            <WorkProjectProject key={project.name} project={project} />
-          ))}
+          {projects.length && !projectError ? (
+            filteredProjects.map((project) => (
+              <WorkProjectProject key={project.name} project={project} />
+            ))
+          ) : (
+            <div>loading...</div>
+          )}
         </div>
       </motion.section>
     </>
+  ) : (
+    <div>Message d'erreur...</div>
   );
 };
 

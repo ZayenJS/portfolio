@@ -13,7 +13,7 @@ type Image {
 type Technology {
   id: ID!
   name: String!
-  icon_url: String!
+  iconUrl: String!
   createdAt: String!
   updatedAt: String
   projects: [Project!]!
@@ -42,22 +42,28 @@ type User {
   updatedAt: String
 }
 
-type Error {
+type ApiError {
   field: String
   type: String
   message: String!
 }
 
 type UserResponse {
-  errors: [Error!]
+  errors: [ApiError!]
   user: User
+}
+
+type SendMailResponse {
+  errors: [ApiError!]
+  message: String
+  status: String
 }
 
 type Query {
   hello: String!
   getProjects: [Project!]!
   getProjectById(id: String!): Project!
-  getTechnologies: [Technology!]!
+  getTechnologies(all: Boolean!): [Technology!]!
   getTechnologyById(id: String!): Technology!
   getTechnologyByName(name: String!): Technology!
   checkAuth: UserResponse!
@@ -66,9 +72,17 @@ type Query {
 type Mutation {
   login(data: UserLoginData!): UserResponse!
   logout: Boolean!
+  sendMail(data: SendMailParams!): SendMailResponse!
 }
 
 input UserLoginData {
   emailOrUsername: String!
   password: String!
+}
+
+input SendMailParams {
+  fullname: String!
+  email: String!
+  subject: String!
+  message: String!
 }

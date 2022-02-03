@@ -30,4 +30,12 @@ export class Technology extends BaseModel {
 
   //   this._iconUrl = url;
   // }
+
+  // public get projects() {
+  //   return this._projects;
+  // }
+
+  public toString() {
+    return `Technology { id: ${this.id}, name: ${this.name}, iconUrl: ${this.iconUrl} }`;
+  }
 }

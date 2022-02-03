@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import * as EmailValidator from 'email-validator';
 import axios from 'axios';
 
@@ -13,145 +13,95 @@ import { motion } from 'framer-motion';
 import { pageTransition } from '../../../constants/framer-motion';
 import AnimatedText from '../../AnimatedText/AnimatedText';
 import { useScrollToTop } from '../../../hooks/useScrollToTop';
+import { InputName } from '../../../models/Contact';
+import { useFieldValidation } from '../../../hooks/useFieldValidation';
+import { useFieldTouched } from '../../../hooks/useFieldTouched';
+import { useMail } from '../../../hooks/useMail';
+import { MailStatus } from '../../../models/Mail';
+import { FormErrorMessage } from '../../../constants/FormErrors';
 
 interface ContactProps {}
-
-type FieldsState = {
-  [key in ContactStateProp]: {
-    value: string;
-    hasError: boolean;
-  };
-};
 
 interface ContactState {
   hasError: boolean;
   hasFormBeenSubmited: boolean;
   hasTriedToSubmit: boolean;
-  successMessage: string;
-  errorMessage: string;
-  isFormValid: boolean;
+  message: string;
 }
 
-export type ContactStateProp = 'Nom' | 'Objet' | 'Message' | 'Email';
-
 const Contact: FC<ContactProps> = () => {
-  const [state, setState] = useState<ContactState & FieldsState>({
-    Nom: { hasError: false, value: '' },
-    Objet: { hasError: false, value: '' },
-    Message: { hasError: false, value: '' },
-    Email: { hasError: false, value: '' },
+  const [state, setState] = useState<ContactState>({
     hasError: false,
     hasFormBeenSubmited: false,
     hasTriedToSubmit: false,
-    errorMessage: 'Tous les champs sont requis !',
-    successMessage: 'Votre message a bien été envoyé !',
-    isFormValid: false,
+    message: 'Le formulaire présente des erreurs, veuillez les corriger.',
   });
 
   useScrollToTop();
+  const [fullname, setFullnameError] = useFieldValidation(InputName.FULL_NAME, 'contact');
+  const [email, setEmailError] = useFieldValidation(InputName.EMAIL, 'contact');
+  const [subject, setSubjectError] = useFieldValidation(InputName.SUBJECT, 'contact');
+  const [message, setMessageError] = useFieldValidation(InputName.MESSAGE, 'contact');
 
-  const propsToIgnoreForFieldVerification = [
-    'hasError',
-    'isFormValid',
-    'hasFormBeenSubmited',
-    'hasTriedToSubmit',
-    'errorMessage',
-    'successMessage',
-  ];
+  // check if all the inputs were touched
+  const inputsTouched = fullname.touched && email.touched && subject.touched && message.touched;
+  // check if all the inputs are valid
+  const inputsValid = !fullname.error && !email.error && !subject.error && !message.error;
+  // check if all input have a value
+  const inputsHaveValue = !!fullname.value && !!email.value && !!subject.value && !!message.value;
+
+  const { sendMail, notification, mailStatus } = useMail();
+
+  const NOTIFICATION_TIME = 5000; /* ms */
 
   const formSubmitHandler = (event: FormEvent) => {
     event.preventDefault();
+    if (!inputsValid || !inputsHaveValue) {
+      setState((ps) => ({ ...ps, hasError: true, hasTriedToSubmit: true }));
 
-    if (!EmailValidator.validate(state.Email.value)) {
-      return setState({
-        ...state,
-        Email: { ...state.Email, hasError: true },
-        hasError: true,
-        hasTriedToSubmit: true,
-        errorMessage: "Cet email n'est pas un email valide !",
-      });
-    }
-
-    let updatedState = {
-      ...state,
-      hasError: false,
-      hasTriedToSubmit: true,
-      errorMessage: 'Tous les champs sont requis !',
-    };
-
-    for (const key in state) {
-      if (!state[key as ContactStateProp].value) {
-        if (propsToIgnoreForFieldVerification.includes(key)) continue;
-
-        updatedState.hasError = true;
-        updatedState.isFormValid = false;
-
-        updatedState[key as ContactStateProp] = {
-          ...state[key as ContactStateProp],
-          hasError: true,
-        };
-      }
-    }
-
-    if (updatedState.hasError) {
-      return setState(updatedState);
-    }
-
-    const form = event.target as HTMLFormElement;
-    const data = new FormData(form);
-
-    sendData(data);
-  };
-
-  const sendData = async (data: FormData) => {
-    try {
-      const response = await axios.post('https://formspree.io/f/meqpgdyo', data);
-
-      console.log(response);
-      setState((prevState) => ({
-        ...prevState,
-        hasFormBeenSubmited: true,
-        successMessage: 'Votre message a bien été envoyé !',
-      }));
+      setFullnameError(FormErrorMessage.EMPTY_FIELD);
+      setEmailError(FormErrorMessage.EMPTY_FIELD);
+      setSubjectError(FormErrorMessage.EMPTY_FIELD);
+      setMessageError(FormErrorMessage.EMPTY_FIELD);
 
       setTimeout(() => {
-        setState((prevState) => ({ ...prevState, hasFormBeenSubmited: false }));
-      }, 5000);
-    } catch (e) {
-      console.error(e);
+        setState((ps) => ({ ...ps, hasError: false }));
+      }, NOTIFICATION_TIME);
+      return;
+    }
+
+    sendMail();
+    setState((ps) => ({
+      ...ps,
+      hasFormBeenSubmited: true,
+    }));
+
+    setTimeout(() => {
+      setState((ps) => ({
+        ...ps,
+        hasFormBeenSubmited: false,
+        hasTriedToSubmit: false,
+      }));
+    }, NOTIFICATION_TIME);
+  };
+
+  const resetFormErrorHandler = () => {
+    if (state.hasError) {
+      setState((ps) => ({ ...ps, hasError: false }));
     }
   };
 
-  const onFieldChange = (
-    name: ContactStateProp,
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const isEmpty = event.target.value.length <= 0;
-    const updatedState = {
-      ...state,
-      [name]: { ...state[name], value: event.target.value, hasError: isEmpty },
-      hasError: false,
-      isFormValid: true,
-    };
+  let isFormValid = true;
 
-    if (state.hasTriedToSubmit) {
-      for (const key in state) {
-        if (propsToIgnoreForFieldVerification.includes(key)) continue;
+  if (state.hasTriedToSubmit) {
+    isFormValid = inputsValid && inputsHaveValue && inputsTouched;
+  }
 
-        const propToCheck = { ...updatedState[key as ContactStateProp] };
+  let feedbackMessage = state.message;
 
-        if (propToCheck.hasError || !propToCheck.value) {
-          updatedState.hasError = true;
-          updatedState.isFormValid = false;
-          updatedState.errorMessage = 'Tous les champs sont requis !';
-        }
-      }
-    }
-
-    setState(updatedState);
-  };
-
-  //  TODO: check form errors && implement backend for mail sending
+  if (state.hasFormBeenSubmited && mailStatus === MailStatus.SENT) {
+    feedbackMessage = notification;
+  }
 
   return (
     <>
@@ -176,47 +126,52 @@ const Contact: FC<ContactProps> = () => {
               ), je reste ouvert à toute proposition.
             </p>
           </div>
-          <motion.form onSubmit={formSubmitHandler} className={classes.Contact}>
+          <motion.form
+            onChange={resetFormErrorHandler}
+            onSubmit={formSubmitHandler}
+            className={classes.Contact}>
             <div className={classes.FormControl}>
-              {(state.hasFormBeenSubmited && state.isFormValid) || state.hasError ? (
+              {(state.hasFormBeenSubmited && mailStatus !== MailStatus.NOT_SENT) ||
+              state.hasError ? (
                 <Message
                   className={state.hasError ? classes.ErrorMessage : classes.SuccessMessage}
-                  errorMessage={state.errorMessage}
-                  successMessage={state.successMessage}
+                  message={feedbackMessage}
                   hasError={state.hasError}
                 />
               ) : null}
-              <fieldset className={classes.Contact__Id}>
+              <fieldset className={`${classes.Contact__Id} ${classes.Field}`}>
                 <Field
-                  name="Nom"
+                  label="Nom complet"
+                  name={InputName.FULL_NAME}
+                  reducerName="contact"
                   type="text"
-                  hasError={state.Nom.hasError}
-                  value={state.Nom.value}
-                  setValue={onFieldChange}
+                  errorMessage={fullname.error}
                 />
                 <Field
-                  name="Email"
+                  label="Email"
+                  name={InputName.EMAIL}
+                  reducerName="contact"
                   type="email"
-                  hasError={state.Email.hasError}
-                  value={state.Email.value}
-                  setValue={onFieldChange}
+                  errorMessage={email.error}
                 />
               </fieldset>
               <Field
-                name="Objet"
+                className={classes.Field}
+                label="Objet"
+                name={InputName.SUBJECT}
+                reducerName="contact"
                 type="text"
-                hasError={state.Objet.hasError}
-                value={state.Objet.value}
-                setValue={onFieldChange}
+                errorMessage={subject.error}
               />
               <Field
-                name="Message"
+                className={classes.Field}
+                label="Message"
+                name={InputName.MESSAGE}
+                reducerName="contact"
                 type="textarea"
-                hasError={state.Message.hasError}
-                value={state.Message.value}
-                setValue={onFieldChange}
+                errorMessage={message.error}
               />
-              <button disabled={state.hasError} tabIndex={0} type="submit">
+              <button disabled={!isFormValid} tabIndex={0} type="submit">
                 Envoyer
               </button>
             </div>
@@ -225,7 +180,8 @@ const Contact: FC<ContactProps> = () => {
         <iframe
           title="map"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d169097.1589776075!2d2.110008553319217!3d48.530489093292395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5cff896af791f%3A0x30b82c3688b2b30!2sEssonne!5e0!3m2!1sfr!2sfr!4v1640734873829!5m2!1sfr!2sfr"
-          loading="lazy"></iframe>
+          loading="lazy"
+        />
       </motion.div>
     </>
   );

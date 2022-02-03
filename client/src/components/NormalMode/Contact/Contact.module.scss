@@ -103,18 +103,23 @@ iframe {
   }
 }
 
+.Field {
+  margin-bottom: 1.5rem;
+}
+
 .SuccessMessage {
   margin-bottom: 2rem;
   padding: 1rem;
   width: 100%;
-  border: 2px solid opacify($color: $normal-success, $amount: 1);
+  border: 2px solid transparentize(opacify($normal-success, 1), 0.5);
+  border-radius: 5px;
   background-color: $normal-success;
   animation: appear 500ms ease;
 }
 
 .ErrorMessage {
   @extend .SuccessMessage;
-  border: 2px solid opacify($color: $normal-danger, $amount: 1);
+  border: 2px solid transparentize(opacify($normal-danger, 1), 0.5);
   background-color: $normal-danger;
 }
 

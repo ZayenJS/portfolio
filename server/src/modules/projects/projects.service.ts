@@ -4,7 +4,10 @@ import { Project } from 'src/models/Project';
 @Injectable()
 export class ProjectsService {
   public async getProjects() {
-    return Project.find({ relations: ['technologies', 'images'] });
+    return Project.find({
+      relations: ['technologies', 'images'],
+      order: { id: 'ASC' },
+    });
   }
 
   public async getProjectById(id: string) {

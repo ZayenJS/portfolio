@@ -18,6 +18,7 @@ import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { FixturesModule } from '../fixtures/fixtures.module';
+import { MailModule } from '../mail/mail.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { FixturesModule } from '../fixtures/fixtures.module';
     TechnologiesModule,
     UserModule,
     AuthModule,
+    MailModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       name: 'default',

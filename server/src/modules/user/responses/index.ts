@@ -1,11 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Error } from 'src/@types/Error';
+import { ApiError } from 'src/@types/ApiError';
 import { User } from 'src/models/User';
 
 @ObjectType()
 export class UserResponse {
-  @Field(() => [Error], { nullable: true })
-  errors?: Error[];
+  @Field(() => [ApiError], { nullable: true })
+  errors?: ApiError[];
 
   @Field(() => User, { nullable: true })
   user?: User;

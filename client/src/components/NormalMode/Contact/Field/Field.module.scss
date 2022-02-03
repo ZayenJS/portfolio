@@ -1,23 +1,46 @@
 @import '../../../../assets/scss/variables';
 
-.Field {
+.Container {
   position: relative;
   margin: 0.75rem 0;
   width: 100%;
 
   input,
   textarea {
+    font-size: 1.4rem;
+    border-radius: 5px;
     color: #fff;
     margin: 0.25rem 0;
     padding: 1rem;
     width: 100%;
-    border: none;
+    border: 4px solid transparent;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
     transition: all 300ms ease-in-out;
+
+    &:focus {
+      + .EmptyInput {
+        left: 0;
+        transition: all 250ms ease-in-out;
+      }
+    }
+
+    + label {
+      transform: translateY(50%);
+      left: 1rem;
+      transition: all 250ms ease-in-out;
+      font-size: 1.25em;
+    }
+
+    + .FilledInput {
+      left: 0rem;
+      transition: all 250ms ease-in-out;
+      color: $normal-secondary-color;
+    }
   }
 
   label {
     position: absolute;
+    pointer-events: none;
   }
 
   input {
@@ -26,47 +49,33 @@
 
     + label {
       bottom: 50%;
-      transform: translateY(50%);
-      left: 1rem;
-      transition: all 250ms ease-in-out;
-      font-size: 1.25em;
     }
 
     + .FilledInput {
-      font-size: 0.9em;
-      transition: all 250ms ease-in-out;
       bottom: 4rem;
-      color: $normal-secondary-color;
     }
 
     &:focus {
       border-bottom: 4px solid $normal-secondary-color;
 
       + .EmptyInput {
-        font-size: 0.9em;
-        transition: all 250ms ease-in-out;
         bottom: 4rem;
       }
     }
   }
 
   textarea {
-    min-height: 7.5rem;
+    $min-height: 25rem;
+    min-height: $min-height;
     border-bottom: 4px solid transparent;
+    resize: none;
 
     + label {
       bottom: 2rem;
-      transform: translateY(50%);
-      left: 1rem;
-      transition: all 250ms ease-in-out;
-      font-size: 1.25em;
     }
 
     + .FilledInput {
-      font-size: 0.9em;
-      transition: all 250ms ease-in-out;
-      bottom: 9rem;
-      color: $normal-secondary-color;
+      bottom: calc($min-height + 1.5rem);
     }
 
     &:focus {
@@ -74,9 +83,7 @@
       outline: none;
 
       + .EmptyInput {
-        font-size: 0.9em;
-        transition: all 250ms ease-in-out;
-        bottom: 9rem;
+        bottom: calc($min-height + 1.5rem);
       }
     }
   }
@@ -87,14 +94,15 @@
 
   input,
   textarea {
-    background-color: transparentize($color: $normal-danger, $amount: 0.25);
+    background-color: transparentize($color: lighten($normal-danger, 30%), $amount: 0.4);
 
     + label {
-      color: darken($color: $normal-danger, $amount: 10%);
+      // text-shadow: 1px 1px 1px rgba(yellow, 0.75);
+      color: darken($normal-danger, 10%) !important;
     }
 
     &:focus + label {
-      color: $normal-danger;
+      color: $normal-danger !important;
     }
   }
 
@@ -114,4 +122,10 @@
       outline: none;
     }
   }
+}
+
+span.Error {
+  display: block;
+  margin-top: 0.5rem;
+  height: 1rem;
 }

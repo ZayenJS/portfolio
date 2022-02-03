@@ -1,23 +1,25 @@
 import { FC, useState } from 'react';
 import { useOverflow } from '../../../../hooks/useOverflow';
 
-import { IWorkProject } from '../../../../models';
+import { Project as ProjectModel } from '../../../../models/Project';
 import ImageGallery from '../../../ImageGallery/ImageGallery';
 import Portal from '../../../Portal/Portal';
 
 import classes from './WorkProject.module.scss';
 
 interface ProjectProps {
-  project: IWorkProject;
+  project: ProjectModel;
 }
 
 const Project: FC<ProjectProps> = ({
-  project: { name, description, url, image, gallery, repository, technos },
+  project: { name, description, url, images, repository, technologies },
 }) => {
   const [state, setState] = useState({ isGalleryVisible: false });
   const { overflow } = useOverflow();
 
   const showGallery = () => {
+    if (!images.length) return;
+
     overflow('hidden');
     setState({ ...state, isGalleryVisible: true });
   };
@@ -33,17 +35,17 @@ const Project: FC<ProjectProps> = ({
       <div className={classes.Content__Container}>
         <div className={classes.ImageContainer}>
           <img
-            style={gallery?.length ? { cursor: 'pointer' } : {}}
+            style={images?.length ? { cursor: 'pointer' } : {}}
             onClick={() => showGallery()}
-            src={image}
+            src={images[0]?.url}
             alt={`${name} site preview`}
           />
-          {state.isGalleryVisible && gallery?.length ? (
+          {state.isGalleryVisible && images?.length ? (
             <Portal>
               {/*
                 //TODO: carousel
               */}
-              <ImageGallery hideGallery={hideGallery} gallery={gallery} />
+              <ImageGallery hideGallery={hideGallery} gallery={images.map((image) => image.url)} />
             </Portal>
           ) : null}
         </div>
@@ -76,9 +78,9 @@ const Project: FC<ProjectProps> = ({
         </div>
       </div>
       <ul className={classes.TechnosList}>
-        {technos.map(({ name, logo }) => (
+        {technologies.map(({ name, iconUrl }) => (
           <li title={name} className={classes.TechnosList__Item} key={name}>
-            <img src={logo} alt={`icone ${name}`} />
+            <img src={iconUrl} alt={`icone ${name}`} />
           </li>
         ))}
       </ul>
