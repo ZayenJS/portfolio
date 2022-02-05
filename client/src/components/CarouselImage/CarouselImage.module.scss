@@ -1,0 +1,15 @@
+@import '../../assets/scss/variables';
+
+.Container {
+  /* your styles here... */
+}
+
+.Text_Container {
+  @include flex($flex-flow: column nowrap);
+  gap: 1rem;
+  max-width: 1600px;
+
+  figcaption {
+    @include flex(flex-start, center, column nowrap);
+  }
+}

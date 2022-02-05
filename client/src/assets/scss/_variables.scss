@@ -184,6 +184,8 @@ $p-cross: '\e101';
 $p-forbid: '\e102';
 $p-plus: '\e103';
 $p-dropdown-arrow: '\e104';
+$p-left: '\e105';
+$p-right: '\e106';
 
 $editor-opening-time: 320ms;
 
@@ -197,6 +199,9 @@ $normal-primary-color: #161616;
 $normal-secondary-color: #00ff94;
 $normal-danger: rgba(214, 28, 28, 0.75);
 $normal-success: rgba(39, 167, 39, 0.5);
+$light-color: #fff;
+$dark-color: #282828;
+$grey-color: #555;
 
 // Small smartphones
 $screen-xs-min: 400px;

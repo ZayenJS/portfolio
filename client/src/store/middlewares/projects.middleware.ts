@@ -27,6 +27,7 @@ export const projectsMiddleware =
                   iconUrl
                 }
                 images {
+                  id
                   url
                 }
               }

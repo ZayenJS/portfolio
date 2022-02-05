@@ -30,7 +30,11 @@ export class FixturesService {
     }
   }
 
-  public async createProjects(imagesPath: string) {
+  public async createProjects(imagesPath: {
+    basePath: string;
+    pathname: string;
+    fullpath: string;
+  }) {
     try {
       const projects = getProjects();
 
@@ -73,16 +77,36 @@ export class FixturesService {
         const createdProject = await newProject.save();
 
         // add images to the project
-        const projectImagePath = `${imagesPath}/${slugify(project.name, {
-          lower: true,
-        })}`;
+        const projectImagePath = `${imagesPath.fullpath}/${slugify(
+          project.name,
+          {
+            lower: true,
+          },
+        )}`;
 
-        for (const image of project.images) {
-          const imagePath = `${projectImagePath}/${image}`;
-          const savedImage = await Image.create({
-            url: imagePath,
-            project: createdProject,
-          }).save();
+        const slugifiedProjectName = slugify(project.name, {
+          lower: true,
+        });
+
+        const projectImagesFolder = `${process.cwd()}/public/${
+          imagesPath.pathname
+        }/${slugifiedProjectName}`;
+
+        try {
+          const projectImageDirectoryContent = await fsp.readdir(
+            projectImagesFolder,
+          );
+          for (const image of projectImageDirectoryContent) {
+            const imagePath = `${projectImagePath}/${image}`;
+            console.log(`Adding image: ${imagePath}`);
+
+            await Image.create({
+              url: imagePath,
+              project: createdProject,
+            }).save();
+          }
+        } catch (e) {
+          console.error(e);
         }
 
         console.log(`Created project: ${createdProject.name}`);

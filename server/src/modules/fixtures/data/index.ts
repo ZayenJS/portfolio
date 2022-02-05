@@ -37,7 +37,6 @@ export const getProjects = () => [
     url: 'https://brownskinbeauty.fr',
     repository: 'https://github.com/ZayenJS/brownskinbeauty',
     technologies: ['HTML', 'CSS', 'JavaScript'],
-    images: [],
   },
   {
     name: 'Find Your Way',
@@ -49,7 +48,6 @@ export const getProjects = () => [
     url: 'https://zayenjs.github.io/find-your-way-game/',
     repository: 'https://github.com/ZayenJS/find-your-way-game',
     technologies: ['HTML', 'CSS', 'JavaScript'],
-    images: [],
   },
   {
     name: "sensi'me",
@@ -65,7 +63,6 @@ export const getProjects = () => [
       'Express',
       'PostgreSQL',
     ],
-    images: [],
   },
   {
     name: 'The Tavern',
@@ -74,21 +71,21 @@ export const getProjects = () => [
       fullstack JS de l'école O'Clock.
       Il s'agit du premier réseau social dédié au jeu de rôle.
       Il est composé de deux parties principales :
-      un fil d'actualité et une salle de jeu avec chat et partage d'écran.`,
+      un fil d'actualité et une salle de jeu avec chat et partage d'écran en temps réel en utilisant la technologie des WebSockets.`,
     repository: 'https://github.com/the-tavern-social-network/the-tavern',
     technologies: ['React', 'Redux', 'Sass', 'NodeJS', 'Express', 'PostgreSQL'],
-    images: [],
   },
   {
     name: 'covid tracker',
     description: `Application permettant de suivre l'évolution
       du COVID-19 au fil du temps par pays ou globalement.
       L'application permet aussi d'obtenir les dernières infos
-      du covid par pays.`,
+      du covid par pays. Elle a principalement été réalisée dans le but de me former sur TypeScript.
+      Cette application n'est aucunement liée à https://covidtracker.fr/.
+      `,
     url: '',
     repository: 'https://github.com/ZayenJS/covid-tracker',
     technologies: ['React', 'TypeScript', 'Redux', 'Sass'],
-    images: [],
   },
   {
     name: 'cli-rjs',
@@ -100,12 +97,11 @@ export const getProjects = () => [
     url: 'https://www.npmjs.com/package/cli-rjs',
     repository: 'https://github.com/rjs-cli/rjs-cli',
     technologies: ['NodeJS', 'TypeScript'],
-    images: [],
   },
   {
     name: 'ristorante',
     description:
-      "Site réalisé en tant que formateur pour enseigner la réalisation d'un site web.",
+      "Site réalisé en tant que formateur pour enseigner la réalisation d'un site web de A à Z en HTML/CSS/JavaScript/PHP et MySQL.",
 
     url: 'https://ristorante.david-nogueira.dev',
     repository: 'https://github.com/ZayenJS/dw5-ristorante',
@@ -118,7 +114,6 @@ export const getProjects = () => [
       'Twig',
       'MySQL',
     ],
-    images: [],
   },
   {
     name: 'fairly made',
@@ -127,7 +122,6 @@ export const getProjects = () => [
     url: 'https://fairly-made.david-nogueira.dev',
     repository: 'https://github.com/ZayenJS/dw5-ristorante',
     technologies: ['HTML', 'Sass', 'JavaScript', 'PHP', 'Twig', 'MySQL'],
-    images: ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png'],
   },
   {
     name: 'portfolio',
@@ -143,6 +137,5 @@ export const getProjects = () => [
       'GraphQL',
       'PostgreSQL',
     ],
-    images: ['portfolio.png'],
   },
 ];
