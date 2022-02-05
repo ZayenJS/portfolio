@@ -2,7 +2,10 @@ import { FC, useState } from 'react';
 import { useOverflow } from '../../../../hooks/useOverflow';
 
 import { Project as ProjectModel } from '../../../../models/Project';
-import ImageGallery from '../../../ImageGallery/ImageGallery';
+import Backdrop from '../../../Backdrop/Backdrop';
+import Carousel from '../../../Carousel/Carousel';
+import CarouselImage from '../../../CarouselImage/CarouselImage';
+import CloseCross from '../../../CloseCross/CloseCross';
 import Portal from '../../../Portal/Portal';
 
 import classes from './WorkProject.module.scss';
@@ -14,19 +17,19 @@ interface ProjectProps {
 const Project: FC<ProjectProps> = ({
   project: { name, description, url, images, repository, technologies },
 }) => {
-  const [state, setState] = useState({ isGalleryVisible: false });
+  const [state, setState] = useState({ isCarouselVisible: false });
   const { overflow } = useOverflow();
 
   const showGallery = () => {
     if (!images.length) return;
 
     overflow('hidden');
-    setState({ ...state, isGalleryVisible: true });
+    setState({ ...state, isCarouselVisible: true });
   };
 
-  const hideGallery = () => {
+  const hideCarousel = () => {
     overflow('');
-    setState({ ...state, isGalleryVisible: false });
+    setState({ ...state, isCarouselVisible: false });
   };
 
   return (
@@ -40,12 +43,29 @@ const Project: FC<ProjectProps> = ({
             src={images[0]?.url}
             alt={`${name} site preview`}
           />
-          {state.isGalleryVisible && images?.length ? (
+          {state.isCarouselVisible && images?.length ? (
             <Portal>
-              {/*
-                //TODO: carousel
-              */}
-              <ImageGallery hideGallery={hideGallery} gallery={images.map((image) => image.url)} />
+              <Backdrop />
+              <CloseCross fat className={classes.Cross} onClose={hideCarousel} />
+              <Carousel
+                className={classes.Carousel}
+                autoplay={false}
+                showArrows={images.length > 1}
+                showDots={images.length > 1}
+                slide
+                key={images.length}
+                swipeable
+                onElementChange={() => null}>
+                {images.map((image) => (
+                  <CarouselImage
+                    id={image.id}
+                    key={image.id}
+                    className={classes.CarouselImage}
+                    src={image.url}
+                    style={{ backgroundPosition: 'top center' }}
+                  />
+                ))}
+              </Carousel>
             </Portal>
           ) : null}
         </div>

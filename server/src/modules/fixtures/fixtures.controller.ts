@@ -15,7 +15,12 @@ export class FixturesController {
 
   @Post('/projects')
   public async loadProjects(@Req() req) {
-    const imagesPath = `${req.protocol}://${req.get('host')}/images/projects`;
+    const imagesPath = {
+      basePath: `${req.protocol}://${req.get('host')}`,
+      fullpath: `${req.protocol}://${req.get('host')}/images/projects`,
+      pathname: `images/projects`,
+    };
+
     return this.fixturesService.createProjects(imagesPath);
   }
 }

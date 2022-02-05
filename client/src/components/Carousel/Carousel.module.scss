@@ -1,0 +1,214 @@
+@import '../../assets/scss/variables';
+
+.Container {
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    .Dots.On_Hover {
+      transform: translate(-50%, 0);
+    }
+
+    .Arrows.On_Hover div {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+.Image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+
+  > * {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.Slide {
+  &.Active.Right {
+    animation: slide-in-from-right 500ms 1 ease forwards;
+  }
+  &.Active.Left {
+    animation: slide-in-from-left 500ms 1 ease forwards;
+  }
+
+  &.Leave.Right {
+    animation: slide-out-to-left 500ms 1 ease forwards;
+  }
+  &.Leave.Left {
+    animation: slide-out-to-right 500ms 1 ease forwards;
+  }
+}
+
+.Active {
+  animation: fade-in 300ms 1 ease forwards;
+}
+
+.Leave {
+  animation: fade-out 300ms 1 ease forwards;
+}
+
+.Arrows {
+  div {
+    @include flex(center, center);
+    z-index: 2000;
+    top: 50%;
+    opacity: 1;
+    transform: translate(0, -50%);
+    position: absolute;
+    width: 3rem;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    background-color: rgba(black, 0.55);
+    cursor: pointer;
+    transition: all 250ms ease;
+    border: 2px solid transparent;
+
+    &:before {
+      font-family: $portfolio-font-family;
+      font-size: 1.25rem;
+      color: $normal-secondary-color;
+    }
+
+    &:hover {
+      border: 2px solid $normal-secondary-color;
+
+      &:before {
+        // color: lighten($normal-secondary-color, 10%);
+      }
+    }
+
+    &:first-child {
+      left: 2%;
+
+      &:before {
+        content: $p-left;
+      }
+    }
+
+    &:last-child {
+      right: 2%;
+
+      &:before {
+        content: $p-right;
+      }
+    }
+  }
+
+  &.On_Hover {
+    div {
+      opacity: 0;
+    }
+
+    div:first-child {
+      transform: translate(-20vw, -50%);
+    }
+
+    div:last-child {
+      transform: translate(20vw, -50%);
+    }
+  }
+}
+
+.Dots {
+  @include flex(center, center);
+  gap: 1rem;
+  bottom: 1rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: all 250ms ease;
+
+  @include lg {
+    bottom: 2rem;
+  }
+
+  &.On_Hover {
+    transform: translate(-50%, 20vh);
+  }
+}
+
+.Dot {
+  cursor: pointer;
+  width: 0.75rem;
+  aspect-ratio: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  border: 1px solid $normal-primary-color;
+  transition: all 250ms ease;
+
+  &:hover {
+    background-color: $normal-secondary-color;
+    border-color: darken($normal-primary-color, 15%);
+  }
+
+  &.Active {
+    background-color: $normal-secondary-color;
+    border-color: darken($normal-secondary-color, 15%);
+
+    &:hover {
+      background-color: $normal-secondary-color;
+    }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-to-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-to-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
